@@ -1,5 +1,6 @@
 import 'package:flowery/core/config/application_theme.dart';
 import 'package:flowery/core/config/colors.dart';
+import 'package:flowery/core/config/validator.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormFieled extends StatelessWidget {
@@ -7,12 +8,14 @@ class CustomTextFormFieled extends StatelessWidget {
   String labelText;
   String hintText;
   bool shouldObscureText;
+  Validator validator;
   CustomTextFormFieled({
     super.key,
     required this.textEditingController,
     required this.labelText,
     required this.hintText,
     required this.shouldObscureText,
+    required this.validator,
   });
 
   @override
