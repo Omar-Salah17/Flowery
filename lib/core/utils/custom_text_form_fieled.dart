@@ -6,18 +6,20 @@ class CustomTextFormFieled extends StatelessWidget {
   TextEditingController textEditingController;
   String labelText;
   String hintText;
+  bool shouldObscureText;
   CustomTextFormFieled({
     super.key,
     required this.textEditingController,
     required this.labelText,
     required this.hintText,
+    required this.shouldObscureText,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: textEditingController,
-      obscureText: true,
+      obscureText: shouldObscureText,
       obscuringCharacter: "*",
       style: ApplicationTheme.themeData.textTheme.bodyMedium?.copyWith(
         color: PalletsColors.white70,
