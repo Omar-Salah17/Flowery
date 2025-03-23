@@ -1,4 +1,17 @@
 class Validator {
+  static String? validateEmail(String? val) {
+    final RegExp emailRegex = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+    );
+    if (val == null || val.trim().isEmpty) {
+      return 'Enter your email address.';
+    } else if (!emailRegex.hasMatch(val)) {
+      return 'This Email is not valid (e.g., example@example.com).';
+    } else {
+      return null;
+    }
+  }
+
   static String? validatePhoneNumber(String? val) {
     if (val == null || val.isEmpty) {
       return 'this field is required';
