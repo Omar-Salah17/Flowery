@@ -16,7 +16,7 @@ class CustomTextFormFieled extends StatelessWidget {
     required this.labelText,
     required this.hintText,
     required this.shouldObscureText,
-    required this.validator,
+    this.validator,
   });
 
   @override
