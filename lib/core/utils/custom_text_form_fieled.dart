@@ -1,6 +1,6 @@
-import 'package:flowery/core/config/application_theme.dart';
-import 'package:flowery/core/config/colors.dart';
-import 'package:flowery/core/config/validator.dart';
+import 'package:flowery/core/utils/application_theme.dart';
+import 'package:flowery/core/utils/colors.dart';
+import 'package:flowery/core/utils/validator.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormFieled extends StatelessWidget {

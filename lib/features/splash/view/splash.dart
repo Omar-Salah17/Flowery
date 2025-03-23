@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flowery/core/config/colors.dart';
+import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flutter/material.dart';
 

@@ -1,4 +1,4 @@
-import 'package:flowery/core/config/application_theme.dart';
+import 'package:flowery/core/utils/application_theme.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/config/route_generator.dart';
 import 'package:flutter/material.dart';
