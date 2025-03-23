@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flowery/core/colors.dart';
-import 'package:flowery/core/routes_name.dart';
+import 'package:flowery/core/config/colors.dart';
+import 'package:flowery/core/config/routes_name.dart';
 import 'package:flutter/material.dart';
 
 class Splash extends StatefulWidget {
@@ -24,9 +24,7 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: PalletsColors.lightPink,
-      body: Center(
-        child: Image.asset("assets/images/Image.png"),
-      ),
+      body: Center(child: Image.asset("assets/images/Image.png")),
     );
   }
 }

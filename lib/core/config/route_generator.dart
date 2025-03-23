@@ -1,4 +1,4 @@
-import 'package:flowery/core/routes_name.dart';
+import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/features/auth/forgetPassword/presentation/view/screens/forget_password.dart';
 import 'package:flowery/features/auth/login/presentation/view/screens/login.dart';
 import 'package:flowery/features/auth/register/presentation/view/screens/register.dart';
@@ -33,9 +33,7 @@ class RouteGenerator {
         );
 
       default:
-        return MaterialPageRoute(
-          builder: (context) => Splash(),
-        );
+        return MaterialPageRoute(builder: (context) => Splash());
     }
   }
 }
