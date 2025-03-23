@@ -11,11 +11,9 @@ class Validator {
     }
   }
 
-static String? validatePassword(String? val) {
+  static String? validatePassword(String? val) {
     RegExp passwordRegex = RegExp(r'^(?=.[a-zA-Z])(?=.[0-9])');
     if (val == null || val.isEmpty) {
-      return 'this field is required';
-    } else if (val.isEmpty) {
       return 'this field is required';
     } else if (val.length < 8 || !passwordRegex.hasMatch(val)) {
       return 'strong password please';
@@ -23,7 +21,8 @@ static String? validatePassword(String? val) {
       return null;
     }
   }
- static String? validateConfirmPassword(String? val, String? password) {
+
+  static String? validateConfirmPassword(String? val, String? password) {
     if (val == null || val.isEmpty) {
       return 'this field is required';
     } else if (val != password) {

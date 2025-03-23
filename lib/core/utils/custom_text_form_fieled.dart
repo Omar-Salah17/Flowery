@@ -3,12 +3,12 @@ import 'package:flowery/core/config/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormFieled extends StatelessWidget {
-  // TextEditingController textEditingController;
+  TextEditingController textEditingController;
   String labelText;
   String hintText;
   CustomTextFormFieled({
     super.key,
-    // required this.textEditingController,
+    required this.textEditingController,
     required this.labelText,
     required this.hintText,
   });
@@ -16,7 +16,7 @@ class CustomTextFormFieled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      // controller: textEditingController,
+      controller: textEditingController,
       obscureText: true,
       obscuringCharacter: "*",
       style: ApplicationTheme.themeData.textTheme.bodyMedium?.copyWith(
