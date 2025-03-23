@@ -8,7 +8,8 @@ class CustomTextFormFieled extends StatelessWidget {
   String labelText;
   String hintText;
   bool shouldObscureText;
-  Validator validator;
+  final String? Function(String?)? validator;
+
   CustomTextFormFieled({
     super.key,
     required this.textEditingController,
