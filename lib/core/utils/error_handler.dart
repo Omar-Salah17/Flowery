@@ -1,8 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flowery/core/config/routes_name.dart';
-import 'package:flutter/widgets.dart';
 
-import 'package:awesome_dialog/awesome_dialog.dart';
 
 abstract class Failure {
   final String errorMessage;

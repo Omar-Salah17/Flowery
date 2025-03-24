@@ -1,7 +1,13 @@
+import 'dart:developer';
+
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/custom_text_form_fieled.dart';
+import 'package:flowery/core/utils/helper_functions/snack_bar.dart';
+import 'package:flowery/core/utils/validator.dart';
+import 'package:flowery/features/auth/forgetPassword/presentation/view_model/cubit/forget_password_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ForgetPasswordScreenBody extends StatefulWidget {
@@ -32,6 +38,7 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: Form(
+        key: formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -62,16 +69,46 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
               labelText: 'Email',
               hintText: "Enter Your Email",
               shouldObscureText: false,
+              validator: (value) {
+                Validator.validateEmail(value);
+              },
             ),
             SizedBox(height: 48.h),
             ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  RoutesName.emailVerificationScreen,
-                );
+              onPressed: () async {
+                if (formKey.currentState!.validate()) {
+                  log(
+                    "The email in forget password screen body is ${emailController.text.trim()}",
+                  );
+                  await context.read<ForgetPasswordCubit>().forgetPassword(
+                    email: emailController.text.trim(),
+                  );
+                }
               },
-              child: Text('Confirm'),
+              child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
+                listener: (context, state) {
+                  if (state is ForgetPasswordSuccess) {
+                    showSnackBar(context, state.data["info"]);
+                    Navigator.pushNamed(
+                      context,
+                      RoutesName.emailVerificationScreen,
+                      arguments: {"email": emailController.text.trim()},
+                    );
+                    log(
+                      'email from Navigating to EmailVerificationScreen is ${emailController.text.trim()}',
+                    );
+                  } else if (state is ForgetPasswordFailure) {
+                    showErrorSnackBar(context, state.errorMessage);
+                  }
+                },
+                builder: (context, state) {
+                  if (state is ForgetPasswordLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else {
+                    return Text('Confirm');
+                  }
+                },
+              ),
             ),
           ],
         ),
