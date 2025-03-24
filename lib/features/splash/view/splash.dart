@@ -4,6 +4,7 @@ import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flutter/material.dart';
 
+
 class Splash extends StatefulWidget {
   const Splash({super.key});
 
@@ -15,7 +16,7 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     Timer(Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, RoutesName.login);
+      Navigator.pushReplacementNamed(context, RoutesName.HomeLayout);
     });
     super.initState();
   }

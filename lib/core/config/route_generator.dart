@@ -5,6 +5,14 @@ import 'package:flowery/features/auth/register/presentation/view/screens/registe
 import 'package:flowery/features/splash/view/splash.dart';
 import 'package:flutter/material.dart';
 
+import '../../features/cart/presentation/view/cart_view.dart';
+import '../../features/catigories/presentation/view/categories_view.dart';
+import '../../features/home/presentation/view/home_view.dart';
+import '../../features/layout/Presentation/home_layout.dart';
+import '../../features/profile/presentation/view/profile_view.dart';
+
+
+
 class RouteGenerator {
   static Route<dynamic>? onGenerator(RouteSettings Settings) {
     switch (Settings.name) {
@@ -29,6 +37,36 @@ class RouteGenerator {
       case RoutesName.forgetPassword:
         return MaterialPageRoute(
           builder: (context) => ForgetPassword(),
+          settings: Settings,
+        );
+
+        case RoutesName.HomeLayout:
+        return MaterialPageRoute(
+          builder: (context) => HomeLayout(),
+          settings: Settings,
+        );
+
+        case RoutesName.profile:
+        return MaterialPageRoute(
+          builder: (context) => ProfileView(),
+          settings: Settings,
+        );
+
+        case RoutesName.cart:
+        return MaterialPageRoute(
+          builder: (context) => CartView(),
+          settings: Settings,
+        );
+
+        case RoutesName.categories:
+        return MaterialPageRoute(
+          builder: (context) => CategoriesView(),
+          settings: Settings,
+        );
+
+        case RoutesName.home:
+        return MaterialPageRoute(
+          builder: (context) => HomeView(),
           settings: Settings,
         );
 
