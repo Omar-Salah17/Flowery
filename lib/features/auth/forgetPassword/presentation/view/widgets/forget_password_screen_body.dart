@@ -1,3 +1,4 @@
+import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/custom_text_form_fieled.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +64,15 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
               shouldObscureText: false,
             ),
             SizedBox(height: 48.h),
-            ElevatedButton(onPressed: () {}, child: Text('Confirm')),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  RoutesName.emailVerificationScreen,
+                );
+              },
+              child: Text('Confirm'),
+            ),
           ],
         ),
       ),

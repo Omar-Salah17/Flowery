@@ -7,4 +7,8 @@ part 'apiService.g.dart';
 @RestApi(baseUrl: Constants.baseUrl)
 abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
+
+  // @POST('auth/forgotPassword')
+  // Future<Map<String, dynamic>> forgetPassword(@Body() Map<String, dynamic> requestBody);
+  
 }
