@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EmailVerificationScreenBody extends StatefulWidget {
-  const EmailVerificationScreenBody({super.key});
-
+  const EmailVerificationScreenBody({super.key, required this.email});
+  final String email;
   @override
   State<EmailVerificationScreenBody> createState() =>
       _EmailVerificationScreenBodyState();
@@ -99,9 +99,8 @@ class _EmailVerificationScreenBodyState
   void onChanged(String value, int index) {
     if (value.isNotEmpty && index < 5) {
       FocusScope.of(context).requestFocus(focusNodes[index + 1]);
-      
-    }else if (value.isEmpty && index > 0) {
+    } else if (value.isEmpty && index > 0) {
       FocusScope.of(context).requestFocus(focusNodes[index - 1]);
-    }
+    } 
   }
 }

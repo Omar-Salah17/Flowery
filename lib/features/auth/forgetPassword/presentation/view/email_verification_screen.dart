@@ -1,4 +1,4 @@
-
+import 'dart:developer';
 import 'package:flowery/features/auth/forgetPassword/presentation/view/widgets/email_verification_screen_body.dart';
 import 'package:flutter/material.dart';
 
@@ -15,28 +15,28 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   String? email;
 
   @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
 
-  //   final args = ModalRoute.of(context)?.settings.arguments;
-  //   log("📥 Received arguments in didChangeDependencies: $args");
+    final args = ModalRoute.of(context)?.settings.arguments;
+    log("📥 Received arguments in didChangeDependencies: $args");
 
-  //   if (args is Map<String, dynamic>) {
-  //     final receivedEmail = args['email'];
-  //     if (receivedEmail != null &&
-  //         receivedEmail is String &&
-  //         receivedEmail.isNotEmpty) {
-  //       setState(() {
-  //         email = receivedEmail;
-  //       });
-  //       print("✅ Email received in EmailVerificationScreen: $email");
-  //     } else {
-  //       print("❌ Invalid email argument: $receivedEmail");
-  //     }
-  //   } else {
-  //     print("❌ Email argument not found or invalid: $args");
-  //   }
-  // }
+    if (args is Map<String, dynamic>) {
+      final receivedEmail = args["email"];
+      if (receivedEmail != null &&
+          receivedEmail is String &&
+          receivedEmail.isNotEmpty) {
+        setState(() {
+          email = receivedEmail;
+        });
+        log("✅ Email received in EmailVerificationScreen: $email");
+      } else {
+        log("❌ Invalid email argument: $receivedEmail");
+      }
+    } else {
+      log("❌ Email argument not found or invalid: $args");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
         title: Text('Password'),
         titleSpacing: 0,
       ),
-      body: EmailVerificationScreenBody(),
+      body: EmailVerificationScreenBody(email: email ?? "Email Not Found",),
     );
   }
 }

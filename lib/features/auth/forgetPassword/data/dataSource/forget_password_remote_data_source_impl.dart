@@ -10,8 +10,20 @@ class ForgetPasswordRemoteDataSourceImpl
 
   ForgetPasswordRemoteDataSourceImpl({required this.apiManager});
   @override
-  Future<Map<String, dynamic>> forgetPassword({required String email})async {
- var response = await apiManager.postData(endPoint: Constants.forgetPasswordEndPoint, data: { "email" : email});
+  Future<Map<String, dynamic>> forgetPassword({required String email}) async {
+    var response = await apiManager.postData(
+      endPoint: Constants.forgetPasswordEndPoint,
+      data: {"email": email},
+    );
+    return response.data;
+  }
+
+  @override
+  Future<Map<String, dynamic>> verfiyCode({required String resetCode}) async {
+    var response = await apiManager.postData(
+      endPoint: Constants.verfiyCodeEndPoint,
+      data: {"resetCode": resetCode},
+    );
     return response.data;
   }
 }

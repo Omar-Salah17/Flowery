@@ -30,4 +30,23 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
       }
     }
   }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> verifyCode({
+    required String resetCode,
+  }) async {
+    try {
+      var data = await forgetPasswordRemoteDataSource.verfiyCode(
+        resetCode: resetCode,
+      );
+      return Right(data);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      } else {
+        log('error in forgetPasswordRepoImpl verify code method: ${e.toString()}');
+        return left(ServerFailure(errorMessage: e.toString()));
+      }
+    }
+  }
 }
