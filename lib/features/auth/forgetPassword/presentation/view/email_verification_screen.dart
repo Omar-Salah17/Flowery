@@ -1,9 +1,6 @@
-import 'dart:developer';
 
 import 'package:flowery/features/auth/forgetPassword/presentation/view/widgets/email_verification_screen_body.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({super.key});

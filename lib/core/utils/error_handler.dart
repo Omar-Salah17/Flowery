@@ -11,12 +11,9 @@ abstract class Failure {
 }
 
 class ServerFailure extends Failure {
-  ServerFailure({required super.errorMessage});
+  ServerFailure( {required super.errorMessage});
 
-  factory ServerFailure.fromDioException(
-    DioException dioExcep,
-    BuildContext context,
-  ) {
+  factory ServerFailure.fromDioException(DioException dioExcep) {
     switch (dioExcep.type) {
       case DioExceptionType.connectionTimeout:
         return ServerFailure(errorMessage: 'Connection timeout with ApiServer');
@@ -30,7 +27,6 @@ class ServerFailure extends Failure {
         return ServerFailure.fromResponse(
           dioExcep.response!.statusCode!,
           dioExcep.response!.data,
-          context,
         );
       case DioExceptionType.cancel:
         return ServerFailure(errorMessage: 'Request to ApiServer cancelled');
@@ -46,11 +42,7 @@ class ServerFailure extends Failure {
         );
     }
   }
-  factory ServerFailure.fromResponse(
-    int statusCode,
-    jsonData,
-    BuildContext context,
-  ) {
+  factory ServerFailure.fromResponse(int statusCode, jsonData) {
     switch (statusCode) {
       case 400:
       case 401:
@@ -64,18 +56,7 @@ class ServerFailure extends Failure {
                 "Password must contain at least:\n - 8 characters\n - One uppercase letter\n - One lowercase letter\n - One number\n - One special character.",
           );
         } else if (jsonData["message"].contains("token not provided ") ||
-            jsonData["message"].contains("invalid token")) {
-          Navigator.pushNamed(context, RoutesName.login).then((_) {
-            AwesomeDialog(
-              context: context,
-              dialogType: DialogType.info,
-              animType: AnimType.rightSlide,
-              title: 'Login again',
-              desc: ' with Remember me',
-              dismissOnTouchOutside: false,
-            ).show();
-          });
-        }
+            jsonData["message"].contains("invalid token")) {}
         return ServerFailure(errorMessage: jsonData["message"]);
       case 404:
         if (jsonData["message"] != null &&
