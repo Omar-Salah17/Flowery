@@ -1,5 +1,5 @@
 import 'package:flowery/core/config/routes_name.dart';
-import 'package:flowery/features/auth/forgetPassword/presentation/view/screens/forget_password.dart';
+import 'package:flowery/features/auth/forgetPassword/presentation/view/forget_password_screen.dart';
 import 'package:flowery/features/auth/login/presentation/view/screens/login.dart';
 import 'package:flowery/features/auth/register/presentation/view/screens/register.dart';
 import 'package:flowery/features/splash/view/splash.dart';
@@ -28,7 +28,7 @@ class RouteGenerator {
 
       case RoutesName.forgetPassword:
         return MaterialPageRoute(
-          builder: (context) => ForgetPassword(),
+          builder: (context) => ForgetPasswordScreen(),
           settings: Settings,
         );
 

@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flowery/core/utils/constants.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 part 'apiService.g.dart';
 

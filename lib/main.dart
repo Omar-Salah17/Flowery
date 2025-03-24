@@ -1,3 +1,4 @@
+import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/application_theme.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/config/route_generator.dart';
@@ -21,7 +22,7 @@ class Flowery extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
 
-          initialRoute: "Login",
+          initialRoute: RoutesName.forgetPassword,
           onGenerateRoute: RouteGenerator.onGenerator,
           theme: ApplicationTheme.themeData,
         );
