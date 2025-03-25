@@ -6,6 +6,7 @@ class ApplicationTheme {
   static ThemeData themeData = ThemeData(
     appBarTheme: AppBarTheme(
       titleTextStyle: TextStyle(
+        fontFamily: "Inter",
         fontWeight: FontWeight.w500,
         fontSize: 20.sp,
         color: PalletsColors.blackBase,

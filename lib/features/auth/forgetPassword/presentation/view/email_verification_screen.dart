@@ -1,10 +1,14 @@
 import 'dart:developer';
+import 'package:flowery/core/di/di.dart';
+import 'package:flowery/features/auth/forgetPassword/domain/use_cases/verify_code_use_case.dart';
 import 'package:flowery/features/auth/forgetPassword/presentation/view/widgets/email_verification_screen_body.dart';
+import 'package:flowery/features/auth/forgetPassword/presentation/view_model/verify_code_cubit/email_verification_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({super.key});
-  static const String id = 'EmailVerificationView';
+  
 
   @override
   State<EmailVerificationScreen> createState() =>
@@ -40,18 +44,22 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back_ios),
+    return BlocProvider(
+      create:
+          (context) => EmailVerificationCubit(getIt.get<VerifyCodeUseCase>()),
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back_ios),
+          ),
+          title: Text('Password'),
+          titleSpacing: 0,
         ),
-        title: Text('Password'),
-        titleSpacing: 0,
+        body: EmailVerificationScreenBody(email: email ?? "Email Not Found"),
       ),
-      body: EmailVerificationScreenBody(email: email ?? "Email Not Found",),
     );
   }
 }
