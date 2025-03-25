@@ -1,3 +1,7 @@
+
+import 'package:injectable/injectable.dart';
+
+@singleton
 class GuestManager {
   static final GuestManager _instance = GuestManager._internal();
   bool _isGuest = false;
