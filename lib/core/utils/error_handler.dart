@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 
-
 abstract class Failure {
   final String errorMessage;
 
@@ -23,17 +22,21 @@ class ServerFailure extends Failure {
       case DioExceptionType.badResponse:
         // here i need to check on response and statuscode
         return ServerFailure.fromResponse(
-            dioExcep.response!.statusCode!, dioExcep.response!.data);
+          dioExcep.response!.statusCode!,
+          dioExcep.response!.data,
+        );
       case DioExceptionType.cancel:
         return ServerFailure(errorMessage: 'Request to ApiServer cancelled');
       case DioExceptionType.connectionError:
         return ServerFailure(errorMessage: 'There is no internet connection');
       case DioExceptionType.unknown:
         return ServerFailure(
-            errorMessage: 'UnExcepted error , Please try again');
+          errorMessage: 'UnExcepted error , Please try again',
+        );
       default:
         return ServerFailure(
-            errorMessage: 'Oops there is an error , Please try later');
+          errorMessage: 'Oops there is an error , Please try later',
+        );
     }
   }
   factory ServerFailure.fromResponse(int statusCode, jsonData) {
@@ -42,21 +45,30 @@ class ServerFailure extends Failure {
       case 401:
       case 403:
         if (jsonData["message"] != null &&
-            jsonData["message"]
-                .toString()
-                .contains("fails to match the required pattern")) {
+            jsonData["message"].toString().contains(
+              "fails to match the required pattern",
+            )) {
           return ServerFailure(
-              errorMessage:
-                  "Password must contain at least:\n - 8 characters\n - One uppercase letter\n - One lowercase letter\n - One number\n - One special character.");
-        } else if (jsonData["error"].toString().contains('Reset code is invalid or has expired')){
+            errorMessage:
+                "Password must contain at least:\n - 8 characters\n - One uppercase letter\n - One lowercase letter\n - One number\n - One special character.",
+          );
+        } else if (jsonData["error"].toString().contains(
+          'Reset code is invalid or has expired',
+        )) {
           return ServerFailure(errorMessage: jsonData["error"]);
-        } return ServerFailure(errorMessage: jsonData["message"]);
-        
+        }
+        return ServerFailure(errorMessage: jsonData["message"]);
+
       case 404:
         if (jsonData["message"] != null &&
-            jsonData["message"]
-                .contains('"There is no account with this email address')) {
+            jsonData["message"].contains(
+              '"There is no account with this email address',
+            )) {
           return ServerFailure(errorMessage: jsonData["message"]);
+        } else if (jsonData["error"].toString().contains(
+          "There is no account with this email address ",
+        )) {
+          return ServerFailure(errorMessage: jsonData["error"]);
         } else {
           return ServerFailure(errorMessage: 'Requested resource not found.');
         }
@@ -64,10 +76,12 @@ class ServerFailure extends Failure {
         return ServerFailure(errorMessage: 'Account Already Exists.');
       case 500:
         return ServerFailure(
-            errorMessage: 'Internal server error. Please try again later.');
+          errorMessage: 'Internal server error. Please try again later.',
+        );
       default:
         return ServerFailure(
-            errorMessage: 'Unexpected error. Status Code: $statusCode');
+          errorMessage: 'Unexpected error. Status Code: $statusCode',
+        );
     }
   }
 }

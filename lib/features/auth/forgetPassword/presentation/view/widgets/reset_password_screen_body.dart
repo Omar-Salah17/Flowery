@@ -78,6 +78,9 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
                   labelText: 'New password',
                   hintText: 'Enter you password',
                   shouldObscureText: false,
+                  validator: (value){
+                    return Validator.validatePassword(value);
+                  },
                 ),
                 SizedBox(height: 24.h),
                 CustomTextFormField(

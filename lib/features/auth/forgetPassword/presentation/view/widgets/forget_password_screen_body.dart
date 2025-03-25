@@ -73,6 +73,7 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
               shouldObscureText: false,
               validator: (value) {
                 return Validator.validateEmail(value);
+                
               },
             ),
             SizedBox(height: 48.h),
