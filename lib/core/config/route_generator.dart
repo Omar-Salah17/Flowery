@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import '../../features/cart/presentation/view/cart_view.dart';
 import '../../features/catigories/presentation/view/categories_view.dart';
 import '../../features/home/presentation/view/home_view.dart';
-import '../../features/layout/Presentation/home_layout.dart';
+import '../../features/layout/Presentation/layout.dart';
 import '../../features/profile/presentation/view/profile_view.dart';
 
 
@@ -40,9 +40,9 @@ class RouteGenerator {
           settings: Settings,
         );
 
-        case RoutesName.HomeLayout:
+        case RoutesName.layout:
         return MaterialPageRoute(
-          builder: (context) => HomeLayout(),
+          builder: (context) => Layout(),
           settings: Settings,
         );
 
