@@ -1,3 +1,4 @@
+import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/helper_functions/snack_bar.dart';
 import 'package:flowery/features/auth/forgetPassword/presentation/view/widgets/resend_code_widget.dart';
@@ -42,6 +43,7 @@ class _EmailVerificationScreenBodyState
       listener: (context, state) {
         if (state is EmailVerificationSuccess) {
           showSnackBar(context, state.status);
+          Navigator.pushNamed(context, RoutesName.resetPasswordScreen);
         } else if (state is EmailVerificationFailure) {
           showErrorSnackBar(context, state.errorMessage);
         }

@@ -10,7 +10,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool shouldObscureText;
   final String? Function(String?)? validator;
 
- const CustomTextFormField({
+  const CustomTextFormField({
     super.key,
     required this.textEditingController,
     required this.labelText,
@@ -31,7 +31,7 @@ class CustomTextFormField extends StatelessWidget {
       ),
 
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+        contentPadding: EdgeInsets.only(top: 12.h, bottom: 12.h, left: 16.w),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         border: OutlineInputBorder(
           borderSide: BorderSide(color: PalletsColors.gray),
@@ -44,7 +44,6 @@ class CustomTextFormField extends StatelessWidget {
         hintStyle: ApplicationTheme.themeData.textTheme.bodyMedium?.copyWith(
           color: PalletsColors.white70,
         ),
-        
       ),
     );
   }

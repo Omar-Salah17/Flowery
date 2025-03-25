@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
+import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/custom_text_form_fieled.dart';
 import 'package:flowery/core/utils/helper_functions/snack_bar.dart';
 import 'package:flowery/core/utils/validator.dart';
@@ -71,7 +72,7 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
               hintText: "Enter Your Email",
               shouldObscureText: false,
               validator: (value) {
-              return  Validator.validateEmail(value);
+                return Validator.validateEmail(value);
               },
             ),
             SizedBox(height: 48.h),
@@ -108,7 +109,11 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
                 },
                 builder: (context, state) {
                   if (state is ForgetPasswordLoading) {
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        color: PalletsColors.white10,
+                      ),
+                    );
                   } else {
                     return Text('Confirm');
                   }
