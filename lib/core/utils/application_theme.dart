@@ -43,6 +43,7 @@ class ApplicationTheme {
 
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.symmetric(vertical: 15.h),
         backgroundColor: PalletsColors.mainColorBase,
         foregroundColor: PalletsColors.whiteBase,
         disabledBackgroundColor: PalletsColors.gray,
