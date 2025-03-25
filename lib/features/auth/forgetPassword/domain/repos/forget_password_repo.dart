@@ -6,4 +6,5 @@ abstract class ForgetPasswordRepo {
       {required String email});
        Future<Either<Failure, Map<String, dynamic>>> verifyCode(
       {required String resetCode});
+  Future<Either<Failure ,Map<String, dynamic>>> resetPassword({required String email , required String newPassword});  
 }

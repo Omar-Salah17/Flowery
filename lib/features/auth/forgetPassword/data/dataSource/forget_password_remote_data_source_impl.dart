@@ -26,4 +26,10 @@ class ForgetPasswordRemoteDataSourceImpl
     );
     return response.data;
   }
+  
+  @override
+  Future<Map<String, dynamic>> resetPassword({required String email, required String newPassword})async {
+ var response = await apiManager.putRequest(Constants.resetPasswordEndPoint, {"email": email, "newPassword": newPassword});
+ return response.data;
+  }
 }
