@@ -3,9 +3,8 @@ import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/config/route_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'core/config/routes_name.dart';
-import 'features/layout/Presentation/home_layout.dart';
+
 
 void main() {
   configureDependencies();
@@ -23,7 +22,7 @@ class Flowery extends StatelessWidget {
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          initialRoute: RoutesName.HomeLayout,
+          initialRoute: RoutesName.layout,
           onGenerateRoute: RouteGenerator.onGenerator,
           theme: ApplicationTheme.themeData,
         );

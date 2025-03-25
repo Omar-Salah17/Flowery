@@ -1,3 +1,4 @@
+import 'package:flowery/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../cart/presentation/view/cart_view.dart';
@@ -5,12 +6,12 @@ import '../../catigories/presentation/view/categories_view.dart';
 import '../../home/presentation/view/home_view.dart';
 import '../../profile/presentation/view/profile_view.dart';
 
-class HomeLayout extends StatefulWidget {
+class Layout extends StatefulWidget {
   @override
-  _HomeLayoutState createState() => _HomeLayoutState();
+  _LayoutState createState() => _LayoutState();
 }
 
-class _HomeLayoutState extends State<HomeLayout> {
+class _LayoutState extends State<Layout> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
@@ -33,8 +34,8 @@ class _HomeLayoutState extends State<HomeLayout> {
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        selectedItemColor: Colors.pink,
-        unselectedItemColor: Colors.grey,
+        selectedItemColor: PalletsColors.mainColorBase,
+        unselectedItemColor: PalletsColors.gray,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.category), label: 'Categories'),

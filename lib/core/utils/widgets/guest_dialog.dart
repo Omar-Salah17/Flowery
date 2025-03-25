@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../features/auth/login/presentation/view/screens/login.dart';
+
 import '../../config/routes_name.dart';
 
 void showGuestDialog(BuildContext context) {
@@ -14,7 +14,7 @@ void showGuestDialog(BuildContext context) {
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         content: Text(
-          "Please log in to continue",
+          "Please Register to continue",
           style: Theme.of(context).textTheme.bodySmall,
         ),
         actions: [
@@ -26,11 +26,10 @@ void showGuestDialog(BuildContext context) {
           ),
           ElevatedButton(
             style: Theme.of(context).elevatedButtonTheme.style,
-            onPressed: () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, RoutesName.login);
-            },
-            child: Text("Login"),
+            onPressed: (){
+              Navigator.pushNamed(context, RoutesName.register);
+              },
+            child: Text("Register", style: Theme.of(context).textTheme.labelSmall),
           ),
         ],
       );
