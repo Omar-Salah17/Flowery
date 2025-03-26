@@ -10,6 +10,6 @@ part 'apiService.g.dart';
 abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
    
-  @POST('api/v1/auth/signup')
+  @POST('auth/signup')
   Future<RegisterResponse> registerUser(@Body() RegisterRequest registerRequest);
 }
