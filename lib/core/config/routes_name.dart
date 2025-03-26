@@ -8,4 +8,6 @@ class RoutesName {
   static const String cart = "CartView";
   static const String categories = "CategoriesView";
   static const String home = "HomeView";
-}
+  static const String emailVerificationScreen = "EmailVerificationScreen";
+  static const String resetPasswordScreen = "ResetPasswordScreen";
+

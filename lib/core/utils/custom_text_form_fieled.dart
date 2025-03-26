@@ -1,16 +1,16 @@
 import 'package:flowery/core/utils/application_theme.dart';
 import 'package:flowery/core/utils/colors.dart';
-import 'package:flowery/core/utils/validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomTextFormFieled extends StatelessWidget {
-  TextEditingController textEditingController;
-  String labelText;
-  String hintText;
-  bool shouldObscureText;
+class CustomTextFormField extends StatelessWidget {
+  final TextEditingController textEditingController;
+  final String labelText;
+  final String hintText;
+  final bool shouldObscureText;
   final String? Function(String?)? validator;
 
-  CustomTextFormFieled({
+  const CustomTextFormField({
     super.key,
     required this.textEditingController,
     required this.labelText,
@@ -22,6 +22,7 @@ class CustomTextFormFieled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: validator,
       controller: textEditingController,
       obscureText: shouldObscureText,
       obscuringCharacter: "*",
@@ -30,6 +31,8 @@ class CustomTextFormFieled extends StatelessWidget {
       ),
 
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.only(top: 12.h, bottom: 12.h, left: 16.w),
+        floatingLabelBehavior: FloatingLabelBehavior.always,
         border: OutlineInputBorder(
           borderSide: BorderSide(color: PalletsColors.gray),
         ),

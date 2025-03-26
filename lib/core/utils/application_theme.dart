@@ -6,6 +6,8 @@ class ApplicationTheme {
   static ThemeData themeData = ThemeData(
     appBarTheme: AppBarTheme(
       titleTextStyle: TextStyle(
+        fontFamily: "Inter",
+        fontWeight: FontWeight.w500,
         fontSize: 20.sp,
         color: PalletsColors.blackBase,
       ),
@@ -47,6 +49,12 @@ class ApplicationTheme {
         foregroundColor: PalletsColors.whiteBase,
         disabledBackgroundColor: PalletsColors.gray,
         disabledForegroundColor: PalletsColors.whiteBase,
+        textStyle: TextStyle(
+          fontFamily: "Inter",
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w500,
+        ),
+        minimumSize: Size(double.infinity, 48.h),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
