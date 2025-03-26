@@ -25,7 +25,6 @@ class RegisterCubit extends Cubit<RegisterStates> {
   selectGender(Gender value){
     emit(state.copyWith(state: RequestState.initial));
     selectedGender =value ;
-    print("============${selectedGender}");
     emit(state.copyWith(state: RequestState.selectGender));
   }
   register()async{
@@ -44,11 +43,9 @@ class RegisterCubit extends Cubit<RegisterStates> {
     );
   either.fold(
         (l) {
-      print("Failure: ${l.errorMessage}");
       emit(state.copyWith(state: RequestState.error, errorMessage: l.errorMessage));
     },
         (r) {
-      print("Success: RegisterEntity = $r");
       emit(state.copyWith(state: RequestState.success, registerEntity: r));
     },
   );
