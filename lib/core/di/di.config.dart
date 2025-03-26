@@ -9,6 +9,7 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -22,6 +23,8 @@ import '../../features/auth/register/domain/repository/data_source_contract/remo
     as _i162;
 import '../../features/auth/register/domain/use_cases/register_use_case.dart'
     as _i118;
+import '../apiManger/apiService.dart' as _i171;
+import '../apiManger/dio_module.dart' as _i304;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -30,6 +33,8 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    final dioModule = _$DioModule();
+    gh.singleton<_i361.LogInterceptor>(() => dioModule.provideLogger());
     gh.factory<_i162.RegisterRepositoryDataSourceContract>(
       () => _i80.RegisterDataSourceImpl(),
     );
@@ -39,6 +44,12 @@ extension GetItInjectableX on _i174.GetIt {
             gh<_i162.RegisterRepositoryDataSourceContract>(),
       ),
     );
+    gh.singleton<_i361.Dio>(
+      () => dioModule.provideDio(gh<_i361.LogInterceptor>()),
+    );
+    gh.singleton<_i171.ApiService>(
+      () => dioModule.provideApiService(gh<_i361.Dio>()),
+    );
     gh.factory<_i118.RegisterUseCase>(
       () => _i118.RegisterUseCase(
         registerRepositoryContracr: gh<_i251.RegisterRepositoryContracr>(),
@@ -47,3 +58,5 @@ extension GetItInjectableX on _i174.GetIt {
     return this;
   }
 }
+
+class _$DioModule extends _i304.DioModule {}

@@ -25,9 +25,11 @@ class Validator {
       return 'This field is required';
     } else if (int.tryParse(val.trim()) == null) {
       return 'Enter numbers only';
-    } else if (val.trim().length != 11) {
-      return 'Invalid phone number format for any country';
-    } else {
+    } 
+    // else if (val.trim().length != 11) {
+    //   return 'Invalid phone number format for any country';
+    // } 
+    else {
       return null;
     }
   }

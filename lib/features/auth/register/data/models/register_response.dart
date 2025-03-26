@@ -1,11 +1,8 @@
-import 'package:flowery/features/auth/register/data/models/register_request.dart';
 import 'package:flowery/features/auth/register/domain/entities/register_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'register_response.g.dart';
-
 @JsonSerializable()
-
 class RegisterResponse {
   String? message;
   UserDto? user;
@@ -35,7 +32,7 @@ class UserDto {
   @JsonKey(name: '_id')
   String? id;
   dynamic addresses;
-  int? createdAt;
+  String? createdAt;
 
   UserDto({this.firstName, this.lastName, this.email, this.gender, this.phone, this.photo, this.role, this.wishlist, this.id, this.addresses, this.createdAt});
 
@@ -45,7 +42,7 @@ class UserDto {
   UserEntity toUserEntity() {
       return UserEntity(
         firstName: firstName?? '',
-         lastName: lastName?? '', email: email?? '',addresses: addresses?? '',createdAt: createdAt?? 0,id: id?? '',
+         lastName: lastName?? '', email: email?? '',addresses: addresses?? '',createdAt: createdAt?? '',id: id?? '',
          phone: phone?? '',photo: photo?? '',role: role?? '',wishlist: wishlist?? '',gender: gender?? '');}
   
 }

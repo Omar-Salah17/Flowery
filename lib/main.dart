@@ -1,11 +1,15 @@
+import 'package:bloc/bloc.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/application_theme.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/config/route_generator.dart';
+import 'package:flowery/my_bloc_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
+    Bloc.observer = MyBlocObserver();
+
   configureDependencies();
   runApp(const Flowery());
 }

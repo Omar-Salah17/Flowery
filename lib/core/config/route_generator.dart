@@ -1,7 +1,7 @@
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/features/auth/forgetPassword/presentation/view/screens/forget_password.dart';
 import 'package:flowery/features/auth/login/presentation/view/screens/login.dart';
-import 'package:flowery/features/auth/register/presentation/view/screens/register.dart';
+import 'package:flowery/features/auth/register/presentation/view/screens/register_screen.dart';
 import 'package:flowery/features/splash/view/splash.dart';
 import 'package:flutter/material.dart';
 

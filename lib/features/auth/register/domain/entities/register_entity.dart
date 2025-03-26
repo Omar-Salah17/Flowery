@@ -28,7 +28,7 @@ class UserEntity {
   @JsonKey(name: '_id')
   String id;
   dynamic addresses;
-  int createdAt;
+  String createdAt;
 
   UserEntity({required this.firstName, required this.lastName, required this.email, required this.gender, required this.phone, required this.photo, required this.role, required this.wishlist, required this.id, required this.addresses, required this.createdAt});
 
