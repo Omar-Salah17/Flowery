@@ -12,6 +12,9 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../features/auth/guest/data/guest_handeler/guest_handeler.dart'
+    as _i646;
+=======
 import '../../features/auth/forgetPassword/data/dataSource/forget_password_remot_data_source.dart'
     as _i129;
 import '../../features/auth/forgetPassword/data/dataSource/forget_password_remote_data_source_impl.dart'
@@ -28,6 +31,7 @@ import '../../features/auth/forgetPassword/domain/use_cases/verify_code_use_case
     as _i356;
 import '../apiManger/api_manager.dart' as _i29;
 
+
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
   _i174.GetIt init({
@@ -35,6 +39,9 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
+
+    gh.singleton<_i646.GuestManager>(() => _i646.GuestManager());
+
     gh.singleton<_i29.ApiManager>(() => _i29.ApiManager());
     gh.factory<_i129.ForgetPasswordRemoteDataSource>(
       () => _i177.ForgetPasswordRemoteDataSourceImpl(
