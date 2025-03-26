@@ -10,6 +10,8 @@ import 'core/config/routes_name.dart';
 
 
 void main() {
+    Bloc.observer = MyBlocObserver();
+
   configureDependencies();
    Bloc.observer = SimpleBlocObserver();
   runApp(const Flowery());

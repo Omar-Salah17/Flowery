@@ -12,24 +12,34 @@ class Validator {
     }
   }
 
+  static String? validateName(String? val) {
+    if (val == null || val.isEmpty) {
+      return 'This field is required';
+    }  else {
+      return null;
+    }
+  }
+  
   static String? validatePhoneNumber(String? val) {
     if (val == null || val.isEmpty) {
-      return 'this field is required';
+      return 'This field is required';
     } else if (int.tryParse(val.trim()) == null) {
-      return 'enter numbers only';
-    } else if (val.trim().length != 11) {
-      return 'enter value must equal 11 digit';
-    } else {
+      return 'Enter numbers only';
+    } 
+    // else if (val.trim().length != 11) {
+    //   return 'Invalid phone number format for any country';
+    // } 
+    else {
       return null;
     }
   }
 
   static String? validatePassword(String? val) {
-    RegExp passwordRegex = RegExp(r'^(?=.[a-zA-Z])(?=.[0-9])');
+    RegExp passwordRegex = RegExp(r'^(?=.*[A-Z])(?=.*[0-9]).{8,}$');
     if (val == null || val.isEmpty) {
-      return 'this field is required';
-    } else if (val.length < 8 || !passwordRegex.hasMatch(val)) {
-      return 'Weak Password';
+      return 'This field is required';
+    } else if (!passwordRegex.hasMatch(val)) {
+      return 'Password must be at least 8 characters long and include at least one uppercase letter and one number';
     } else {
       return null;
     }
@@ -39,7 +49,7 @@ class Validator {
     if (val == null || val.isEmpty) {
       return 'this field is required';
     } else if (val != password) {
-      return "Password doesn't match";
+      return "password doesn't match";
     } else {
       return null;
     }

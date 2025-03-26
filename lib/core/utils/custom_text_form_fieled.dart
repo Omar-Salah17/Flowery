@@ -3,11 +3,12 @@ import 'package:flowery/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomTextFormField extends StatelessWidget {
-  final TextEditingController textEditingController;
-  final String labelText;
-  final String hintText;
-  final bool shouldObscureText;
+// ignore: must_be_immutable
+class CustomTextFormFieled extends StatelessWidget {
+  TextEditingController textEditingController;
+  String labelText;
+  String hintText;
+  bool shouldObscureText;
   final String? Function(String?)? validator;
 
   const CustomTextFormField({
@@ -29,20 +30,24 @@ class CustomTextFormField extends StatelessWidget {
       style: ApplicationTheme.themeData.textTheme.bodyMedium?.copyWith(
         color: PalletsColors.white70,
       ),
-
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.only(top: 12.h, bottom: 12.h, left: 16.w),
-        floatingLabelBehavior: FloatingLabelBehavior.always,
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: PalletsColors.error),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: PalletsColors.error),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: PalletsColors.gray),
+        ),
         border: OutlineInputBorder(
           borderSide: BorderSide(color: PalletsColors.gray),
         ),
         labelText: labelText,
         labelStyle: ApplicationTheme.themeData.textTheme.bodySmall,
-
         hintText: hintText,
-
         hintStyle: ApplicationTheme.themeData.textTheme.bodyMedium?.copyWith(
-          color: PalletsColors.white70,
+        color: PalletsColors.white70,
         ),
       ),
     );
