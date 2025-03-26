@@ -12,13 +12,21 @@ class Validator {
     }
   }
 
+  static String? validateName(String? val) {
+    if (val == null || val.isEmpty) {
+      return 'This field is required';
+    }  else {
+      return null;
+    }
+  }
+  
   static String? validatePhoneNumber(String? val) {
     if (val == null || val.isEmpty) {
-      return 'this field is required';
+      return 'This field is required';
     } else if (int.tryParse(val.trim()) == null) {
-      return 'enter numbers only';
+      return 'Enter numbers only';
     } else if (val.trim().length != 11) {
-      return 'enter value must equal 11 digit';
+      return 'Invalid phone number format for any country';
     } else {
       return null;
     }
@@ -27,9 +35,9 @@ class Validator {
   static String? validatePassword(String? val) {
     RegExp passwordRegex = RegExp(r'^(?=.[a-zA-Z])(?=.[0-9])');
     if (val == null || val.isEmpty) {
-      return 'this field is required';
+      return 'This field is required';
     } else if (val.length < 8 || !passwordRegex.hasMatch(val)) {
-      return 'strong password please';
+      return 'Password must be at least 8 characters long and include at least one uppercase letter and one number';
     } else {
       return null;
     }
@@ -39,7 +47,7 @@ class Validator {
     if (val == null || val.isEmpty) {
       return 'this field is required';
     } else if (val != password) {
-      return 'same password';
+      return "password doesn't match";
     } else {
       return null;
     }

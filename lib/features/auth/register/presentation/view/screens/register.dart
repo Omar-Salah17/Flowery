@@ -1,7 +1,12 @@
+import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/helper/spacing.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/custom_text_form_fieled.dart';
 import 'package:flowery/core/utils/validator.dart';
+import 'package:flowery/features/auth/register/domain/use_cases/register_use_case.dart';
+import 'package:flowery/features/auth/register/presentation/cubit/register_cubit.dart';
+import 'package:flowery/features/auth/register/presentation/widgets/already_have_account_section.dart';
+import 'package:flowery/features/auth/register/presentation/widgets/create_account_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,6 +19,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   String? gender;
+  var cubit = RegisterCubit(getIt<RegisterUseCase>());
   @override
   Widget build(BuildContext context) {
     var text = Theme.of(context).textTheme;
@@ -38,18 +44,17 @@ class _RegisterState extends State<Register> {
                 children: [
                   Expanded(
                     flex: 2,
-
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CustomTextFormFieled(
                         hintText: 'Enter First Name',
                         labelText: 'First Name',
                         shouldObscureText: false,
-                        textEditingController: TextEditingController(),
+                        textEditingController: cubit.firstNameController,
+                        validator: (val) => Validator.validateName(val),
                       ),
                     ),
                   ),
-
                   Expanded(
                     flex: 2,
                     child: Padding(
@@ -58,20 +63,20 @@ class _RegisterState extends State<Register> {
                         hintText: 'Enter Last Name',
                         labelText: 'Last Name',
                         shouldObscureText: false,
-                        textEditingController: TextEditingController(),
+                        textEditingController: cubit.lastNameController,
+                        validator: (val) => Validator.validateName(val),
                       ),
                     ),
                   ),
                 ],
               ),
-
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
                 child: CustomTextFormFieled(
                   hintText: 'Enter your email',
                   labelText: 'email',
                   shouldObscureText: false,
-                  textEditingController: TextEditingController(),
+                  textEditingController: cubit.emailController,
                   validator: (val) {
                     return Validator.validateEmail(val);
                   },
@@ -87,7 +92,7 @@ class _RegisterState extends State<Register> {
                         hintText: 'Enter your password',
                         labelText: 'Password',
                         shouldObscureText: true,
-                        textEditingController: TextEditingController(),
+                        textEditingController: cubit.passwordController,
                         validator: (value) => Validator.validatePassword(value),
                       ),
                     ),
@@ -101,18 +106,17 @@ class _RegisterState extends State<Register> {
                         validator:
                             (val) => Validator.validateConfirmPassword(
                               val,
-                              "textEditingControllerOfPassword.text",
+                              cubit.passwordController.text,
                             ),
-                        hintText: 'Enter Last Name',
-                        labelText: 'Last Name',
+                        hintText: 'Confirm your password',
+                        labelText: 'Confirm Password',
                         shouldObscureText: true,
-                        textEditingController: TextEditingController(),
+                        textEditingController: cubit.confirmPasswordController,
                       ),
                     ),
                   ),
                 ],
               ),
-
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
                 child: CustomTextFormFieled(
@@ -120,9 +124,9 @@ class _RegisterState extends State<Register> {
                   labelText: 'Phone Number',
                   shouldObscureText: false,
                   textEditingController: TextEditingController(),
-                  validator: (val) {
-                    return Validator.validatePhoneNumber(val);
-                  },
+                  validator: (val) =>                      
+                     Validator.validatePhoneNumber(val)
+                  ,
                 ),
               ),
               Padding(
@@ -137,14 +141,11 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                     horizontalSpace(20),
-
                     Radio<String>(
                       value: "Female",
                       groupValue: gender,
                       onChanged: (value) {
-                        setState(() {
-                          gender = value;
-                        });
+                        cubit.selectGender(value);
                       },
                       activeColor: PalletsColors.mainColorBase,
                     ),
@@ -155,17 +156,13 @@ class _RegisterState extends State<Register> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-
                     horizontalSpace(20),
-
                     Radio<String>(
                       activeColor: PalletsColors.mainColorBase,
                       value: "Male",
                       groupValue: gender,
                       onChanged: (value) {
-                        setState(() {
-                          gender = value;
-                        });
+                        cubit.selectGender(value);
                       },
                     ),
                     Text(
@@ -178,56 +175,13 @@ class _RegisterState extends State<Register> {
                   ],
                 ),
               ),
+              CreateAccountSection(),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-
-                child: RichText(
-                  text: TextSpan(
-                    style: text.bodySmall?.copyWith(
-                      color: PalletsColors.black100,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    children: [
-                      TextSpan(text: "Creating an account, you agree to our "),
-                      TextSpan(
-                        text: "Terms & Conditions",
-                        style: text.bodySmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: PalletsColors.black100,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 40.h),
+                child: ElevatedButton(onPressed: () {
+                }, child: Text('Sign Up')),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 48.h),
-                child: ElevatedButton(onPressed: () {}, child: Text('Sign Up')),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Already have an account?',
-                    style: text.bodySmall!.copyWith(
-                      color: PalletsColors.black100,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Login',
-                      style: text.bodySmall!.copyWith(
-                        color: PalletsColors.mainColorBase,
-                        decoration: TextDecoration.underline,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+          AlreadyHaveAccountSection(),
             ],
           ),
         ),
