@@ -10,4 +10,4 @@ class RoutesName {
   static const String home = "HomeView";
   static const String emailVerificationScreen = "EmailVerificationScreen";
   static const String resetPasswordScreen = "ResetPasswordScreen";
-
+}
