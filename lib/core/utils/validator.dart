@@ -35,10 +35,10 @@ class Validator {
   }
 
   static String? validatePassword(String? val) {
-    RegExp passwordRegex = RegExp(r'^(?=.[a-zA-Z])(?=.[0-9])');
+    RegExp passwordRegex = RegExp(r'^(?=.*[A-Z])(?=.*[0-9]).{8,}$');
     if (val == null || val.isEmpty) {
       return 'This field is required';
-    } else if (val.length < 8 || !passwordRegex.hasMatch(val)) {
+    } else if (!passwordRegex.hasMatch(val)) {
       return 'Password must be at least 8 characters long and include at least one uppercase letter and one number';
     } else {
       return null;

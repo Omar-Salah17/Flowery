@@ -21,6 +21,8 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  final formKey = GlobalKey<FormState>();
+  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   String? gender;
   var cubit = RegisterCubit(getIt<RegisterUseCase>());
   @override
@@ -37,29 +39,30 @@ class _RegisterState extends State<Register> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Form(
-          key: cubit.formKey,
-          child: BlocConsumer<RegisterCubit, RegisterStates>(
-            bloc: cubit,
-            listener: (context, state) {
-              if (state.state == RequestState.success) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    backgroundColor: Colors.green,
-                    content: Text('User Registered Successfully'),
-                  ),
-                );
-              } else if (state.state == RequestState.error) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(state.errorMessage),
-                  ),
-                );
-                
-              }
-            },
-            builder: (context, state) {
-              return Column(
+        child: BlocConsumer<RegisterCubit, RegisterStates>(
+          bloc: cubit,
+          listener: (context, state) {
+            if (state.state == RequestState.success) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: Colors.green,
+                  content: Text('User Registered Successfully'),
+                ),
+              );
+            } else if (state.state == RequestState.error) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.errorMessage),
+                ),
+              );
+
+            }
+          },
+          builder: (context, state) {
+            return Form(
+              key: formKey,
+              autovalidateMode: autoValidateMode,
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   verticalSpace(20),
@@ -174,10 +177,11 @@ class _RegisterState extends State<Register> {
                         horizontalSpace(20),
                         Radio<Gender>(
                           value: Gender.female,
-                          groupValue: cubit.selectedGender,
+                          groupValue: RegisterCubit.selectedGender,
                           onChanged: (value) {
-                            cubit.selectGender(value!);
-                          },
+                          setState(() {
+                          RegisterCubit.selectedGender = value!;
+                          },);},
                           activeColor: PalletsColors.mainColorBase,
                         ),
                         Text(
@@ -191,9 +195,12 @@ class _RegisterState extends State<Register> {
                         Radio<Gender>(
                           activeColor: PalletsColors.mainColorBase,
                           value: Gender.male,
-                          groupValue: cubit.selectedGender,
+                          groupValue: RegisterCubit.selectedGender,
                           onChanged: (value) {
-                            cubit.selectGender(value!);
+                            setState(() {
+                              RegisterCubit.selectedGender = value!;
+                            });
+
                           },
                         ),
                         Text(
@@ -215,18 +222,27 @@ class _RegisterState extends State<Register> {
                     ),
                     child: ElevatedButton(
                       onPressed: () {
-                      
-                          cubit.register();
-                        
+                          if(formKey.currentState!.validate()){
+                            cubit.register();
+                            autoValidateMode = AutovalidateMode.disabled;
+
+                          }else{
+
+                            setState(() {
+                              autoValidateMode = AutovalidateMode.always;
+                            });
+                          }
+
+
                       },
                       child: Text('Sign Up'),
                     ),
                   ),
                   AlreadyHaveAccountSection(),
                 ],
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ),
     );

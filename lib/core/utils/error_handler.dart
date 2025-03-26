@@ -15,7 +15,6 @@ class ServerFailure extends Failure {
 
   factory ServerFailure.fromDioException(
     DioException dioExcep,
-    BuildContext context,
   ) {
     switch (dioExcep.type) {
       case DioExceptionType.connectionTimeout:
@@ -29,8 +28,8 @@ class ServerFailure extends Failure {
       case DioExceptionType.badResponse:
         return ServerFailure.fromResponse(
           dioExcep.response!.statusCode!,
-          dioExcep.response!.data,
-          context,
+          dioExcep.response!.data
+
         );
       case DioExceptionType.cancel:
         return ServerFailure(errorMessage: 'Request to ApiServer cancelled');
@@ -49,7 +48,6 @@ class ServerFailure extends Failure {
   factory ServerFailure.fromResponse(
     int statusCode,
     jsonData,
-    BuildContext context,
   ) {
     switch (statusCode) {
       case 400:
@@ -63,18 +61,6 @@ class ServerFailure extends Failure {
             errorMessage:
                 "Password must contain at least:\n - 8 characters\n - One uppercase letter\n - One lowercase letter\n - One number\n - One special character.",
           );
-        } else if (jsonData["message"].contains("token not provided ") ||
-            jsonData["message"].contains("invalid token")) {
-          Navigator.pushNamed(context, RoutesName.login).then((_) {
-            AwesomeDialog(
-              context: context,
-              dialogType: DialogType.info,
-              animType: AnimType.rightSlide,
-              title: 'Login again',
-              desc: ' with Remember me',
-              dismissOnTouchOutside: false,
-            ).show();
-          });
         }
         return ServerFailure(errorMessage: jsonData["message"]);
       case 404:

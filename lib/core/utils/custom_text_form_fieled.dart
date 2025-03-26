@@ -22,6 +22,7 @@ class CustomTextFormFieled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: validator,
       controller: textEditingController,
       obscureText: shouldObscureText,
       obscuringCharacter: "*",
