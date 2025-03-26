@@ -73,7 +73,7 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
                   ),
                 ),
                 SizedBox(height: 32.h),
-                CustomTextFormField(
+                CustomTextFormFieled(
                   textEditingController: newPasswordController,
                   labelText: 'New password',
                   hintText: 'Enter you password',
@@ -83,7 +83,7 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
                   },
                 ),
                 SizedBox(height: 24.h),
-                CustomTextFormField(
+                CustomTextFormFieled(
                   textEditingController: confirmPasswordController,
                   labelText: 'Confirm password',
                   hintText: 'Confirm password',

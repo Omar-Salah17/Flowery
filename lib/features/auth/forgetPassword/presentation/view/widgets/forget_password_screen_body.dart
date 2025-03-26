@@ -66,7 +66,7 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
               ),
             ),
             SizedBox(height: 32.h),
-            CustomTextFormField(
+            CustomTextFormFieled(
               textEditingController: emailController,
               labelText: 'Email',
               hintText: "Enter Your Email",

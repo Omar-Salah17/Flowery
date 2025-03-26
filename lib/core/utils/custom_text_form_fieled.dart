@@ -5,20 +5,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // ignore: must_be_immutable
 class CustomTextFormFieled extends StatelessWidget {
-  TextEditingController textEditingController;
-  String labelText;
-  String hintText;
-  bool shouldObscureText;
+ final TextEditingController textEditingController;
+  final String labelText;
+  final String hintText;
+ final bool shouldObscureText;
   final String? Function(String?)? validator;
 
-  const CustomTextFormField({
-    super.key,
-    required this.textEditingController,
-    required this.labelText,
-    required this.hintText,
-    required this.shouldObscureText,
-    this.validator,
-  });
+  const CustomTextFormFieled({super.key, required this.textEditingController, required this.labelText, required this.hintText, required this.shouldObscureText, this.validator});
+
+  
 
   @override
   Widget build(BuildContext context) {

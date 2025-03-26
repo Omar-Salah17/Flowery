@@ -10,7 +10,6 @@ part of 'apiService.dart';
 
 class _ApiService implements ApiService {
   _ApiService(this._dio, {this.baseUrl, this.errorLogger}) {
-
     baseUrl ??= 'https://flower.elevateegy.com/api/v1/';
   }
 
@@ -31,7 +30,7 @@ class _ApiService implements ApiService {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'api/v1/auth/signup',
+            'auth/signup',
             queryParameters: queryParameters,
             data: _data,
           )
