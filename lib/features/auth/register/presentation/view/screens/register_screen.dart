@@ -1,3 +1,4 @@
+import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/enums/gender_enum.dart';
 import 'package:flowery/core/enums/request_enum.dart';
@@ -49,13 +50,12 @@ class _RegisterState extends State<Register> {
                   content: Text('User Registered Successfully'),
                 ),
               );
+              Navigator.pushNamed(context, RoutesName.layout);
             } else if (state.state == RequestState.error) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.errorMessage),
-                ),
-              );
-
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(state.errorMessage)));
+             
             }
           },
           builder: (context, state) {
@@ -179,9 +179,10 @@ class _RegisterState extends State<Register> {
                           value: Gender.female,
                           groupValue: RegisterCubit.selectedGender,
                           onChanged: (value) {
-                          setState(() {
-                          RegisterCubit.selectedGender = value!;
-                          },);},
+                            setState(() {
+                              RegisterCubit.selectedGender = value!;
+                            });
+                          },
                           activeColor: PalletsColors.mainColorBase,
                         ),
                         Text(
@@ -200,7 +201,6 @@ class _RegisterState extends State<Register> {
                             setState(() {
                               RegisterCubit.selectedGender = value!;
                             });
-
                           },
                         ),
                         Text(
@@ -222,18 +222,14 @@ class _RegisterState extends State<Register> {
                     ),
                     child: ElevatedButton(
                       onPressed: () {
-                          if(formKey.currentState!.validate()){
-                            cubit.register();
-                            autoValidateMode = AutovalidateMode.disabled;
-
-                          }else{
-
-                            setState(() {
-                              autoValidateMode = AutovalidateMode.always;
-                            });
-                          }
-
-
+                        if (formKey.currentState!.validate()) {
+                          cubit.register();
+                          autoValidateMode = AutovalidateMode.disabled;
+                        } else {
+                          setState(() {
+                            autoValidateMode = AutovalidateMode.always;
+                          });
+                        }
                       },
                       child: Text('Sign Up'),
                     ),

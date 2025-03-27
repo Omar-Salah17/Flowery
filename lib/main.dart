@@ -6,14 +6,10 @@ import 'package:flowery/core/utils/simple_bloc_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'core/config/routes_name.dart';
-
 
 void main() {
-    
-
   configureDependencies();
-   Bloc.observer = SimpleBlocObserver();
+  Bloc.observer = SimpleBlocObserver();
   runApp(const Flowery());
 }
 
@@ -28,7 +24,7 @@ class Flowery extends StatelessWidget {
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-
+          initialRoute: RoutesName.forgetPassword,
           onGenerateRoute: RouteGenerator.onGenerator,
           theme: ApplicationTheme.themeData,
         );

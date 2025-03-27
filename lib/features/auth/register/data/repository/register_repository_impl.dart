@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flowery/features/auth/register/data/models/register_response.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:flowery/core/utils/error_handler.dart';

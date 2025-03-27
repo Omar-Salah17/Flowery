@@ -1,7 +1,6 @@
 import 'package:flowery/core/utils/application_theme.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // ignore: must_be_immutable
 class CustomTextFormFieled extends StatelessWidget {

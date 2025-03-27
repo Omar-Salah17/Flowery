@@ -7,6 +7,8 @@ import '../../home/presentation/view/home_view.dart';
 import '../../profile/presentation/view/profile_view.dart';
 
 class Layout extends StatefulWidget {
+  const Layout({super.key});
+
   @override
   _LayoutState createState() => _LayoutState();
 }

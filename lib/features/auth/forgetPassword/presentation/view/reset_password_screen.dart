@@ -38,6 +38,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create:

@@ -77,7 +77,7 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
                   textEditingController: newPasswordController,
                   labelText: 'New password',
                   hintText: 'Enter you password',
-                  shouldObscureText: false,
+                  shouldObscureText: true,
                   validator: (value){
                     return Validator.validatePassword(value);
                   },
@@ -87,7 +87,7 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
                   textEditingController: confirmPasswordController,
                   labelText: 'Confirm password',
                   hintText: 'Confirm password',
-                  shouldObscureText: false,
+                  shouldObscureText: true,
                   validator: (value) {
                     return Validator.validateConfirmPassword(
                       value,
