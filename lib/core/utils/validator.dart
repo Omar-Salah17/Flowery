@@ -15,20 +15,20 @@ class Validator {
   static String? validateName(String? val) {
     if (val == null || val.isEmpty) {
       return 'This field is required';
-    }  else {
+    } else {
       return null;
     }
   }
-  
+
   static String? validatePhoneNumber(String? val) {
     if (val == null || val.isEmpty) {
       return 'This field is required';
     } else if (int.tryParse(val.trim()) == null) {
       return 'Enter numbers only';
-    } 
+    }
     // else if (val.trim().length != 11) {
     //   return 'Invalid phone number format for any country';
-    // } 
+    // }
     else {
       return null;
     }

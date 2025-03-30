@@ -11,7 +11,8 @@ class ForgetPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ForgetPasswordCubit(getIt.get<ForgetPasswordUseCase>()),
+      create:
+          (context) => ForgetPasswordCubit(getIt.get<ForgetPasswordUseCase>()),
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(

@@ -52,7 +52,11 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               (context) =>
                   EmailVerificationCubit(getIt.get<VerifyCodeUseCase>()),
         ),
-        BlocProvider(create: (context) => ForgetPasswordCubit(getIt.get<ForgetPasswordUseCase>())),
+        BlocProvider(
+          create:
+              (context) =>
+                  ForgetPasswordCubit(getIt.get<ForgetPasswordUseCase>()),
+        ),
       ],
       child: Scaffold(
         appBar: AppBar(

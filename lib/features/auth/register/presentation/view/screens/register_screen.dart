@@ -55,7 +55,6 @@ class _RegisterState extends State<Register> {
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(state.errorMessage)));
-             
             }
           },
           builder: (context, state) {

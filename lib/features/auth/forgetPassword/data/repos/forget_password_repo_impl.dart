@@ -44,24 +44,34 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log('error in forgetPasswordRepoImpl verify code method: ${e.toString()}');
+        log(
+          'error in forgetPasswordRepoImpl verify code method: ${e.toString()}',
+        );
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
   }
-  
+
   @override
-  Future<Either<Failure, Map<String, dynamic>>> resetPassword({required String email, required String newPassword}) async{
-  try {
-  var data = await  forgetPasswordRemoteDataSource.resetPassword(email: email, newPassword: newPassword);
-  return Right(data);
-}  catch (e) {
-  if (e is DioException) {
+  Future<Either<Failure, Map<String, dynamic>>> resetPassword({
+    required String email,
+    required String newPassword,
+  }) async {
+    try {
+      var data = await forgetPasswordRemoteDataSource.resetPassword(
+        email: email,
+        newPassword: newPassword,
+      );
+      return Right(data);
+    } catch (e) {
+      if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log('error in forgetPasswordRepoImplresetPassword method: ${e.toString()}');
+        log(
+          'error in forgetPasswordRepoImplresetPassword method: ${e.toString()}',
+        );
         return left(ServerFailure(errorMessage: e.toString()));
       }
-}
+    }
   }
 }

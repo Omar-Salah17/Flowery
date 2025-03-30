@@ -12,19 +12,20 @@ import 'package:flowery/features/auth/register/domain/repository/data_source_con
 @Injectable(as: RegisterRepositoryContracr)
 class RegisterRepositoryImpl implements RegisterRepositoryContracr {
   RegisterRepositoryDataSourceContract repositoryDataSourceContract;
-  RegisterRepositoryImpl({
-    required this.repositoryDataSourceContract,
-  });
+  RegisterRepositoryImpl({required this.repositoryDataSourceContract});
   @override
-  Future<Either<Failure, RegisterEntity>> register({required RegisterRequest registerRequest}) async {
-
-    try{
-      var response = await repositoryDataSourceContract.register(registerRequest: registerRequest);
+  Future<Either<Failure, RegisterEntity>> register({
+    required RegisterRequest registerRequest,
+  }) async {
+    try {
+      var response = await repositoryDataSourceContract.register(
+        registerRequest: registerRequest,
+      );
       return Right(response.toRegisterEntity());
-    }catch(e){
-      if(e is DioException){
+    } catch (e) {
+      if (e is DioException) {
         return Left(ServerFailure.fromDioException(e));
-      }else{
+      } else {
         return Left(ServerFailure(errorMessage: e.toString()));
       }
     }

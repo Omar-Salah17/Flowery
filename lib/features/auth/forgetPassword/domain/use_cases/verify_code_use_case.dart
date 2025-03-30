@@ -8,7 +8,9 @@ class VerifyCodeUseCase {
   final ForgetPasswordRepo forgetPasswordRepo;
 
   VerifyCodeUseCase({required this.forgetPasswordRepo});
-  Future<Either<Failure, Map<String, dynamic>>> call({required String resetCode}) async {
+  Future<Either<Failure, Map<String, dynamic>>> call({
+    required String resetCode,
+  }) async {
     return await forgetPasswordRepo.verifyCode(resetCode: resetCode);
   }
 }

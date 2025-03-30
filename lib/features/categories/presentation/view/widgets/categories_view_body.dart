@@ -16,7 +16,7 @@ class CategoriesViewBody extends StatelessWidget {
               children: [
                 SizedBox(height: 26.h),
                 CategoriesTitleListView(),
-                 SizedBox(height: 32.h),
+                SizedBox(height: 32.h),
               ],
             ),
           ),
