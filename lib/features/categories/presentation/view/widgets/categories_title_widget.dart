@@ -1,28 +1,36 @@
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
+import 'package:flowery/features/categories/data/models/categories_model/category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoriesTitleWidget extends StatelessWidget {
-  const CategoriesTitleWidget({super.key});
-
+  const CategoriesTitleWidget({super.key, required this.category, required this.isSelected});
+  final Category category;
+  final bool isSelected;
   @override
   Widget build(BuildContext context) {
+    final String name = category.name ?? 'Without Name';
+    final TextPainter textPainter = TextPainter(
+      text: TextSpan(text: name),
+      textDirection: TextDirection.ltr,
+    )..layout(); // here i measure the size
+    final double textWidth = textPainter.size.width;
     return Padding(
-      padding: EdgeInsets.only(right: 24.w),
+      padding: EdgeInsets.only(left: 24.w),
       child: Column(
         children: [
           Text(
-            'Hand Bouquet',
+            name,
             style: AppTextStyles.instance.textStyle16.copyWith(
-              color: PalletsColors.white70,
+              color:isSelected ? PalletsColors.mainColorBase : PalletsColors.white70,
             ),
           ),
           Container(
             height: 3.h,
-            width: 105.w,
+            width: textWidth,
             decoration: BoxDecoration(
-              color: PalletsColors.white70,
+              color:isSelected ? PalletsColors.mainColorBase : PalletsColors.white70,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(100.r),
                 topRight: Radius.circular(100.r),
