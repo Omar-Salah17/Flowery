@@ -29,6 +29,13 @@ import '../../features/auth/forgetPassword/domain/use_cases/verify_code_use_case
     as _i356;
 import '../../features/auth/guest/data/guest_handeler/guest_handeler.dart'
     as _i646;
+import '../../features/auth/login/data/dataSources/login_remote_data_source.dart'
+    as _i577;
+import '../../features/auth/login/data/dataSources/login_remote_data_source_imp.dart'
+    as _i194;
+import '../../features/auth/login/data/repo/login_repo_imp.dart' as _i21;
+import '../../features/auth/login/domain/repo/login_repo.dart' as _i632;
+import '../../features/auth/login/domain/use_cases/login_usecase.dart' as _i334;
 import '../../features/auth/register/data/repository/data_source_impl/remote/register_data_source_impl.dart'
     as _i80;
 import '../../features/auth/register/data/repository/register_repository_impl.dart'
@@ -62,6 +69,9 @@ extension GetItInjectableX on _i174.GetIt {
         repositoryDataSourceContract:
             gh<_i162.RegisterRepositoryDataSourceContract>(),
       ),
+    );
+    gh.factory<_i577.LoginRemoteDataSource>(
+      () => _i194.LoginRemoteDataSourceImp(apiManager: gh<_i29.ApiManager>()),
     );
     gh.factory<_i129.ForgetPasswordRemoteDataSource>(
       () => _i177.ForgetPasswordRemoteDataSourceImpl(
@@ -99,6 +109,14 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i118.RegisterUseCase(
         registerRepositoryContracr: gh<_i251.RegisterRepositoryContracr>(),
       ),
+    );
+    gh.factory<_i632.LoginRepo>(
+      () => _i21.LoginRepoImp(
+        loginRemoteDataSource: gh<_i577.LoginRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i334.LoginUsecase>(
+      () => _i334.LoginUsecase(repo: gh<_i632.LoginRepo>()),
     );
     return this;
   }

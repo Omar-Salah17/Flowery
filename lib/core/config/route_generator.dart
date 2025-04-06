@@ -13,8 +13,6 @@ import '../../features/home/presentation/view/home_view.dart';
 import '../../features/layout/Presentation/layout.dart';
 import '../../features/profile/presentation/view/profile_view.dart';
 
-
-
 class RouteGenerator {
   static Route<dynamic>? onGenerator(RouteSettings Settings) {
     switch (Settings.name) {
@@ -51,32 +49,31 @@ class RouteGenerator {
           builder: (context) => ResetPasswordScreen(),
           settings: Settings,
         );
-
-        case RoutesName.layout:
+      case RoutesName.layout:
         return MaterialPageRoute(
           builder: (context) => Layout(),
           settings: Settings,
         );
 
-        case RoutesName.profile:
+      case RoutesName.profile:
         return MaterialPageRoute(
           builder: (context) => ProfileView(),
           settings: Settings,
         );
 
-        case RoutesName.cart:
+      case RoutesName.cart:
         return MaterialPageRoute(
           builder: (context) => CartView(),
           settings: Settings,
         );
 
-        case RoutesName.categories:
+      case RoutesName.categories:
         return MaterialPageRoute(
           builder: (context) => CategoriesView(),
           settings: Settings,
         );
 
-        case RoutesName.home:
+      case RoutesName.home:
         return MaterialPageRoute(
           builder: (context) => HomeView(),
           settings: Settings,
