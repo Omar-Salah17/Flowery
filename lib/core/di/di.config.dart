@@ -39,6 +39,16 @@ import '../../features/auth/register/domain/repository/data_source_contract/remo
     as _i162;
 import '../../features/auth/register/domain/use_cases/register_use_case.dart'
     as _i118;
+import '../../features/home/data/repositories/occasion_remote_data_source_impl.dart'
+    as _i811;
+import '../../features/home/data/repositories/occasion_repository_impl.dart'
+    as _i208;
+import '../../features/home/domain/repository/occasion_remote_data_source_contract.dart'
+    as _i189;
+import '../../features/home/domain/repository/occasion_repository_contract.dart'
+    as _i16;
+import '../../features/home/domain/use_cases/get_all_occasions_use_case.dart'
+    as _i437;
 import '../apiManger/api_manager.dart' as _i29;
 import '../apiManger/apiService.dart' as _i171;
 import '../apiManger/dio_module.dart' as _i304;
@@ -57,6 +67,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i162.RegisterRepositoryDataSourceContract>(
       () => _i80.RegisterDataSourceImpl(),
     );
+    gh.factory<_i189.OccasionRemoteDataSourceContract>(
+      () => _i811.OccasionRemoteDataSourceImpl(),
+    );
     gh.factory<_i251.RegisterRepositoryContracr>(
       () => _i518.RegisterRepositoryImpl(
         repositoryDataSourceContract:
@@ -70,6 +83,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i361.Dio>(
       () => dioModule.provideDio(gh<_i361.LogInterceptor>()),
+    );
+    gh.factory<_i16.OccasionRepositoryContract>(
+      () => _i208.OccasionRepositoryImpl(
+        occasionRemoteDataSourceContract:
+            gh<_i189.OccasionRemoteDataSourceContract>(),
+      ),
     );
     gh.singleton<_i171.ApiService>(
       () => dioModule.provideApiService(gh<_i361.Dio>()),
@@ -98,6 +117,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i118.RegisterUseCase>(
       () => _i118.RegisterUseCase(
         registerRepositoryContracr: gh<_i251.RegisterRepositoryContracr>(),
+      ),
+    );
+    gh.factory<_i437.GetAllOccasionsUseCase>(
+      () => _i437.GetAllOccasionsUseCase(
+        occasionRepositoryContract: gh<_i16.OccasionRepositoryContract>(),
       ),
     );
     return this;

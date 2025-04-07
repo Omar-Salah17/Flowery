@@ -13,6 +13,6 @@ abstract class ApiService {
    
   @POST('auth/signup')
   Future<RegisterResponse> registerUser(@Body() RegisterRequest registerRequest);
-  @GET( Constants.occasionEndPoint)
-  Future<List<Occasions>> getAllOccasions();
+  @GET(Constants.occasionEndPoint)
+  Future<AllOccaions> getAllOccasions();
 }
