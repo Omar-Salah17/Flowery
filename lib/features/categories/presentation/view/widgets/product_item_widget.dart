@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
+import 'package:flowery/features/categories/data/models/products_model/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductItemWidget extends StatelessWidget {
-  const ProductItemWidget({super.key});
+  const ProductItemWidget({super.key, required this.product});
+  final Product product;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,8 +26,7 @@ class ProductItemWidget extends StatelessWidget {
               width: 147.w,
               child: CachedNetworkImage(
                 fit: BoxFit.cover,
-                imageUrl:
-                    "https://flower.elevateegy.com/uploads/8ee8e389-da6a-4371-8b13-5e35fcca16c6-image_one.png",
+                imageUrl: product.imgCover ?? "",
                 placeholder: (context, url) {
                   return Center(
                     child: CircularProgressIndicator(
@@ -42,19 +43,23 @@ class ProductItemWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Red roses', style: AppTextStyles.instance.textStyle12),
+                  Text(
+                    product.title ?? 'No title',
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTextStyles.instance.textStyle12,
+                  ),
                   SizedBox(height: 4.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "EGP 600",
+                        "EGP${product.priceAfterDiscount}",
                         style: AppTextStyles.instance.textStyle14.copyWith(
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                       Text(
-                        '800',
+                        product.price.toString(),
                         style: AppTextStyles.instance.textStyle12.copyWith(
                           fontWeight: FontWeight.w500,
                           color: PalletsColors.white90,
@@ -62,7 +67,8 @@ class ProductItemWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '20%',
+                        // '${discountPercentage(product.price!, product.priceAfterDiscount!).toStringAsFixed(0)}%',
+                        '${discountPercentage(product.priceAfterDiscount!, product.price!).toStringAsFixed(0)}%',
                         style: AppTextStyles.instance.textStyle12.copyWith(
                           color: PalletsColors.success,
                         ),
@@ -97,4 +103,10 @@ class ProductItemWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+double discountPercentage(int priceAfterDiscount, int originalPrice) {
+  if (originalPrice <= 0 || priceAfterDiscount <= 0) return 0.0;
+  double discount = (priceAfterDiscount / originalPrice) * 100;
+  return discount;
 }

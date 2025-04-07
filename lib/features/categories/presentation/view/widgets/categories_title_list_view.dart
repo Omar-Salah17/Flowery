@@ -2,7 +2,9 @@ import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/categories/data/models/categories_model/category.dart';
 import 'package:flowery/features/categories/presentation/view/widgets/categories_title_widget.dart';
+import 'package:flowery/features/categories/presentation/view_model/cubits/categories_cubit/categories_screen_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoriesTitleListView extends StatefulWidget {
@@ -15,9 +17,12 @@ class CategoriesTitleListView extends StatefulWidget {
 }
 
 class _CategoriesTitleListViewState extends State<CategoriesTitleListView> {
-  String selectedCategoryId = "all";
+  // String selectedCategoryId = "all";
   @override
   Widget build(BuildContext context) {
+    String selectedCat =
+        context.read<CategoriesScreenCubit>().selectedCategoryId;
+
     return SizedBox(
       height: 40.h,
       child: SingleChildScrollView(
@@ -26,8 +31,10 @@ class _CategoriesTitleListViewState extends State<CategoriesTitleListView> {
           children: [
             GestureDetector(
               onTap: () {
-                selectedCategoryId = "all";
+                selectedCat;
                 setState(() {});
+
+                context.read<CategoriesScreenCubit>().getCategoriesScreenData();
               },
               child: Column(
                 children: [
@@ -35,7 +42,7 @@ class _CategoriesTitleListViewState extends State<CategoriesTitleListView> {
                     'All',
                     style: AppTextStyles.instance.textStyle16.copyWith(
                       color:
-                          selectedCategoryId == "All"
+                          selectedCat == "all"
                               ? PalletsColors.mainColorBase
                               : PalletsColors.white70,
                     ),
@@ -45,7 +52,7 @@ class _CategoriesTitleListViewState extends State<CategoriesTitleListView> {
                     width: 15.w,
                     decoration: BoxDecoration(
                       color:
-                          selectedCategoryId == "All"
+                          selectedCat == "all"
                               ? PalletsColors.mainColorBase
                               : PalletsColors.white70,
                       borderRadius: BorderRadius.only(
@@ -59,13 +66,19 @@ class _CategoriesTitleListViewState extends State<CategoriesTitleListView> {
             ),
             ...widget.category.map(
               (cat) => GestureDetector(
-                onTap: () {
-                  selectedCategoryId = cat.id!;
-                  setState(() {
-                    
-                  });
+                onTap: () async {
+                  selectedCat = cat.id!;
+                  setState(() {});
+
+                  await context
+                      .read<CategoriesScreenCubit>()
+                      .getCategoriesScreenData(categoryId: cat.id);
                 },
-                child: CategoriesTitleWidget(category: cat, isSelected: selectedCategoryId == cat.id,)),
+                child: CategoriesTitleWidget(
+                  category: cat,
+                  isSelected: selectedCat == cat.id,
+                ),
+              ),
             ),
           ],
         ),

@@ -39,15 +39,18 @@ import '../../features/auth/register/domain/repository/data_source_contract/remo
     as _i162;
 import '../../features/auth/register/domain/use_cases/register_use_case.dart'
     as _i118;
-import '../../features/categories/data/data_source/categories_remote_data_source.dart'
-    as _i845;
-import '../../features/categories/data/data_source/categories_remote_data_source_impl.dart'
-    as _i243;
-import '../../features/categories/data/repos/categories_repo_impl.dart'
-    as _i337;
-import '../../features/categories/domain/repos/categories_repo.dart' as _i15;
+import '../../features/categories/data/data_source/categories_screen_remote_data_source.dart'
+    as _i469;
+import '../../features/categories/data/data_source/categories_screen_remote_data_source_impl.dart'
+    as _i666;
+import '../../features/categories/data/repos/categories_screen_repo_impl.dart'
+    as _i750;
+import '../../features/categories/domain/repos/categories_screen_repo.dart'
+    as _i826;
 import '../../features/categories/domain/use_case/get_all_categories_use_case.dart'
     as _i595;
+import '../../features/categories/domain/use_case/get_products_by_category_use_case.dart'
+    as _i86;
 import '../apiManger/api_manager.dart' as _i29;
 import '../apiManger/apiService.dart' as _i171;
 import '../apiManger/dio_module.dart' as _i304;
@@ -109,19 +112,25 @@ extension GetItInjectableX on _i174.GetIt {
         registerRepositoryContracr: gh<_i251.RegisterRepositoryContracr>(),
       ),
     );
-    gh.factory<_i845.CategoriesRemoteDataSource>(
-      () => _i243.CategoriesRemoteDataSourceImpl(
+    gh.factory<_i469.CategoriesScreenRemoteDataSource>(
+      () => _i666.CategoriesScreenRemoteDataSourceImpl(
         apiService: gh<_i171.ApiService>(),
       ),
     );
-    gh.factory<_i15.CategoriesRepo>(
-      () => _i337.CategoriesRepoImpl(
-        categoriesRemoteDataSource: gh<_i845.CategoriesRemoteDataSource>(),
+    gh.factory<_i826.CategoriesScreenRepo>(
+      () => _i750.CategoriesScreenRepoImpl(
+        categoriesRemoteDataSource:
+            gh<_i469.CategoriesScreenRemoteDataSource>(),
       ),
     );
     gh.factory<_i595.GetAllCategoriesUseCase>(
       () => _i595.GetAllCategoriesUseCase(
-        getAllCategoriesRepo: gh<_i15.CategoriesRepo>(),
+        getAllCategoriesRepo: gh<_i826.CategoriesScreenRepo>(),
+      ),
+    );
+    gh.factory<_i86.GetProductsByCategoryUseCase>(
+      () => _i86.GetProductsByCategoryUseCase(
+        getAllCategoriesRepo: gh<_i826.CategoriesScreenRepo>(),
       ),
     );
     return this;

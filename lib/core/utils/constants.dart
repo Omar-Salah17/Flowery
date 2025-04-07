@@ -4,4 +4,5 @@ class Constants {
   static const String verfiyCodeEndPoint = 'auth/verifyResetCode';
   static const String resetPasswordEndPoint = "auth/resetPassword";
   static const String categoriesEndPoint = "categories";
+  static const String productsEndPoint = "products";
 }

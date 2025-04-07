@@ -2,27 +2,33 @@ import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/categories/domain/use_case/get_all_categories_use_case.dart';
+import 'package:flowery/features/categories/domain/use_case/get_products_by_category_use_case.dart';
 import 'package:flowery/features/categories/presentation/view/widgets/categories_view_app_bar.dart';
-import 'package:flowery/features/categories/presentation/view/widgets/categories_view_body.dart';
-import 'package:flowery/features/categories/presentation/view_model/cubit/categories_cubit.dart';
+import 'package:flowery/features/categories/presentation/view/widgets/categories_screen_body.dart';
+import 'package:flowery/features/categories/presentation/view_model/cubits/categories_cubit/categories_screen_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CategoriesView extends StatelessWidget {
-  const CategoriesView({super.key});
+class CategoriesScreen extends StatelessWidget {
+  const CategoriesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create:
-          (context) => CategoriesCubit(getIt.get<GetAllCategoriesUseCase>())..getCategoriesData(),
+          (context) =>
+              CategoriesScreenCubit(
+                  getIt.get<GetAllCategoriesUseCase>(),
+                  getIt.get<GetProductsByCategoryUseCase>(),
+                )..getCategoriesScreenData(),
+                
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(100.h),
-          child: SafeArea(child: CategoriesViewAppBar()),
+          child: SafeArea(child: CategoriesScreenAppBar()),
         ),
-        body: CategoriesViewBody(),
+        body: CategoriesScreenBody(),
         floatingActionButton: FloatingActionButton.extended(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.r),

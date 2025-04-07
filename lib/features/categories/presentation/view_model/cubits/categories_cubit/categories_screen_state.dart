@@ -1,4 +1,4 @@
-part of 'categories_cubit.dart';
+part of 'categories_screen_cubit.dart';
 
 sealed class CategoriesState extends Equatable {
   const CategoriesState();
@@ -13,8 +13,9 @@ final class CategoriesLoading extends CategoriesState {}
 
 final class CategoriesSuccess extends CategoriesState {
   final List<Category> categories;
+  final List<Product> products;
 
-const  CategoriesSuccess({required this.categories});
+  const CategoriesSuccess( {required this.categories, required this.products});
 }
 
 final class CategoriesFailure extends CategoriesState {

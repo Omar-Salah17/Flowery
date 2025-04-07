@@ -5,7 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoriesTitleWidget extends StatelessWidget {
-  const CategoriesTitleWidget({super.key, required this.category, required this.isSelected});
+  const CategoriesTitleWidget({
+    super.key,
+    required this.category,
+    required this.isSelected,
+  });
   final Category category;
   final bool isSelected;
   @override
@@ -23,14 +27,20 @@ class CategoriesTitleWidget extends StatelessWidget {
           Text(
             name,
             style: AppTextStyles.instance.textStyle16.copyWith(
-              color:isSelected ? PalletsColors.mainColorBase : PalletsColors.white70,
+              color:
+                  isSelected
+                      ? PalletsColors.mainColorBase
+                      : PalletsColors.white70,
             ),
           ),
           Container(
             height: 3.h,
             width: textWidth,
             decoration: BoxDecoration(
-              color:isSelected ? PalletsColors.mainColorBase : PalletsColors.white70,
+              color:
+                  isSelected
+                      ? PalletsColors.mainColorBase
+                      : PalletsColors.white70,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(100.r),
                 topRight: Radius.circular(100.r),
