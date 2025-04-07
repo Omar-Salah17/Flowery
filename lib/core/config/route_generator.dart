@@ -8,7 +8,7 @@ import 'package:flowery/features/splash/view/splash.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/cart/presentation/view/cart_view.dart';
-import '../../features/catigories/presentation/view/categories_view.dart';
+import '../../features/categories/presentation/view/categories_view.dart';
 import '../../features/home/presentation/view/home_view.dart';
 import '../../features/layout/Presentation/layout.dart';
 import '../../features/profile/presentation/view/profile_view.dart';

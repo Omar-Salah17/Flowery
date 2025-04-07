@@ -86,4 +86,9 @@ class AppTextStyles {
     fontWeight: FontWeight.normal,
     fontFamily: "Inter",
   );
+  final textStyle20Fell = TextStyle(
+    fontSize: 20.sp,
+    fontWeight: FontWeight.w400,
+    fontFamily: "IM Fell English",
+  );
 }

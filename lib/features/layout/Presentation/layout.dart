@@ -2,7 +2,7 @@ import 'package:flowery/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../cart/presentation/view/cart_view.dart';
-import '../../catigories/presentation/view/categories_view.dart';
+import '../../categories/presentation/view/categories_view.dart';
 import '../../home/presentation/view/home_view.dart';
 import '../../profile/presentation/view/profile_view.dart';
 

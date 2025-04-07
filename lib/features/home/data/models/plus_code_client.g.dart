@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'apiService.dart';
+part of 'plus_code_client.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,9 +8,9 @@ part of 'apiService.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
-class _ApiService implements ApiService {
-  _ApiService(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://flower.elevateegy.com/api/v1/';
+class _PlusCodeClient implements PlusCodeClient {
+  _PlusCodeClient(this._dio, {this.baseUrl, this.errorLogger}) {
+    baseUrl ??= 'https://plus.codes/';
   }
 
   final Dio _dio;
@@ -20,53 +20,25 @@ class _ApiService implements ApiService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<RegisterResponse> registerUser(RegisterRequest registerRequest) async {
+  Future<PlusCodeResponse> getPlusCode(String coordinates) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(registerRequest.toJson());
-    final _options = _setStreamType<RegisterResponse>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
-          .compose(
-            _dio.options,
-            'auth/signup',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late RegisterResponse _value;
-    try {
-      _value = RegisterResponse.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<CategoriesResponse> getCategories() async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'address': coordinates};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<CategoriesResponse>(
+    final _options = _setStreamType<PlusCodeResponse>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/categories',
+            '/api',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late CategoriesResponse _value;
+    late PlusCodeResponse _value;
     try {
-      _value = CategoriesResponse.fromJson(_result.data!);
+      _value = PlusCodeResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
