@@ -43,12 +43,21 @@ import '../../features/home/data/repositories/occasion_remote_data_source_impl.d
     as _i811;
 import '../../features/home/data/repositories/occasion_repository_impl.dart'
     as _i208;
+import '../../features/home/data/repositories/product_remote_data_source_impl.dart'
+    as _i289;
+import '../../features/home/data/repositories/product_repository_impl%20.dart'
+    as _i841;
 import '../../features/home/domain/repository/occasion_remote_data_source_contract.dart'
     as _i189;
 import '../../features/home/domain/repository/occasion_repository_contract.dart'
     as _i16;
+import '../../features/home/domain/repository/product_remote_data_source.dart'
+    as _i863;
+import '../../features/home/domain/repository/product_repository.dart' as _i863;
 import '../../features/home/domain/use_cases/get_all_occasions_use_case.dart'
     as _i437;
+import '../../features/home/domain/use_cases/get_product_by_occasion_useCase.dart'
+    as _i343;
 import '../apiManger/api_manager.dart' as _i29;
 import '../apiManger/apiService.dart' as _i171;
 import '../apiManger/dio_module.dart' as _i304;
@@ -64,6 +73,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i29.ApiManager>(() => _i29.ApiManager());
     gh.singleton<_i361.LogInterceptor>(() => dioModule.provideLogger());
     gh.singleton<_i646.GuestManager>(() => _i646.GuestManager());
+    gh.factory<_i863.ProductRemoteDataSource>(
+      () => _i289.ProductRemoteDataSourceImpl(),
+    );
     gh.factory<_i162.RegisterRepositoryDataSourceContract>(
       () => _i80.RegisterDataSourceImpl(),
     );
@@ -74,6 +86,11 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i518.RegisterRepositoryImpl(
         repositoryDataSourceContract:
             gh<_i162.RegisterRepositoryDataSourceContract>(),
+      ),
+    );
+    gh.factory<_i863.ProductRepositoryContract>(
+      () => _i841.ProductRepositoryImpl(
+        productRemoteDataSource: gh<_i863.ProductRemoteDataSource>(),
       ),
     );
     gh.factory<_i129.ForgetPasswordRemoteDataSource>(
@@ -117,6 +134,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i118.RegisterUseCase>(
       () => _i118.RegisterUseCase(
         registerRepositoryContracr: gh<_i251.RegisterRepositoryContracr>(),
+      ),
+    );
+    gh.factory<_i343.GetProductByOccasionUsecase>(
+      () => _i343.GetProductByOccasionUsecase(
+        gh<_i863.ProductRepositoryContract>(),
       ),
     );
     gh.factory<_i437.GetAllOccasionsUseCase>(

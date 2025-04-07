@@ -21,3 +21,9 @@ final class OccasionError extends OccasionState {
   @override
   List<Object> get props => [error];
 }
+final class OccasionProductSuccess extends OccasionState {
+  final List<Products> products;
+  const OccasionProductSuccess(this.products);
+  @override
+  List<Object> get props => [products];
+}
