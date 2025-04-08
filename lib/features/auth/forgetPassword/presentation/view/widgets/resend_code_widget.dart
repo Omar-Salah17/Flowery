@@ -62,7 +62,6 @@ class _ResendCodeState extends State<ResendCode> {
                           email: widget.email,
                         );
                         startTimer();
-                        
                       }
                       : null,
               child: Text(

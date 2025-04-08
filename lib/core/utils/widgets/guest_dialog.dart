@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 import '../../config/routes_name.dart';
 
 void showGuestDialog(BuildContext context) {
@@ -26,10 +25,13 @@ void showGuestDialog(BuildContext context) {
           ),
           ElevatedButton(
             style: Theme.of(context).elevatedButtonTheme.style,
-            onPressed: (){
+            onPressed: () {
               Navigator.pushNamed(context, RoutesName.register);
-              },
-            child: Text("Register", style: Theme.of(context).textTheme.labelSmall),
+            },
+            child: Text(
+              "Register",
+              style: Theme.of(context).textTheme.labelSmall,
+            ),
           ),
         ],
       );

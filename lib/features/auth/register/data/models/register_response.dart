@@ -2,6 +2,7 @@ import 'package:flowery/features/auth/register/domain/entities/register_entity.d
 import 'package:json_annotation/json_annotation.dart';
 
 part 'register_response.g.dart';
+
 @JsonSerializable()
 class RegisterResponse {
   String? message;
@@ -10,13 +11,17 @@ class RegisterResponse {
 
   RegisterResponse({this.message, this.user, this.token});
 
-  factory RegisterResponse.fromJson(Map<String, dynamic> json) => _$RegisterResponseFromJson(json);
+  factory RegisterResponse.fromJson(Map<String, dynamic> json) =>
+      _$RegisterResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$RegisterResponseToJson(this);
- RegisterEntity  toRegisterEntity()   {
-    return RegisterEntity(message: message?? '', user: user!.toUserEntity() , token: token?? '');
+  RegisterEntity toRegisterEntity() {
+    return RegisterEntity(
+      message: message ?? '',
+      user: user!.toUserEntity(),
+      token: token ?? '',
+    );
   }
-
 }
 
 @JsonSerializable()
@@ -34,16 +39,37 @@ class UserDto {
   dynamic addresses;
   String? createdAt;
 
-  UserDto({this.firstName, this.lastName, this.email, this.gender, this.phone, this.photo, this.role, this.wishlist, this.id, this.addresses, this.createdAt});
+  UserDto({
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.gender,
+    this.phone,
+    this.photo,
+    this.role,
+    this.wishlist,
+    this.id,
+    this.addresses,
+    this.createdAt,
+  });
 
-  factory UserDto.fromJson(Map<String, dynamic> json) => _$UserDtoFromJson(json);
+  factory UserDto.fromJson(Map<String, dynamic> json) =>
+      _$UserDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserDtoToJson(this);
   UserEntity toUserEntity() {
-      return UserEntity(
-        firstName: firstName?? '',
-         lastName: lastName?? '', email: email?? '',addresses: addresses?? '',createdAt: createdAt?? '',id: id?? '',
-         phone: phone?? '',photo: photo?? '',role: role?? '',wishlist: wishlist?? '',gender: gender?? '');}
-  
+    return UserEntity(
+      firstName: firstName ?? '',
+      lastName: lastName ?? '',
+      email: email ?? '',
+      addresses: addresses ?? '',
+      createdAt: createdAt ?? '',
+      id: id ?? '',
+      phone: phone ?? '',
+      photo: photo ?? '',
+      role: role ?? '',
+      wishlist: wishlist ?? '',
+      gender: gender ?? '',
+    );
+  }
 }
-

@@ -1,2 +1,1 @@
-
-enum RequestState { initial, loading, success, error , selectGender}
+enum RequestState { initial, loading, success, error, selectGender }

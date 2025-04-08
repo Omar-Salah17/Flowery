@@ -13,6 +13,9 @@ class ResetPasswordUseCase {
     required String email,
     required String newPassword,
   }) async {
- return await  forgetPasswordRepo.resetPassword(email: email, newPassword: newPassword);
+    return await forgetPasswordRepo.resetPassword(
+      email: email,
+      newPassword: newPassword,
+    );
   }
 }

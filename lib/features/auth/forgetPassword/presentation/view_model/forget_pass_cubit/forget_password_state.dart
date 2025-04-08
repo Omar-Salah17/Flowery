@@ -20,5 +20,5 @@ final class ForgetPasswordSuccess extends ForgetPasswordState {
 final class ForgetPasswordFailure extends ForgetPasswordState {
   final String errorMessage;
 
- const ForgetPasswordFailure({required this.errorMessage});
+  const ForgetPasswordFailure({required this.errorMessage});
 }

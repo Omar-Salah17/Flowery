@@ -1,10 +1,14 @@
 part of 'register_cubit.dart';
 
- class RegisterStates extends Equatable {
-   RequestState state;
+class RegisterStates extends Equatable {
+  RequestState state;
   String errorMessage;
   RegisterEntity? registerEntity;
-   RegisterStates({this.state = RequestState.initial, this.errorMessage = '', this.registerEntity});
+  RegisterStates({
+    this.state = RequestState.initial,
+    this.errorMessage = '',
+    this.registerEntity,
+  });
   copyWith({
     RequestState? state,
     String? errorMessage,
@@ -18,6 +22,5 @@ part of 'register_cubit.dart';
   }
 
   @override
-  List<Object?> get props => [state,  registerEntity];
+  List<Object?> get props => [state, registerEntity];
 }
-

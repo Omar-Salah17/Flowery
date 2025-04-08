@@ -78,7 +78,7 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
                   labelText: 'New password',
                   hintText: 'Enter you password',
                   shouldObscureText: true,
-                  validator: (value){
+                  validator: (value) {
                     return Validator.validatePassword(value);
                   },
                 ),

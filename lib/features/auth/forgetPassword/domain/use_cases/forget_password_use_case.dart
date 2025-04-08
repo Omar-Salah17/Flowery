@@ -8,7 +8,9 @@ class ForgetPasswordUseCase {
   final ForgetPasswordRepo forgetPasswordRepo;
 
   ForgetPasswordUseCase({required this.forgetPasswordRepo});
-  Future<Either<Failure, Map<String, dynamic>>> call({required String email}) async {
+  Future<Either<Failure, Map<String, dynamic>>> call({
+    required String email,
+  }) async {
     return await forgetPasswordRepo.forgetPassword(email: email);
   }
 }

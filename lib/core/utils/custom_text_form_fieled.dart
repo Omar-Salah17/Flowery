@@ -4,15 +4,20 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class CustomTextFormFieled extends StatelessWidget {
- final TextEditingController textEditingController;
+  final TextEditingController textEditingController;
   final String labelText;
   final String hintText;
- final bool shouldObscureText;
+  final bool shouldObscureText;
   final String? Function(String?)? validator;
 
-  const CustomTextFormFieled({super.key, required this.textEditingController, required this.labelText, required this.hintText, required this.shouldObscureText, this.validator});
-
-  
+  const CustomTextFormFieled({
+    super.key,
+    required this.textEditingController,
+    required this.labelText,
+    required this.hintText,
+    required this.shouldObscureText,
+    this.validator,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +46,7 @@ class CustomTextFormFieled extends StatelessWidget {
         labelStyle: ApplicationTheme.themeData.textTheme.bodySmall,
         hintText: hintText,
         hintStyle: ApplicationTheme.themeData.textTheme.bodyMedium?.copyWith(
-        color: PalletsColors.white70,
+          color: PalletsColors.white70,
         ),
       ),
     );

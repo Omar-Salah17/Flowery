@@ -12,10 +12,18 @@ class RegisterRequest {
   String phone;
   String gender;
 
-  RegisterRequest({ required this.firstName,required this.lastName,required this.email,required this.password,required this.rePassword,required this.phone,required this.gender});
+  RegisterRequest({
+    required this.firstName,
+    required this.lastName,
+    required this.email,
+    required this.password,
+    required this.rePassword,
+    required this.phone,
+    required this.gender,
+  });
 
-  factory RegisterRequest.fromJson(Map<String, dynamic> json) => _$RegisterRequestFromJson(json);
+  factory RegisterRequest.fromJson(Map<String, dynamic> json) =>
+      _$RegisterRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$RegisterRequestToJson(this);
 }
-

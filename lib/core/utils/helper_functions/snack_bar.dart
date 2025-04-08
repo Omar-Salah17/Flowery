@@ -15,7 +15,7 @@ void showErrorSnackBar(BuildContext context, String message) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Text(message),
-      backgroundColor:PalletsColors.error,
+      backgroundColor: PalletsColors.error,
       duration: Duration(seconds: 3),
     ),
   );

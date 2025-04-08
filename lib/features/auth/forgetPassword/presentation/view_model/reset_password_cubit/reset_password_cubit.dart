@@ -17,10 +17,13 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
       email: email,
       newPassword: newPassword,
     );
-    result.fold((failure) {
-      emit(ResetPasswordFailure(errorMessage: failure.errorMessage));
-    }, (response) {
-      emit(ResetPasswordSuccess(data: response));
-    });
+    result.fold(
+      (failure) {
+        emit(ResetPasswordFailure(errorMessage: failure.errorMessage));
+      },
+      (response) {
+        emit(ResetPasswordSuccess(data: response));
+      },
+    );
   }
 }

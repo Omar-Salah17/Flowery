@@ -3,7 +3,6 @@ import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flutter/material.dart';
 
-
 class Splash extends StatefulWidget {
   const Splash({super.key});
 
