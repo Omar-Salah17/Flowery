@@ -11,6 +11,6 @@ class RegisterDataSourceImpl implements RegisterRepositoryDataSourceContract{
   @override
   Future< RegisterResponse> register({required RegisterRequest registerRequest}) async {
     var response = await apiServices.registerUser(registerRequest);
-  return  response;
+    return  response;
   }
 }

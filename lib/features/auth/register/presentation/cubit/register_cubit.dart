@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterStates> {
-  RegisterCubit( this._registerUseCase) : super(RegisterStates());
-   final RegisterUseCase _registerUseCase;
+  RegisterCubit(this._registerUseCase) : super(RegisterStates());
+  final RegisterUseCase _registerUseCase;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
@@ -21,16 +21,15 @@ class RegisterCubit extends Cubit<RegisterStates> {
   var formKey = GlobalKey<FormState>();
   static Gender selectedGender = Gender.female;
 
-
-  selectGender(Gender value){
-
-    selectedGender =value ;
+  selectGender(Gender value) {
+    selectedGender = value;
     emit(state.copyWith(state: RequestState.selectGender));
   }
-  register()async{
+
+  register() async {
     emit(state.copyWith(state: RequestState.loading));
 
-  var either = await  _registerUseCase.invoke(
+    var either = await _registerUseCase.invoke(
       registerRequest: RegisterRequest(
         email: emailController.text,
         password: passwordController.text,
@@ -38,19 +37,21 @@ class RegisterCubit extends Cubit<RegisterStates> {
         firstName: firstNameController.text,
         lastName: lastNameController.text,
         phone: phoneNumberController.text,
-        gender: selectedGender == Gender.female ? "female" : "male"
-      )
+        gender: selectedGender == Gender.female ? "female" : "male",
+      ),
     );
-  either.fold(
-        (l) {
-      emit(state.copyWith(state: RequestState.error, errorMessage: l.errorMessage));
-    },
-        (r) {
-      emit(state.copyWith(state: RequestState.success, registerEntity: r));
-    },
-  );
-
+    either.fold(
+      (l) {
+        emit(
+          state.copyWith(
+            state: RequestState.error,
+            errorMessage: l.errorMessage,
+          ),
+        );
+      },
+      (r) {
+        emit(state.copyWith(state: RequestState.success, registerEntity: r));
+      },
+    );
   }
-
-
 }
