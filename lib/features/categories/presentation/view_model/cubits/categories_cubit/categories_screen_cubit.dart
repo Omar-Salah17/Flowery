@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flowery/features/categories/data/models/categories_model/category.dart';
 import 'package:flowery/features/categories/data/models/products_model/product.dart';
