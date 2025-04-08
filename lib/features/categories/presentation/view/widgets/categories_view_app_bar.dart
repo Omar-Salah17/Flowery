@@ -13,7 +13,7 @@ class CategoriesScreenAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
-            height: 48.h,
+            // height: 48.h,
             width: 271.w,
             child: TextField(
               decoration: InputDecoration(
@@ -45,13 +45,14 @@ class CategoriesScreenAppBar extends StatelessWidget {
             ),
           ),
           Container(
-            height: 48.h,
-            width: 64.w,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.r),
               border: Border.all(color: PalletsColors.white70),
             ),
-            child: Icon(Icons.sort, color: PalletsColors.white70, size: 24.r),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+              child: Icon(Icons.sort, color: PalletsColors.white70, size: 24.r),
+            ),
           ),
         ],
       ),
