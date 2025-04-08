@@ -13,7 +13,7 @@ class GetAllOccasionsUseCase {
     required this.occasionRepositoryContract,
   });
 Future<Either<Failure, List<Occasions>>>  invoke() async {
-  var either = await  occasionRepositoryContract.getAllOccasions();
-  return  either.fold((l) => Left(l), (r) => Right(r));
+return await  occasionRepositoryContract.getAllOccasions();
+  
   }
 }

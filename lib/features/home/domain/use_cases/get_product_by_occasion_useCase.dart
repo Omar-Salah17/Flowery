@@ -10,9 +10,8 @@ class GetProductByOccasionUsecase {
   GetProductByOccasionUsecase(this.productRepository);
 
 Future<Either<Failure, List<Products>>>  invoke({required String occasionId}) async {
-    var eirher=  await productRepository.getAllProductByOccasion(
+  return   await productRepository.getAllProductByOccasion(
       occasionId: occasionId,
     );
-    return eirher.fold((l) => Left(l), (r) => Right(r));
   }
 }

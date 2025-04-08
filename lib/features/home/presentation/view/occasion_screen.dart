@@ -10,6 +10,7 @@ import 'package:flowery/features/home/presentation/view/cubit/occasion_cubit.dar
 import 'package:flowery/features/home/presentation/widgets/appbar_title.dart';
 import 'package:flowery/features/home/presentation/widgets/product_item.dart';
 import 'package:flowery/features/home/presentation/widgets/tab_widget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OccasionScreen extends StatefulWidget {
   const OccasionScreen({Key? key}) : super(key: key);
@@ -57,13 +58,7 @@ class _OccasionScreenState extends State<OccasionScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        scrolledUnderElevation: 0,
-        elevation: 0,
-        shadowColor: Colors.transparent,
-        backgroundColor: PalletsColors.white10,
-        title: const AppbarTitle(),
-      ),
+      appBar: PreferredSize(preferredSize: Size.fromHeight(50.h), child: AppbarTitle()),
       body: BlocProvider(
         create: (_) => occasionCubit..getAllOccasions(),
         child: BlocBuilder<OccasionCubit, OccasionState>(
