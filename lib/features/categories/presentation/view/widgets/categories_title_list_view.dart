@@ -32,9 +32,7 @@ class _CategoriesTitleListViewState extends State<CategoriesTitleListView> {
             GestureDetector(
               onTap: () {
                 selectedCat;
-                setState(() {});
-
-                context.read<CategoriesScreenCubit>().getCategoriesScreenData();
+                context.read<CategoriesScreenCubit>().getProductsByCategory();
               },
               child: Column(
                 children: [
@@ -66,13 +64,12 @@ class _CategoriesTitleListViewState extends State<CategoriesTitleListView> {
             ),
             ...widget.category.map(
               (cat) => GestureDetector(
-                onTap: () async {
+                onTap: () {
                   selectedCat = cat.id!;
-                  setState(() {});
 
-                  await context
-                      .read<CategoriesScreenCubit>()
-                      .getCategoriesScreenData(categoryId: cat.id);
+                  context.read<CategoriesScreenCubit>().getProductsByCategory(
+                    categoryId: cat.id,
+                  );
                 },
                 child: CategoriesTitleWidget(
                   category: cat,

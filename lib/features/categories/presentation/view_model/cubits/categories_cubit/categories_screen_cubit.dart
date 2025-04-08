@@ -8,60 +8,63 @@ import 'package:flowery/features/categories/domain/use_case/get_products_by_cate
 
 part 'categories_screen_state.dart';
 
-class CategoriesScreenCubit extends Cubit<CategoriesState> {
+class CategoriesScreenCubit extends Cubit<CategoriesScreenState> {
   CategoriesScreenCubit(
     this.getAllCategoriesUseCase,
     this.getProductsByCategoryUseCase,
-  ) : super(CategoriesInitial());
+  ) : super(ProductsByCategoryInitial());
   final GetAllCategoriesUseCase getAllCategoriesUseCase;
   final GetProductsByCategoryUseCase getProductsByCategoryUseCase;
   String selectedCategoryId = "all";
-  Future<void> getCategoriesScreenData({String? categoryId}) async {
+   List<Category> categories = [];
+  // Future<void> getCategoriesScreenData({String? categoryId}) async {
+  //   selectedCategoryId = categoryId ?? "all";
+  //   emit(ProductsByCategoryLoading());
+  //   final result = await Future.wait([
+  //     getAllCategoriesUseCase.call(),
+  //     getProductsByCategoryUseCase.call(categoryId: categoryId),
+  //   ]);
+
+  //   final categoriesResult = result[0];
+  //   final productsResult = result[1];
+  //   if (categoriesResult.isLeft()) {
+  //     emit(ProductsByCategoryFailure((categoriesResult as Left).value));
+  //   }
+  //   if (productsResult.isLeft()) {
+  //     emit(ProductsByCategoryFailure((productsResult as Left).value));
+  //   }
+
+  //   final categories = (categoriesResult as Right).value;
+  //   final products = (productsResult as Right).value;
+  //   emit(ProductsByCategorySuccess(categories: categories, products: products));
+  // }
+  Future<void> getAllCategories() async {
+    emit(CategoriesLoading());
+    final result = await getAllCategoriesUseCase.call();
+    result.fold(
+      (falilure) {
+        emit(CategoriesFailure(errorMessage: falilure.errorMessage));
+      },
+      (category) {
+categories = category;
+        emit(CategoriesSuccess(categories: categories));
+      },
+    );
+  }
+
+  Future<void> getProductsByCategory({String? categoryId}) async {
     selectedCategoryId = categoryId ?? "all";
     emit(CategoriesLoading());
-    final result = await Future.wait([
-      getAllCategoriesUseCase.call(),
-      getProductsByCategoryUseCase.call(categoryId: categoryId),
-    ]);
-
-    final categoriesResult = result[0];
-    final productsResult = result[1];
-    if (categoriesResult.isLeft()) {
-      emit(CategoriesFailure((categoriesResult as Left).value));
-    }
-    if (productsResult.isLeft()) {
-      emit(CategoriesFailure((productsResult as Left).value));
-    }
-    
-    final categories = (categoriesResult as Right).value;
-    final products = (productsResult as Right).value;
-    emit(CategoriesSuccess(categories: categories, products: products));
+    final result = await getProductsByCategoryUseCase.call(
+      categoryId: categoryId,
+    );
+    result.fold(
+      (falilure) {
+        emit(ProductsByCategoryFailure(errorMessage: falilure.errorMessage));
+      },
+      (products) {
+        emit(ProductsByCategorySuccess(products: products));
+      },
+    );
   }
-  // Future<void> getAllCategories() async {
-  //   emit(CategoriesLoading());
-  //   final result = await getAllCategoriesUseCase.call();
-  //   result.fold(
-  //     (falilure) {
-  //       emit(CategoriesFailure(falilure.errorMessage));
-  //     },
-  //     (category) {
-  //       emit(CategoriesSuccess(categories: category, products: []));
-  //     },
-  //   );
-  // }
-
-  // Future<void> getProductsByCategory({String? categoryId}) async {
-  //   emit(CategoriesLoading());
-  //   final result = await getProductsByCategoryUseCase.call(
-  //     categoryId: categoryId,
-  //   );
-  //   result.fold(
-  //     (falilure) {
-  //       emit(CategoriesFailure(falilure.errorMessage));
-  //     },
-  //     (category) {
-  //       emit(CategoriesSuccess(categories: [], products: []));
-  //     },
-  //   );
-  // }
 }

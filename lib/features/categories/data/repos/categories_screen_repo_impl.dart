@@ -38,7 +38,7 @@ class CategoriesScreenRepoImpl implements CategoriesScreenRepo {
       final data = await categoriesRemoteDataSource.getProductsByCategory(
         categoryId: categoryId,
       );
-      log("dataaaaa in CategoriesScreenRepoImpl ${data.products} ");
+      // log("dataaaaa in CategoriesScreenRepoImpl ${data.products} ");
       return Right(data.products ?? []);
     } catch (e) {
       if (e is DioException) {

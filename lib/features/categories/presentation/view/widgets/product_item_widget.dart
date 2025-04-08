@@ -80,9 +80,9 @@ class ProductItemWidget extends StatelessWidget {
             ),
             SizedBox(height: 8.h),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size.fromHeight(30.h),
-              ),
+              // style: ElevatedButton.styleFrom(
+              //   minimumSize: Size.fromHeight(30.h),
+              // ),
               onPressed: () {},
               child: Row(
                 spacing: 8.w,
