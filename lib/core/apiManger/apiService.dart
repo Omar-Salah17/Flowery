@@ -9,12 +9,9 @@ import 'package:flowery/features/categories/data/models/categories_model/categor
 import 'package:flowery/features/categories/data/models/products_model/products_model.dart';
 import 'package:flowery/features/home/data/models/occaions.dart';
 import 'package:flowery/features/home/data/models/product_response_model.dart';
-<<<<<<< HEAD
-import 'package:flowery/features/home/data/models/CategoriesResponse.dart';
-=======
 import 'package:flowery/features/home/data/models/best-seller_response.dart';
 import 'package:flowery/features/home/data/models/occasions_response.dart';
->>>>>>> feature/home_screen
+import 'package:flowery/features/home/data/models/CategoriesResponse.dart';
 import 'package:retrofit/retrofit.dart';
 part 'apiService.g.dart';
 
@@ -33,20 +30,15 @@ abstract class ApiService {
     @Query("category") String? categoryId,
   });
 
-<<<<<<< HEAD
   @POST(Constants.loginEndPoint)
-  Future<LoginResponse> loginUser(@Body() LoginRequest loginRequest);
-=======
-  // Future<RegisterResponse> registerUser(
-  //   @Body() RegisterRequest registerRequest,
+  // Future<LoginResponse> loginUser(
+  //   @Body() LoginRequest loginRequest,
   // );
-
   @GET(Constants.homeBestSeller)
   Future<BestSellerResponse> getBestSellers();
 
   @GET(Constants.homeOccasions)
   Future<OcaasionsResponse> getHomeOccasions();
->>>>>>> feature/home_screen
   @GET(Constants.occasionEndPoint)
   Future<AllOccaions> getAllOccasions();
   @GET(Constants.productsEndPoint)
