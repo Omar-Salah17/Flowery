@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flowery/core/utils/constants.dart';
 import 'package:flowery/features/auth/register/data/models/register_request.dart';
 import 'package:flowery/features/auth/register/data/models/register_response.dart';
+import 'package:flowery/features/best_seller/data/models/best_seller_model.dart';
 import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart';
 import 'package:flowery/features/categories/data/models/products_model/products_model.dart';
 import 'package:flowery/features/home/data/models/occaions.dart';
@@ -24,11 +25,13 @@ abstract class ApiService {
     @Query("category") String? categoryId
   });
 
-  Future<RegisterResponse> registerUser(@Body() RegisterRequest registerRequest);
   @GET(Constants.occasionEndPoint)
   Future<AllOccaions> getAllOccasions();
-  @GET(Constants.productEndPoint)
+  @GET(Constants.productsEndPoint)
   Future<ProductResponseModel> getAllProductByOccasion({
     @Query('occasion') required String occasionId,
   });
+
+  @GET(Constants.bestSellerEndPoint)
+  Future<BestSellerModel>getBestSellerProduct();
 }
