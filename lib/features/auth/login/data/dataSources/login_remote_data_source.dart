@@ -1,6 +1,6 @@
+import 'package:flowery/features/auth/login/data/models/login_request.dart';
+import 'package:flowery/features/auth/login/data/models/login_respose.dart';
+
 abstract class LoginRemoteDataSource {
-  Future<Map<String, dynamic>> login({
-    required String email,
-    required String password,
-  });
+  Future<LoginResponse> login({required LoginRequest loginRequest});
 }

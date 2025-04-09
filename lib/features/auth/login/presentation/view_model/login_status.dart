@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flowery/features/auth/login/data/models/login_respose.dart';
 
 sealed class LoginState extends Equatable {
   const LoginState();
@@ -12,7 +13,7 @@ final class LoginInitial extends LoginState {}
 final class LoginLoading extends LoginState {}
 
 final class LoginSuccess extends LoginState {
-  final Map<String, dynamic> data;
+  final LoginResponse data; // Change from Map<String, dynamic> to LoginResponse
 
   const LoginSuccess({required this.data});
 }

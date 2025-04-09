@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:flowery/features/auth/login/data/models/login_request.dart';
 
 import 'package:flowery/features/auth/login/domain/use_cases/login_usecase.dart';
 import 'package:flowery/features/auth/login/presentation/view_model/login_status.dart';
@@ -14,7 +15,8 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> login({required String email, required String password}) async {
     emit(LoginLoading());
     log("before invoke");
-    var result = await loginUseCase.invoke(email: email, password: password);
+    final loginRequest = LoginRequest(email: email, password: password);
+    var result = await loginUseCase.invoke(loginRequest: loginRequest);
     log("after invoke");
     result.fold(
       (failure) {
