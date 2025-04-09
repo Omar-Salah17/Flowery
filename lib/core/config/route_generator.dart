@@ -4,6 +4,7 @@ import 'package:flowery/features/auth/forgetPassword/presentation/view/forget_pa
 import 'package:flowery/features/auth/forgetPassword/presentation/view/reset_password_screen.dart';
 import 'package:flowery/features/auth/login/presentation/view/screens/login.dart';
 import 'package:flowery/features/auth/register/presentation/view/screens/register_screen.dart';
+import 'package:flowery/features/productsDetails/presentation/view/products_details.dart';
 import 'package:flowery/features/splash/view/splash.dart';
 import 'package:flutter/material.dart';
 
@@ -12,8 +13,6 @@ import '../../features/catigories/presentation/view/categories_view.dart';
 import '../../features/home/presentation/view/home_view.dart';
 import '../../features/layout/Presentation/layout.dart';
 import '../../features/profile/presentation/view/profile_view.dart';
-
-
 
 class RouteGenerator {
   static Route<dynamic>? onGenerator(RouteSettings Settings) {
@@ -52,33 +51,39 @@ class RouteGenerator {
           settings: Settings,
         );
 
-        case RoutesName.layout:
+      case RoutesName.layout:
         return MaterialPageRoute(
           builder: (context) => Layout(),
           settings: Settings,
         );
 
-        case RoutesName.profile:
+      case RoutesName.profile:
         return MaterialPageRoute(
           builder: (context) => ProfileView(),
           settings: Settings,
         );
 
-        case RoutesName.cart:
+      case RoutesName.cart:
         return MaterialPageRoute(
           builder: (context) => CartView(),
           settings: Settings,
         );
 
-        case RoutesName.categories:
+      case RoutesName.categories:
         return MaterialPageRoute(
           builder: (context) => CategoriesView(),
           settings: Settings,
         );
 
-        case RoutesName.home:
+      case RoutesName.home:
         return MaterialPageRoute(
           builder: (context) => HomeView(),
+          settings: Settings,
+        );
+
+      case RoutesName.productsDetails:
+        return MaterialPageRoute(
+          builder: (context) => ProductsDetails(),
           settings: Settings,
         );
 
