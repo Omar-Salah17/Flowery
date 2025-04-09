@@ -9,6 +9,7 @@ import 'package:flowery/features/categories/data/models/categories_model/categor
 import 'package:flowery/features/categories/data/models/products_model/products_model.dart';
 import 'package:flowery/features/home/data/models/occaions.dart';
 import 'package:flowery/features/home/data/models/product_response_model.dart';
+import 'package:flowery/features/home/data/models/CategoriesResponse.dart';
 import 'package:retrofit/retrofit.dart';
 part 'apiService.g.dart';
 
@@ -39,4 +40,7 @@ abstract class ApiService {
   Future<ProductResponseModel> getAllProductByOccasion({
     @Query('occasion') required String occasionId,
   });
+
+  @GET('/categories')
+  Future<CategoriesResponse> getCategories();
 }

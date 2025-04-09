@@ -77,6 +77,15 @@ import '../../features/home/domain/use_cases/get_all_occasions_use_case.dart'
     as _i437;
 import '../../features/home/domain/use_cases/get_product_by_occasion_useCase.dart'
     as _i343;
+import '../../features/home/data/DataSource/CategoriesDataSource.dart' as _i359;
+import '../../features/home/data/DataSource/CategoriesDataSourceImpl.dart'
+    as _i813;
+import '../../features/home/data/repository/CategoriesRepoImpl.dart' as _i660;
+import '../../features/home/domain/repository/CategoriesRepo.dart' as _i298;
+import '../../features/home/domain/use_case/GetCategoriesUseCase.dart'
+    as _i1057;
+import '../../features/home/presentation/viewModel/HomeCategoriesViewModel.dart'
+    as _i195;
 import '../apiManger/api_manager.dart' as _i29;
 import '../apiManger/apiService.dart' as _i171;
 import '../apiManger/dio_module.dart' as _i304;
@@ -94,6 +103,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i646.GuestManager>(() => _i646.GuestManager());
     gh.factory<_i863.ProductRemoteDataSource>(
       () => _i289.ProductRemoteDataSourceImpl(),
+    );
+    gh.factory<_i359.CategoriesDataSource>(
+      () => _i813.CategoriesDataSourceImpl(),
     );
     gh.factory<_i162.RegisterRepositoryDataSourceContract>(
       () => _i80.RegisterDataSourceImpl(),
@@ -115,6 +127,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i577.LoginRemoteDataSource>(
       () => _i194.LoginRemoteDataSourceImp(apiManager: gh<_i29.ApiManager>()),
     );
+    gh.factory<_i298.CategoriesRepo>(
+      () => _i660.CategoriesRepoImpl(gh<_i359.CategoriesDataSource>()),
+    );
+    gh.factory<_i1057.GetCategoriesUseCase>(
+      () => _i1057.GetCategoriesUseCase(gh<_i298.CategoriesRepo>()),
+    );
     gh.factory<_i129.ForgetPasswordRemoteDataSource>(
       () => _i177.ForgetPasswordRemoteDataSourceImpl(
         apiManager: gh<_i29.ApiManager>(),
@@ -128,6 +146,9 @@ extension GetItInjectableX on _i174.GetIt {
         occasionRemoteDataSourceContract:
             gh<_i189.OccasionRemoteDataSourceContract>(),
       ),
+    );
+    gh.factory<_i195.HomeCategoriesViewModel>(
+      () => _i195.HomeCategoriesViewModel(gh<_i1057.GetCategoriesUseCase>()),
     );
     gh.singleton<_i171.ApiService>(
       () => dioModule.provideApiService(gh<_i361.Dio>()),
