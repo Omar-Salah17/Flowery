@@ -39,7 +39,7 @@ class HomeViewBody extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            AutoLocationPicker(),
+            CurrentUserLocation(),
             Row(
               children: [
                 Padding(
