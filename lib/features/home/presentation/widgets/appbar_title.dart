@@ -7,32 +7,30 @@ class AppbarTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        var text = Theme.of(context).textTheme;
-    return 
-    AppBar(
-        scrolledUnderElevation: 0,
-        elevation: 0,
-        shadowColor: Colors.transparent,
-        backgroundColor: PalletsColors.white10,
-        title: 
-      
-     Row(
-          children: [
-            Icon(Icons.arrow_back_ios),
-            horizontalSpace(10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Occasion', style: text.titleMedium),
-                Text('Bloom with our exquisite best sellers', style: text.labelSmall?.copyWith(
-                  color: PalletsColors.gray,
-                ),
-                ),
-                verticalSpace(8)
-              ],
-            ),
-          ],
-          ))
-    ;
+    var text = Theme.of(context).textTheme;
+    return AppBar(
+      scrolledUnderElevation: 0,
+      elevation: 0,
+      shadowColor: Colors.transparent,
+      backgroundColor: PalletsColors.white10,
+      automaticallyImplyLeading: false,
+      title: Row(
+        children: [
+          Icon(Icons.arrow_back_ios),
+          horizontalSpace(10),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Occasion', style: text.titleMedium),
+              Text(
+                'Bloom with our exquisite best sellers',
+                style: text.labelSmall?.copyWith(color: PalletsColors.gray),
+              ),
+              verticalSpace(8),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

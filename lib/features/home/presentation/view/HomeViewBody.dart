@@ -21,6 +21,7 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Row(
           children: [
             SvgPicture.asset("assets/images/Flower.svg"),
@@ -123,7 +124,12 @@ class HomeViewBody extends StatelessWidget {
               },
             ),
 
-            ViewAllWidget(title: "Best seller", onTap: () {}),
+            ViewAllWidget(
+              title: "Best seller",
+              onTap: () {
+                Navigator.pushNamed(context, RoutesName.bestSeller);
+              },
+            ),
 
             SizedBox(height: 16.h),
 
@@ -131,7 +137,12 @@ class HomeViewBody extends StatelessWidget {
 
             SizedBox(height: 12.h),
 
-            ViewAllWidget(title: "Occasion", onTap: () {}),
+            ViewAllWidget(
+              title: "Occasion",
+              onTap: () {
+                Navigator.pushNamed(context, RoutesName.occasionScreen);
+              },
+            ),
 
             SizedBox(height: 16.h),
 

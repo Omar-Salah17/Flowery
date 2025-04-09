@@ -33,14 +33,14 @@ abstract class ApiService {
 
   @POST(Constants.loginEndPoint)
   Future<LoginResponse> loginUser(@Body() LoginRequest loginRequest);
-  @GET(Constants.homeBestSeller)
+  @GET(Constants.bestSellerEndPoint)
   Future<BestSellerResponse> getBestSellers();
 
   @GET(Constants.homeOccasions)
   Future<OcaasionsResponse> getHomeOccasions();
   @GET(Constants.occasionEndPoint)
   Future<AllOccaions> getAllOccasions();
-  @GET(Constants.productssEndPoint)
+  @GET(Constants.productsEndPoint)
   Future<ProductResponseModel> getAllProductByOccasion({
     @Query('occasion') required String occasionId,
   });

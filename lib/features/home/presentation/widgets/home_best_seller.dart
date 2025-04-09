@@ -2,14 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
-import 'package:flowery/features/home/domain/use_case/best_seller_usecase.dart';
-import 'package:flowery/features/home/presentation/view%20model/best_seller_status.dart'
-    show
-        BestSellerFailure,
-        BestSellerLoading,
-        BestSellerState,
-        BestSellerSuccess;
-import 'package:flowery/features/home/presentation/view%20model/bset_seller_cubit.dart';
+import 'package:flowery/features/best_seller/domain/use_case/get_best_seller_use_case.dart';
+import 'package:flowery/features/best_seller/presentation/view_model/cubits/best_seller_cubit.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,8 +17,8 @@ class HomeBestSeller extends StatelessWidget {
     return BlocProvider(
       create:
           (context) =>
-              BestSellerCubit(getIt.get<Bestsellerusecase>())
-                ..getBestSellersData(),
+              BestSellerCubit(getIt.get<GetBestSellerUseCase>())
+                ..getBestSeller(),
       child: BlocBuilder<BestSellerCubit, BestSellerState>(
         builder: (context, state) {
           if (state is BestSellerLoading) {
@@ -33,9 +28,9 @@ class HomeBestSeller extends StatelessWidget {
               height: 220.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: state.bestSellers.length,
+                itemCount: state.model.bestSeller!.length,
                 itemBuilder: (context, index) {
-                  final item = state.bestSellers[index];
+                  final item = state.model.bestSeller![index];
                   return Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: GestureDetector(

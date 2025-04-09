@@ -46,13 +46,17 @@ import '../../features/auth/register/domain/repository/data_source_contract/remo
     as _i162;
 import '../../features/auth/register/domain/use_cases/register_use_case.dart'
     as _i118;
-import '../../features/home/data/dataSource/homeBestSellerDataSourceImp.dart'
-    as _i136;
-import '../../features/home/data/dataSource/homeBestSellersDataSource.dart'
-    as _i228;
-import '../../features/home/data/repos/bestSellerRpoImp.dart' as _i423;
-import '../../features/home/domain/repos/bestSellerRepo.dart' as _i167;
-import '../../features/home/domain/use_case/best_seller_usecase.dart' as _i205;
+import '../../features/best_seller/data/data_source/best_seller_data_source.dart'
+    as _i312;
+import '../../features/best_seller/data/data_source/best_seller_data_source_impl.dart'
+    as _i158;
+import '../../features/best_seller/data/repos/best_seller_repo_impl.dart'
+    as _i12;
+import '../../features/best_seller/domain/repos/best_seller_repo.dart' as _i629;
+import '../../features/best_seller/domain/use_case/get_best_seller_use_case.dart'
+    as _i461;
+import '../../features/best_seller/presentation/view_model/cubits/best_seller_cubit.dart'
+    as _i717;
 import '../../features/categories/data/data_source/categories_screen_remote_data_source.dart'
     as _i469;
 import '../../features/categories/data/data_source/categories_screen_remote_data_source_impl.dart'
@@ -68,6 +72,8 @@ import '../../features/categories/domain/use_case/get_products_by_category_use_c
 import '../../features/home/data/DataSource/CategoriesDataSource.dart' as _i359;
 import '../../features/home/data/DataSource/CategoriesDataSourceImpl.dart'
     as _i813;
+import '../../features/home/data/DataSource/occasions%20data%20source/home_occasions_data_source_imp.dart'
+    as _i413;
 import '../../features/home/data/repositories/occasion_remote_data_source_impl.dart'
     as _i811;
 import '../../features/home/data/repositories/occasion_repository_impl.dart'
@@ -186,18 +192,6 @@ extension GetItInjectableX on _i174.GetIt {
         registerRepositoryContracr: gh<_i251.RegisterRepositoryContracr>(),
       ),
     );
-    gh.factory<_i228.Homebestsellersdatasource>(
-      () =>
-          _i136.Homebestsellerdatasourceimp(apiService: gh<_i171.ApiService>()),
-    );
-    gh.factory<_i167.BestSellerRepo>(
-      () => _i423.BestSellerRepoImp(
-        homebestsellersdatasource: gh<_i228.Homebestsellersdatasource>(),
-      ),
-    );
-    gh.factory<_i205.Bestsellerusecase>(
-      () => _i205.Bestsellerusecase(bestSellerRepo: gh<_i167.BestSellerRepo>()),
-    );
     gh.factory<_i632.LoginRepo>(
       () => _i21.LoginRepoImp(
         loginRemoteDataSource: gh<_i577.LoginRemoteDataSource>(),
@@ -213,10 +207,21 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i863.ProductRepositoryContract>(),
       ),
     );
+    gh.factory<_i312.BestSellerDataSource>(
+      () => _i158.BestSellerDataSourceImpl(gh<_i171.ApiService>()),
+    );
     gh.factory<_i826.CategoriesScreenRepo>(
       () => _i750.CategoriesScreenRepoImpl(
         categoriesRemoteDataSource:
             gh<_i469.CategoriesScreenRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i629.BestSellerRepo>(
+      () => _i12.BestSellerRepoImpl(gh<_i312.BestSellerDataSource>()),
+    );
+    gh.factory<_i461.GetBestSellerUseCase>(
+      () => _i461.GetBestSellerUseCase(
+        bestSellerRepo: gh<_i629.BestSellerRepo>(),
       ),
     );
     gh.factory<_i437.GetAllOccasionsUseCase>(
@@ -224,8 +229,15 @@ extension GetItInjectableX on _i174.GetIt {
         occasionRepositoryContract: gh<_i16.OccasionRepositoryContract>(),
       ),
     );
+    gh.factory<_i413.HomeOccasionsDataSourceImp>(
+      () =>
+          _i413.HomeOccasionsDataSourceImp(apiService: gh<_i171.ApiService>()),
+    );
     gh.factory<_i334.LoginUsecase>(
       () => _i334.LoginUsecase(repo: gh<_i632.LoginRepo>()),
+    );
+    gh.factory<_i717.BestSellerCubit>(
+      () => _i717.BestSellerCubit(gh<_i461.GetBestSellerUseCase>()),
     );
     gh.factory<_i595.GetAllCategoriesUseCase>(
       () => _i595.GetAllCategoriesUseCase(
