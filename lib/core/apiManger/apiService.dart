@@ -5,6 +5,7 @@ import 'package:flowery/features/auth/login/data/models/login_request.dart'
 import 'package:flowery/features/auth/login/data/models/login_respose.dart';
 import 'package:flowery/features/auth/register/data/models/register_request.dart';
 import 'package:flowery/features/auth/register/data/models/register_response.dart';
+import 'package:flowery/features/best_seller/data/models/best_seller_model.dart';
 import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart';
 import 'package:flowery/features/categories/data/models/products_model/products_model.dart';
 import 'package:flowery/features/home/data/models/occaions.dart';
@@ -39,8 +40,11 @@ abstract class ApiService {
   Future<OcaasionsResponse> getHomeOccasions();
   @GET(Constants.occasionEndPoint)
   Future<AllOccaions> getAllOccasions();
-  @GET(Constants.productsEndPoint)
+  @GET(Constants.productssEndPoint)
   Future<ProductResponseModel> getAllProductByOccasion({
     @Query('occasion') required String occasionId,
   });
+
+  @GET(Constants.bestSellerEndPoint)
+  Future<BestSellerModel> getBestSellerProduct();
 }
