@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flowery/core/utils/constants.dart';
+import 'package:flowery/features/auth/login/data/models/login_request.dart'
+    show LoginRequest;
+import 'package:flowery/features/auth/login/data/models/login_respose.dart';
 import 'package:flowery/features/auth/register/data/models/register_request.dart';
 import 'package:flowery/features/auth/register/data/models/register_response.dart';
 import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart';
@@ -21,10 +24,15 @@ abstract class ApiService {
   Future<CategoriesModel> getCategories();
   @GET(Constants.productsEndPoint)
   Future<ProductsModel> getProductsByCategory({
-    @Query("category") String? categoryId
+    @Query("category") String? categoryId,
   });
 
-  Future<RegisterResponse> registerUser(@Body() RegisterRequest registerRequest);
+  Future<RegisterResponse> registerUser(
+    @Body() RegisterRequest registerRequest,
+  );
+
+  @POST(Constants.loginEndPoint)
+  Future<LoginResponse> loginUser(@Body() LoginRequest loginRequest);
   @GET(Constants.occasionEndPoint)
   Future<AllOccaions> getAllOccasions();
   @GET(Constants.productEndPoint)
