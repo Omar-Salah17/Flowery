@@ -31,9 +31,7 @@ abstract class ApiService {
   });
 
   @POST(Constants.loginEndPoint)
-  // Future<LoginResponse> loginUser(
-  //   @Body() LoginRequest loginRequest,
-  // );
+  Future<LoginResponse> loginUser(@Body() LoginRequest loginRequest);
   @GET(Constants.homeBestSeller)
   Future<BestSellerResponse> getBestSellers();
 

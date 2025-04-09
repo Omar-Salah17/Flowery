@@ -15,27 +15,27 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(height: MediaQuery.of(context).size.height * .26),
+    // return Scaffold(
+    //   body: Column(
+    //     children: [
+    //       SizedBox(height: MediaQuery.of(context).size.height * .26),
 
-          ViewAllWidget(title: "Best seller", onTap: () {}),
+    //       ViewAllWidget(title: "Best seller", onTap: () {}),
 
-          SizedBox(height: 16.h),
+    //       SizedBox(height: 16.h),
 
-          HomeBestSeller(),
+    //       HomeBestSeller(),
 
-          SizedBox(height: 12.h),
+    //       SizedBox(height: 12.h),
 
-          ViewAllWidget(title: "Occasion", onTap: () {}),
+    //       ViewAllWidget(title: "Occasion", onTap: () {}),
 
-          SizedBox(height: 16.h),
+    //       SizedBox(height: 16.h),
 
-          HomeOccasionsView(),
-        ],
-      ),
-    );
+    //       HomeOccasionsView(),
+    //     ],
+    //   ),
+    // );
     return BlocProvider(
       create:
           (context) =>
