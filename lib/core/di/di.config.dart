@@ -39,6 +39,13 @@ import '../../features/auth/register/domain/repository/data_source_contract/remo
     as _i162;
 import '../../features/auth/register/domain/use_cases/register_use_case.dart'
     as _i118;
+import '../../features/home/data/dataSource/homeBestSellerDataSourceImp.dart'
+    as _i136;
+import '../../features/home/data/dataSource/homeBestSellersDataSource.dart'
+    as _i228;
+import '../../features/home/data/repos/bestSellerRpoImp.dart' as _i423;
+import '../../features/home/domain/repos/bestSellerRepo.dart' as _i167;
+import '../../features/home/domain/use_case/best_seller_usecase.dart' as _i205;
 import '../../features/categories/data/data_source/categories_screen_remote_data_source.dart'
     as _i469;
 import '../../features/categories/data/data_source/categories_screen_remote_data_source_impl.dart'
@@ -147,6 +154,18 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i118.RegisterUseCase(
         registerRepositoryContracr: gh<_i251.RegisterRepositoryContracr>(),
       ),
+    );
+    gh.factory<_i228.Homebestsellersdatasource>(
+      () =>
+          _i136.Homebestsellerdatasourceimp(apiService: gh<_i171.ApiService>()),
+    );
+    gh.factory<_i167.BestSellerRepo>(
+      () => _i423.BestSellerRepoImp(
+        homebestsellersdatasource: gh<_i228.Homebestsellersdatasource>(),
+      ),
+    );
+    gh.factory<_i205.Bestsellerusecase>(
+      () => _i205.Bestsellerusecase(bestSellerRepo: gh<_i167.BestSellerRepo>()),
     );
     gh.factory<_i469.CategoriesScreenRemoteDataSource>(
       () => _i666.CategoriesScreenRemoteDataSourceImpl(
