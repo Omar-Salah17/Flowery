@@ -28,19 +28,12 @@ abstract class ApiService {
     @Query("category") String? categoryId,
   });
 
-  Future<RegisterResponse> registerUser(
-    @Body() RegisterRequest registerRequest,
-  );
-
   @POST(Constants.loginEndPoint)
   Future<LoginResponse> loginUser(@Body() LoginRequest loginRequest);
   @GET(Constants.occasionEndPoint)
   Future<AllOccaions> getAllOccasions();
-  @GET(Constants.productEndPoint)
+  @GET(Constants.productsEndPoint)
   Future<ProductResponseModel> getAllProductByOccasion({
     @Query('occasion') required String occasionId,
   });
-
-  @GET('/categories')
-  Future<CategoriesResponse> getCategories();
 }
