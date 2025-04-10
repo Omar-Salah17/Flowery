@@ -39,7 +39,7 @@ class ServerFailure extends Failure {
         );
     }
   }
-  factory ServerFailure.fromResponse(int statusCode, jsonData) {
+  factory ServerFailure.fromResponse(int statusCode, dynamic jsonData) {
     switch (statusCode) {
       case 400:
       case 401:
@@ -52,32 +52,44 @@ class ServerFailure extends Failure {
             errorMessage:
                 "Password must contain at least:\n - 8 characters\n - One uppercase letter\n - One lowercase letter\n - One number\n - One special character.",
           );
-        } else if (jsonData["error"].toString().contains(
-          'Reset code is invalid or has expired',
-        )) {
-          return ServerFailure(errorMessage: jsonData["error"]);
+        } else if (jsonData["error"]?.toString().contains(
+              'Reset code is invalid or has expired',
+            ) ??
+            false) {
+          return ServerFailure(
+            errorMessage: jsonData["error"] ?? "Unknown error",
+          );
         }
-        return ServerFailure(errorMessage: jsonData["message"]);
+        return ServerFailure(
+          errorMessage:
+              jsonData["message"] ?? jsonData["error"] ?? "Unknown error",
+        );
 
       case 404:
         if (jsonData["message"] != null &&
-            jsonData["message"].contains(
-              '"There is no account with this email address',
+            jsonData["message"].toString().contains(
+              'There is no account with this email address',
             )) {
           return ServerFailure(errorMessage: jsonData["message"]);
-        } else if (jsonData["error"].toString().contains(
-          "There is no account with this email address ",
-        )) {
-          return ServerFailure(errorMessage: jsonData["error"]);
+        } else if (jsonData["error"]?.toString().contains(
+              "There is no account with this email address",
+            ) ??
+            false) {
+          return ServerFailure(
+            errorMessage: jsonData["error"] ?? "Unknown error",
+          );
         } else {
           return ServerFailure(errorMessage: 'Requested resource not found.');
         }
+
       case 409:
         return ServerFailure(errorMessage: 'Account Already Exists.');
+
       case 500:
         return ServerFailure(
           errorMessage: 'Internal server error. Please try again later.',
         );
+
       default:
         return ServerFailure(
           errorMessage: 'Unexpected error. Status Code: $statusCode',

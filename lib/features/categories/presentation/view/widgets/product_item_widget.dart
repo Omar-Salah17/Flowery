@@ -21,20 +21,22 @@ class ProductItemWidget extends StatelessWidget {
         padding: EdgeInsets.all(8.r),
         child: Column(
           children: [
-            SizedBox(
-              height: 131.h,
-              width: 147.w,
-              child: CachedNetworkImage(
-                fit: BoxFit.cover,
-                imageUrl: product.imgCover ?? "",
-                placeholder: (context, url) {
-                  return Center(
-                    child: CircularProgressIndicator(
-                      color: PalletsColors.mainColorBase,
-                    ),
-                  );
-                },
-                errorWidget: (context, url, error) => Icon(Icons.error),
+            Expanded(
+              child: SizedBox(
+
+                width: 147.w,
+                child: CachedNetworkImage(
+                  fit: BoxFit.cover,
+                  imageUrl: product.imgCover ?? "",
+                  placeholder: (context, url) {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        color: PalletsColors.mainColorBase,
+                      ),
+                    );
+                  },
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
               ),
             ),
             SizedBox(height: 8.h),
