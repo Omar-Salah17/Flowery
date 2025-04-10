@@ -46,6 +46,7 @@ dependencies:
   json_annotation: ^4.9.0
   logger: ^2.4.0
   lottie: 3.2.0
+  mockito: ^5.4.5
   pretty_dio_logger: ^1.4.0
   retrofit: ^4.4.0
 
@@ -57,6 +58,7 @@ dev_dependencies:
   injectable_generator: null
   json_serializable: ^6.8.0
   retrofit_generator: '>=8.0.0 <10.0.0' # for Dart 3.3 use ^9.0.0
+  test: ^1.25.15
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.

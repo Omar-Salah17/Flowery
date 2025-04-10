@@ -6,11 +6,11 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class GetAllCategoriesUseCase {
-  final CategoriesScreenRepo getAllCategoriesRepo;
+  final CategoriesScreenRepo categoriesScreenRepo;
 
-  GetAllCategoriesUseCase({required this.getAllCategoriesRepo});
+  GetAllCategoriesUseCase({required this.categoriesScreenRepo});
 
   Future<Either<Failure, List<Category>>> call() async {
-    return await getAllCategoriesRepo.getAllCategories();
+    return await categoriesScreenRepo.getAllCategories();
   }
 }
