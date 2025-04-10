@@ -131,60 +131,6 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<BestSellerResponse> getBestSellers() async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<BestSellerResponse>(
-      Options(method: 'GET', headers: _headers, extra: _extra)
-          .compose(
-            _dio.options,
-            'best-seller',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late BestSellerResponse _value;
-    try {
-      _value = BestSellerResponse.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<OcaasionsResponse> getHomeOccasions() async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<OcaasionsResponse>(
-      Options(method: 'GET', headers: _headers, extra: _extra)
-          .compose(
-            _dio.options,
-            'occasions',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late OcaasionsResponse _value;
-    try {
-      _value = OcaasionsResponse.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
   Future<AllOccaions> getAllOccasions() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -212,14 +158,13 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<ProductResponseModel> getAllProductByOccasion({
-    required String occasionId,
-  }) async {
+  Future<ProductsModel> getAllProductByOccasion({String? occasionId}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'occasion': occasionId};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<ProductResponseModel>(
+    final _options = _setStreamType<ProductsModel>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -230,9 +175,9 @@ class _ApiService implements ApiService {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ProductResponseModel _value;
+    late ProductsModel _value;
     try {
-      _value = ProductResponseModel.fromJson(_result.data!);
+      _value = ProductsModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

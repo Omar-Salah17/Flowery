@@ -69,32 +69,22 @@ import '../../features/categories/domain/use_case/get_all_categories_use_case.da
     as _i595;
 import '../../features/categories/domain/use_case/get_products_by_category_use_case.dart'
     as _i86;
-import '../../features/home/data/DataSource/CategoriesDataSource.dart' as _i359;
-import '../../features/home/data/DataSource/CategoriesDataSourceImpl.dart'
-    as _i813;
-import '../../features/home/data/DataSource/occasions%20data%20source/home_occasions_data_source_imp.dart'
-    as _i413;
-import '../../features/home/data/repositories/occasion_remote_data_source_impl.dart'
-    as _i811;
-import '../../features/home/data/repositories/occasion_repository_impl.dart'
-    as _i208;
-import '../../features/home/data/repositories/product_remote_data_source_impl.dart'
-    as _i289;
-import '../../features/home/data/repositories/product_repository_impl%20.dart'
-    as _i841;
-import '../../features/home/data/repository/CategoriesRepoImpl.dart' as _i660;
-import '../../features/home/domain/repository/CategoriesRepo.dart' as _i298;
-import '../../features/home/domain/repository/occasion_remote_data_source_contract.dart'
-    as _i189;
-import '../../features/home/domain/repository/occasion_repository_contract.dart'
-    as _i16;
-import '../../features/home/domain/repository/product_remote_data_source.dart'
-    as _i863;
-import '../../features/home/domain/repository/product_repository.dart' as _i863;
-import '../../features/home/domain/use_cases/get_all_occasions_use_case.dart'
-    as _i437;
-import '../../features/home/domain/use_cases/get_product_by_occasion_useCase.dart'
-    as _i343;
+import '../../features/home/presentation/viewModel/home_view_model/home_cubit.dart'
+    as _i109;
+import '../../features/occasion/data/repos/occasion_remote_data_source_impl.dart'
+    as _i61;
+import '../../features/occasion/data/repos/occasion_repository_impl.dart'
+    as _i587;
+import '../../features/occasion/domain/repos/occasion_remote_data_source_contract.dart'
+    as _i237;
+import '../../features/occasion/domain/repos/occasion_repository_contract.dart'
+    as _i234;
+import '../../features/occasion/domain/use_cases/get_all_occasions_use_case.dart'
+    as _i34;
+import '../../features/occasion/domain/use_cases/get_product_by_occasion_useCase.dart'
+    as _i250;
+import '../../features/occasion/presentation/view_model/cubits/occasion_cubit.dart'
+    as _i17;
 import '../apiManger/api_manager.dart' as _i29;
 import '../apiManger/apiService.dart' as _i171;
 import '../apiManger/dio_module.dart' as _i304;
@@ -110,17 +100,22 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i29.ApiManager>(() => _i29.ApiManager());
     gh.singleton<_i361.LogInterceptor>(() => dioModule.provideLogger());
     gh.singleton<_i646.GuestManager>(() => _i646.GuestManager());
-    gh.factory<_i359.CategoriesDataSource>(
-      () => _i813.CategoriesDataSourceImpl(),
-    );
-    gh.factory<_i863.ProductRemoteDataSource>(
-      () => _i289.ProductRemoteDataSourceImpl(),
+    gh.factory<_i237.OccasionRemoteDataSourceContract>(
+      () => _i61.OccasionRemoteDataSourceImpl(),
     );
     gh.factory<_i162.RegisterRepositoryDataSourceContract>(
       () => _i80.RegisterDataSourceImpl(),
     );
-    gh.factory<_i189.OccasionRemoteDataSourceContract>(
-      () => _i811.OccasionRemoteDataSourceImpl(),
+    gh.factory<_i234.OccasionRepositoryContract>(
+      () => _i587.OccasionRepositoryImpl(
+        occasionRemoteDataSourceContract:
+            gh<_i237.OccasionRemoteDataSourceContract>(),
+      ),
+    );
+    gh.factory<_i250.GetProductByOccasionUsecase>(
+      () => _i250.GetProductByOccasionUsecase(
+        gh<_i234.OccasionRepositoryContract>(),
+      ),
     );
     gh.factory<_i251.RegisterRepositoryContracr>(
       () => _i518.RegisterRepositoryImpl(
@@ -128,12 +123,9 @@ extension GetItInjectableX on _i174.GetIt {
             gh<_i162.RegisterRepositoryDataSourceContract>(),
       ),
     );
-    gh.factory<_i298.CategoriesRepo>(
-      () => _i660.CategoriesRepoImpl(gh<_i359.CategoriesDataSource>()),
-    );
-    gh.factory<_i863.ProductRepositoryContract>(
-      () => _i841.ProductRepositoryImpl(
-        productRemoteDataSource: gh<_i863.ProductRemoteDataSource>(),
+    gh.factory<_i34.GetAllOccasionsUseCase>(
+      () => _i34.GetAllOccasionsUseCase(
+        occasionRepositoryContract: gh<_i234.OccasionRepositoryContract>(),
       ),
     );
     gh.factory<_i577.LoginRemoteDataSource>(
@@ -147,10 +139,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i361.Dio>(
       () => dioModule.provideDio(gh<_i361.LogInterceptor>()),
     );
-    gh.factory<_i16.OccasionRepositoryContract>(
-      () => _i208.OccasionRepositoryImpl(
-        occasionRemoteDataSourceContract:
-            gh<_i189.OccasionRemoteDataSourceContract>(),
+    gh.factory<_i17.OccasionCubit>(
+      () => _i17.OccasionCubit(
+        getAllOccasionsUseCase: gh<_i34.GetAllOccasionsUseCase>(),
+        getProductByOccasionUsecase: gh<_i250.GetProductByOccasionUsecase>(),
       ),
     );
     gh.singleton<_i171.ApiService>(
@@ -192,11 +184,6 @@ extension GetItInjectableX on _i174.GetIt {
         apiService: gh<_i171.ApiService>(),
       ),
     );
-    gh.factory<_i343.GetProductByOccasionUsecase>(
-      () => _i343.GetProductByOccasionUsecase(
-        gh<_i863.ProductRepositoryContract>(),
-      ),
-    );
     gh.factory<_i312.BestSellerDataSource>(
       () => _i158.BestSellerDataSourceImpl(gh<_i171.ApiService>()),
     );
@@ -214,15 +201,6 @@ extension GetItInjectableX on _i174.GetIt {
         bestSellerRepo: gh<_i629.BestSellerRepo>(),
       ),
     );
-    gh.factory<_i437.GetAllOccasionsUseCase>(
-      () => _i437.GetAllOccasionsUseCase(
-        occasionRepositoryContract: gh<_i16.OccasionRepositoryContract>(),
-      ),
-    );
-    gh.factory<_i413.HomeOccasionsDataSourceImp>(
-      () =>
-          _i413.HomeOccasionsDataSourceImp(apiService: gh<_i171.ApiService>()),
-    );
     gh.factory<_i334.LoginUsecase>(
       () => _i334.LoginUsecase(repo: gh<_i632.LoginRepo>()),
     );
@@ -237,6 +215,13 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i86.GetProductsByCategoryUseCase>(
       () => _i86.GetProductsByCategoryUseCase(
         getAllCategoriesRepo: gh<_i826.CategoriesScreenRepo>(),
+      ),
+    );
+    gh.factory<_i109.HomeCubit>(
+      () => _i109.HomeCubit(
+        getCategories: gh<_i595.GetAllCategoriesUseCase>(),
+        getBestSeller: gh<_i461.GetBestSellerUseCase>(),
+        getOccasions: gh<_i34.GetAllOccasionsUseCase>(),
       ),
     );
     return this;
