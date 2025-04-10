@@ -1,7 +1,8 @@
 import 'package:flowery/features/home/presentation/viewModel/currentUserLocationViewModel/CurrentUserLocationViewModel.dart';
-import 'package:flowery/features/home/presentation/viewModel/currentUserLocationViewModel/LocationState.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../viewModel/currentUserLocationViewModel/location_state.dart';
 
 class CurrentUserLocationBody extends StatelessWidget{
   @override

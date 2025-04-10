@@ -7,6 +7,7 @@ part 'best_seller_model.g.dart'; // هذا مهم لتوليد الكود
 @JsonSerializable()
 class BestSellerModel extends Equatable {
   final String? message;
+
   final List<Product>? bestSeller;
 
   const BestSellerModel({this.message, this.bestSeller});
