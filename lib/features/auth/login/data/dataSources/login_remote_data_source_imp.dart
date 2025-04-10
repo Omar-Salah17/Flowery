@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flowery/core/apiManger/apiService.dart';
 import 'package:flowery/core/apiManger/api_manager.dart';
 import 'package:flowery/core/di/di.dart';
-import 'package:flowery/core/utils/constants.dart';
 import 'package:flowery/features/auth/login/data/dataSources/login_remote_data_source.dart';
 import 'package:flowery/features/auth/login/data/models/login_request.dart';
 import 'package:flowery/features/auth/login/data/models/login_respose.dart';

@@ -1,6 +1,5 @@
 import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart';
 import 'package:flowery/features/home/data/DataSource/CategoriesDataSource.dart';
-import 'package:flowery/features/home/data/models/CategoriesResponse.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/apiManger/apiService.dart';

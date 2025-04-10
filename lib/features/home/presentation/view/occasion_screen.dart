@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/helper/spacing.dart';
-import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/home/domain/use_cases/get_all_occasions_use_case.dart';
 import 'package:flowery/features/home/presentation/view/cubit/occasion_cubit.dart';
 import 'package:flowery/features/home/presentation/widgets/appbar_title.dart';

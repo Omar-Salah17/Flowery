@@ -7,10 +7,10 @@ class RememberMeRow extends StatelessWidget {
   final ValueChanged<bool?> onRememberMeChanged;
 
   const RememberMeRow({
-    Key? key,
+    super.key,
     required this.rememberMe,
     required this.onRememberMeChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

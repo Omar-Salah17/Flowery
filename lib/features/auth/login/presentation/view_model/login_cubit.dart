@@ -5,7 +5,6 @@ import 'package:flowery/features/auth/login/data/models/login_request.dart';
 
 import 'package:flowery/features/auth/login/domain/use_cases/login_usecase.dart';
 import 'package:flowery/features/auth/login/presentation/view_model/login_status.dart';
-import 'package:injectable/injectable.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.loginUseCase) : super(LoginInitial());

@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/di/di.dart';
-import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/custom_button.dart';
 import 'package:flowery/core/utils/custom_text_form_fieled.dart';
 import 'package:flowery/core/utils/validator.dart';
@@ -10,7 +9,6 @@ import 'package:flowery/features/auth/login/presentation/view/widgets/remember_m
 import 'package:flowery/features/auth/login/presentation/view/widgets/sign_up_link.dart';
 import 'package:flowery/features/auth/login/presentation/view_model/login_cubit.dart';
 import 'package:flowery/features/auth/login/presentation/view_model/login_status.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

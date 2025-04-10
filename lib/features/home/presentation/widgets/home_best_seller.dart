@@ -35,7 +35,7 @@ class HomeBestSeller extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: GestureDetector(
                       onTap: () {},
-                      child: Container(
+                      child: SizedBox(
                         width: 130.w,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

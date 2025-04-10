@@ -12,7 +12,6 @@ import 'package:flowery/features/home/data/models/occaions.dart';
 import 'package:flowery/features/home/data/models/product_response_model.dart';
 import 'package:flowery/features/home/data/models/best-seller_response.dart';
 import 'package:flowery/features/home/data/models/occasions_response.dart';
-import 'package:flowery/features/home/data/models/CategoriesResponse.dart';
 import 'package:retrofit/retrofit.dart';
 part 'apiService.g.dart';
 

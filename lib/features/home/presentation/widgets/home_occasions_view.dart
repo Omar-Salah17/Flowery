@@ -44,7 +44,7 @@ class HomeOccasionsView extends StatelessWidget {
                   log(occasion.image!);
                   return Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
-                    child: Container(
+                    child: SizedBox(
                       width: 130.w,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

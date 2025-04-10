@@ -7,7 +7,7 @@ import '../../data/models/plus_code_client.dart';
 import 'CurrentUserLocationBody.dart';
 
 class CurrentUserLocation extends StatelessWidget {
-  const CurrentUserLocation({Key? key}) : super(key: key);
+  const CurrentUserLocation({super.key});
 
   @override
   Widget build(BuildContext context) {

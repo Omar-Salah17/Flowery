@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:flowery/features/best_seller/domain/repos/best_seller_repo.dart';
-import 'package:flowery/features/categories/data/models/products_model/product.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/utils/error_handler.dart';

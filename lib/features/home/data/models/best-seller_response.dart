@@ -9,16 +9,16 @@ class BestSellerResponse {
     if (json['bestSeller'] != null) {
       bestSeller = <BestSeller>[];
       json['bestSeller'].forEach((v) {
-        bestSeller!.add(new BestSeller.fromJson(v));
+        bestSeller!.add(BestSeller.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['message'] = this.message;
-    if (this.bestSeller != null) {
-      data['bestSeller'] = this.bestSeller!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['message'] = message;
+    if (bestSeller != null) {
+      data['bestSeller'] = bestSeller!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -91,26 +91,26 @@ class BestSeller {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['title'] = this.title;
-    data['slug'] = this.slug;
-    data['description'] = this.description;
-    data['imgCover'] = this.imgCover;
-    data['images'] = this.images;
-    data['price'] = this.price;
-    data['priceAfterDiscount'] = this.priceAfterDiscount;
-    data['quantity'] = this.quantity;
-    data['category'] = this.category;
-    data['occasion'] = this.occasion;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['__v'] = this.iV;
-    data['discount'] = this.discount;
-    data['sold'] = this.sold;
-    data['rateAvg'] = this.rateAvg;
-    data['rateCount'] = this.rateCount;
-    data['id'] = this.id;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['title'] = title;
+    data['slug'] = slug;
+    data['description'] = description;
+    data['imgCover'] = imgCover;
+    data['images'] = images;
+    data['price'] = price;
+    data['priceAfterDiscount'] = priceAfterDiscount;
+    data['quantity'] = quantity;
+    data['category'] = category;
+    data['occasion'] = occasion;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['__v'] = iV;
+    data['discount'] = discount;
+    data['sold'] = sold;
+    data['rateAvg'] = rateAvg;
+    data['rateCount'] = rateCount;
+    data['id'] = id;
     return data;
   }
 }
