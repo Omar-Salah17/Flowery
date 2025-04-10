@@ -13,6 +13,8 @@ import 'package:flowery/features/home/data/models/product_response_model.dart';
 import 'package:flowery/features/home/data/models/best-seller_response.dart';
 import 'package:flowery/features/home/data/models/occasions_response.dart';
 import 'package:retrofit/retrofit.dart';
+
+import '../../features/occasion/data/models/occaions.dart';
 part 'apiService.g.dart';
 
 @RestApi(baseUrl: Constants.baseUrl)
@@ -25,18 +27,16 @@ abstract class ApiService {
   );
   @GET(Constants.categoriesEndPoint)
   Future<CategoriesModel> getCategories();
+
   @GET(Constants.productsEndPoint)
   Future<ProductsModel> getProductsByCategory({
     @Query("category") String? categoryId,
   });
-
   @POST(Constants.loginEndPoint)
   Future<LoginResponse> loginUser(@Body() LoginRequest loginRequest);
   @GET(Constants.bestSellerEndPoint)
   Future<BestSellerResponse> getBestSellers();
 
-  @GET(Constants.homeOccasions)
-  Future<OcaasionsResponse> getHomeOccasions();
   @GET(Constants.occasionEndPoint)
   Future<AllOccaions> getAllOccasions();
   @GET(Constants.productsEndPoint)

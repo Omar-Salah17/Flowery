@@ -2,7 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import '../../../data/models/plus_code_client.dart';
-import 'LocationState.dart';
+import 'location_state.dart';
+
 
 class CurrentUserLocationViewModel extends Cubit<LocationState> {
   final PlusCodeClient _client;
