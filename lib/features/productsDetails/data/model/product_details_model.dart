@@ -1,52 +1,57 @@
-class ProductModel {
-  String? message;
-  List<BestSeller>? bestSeller;
+import 'package:equatable/equatable.dart';
 
-  ProductModel({this.message,this.bestSeller});
 
-  ProductModel.fromJson(Map<String, dynamic> json) {
-    message = json['message'];
-    if (json['bestSeller'] != null) {
-      bestSeller = <BestSeller>[];
-      json['bestSeller'].forEach((v) {
-        bestSeller!.add(new BestSeller.fromJson(v));
-      });
-    }
-  }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['message'] = this.message;
-    if (this.bestSeller != null) {
-      data['bestSeller'] = this.bestSeller!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
+class ProductsModel extends Equatable {
+  final String? message;
+  
+  final List<Product>? products;
+
+  const ProductsModel({this.message,  this.products});
+
+  factory ProductsModel.fromJson(Map<String, dynamic> json) => ProductsModel(
+    message: json['message'] as String?,
+    
+    products:
+        (json['products'] as List<dynamic>?)
+            ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
+            .toList(),
+  );
+
+  Map<String, dynamic> toJson() => {
+    'message': message,
+   
+    'products': products?.map((e) => e.toJson()).toList(),
+  };
+
+  @override
+  List<Object?> get props => [message,products];
 }
 
-class BestSeller {
-//   String? sId;
-  String? title;
-  String? slug;
-  String? description;
-  String? imgCover;
-  List<String>? images;
-  int? price;
-  int? priceAfterDiscount;
-  int? quantity;
-  String? category;
-  String? occasion;
-  String? createdAt;
-  String? updatedAt;
-  int? iV;
-  int? discount;
-  int? sold;
-  double? rateAvg;
-  int? rateCount;
-  String? id;
 
-  BestSeller({
-    // this.sId,
+class Product extends Equatable {
+  final String? id;
+  final String? title;
+  final String? slug;
+  final String? description;
+  final String? imgCover;
+  final List<String>? images;
+  final int? price;
+  final int? priceAfterDiscount;
+  final int? quantity;
+  final String? category;
+  final String? occasion;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final int? v;
+  final int? discount;
+  final int? sold;
+  final double? rateAvg;
+  final int? rateCount;
+  // final String? id;
+
+  const Product({
+    this.id,
     this.title,
     this.slug,
     this.description,
@@ -59,93 +64,89 @@ class BestSeller {
     this.occasion,
     this.createdAt,
     this.updatedAt,
-    this.iV,
+    this.v,
     this.discount,
     this.sold,
     this.rateAvg,
     this.rateCount,
-    this.id,
+    // this.id,
   });
 
-  BestSeller.fromJson(Map<String, dynamic> json) {
-    // sId = json['_id'];
-    title = json['title'];
-    slug = json['slug'];
-    description = json['description'];
-    imgCover = json['imgCover'];
-    images = json['images'].cast<String>();
-    price = json['price'];
-    priceAfterDiscount = json['priceAfterDiscount'];
-    quantity = json['quantity'];
-    category = json['category'];
-    occasion = json['occasion'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
-    iV = json['__v'];
-    discount = json['discount'];
-    sold = json['sold'];
-    rateAvg = json['rateAvg'];
-    rateCount = json['rateCount'];
-    id = json['id'];
-  }
+  factory Product.fromJson(Map<String, dynamic> json) => Product(
+    id: json['_id'] as String?,
+    title: json['title'] as String?,
+    slug: json['slug'] as String?,
+    description: json['description'] as String?,
+    imgCover: json['imgCover'] as String?,
+    images:
+        (json['images'] as List<dynamic>)
+            .map((image) => image as String)
+            .toList(),
+    price: json['price'] as int?,
+    priceAfterDiscount: json['priceAfterDiscount'] as int?,
+    quantity: json['quantity'] as int?,
+    category: json['category'] as String?,
+    occasion: json['occasion'] as String?,
+    createdAt:
+        json['createdAt'] == null
+            ? null
+            : DateTime.parse(json['createdAt'] as String),
+    updatedAt:
+        json['updatedAt'] == null
+            ? null
+            : DateTime.parse(json['updatedAt'] as String),
+    v: json['__v'] as int?,
+    discount: json['discount'] as int?,
+    sold: json['sold'] as int?,
+    rateAvg: (json['rateAvg'] as num?)?.toDouble(),
+    rateCount: json['rateCount'] as int?,
+    // id: json['id'] as String?,
+  );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    // data['_id'] = this.sId;
-    data['title'] = this.title;
-    data['slug'] = this.slug;
-    data['description'] = this.description;
-    data['imgCover'] = this.imgCover;
-    data['images'] = this.images;
-    data['price'] = this.price;
-    data['priceAfterDiscount'] = this.priceAfterDiscount;
-    data['quantity'] = this.quantity;
-    data['category'] = this.category;
-    data['occasion'] = this.occasion;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['__v'] = this.iV;
-    data['discount'] = this.discount;
-    data['sold'] = this.sold;
-    data['rateAvg'] = this.rateAvg;
-    data['rateCount'] = this.rateCount;
-    data['id'] = this.id;
-    return data;
+  Map<String, dynamic> toJson() => {
+    '_id': id,
+    'title': title,
+    'slug': slug,
+    'description': description,
+    'imgCover': imgCover,
+    'images': images,
+    'price': price,
+    'priceAfterDiscount': priceAfterDiscount,
+    'quantity': quantity,
+    'category': category,
+    'occasion': occasion,
+    'createdAt': createdAt?.toIso8601String(),
+    'updatedAt': updatedAt?.toIso8601String(),
+    '__v': v,
+    'discount': discount,
+    'sold': sold,
+    'rateAvg': rateAvg,
+    'rateCount': rateCount,
+    // 'id': id,
+  };
+
+  @override
+  List<Object?> get props {
+    return [
+      id,
+      title,
+      slug,
+      description,
+      imgCover,
+      images,
+      price,
+      priceAfterDiscount,
+      quantity,
+      category,
+      occasion,
+      createdAt,
+      updatedAt,
+      v,
+      discount,
+      sold,
+      rateAvg,
+      rateCount,
+      // id,
+    ];
   }
 }
-
-
-
-
-
-// import 'package:json_annotation/json_annotation.dart';
-
-// // part 'product.g.dart';
-
-// @JsonSerializable()
-// class Product {
-//   final String id;
-//   final String name;
-//   final String description;
-//   final double price;
-//   final String imageUrl;
-
-//   Product({
-//     required this.id,
-//     required this.name,
-//     required this.description,
-//     required this.price,
-//     required this.imageUrl,
-//   });
-
-//   factory Product.fromJson(Map<String, dynamic> json) => Product(
-//     id: json["id"],
-//     name: json["name"],
-//     description: json["description"],
-//     price: json["price"],
-//     imageUrl: json["imageUrl"],
-//   );
- 
-// }
-
-

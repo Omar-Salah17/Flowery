@@ -6,10 +6,10 @@ class ProductDetailsInitial extends ProductDetailsState {}
 
 class ProductDetailsLoading extends ProductDetailsState {}
 
-class ProductDetailsLoaded extends ProductDetailsState {
-  final ProductModel product;
+class ProductDetailsSuccess extends ProductDetailsState {
+  final List<ProductsModel> product;
 
-  ProductDetailsLoaded({required this.product});
+  ProductDetailsSuccess({required this.product});
 }
 
 class ProductDetailsError extends ProductDetailsState {

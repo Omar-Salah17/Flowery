@@ -13,8 +13,8 @@ abstract class ApiService {
   @POST('auth/signup')
   Future<RegisterResponse> registerUser(@Body() RegisterRequest registerRequest);
 
-  // @GET("products")
-  // Future<ProductModel> getProductDetails(@Query("id") String id);
+  @GET("products")
+  Future<ProductsModel> getProductDetails(@Query("id") String id);
  
 
 }

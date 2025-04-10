@@ -39,6 +39,14 @@ import '../../features/auth/register/domain/repository/data_source_contract/remo
     as _i162;
 import '../../features/auth/register/domain/use_cases/register_use_case.dart'
     as _i118;
+import '../../features/productsDetails/data/remote/remote_data_source.dart'
+    as _i996;
+import '../../features/productsDetails/data/remote/remote_data_source_impl.dart'
+    as _i150;
+import '../../features/productsDetails/data/repository/get_product_details_impl.dart'
+    as _i232;
+import '../../features/productsDetails/domain/repository/get_product_details_contract.dart'
+    as _i877;
 import '../apiManger/api_manager.dart' as _i29;
 import '../apiManger/apiService.dart' as _i171;
 import '../apiManger/dio_module.dart' as _i304;
@@ -71,6 +79,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i361.Dio>(
       () => dioModule.provideDio(gh<_i361.LogInterceptor>()),
     );
+    gh.factory<_i996.RemoteDataSource>(
+      () => _i150.RemoteDataSourceImpl(gh<_i29.ApiManager>()),
+    );
     gh.singleton<_i171.ApiService>(
       () => dioModule.provideApiService(gh<_i361.Dio>()),
     );
@@ -98,6 +109,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i118.RegisterUseCase>(
       () => _i118.RegisterUseCase(
         registerRepositoryContracr: gh<_i251.RegisterRepositoryContracr>(),
+      ),
+    );
+    gh.factory<_i877.GetProductDetailsContract>(
+      () => _i232.GetProductDetailsImpl(
+        remoteDataSource: gh<_i996.RemoteDataSource>(),
       ),
     );
     return this;
