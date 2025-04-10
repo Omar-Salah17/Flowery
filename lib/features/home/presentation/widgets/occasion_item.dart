@@ -15,50 +15,44 @@ class OccasionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8.w),
-      margin: EdgeInsets.symmetric(horizontal: 10.w),
-      width: 163.w,
-      height: 250.h,
-      decoration: BoxDecoration(
-        border: Border.all(color: PalletsColors.gray, width: 0.5),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            CachedNetworkImage(
-              width: 147.w,
-              height: 131.h,
-              imageUrl: occasion.image??'',
-              progressIndicatorBuilder: (context, url, progress) =>
-                  Center(
-                    child: CircularProgressIndicator(
-                      value: progress.progress,
-                      color: PalletsColors.mainColorBase,
-                    ),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
+      child: GestureDetector(
+        onTap: () {},
+        child: Container(
+          width: 130.w,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CachedNetworkImage(
+                height: 160.h,
+                width: 140.w,
+                fit: BoxFit.cover,
+                imageUrl: "https://flower.elevateegy.com/uploads/${occasion.image}",
+                progressIndicatorBuilder:
+                    (context, url, progress) => Center(
+                  child: CircularProgressIndicator(
+                    value: progress.progress,
+                    color: PalletsColors.mainColorBase,
                   ),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-            ),
-            verticalSpace(10),
-            Text(
-              occasion.name??'',
-              style: AppTextStyles.instance.textStyle12.copyWith(
-                color: PalletsColors.blackBase,
+                ),
+                errorWidget:
+                    (context, url, error) => Icon(Icons.error),
               ),
-            ),
-            // verticalSpace(10),
-
-            verticalSpace(10),
-            SizedBox(
-              width: 147.w,
-              height: 35.h,
-
-
+              SizedBox(height: 8.h),
+              Text(
+                occasion.name!,
+                overflow: TextOverflow.ellipsis,
+                style: AppTextStyles.instance.textStyle12
+                    .copyWith(
+                  fontWeight: FontWeight.w400,
+                  color: const Color.fromRGBO(12, 16, 21, 1),
+                ),
               ),
-          ],
-        ),
-      ),
-    );
+
+                ],
+              ),
+          ),
+        ));
   }
 }
