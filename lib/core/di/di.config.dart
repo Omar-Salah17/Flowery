@@ -47,6 +47,8 @@ import '../../features/productsDetails/data/repository/get_product_details_impl.
     as _i232;
 import '../../features/productsDetails/domain/repository/get_product_details_contract.dart'
     as _i877;
+import '../../features/productsDetails/domain/useCases/get_product_details_use_case.dart'
+    as _i691;
 import '../apiManger/api_manager.dart' as _i29;
 import '../apiManger/apiService.dart' as _i171;
 import '../apiManger/dio_module.dart' as _i304;
@@ -115,6 +117,10 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i232.GetProductDetailsImpl(
         remoteDataSource: gh<_i996.RemoteDataSource>(),
       ),
+    );
+    gh.factory<_i691.GetProductDetailsUseCase>(
+      () =>
+          _i691.GetProductDetailsUseCase(gh<_i877.GetProductDetailsContract>()),
     );
     return this;
   }

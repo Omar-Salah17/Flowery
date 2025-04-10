@@ -36,6 +36,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
         ),
       ),
     );
+
     return BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
       builder: (context, state) {
         if (state is ProductDetailsLoading) {
