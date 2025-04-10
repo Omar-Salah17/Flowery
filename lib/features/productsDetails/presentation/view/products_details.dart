@@ -24,22 +24,34 @@ class _ProductsDetails extends State<ProductsDetails> {
       create: (context) => viewModel,
       // ..fetchProduct(args.id??'')
       child: Scaffold(
-        appBar: AppBar(leading: Icon(Icons.arrow_back_ios)),
+        appBar: AppBar(
+          leading: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Icon(Icons.arrow_back_ios),
+          ),
+        ),
         body: BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
           builder: (context, state) {
-            if (state is ProductDetailsLoading) {
-              return Center(child: CircularProgressIndicator());
-            } else if (state is ProductDetailsError) {
-              return Center(child: Text(state.message));
-            } else if (state is ProductDetailsSuccess) {
-              return ProductDetailsBody();
-            }
-            return Center(
-              child: Text("No data found"),
+            // if (state is ProductDetailsLoading) {
+            //   return Center(child: CircularProgressIndicator());
+            // } else if (state is ProductDetailsError) {
+            //   return Center(child: Text(state.message));
+            // } else if (state is ProductDetailsSuccess) {
+            return ProductDetailsBody(
+              // product: state.product
             );
           },
+
+          // return Center(child: Text("No data found"));
         ),
       ),
     );
   }
 }
+        // ),
+      // ),
+//     );
+//   }
+// }

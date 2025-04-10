@@ -6,7 +6,6 @@ import 'package:flowery/features/productsDetails/presentation/viewModel/product_
 class ProductDetailsCubit extends Cubit<ProductDetailsState> {
   ProductDetailsCubit(this.getProductDetailsUseCase)
     : super(ProductDetailsInitial());
-    List<Product> product = [];
   final GetProductDetailsUseCase getProductDetailsUseCase;
   fetchProduct(String productId) async {
     emit(ProductDetailsLoading());
@@ -17,7 +16,6 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
         emit(ProductDetailsError(message: failure.errorMessage));
       },
       (responce) {
-        product = responce;
         print(responce);
         emit(ProductDetailsSuccess(product: responce));
       },
