@@ -12,21 +12,21 @@ import 'package:injectable/injectable.dart';
 class GetProductDetailsImpl implements GetProductDetailsContract {
   RemoteDataSource remoteDataSource;
   GetProductDetailsImpl({required this.remoteDataSource});
-  
+
   @override
-  Future<Either<Failure,List<ProductsModel>>> GetProductDetails(String producrId) async {
-   
-try {
-  var data =await remoteDataSource.GetProductDetails(producrId);
-  return Right(data);
-} catch (e) {
-  if (e is DioException) {
-    return left(ServerFailure.fromDioException(e));
-  }else{
-log('error in GetProductDetailsImpl: ${e.toString()}');
-return left(ServerFailure(errorMessage: e.toString()));
+  Future<Either<Failure, List<Product>>> GetProductDetails(
+    String producrId,
+  ) async {
+    try {
+      var data = await remoteDataSource.GetProductDetails(producrId);
+      return Right(data);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      } else {
+        log('error in GetProductDetailsImpl: ${e.toString()}');
+        return left(ServerFailure(errorMessage: e.toString()));
+      }
+    }
   }
 }
-  } 
-}
-

@@ -5,11 +5,11 @@ import 'package:flowery/features/productsDetails/domain/repository/get_product_d
 import 'package:injectable/injectable.dart';
 
 @injectable
-abstract class GetProductDetailsUseCase {
+ class GetProductDetailsUseCase {
   GetProductDetailsContract getProductDetailsContract;
   GetProductDetailsUseCase(this.getProductDetailsContract);
-  
-  Future <Either<Failure,List<ProductsModel>>> GetProductDetails(String producrId)async{
+
+  Future <Either<Failure,List<Product>>> GetProductDetails(String producrId)async{
     return await getProductDetailsContract.GetProductDetails(producrId);
   }
   

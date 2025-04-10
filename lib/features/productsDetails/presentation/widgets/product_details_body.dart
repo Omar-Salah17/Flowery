@@ -36,15 +36,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
         ),
       ),
     );
-    return BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
-      builder: (context, state) {
-        if (state is ProductDetailsLoading) {
-          return Center(child: CircularProgressIndicator());
-        } else if (state is ProductDetailsError) {
-          return Center(child: Text('Error: ${state.message}'));
-        } else if (state is ProductDetailsSuccess) {
-          List<ProductsModel> product = state.product;
-          return SafeArea(
+  return  SafeArea(
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,8 +86,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
             ),
           );
         }
-        return Container();
-      },
-    );
+        // return Container();
+    
   }
-}
+// }
