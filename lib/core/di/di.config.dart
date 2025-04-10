@@ -91,14 +91,10 @@ import '../../features/home/domain/repository/occasion_repository_contract.dart'
 import '../../features/home/domain/repository/product_remote_data_source.dart'
     as _i863;
 import '../../features/home/domain/repository/product_repository.dart' as _i863;
-import '../../features/home/domain/use_case/GetCategoriesUseCase.dart'
-    as _i1057;
 import '../../features/home/domain/use_cases/get_all_occasions_use_case.dart'
     as _i437;
 import '../../features/home/domain/use_cases/get_product_by_occasion_useCase.dart'
     as _i343;
-import '../../features/home/presentation/viewModel/HomeCategoriesViewModel.dart'
-    as _i195;
 import '../apiManger/api_manager.dart' as _i29;
 import '../apiManger/apiService.dart' as _i171;
 import '../apiManger/dio_module.dart' as _i304;
@@ -135,9 +131,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i298.CategoriesRepo>(
       () => _i660.CategoriesRepoImpl(gh<_i359.CategoriesDataSource>()),
     );
-    gh.factory<_i1057.GetCategoriesUseCase>(
-      () => _i1057.GetCategoriesUseCase(gh<_i298.CategoriesRepo>()),
-    );
     gh.factory<_i863.ProductRepositoryContract>(
       () => _i841.ProductRepositoryImpl(
         productRemoteDataSource: gh<_i863.ProductRemoteDataSource>(),
@@ -153,9 +146,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i361.Dio>(
       () => dioModule.provideDio(gh<_i361.LogInterceptor>()),
-    );
-    gh.factory<_i195.HomeCategoriesViewModel>(
-      () => _i195.HomeCategoriesViewModel(gh<_i1057.GetCategoriesUseCase>()),
     );
     gh.factory<_i16.OccasionRepositoryContract>(
       () => _i208.OccasionRepositoryImpl(
