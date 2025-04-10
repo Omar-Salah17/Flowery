@@ -153,10 +153,20 @@ extension GetItInjectableX on _i174.GetIt {
         apiService: gh<_i171.ApiService>(),
       ),
     );
+    gh.factory<_i343.GetProductByOccasionUsecase>(
+      () => _i343.GetProductByOccasionUsecase(
+        gh<_i863.ProductRepositoryContract>(),
+      ),
+    );
     gh.factory<_i826.CategoriesScreenRepo>(
       () => _i750.CategoriesScreenRepoImpl(
         categoriesRemoteDataSource:
             gh<_i469.CategoriesScreenRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i437.GetAllOccasionsUseCase>(
+      () => _i437.GetAllOccasionsUseCase(
+        occasionRepositoryContract: gh<_i16.OccasionRepositoryContract>(),
       ),
     );
     gh.factory<_i595.GetAllCategoriesUseCase>(
@@ -167,16 +177,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i86.GetProductsByCategoryUseCase>(
       () => _i86.GetProductsByCategoryUseCase(
         getAllCategoriesRepo: gh<_i826.CategoriesScreenRepo>(),
-      ),
-    );
-    gh.factory<_i343.GetProductByOccasionUsecase>(
-      () => _i343.GetProductByOccasionUsecase(
-        gh<_i863.ProductRepositoryContract>(),
-      ),
-    );
-    gh.factory<_i437.GetAllOccasionsUseCase>(
-      () => _i437.GetAllOccasionsUseCase(
-        occasionRepositoryContract: gh<_i16.OccasionRepositoryContract>(),
       ),
     );
     return this;

@@ -13,7 +13,7 @@ import 'package:flowery/features/home/presentation/widgets/tab_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OccasionScreen extends StatefulWidget {
-  const OccasionScreen({Key? key}) : super(key: key);
+  const OccasionScreen({super.key});
 
   @override
   State<OccasionScreen> createState() => _OccasionScreenState();

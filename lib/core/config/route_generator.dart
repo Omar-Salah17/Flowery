@@ -4,7 +4,6 @@ import 'package:flowery/features/auth/forgetPassword/presentation/view/forget_pa
 import 'package:flowery/features/auth/forgetPassword/presentation/view/reset_password_screen.dart';
 import 'package:flowery/features/auth/login/presentation/view/screens/login.dart';
 import 'package:flowery/features/auth/register/presentation/view/screens/register_screen.dart';
-import 'package:flowery/features/home/data/models/occaions.dart';
 import 'package:flowery/features/home/presentation/view/occasion_screen.dart';
 import 'package:flowery/features/splash/view/splash.dart';
 import 'package:flutter/material.dart';

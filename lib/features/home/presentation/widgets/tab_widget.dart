@@ -9,12 +9,12 @@ class TabWidget extends StatelessWidget {
   List<Widget>tabs ; 
   void Function(int)? onTap;
   TabWidget({
-    Key? key,
+    super.key,
   
     this.controller,
     required this.tabs,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -10,7 +10,7 @@ import 'package:flowery/features/home/data/models/product_response_model.dart';
 
 class ProductItem extends StatelessWidget {
   Products products;
-  ProductItem({Key? key, required this.products}) : super(key: key);
+  ProductItem({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class ProductItem extends StatelessWidget {
             ),
             // verticalSpace(10),
             Text(
-              products.price.toString() + ' EGP',
+              '${products.price} EGP',
               style: AppTextStyles.instance.textStyle14.copyWith(
                 color: PalletsColors.blackBase,
                 fontWeight: FontWeight.bold,
