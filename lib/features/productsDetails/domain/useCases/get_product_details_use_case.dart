@@ -9,7 +9,7 @@ class GetProductDetailsUseCase {
   GetProductDetailsContract getProductDetailsContract;
   GetProductDetailsUseCase(this.getProductDetailsContract);
 
-  Future<Either<Failure, List<ProductsModel>>> GetProductDetails(
+  Future<Either<Failure, List<Product>>> GetProductDetails(
     String producrId,
   ) async {
     return await getProductDetailsContract.GetProductDetails(producrId);

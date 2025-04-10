@@ -88,7 +88,9 @@ class RouteGenerator {
         );
 
       default:
-        return MaterialPageRoute(builder: (context) => Splash());
+        return MaterialPageRoute(
+        
+          builder: (context) => Splash());
     }
   }
 }
