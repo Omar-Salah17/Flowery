@@ -18,7 +18,7 @@ class OccasionRemoteDataSourceImpl implements OccasionRemoteDataSourceContract {
 
   @override
   Future<ProductsModel> getProductsByOccasion({String? occasionId}) async {
-    var response = await apiServices.getAllProductByOccasion(occasionId:occasionId);
+    var response = await apiServices.getAllProductByOccasion(occasionId:occasionId??'');
     return response;
   }
 }

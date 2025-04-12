@@ -8,10 +8,10 @@ import 'package:flowery/features/auth/register/data/models/register_response.dar
 import 'package:flowery/features/best_seller/data/models/best_seller_model.dart';
 import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart';
 import 'package:flowery/features/categories/data/models/products_model/products_model.dart';
-import 'package:flowery/features/home/data/models/occaions.dart';
-import 'package:flowery/features/home/data/models/product_response_model.dart';
-import 'package:flowery/features/home/data/models/best-seller_response.dart';
-import 'package:flowery/features/home/data/models/occasions_response.dart';
+// import 'package:flowery/features/home/data/models/occaions.dart';
+// import 'package:flowery/features/home/data/models/product_response_model.dart';
+// import 'package:flowery/features/home/data/models/best-seller_response.dart';
+// import 'package:flowery/features/home/data/models/occasions_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../features/occasion/data/models/occaions.dart';
@@ -34,13 +34,11 @@ abstract class ApiService {
   });
   @POST(Constants.loginEndPoint)
   Future<LoginResponse> loginUser(@Body() LoginRequest loginRequest);
-  @GET(Constants.bestSellerEndPoint)
-  Future<BestSellerResponse> getBestSellers();
 
   @GET(Constants.occasionEndPoint)
   Future<AllOccaions> getAllOccasions();
   @GET(Constants.productsEndPoint)
-  Future<ProductResponseModel> getAllProductByOccasion({
+  Future<ProductsModel> getAllProductByOccasion({
     @Query('occasion') required String occasionId,
   });
 
