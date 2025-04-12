@@ -209,7 +209,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i595.GetAllCategoriesUseCase>(
       () => _i595.GetAllCategoriesUseCase(
-        getAllCategoriesRepo: gh<_i826.CategoriesScreenRepo>(),
+        categoriesScreenRepo: gh<_i826.CategoriesScreenRepo>(),
       ),
     );
     gh.factory<_i86.GetProductsByCategoryUseCase>(

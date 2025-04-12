@@ -16,27 +16,7 @@ class CategoriesScreenCubit extends Cubit<CategoriesScreenState> {
   final GetProductsByCategoryUseCase getProductsByCategoryUseCase;
   String selectedCategoryId = "all";
    List<Category> categories = [];
-  // Future<void> getCategoriesScreenData({String? categoryId}) async {
-  //   selectedCategoryId = categoryId ?? "all";
-  //   emit(ProductsByCategoryLoading());
-  //   final result = await Future.wait([
-  //     getAllCategoriesUseCase.call(),
-  //     getProductsByCategoryUseCase.call(categoryId: categoryId),
-  //   ]);
-
-  //   final categoriesResult = result[0];
-  //   final productsResult = result[1];
-  //   if (categoriesResult.isLeft()) {
-  //     emit(ProductsByCategoryFailure((categoriesResult as Left).value));
-  //   }
-  //   if (productsResult.isLeft()) {
-  //     emit(ProductsByCategoryFailure((productsResult as Left).value));
-  //   }
-
-  //   final categories = (categoriesResult as Right).value;
-  //   final products = (productsResult as Right).value;
-  //   emit(ProductsByCategorySuccess(categories: categories, products: products));
-  // }
+ 
   Future<void> getAllCategories() async {
     emit(CategoriesLoading());
     final result = await getAllCategoriesUseCase.call();
