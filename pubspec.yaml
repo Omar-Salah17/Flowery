@@ -43,6 +43,7 @@ dependencies:
   flutter_svg: ^2.0.17
   fluttertoast: ^8.2.12
   get_it: ^8.0.3
+  image_dot_indicator: ^0.0.9
   hash_cached_image: ^0.0.2
   injectable: ^2.5.0
   json_annotation: ^4.9.0
@@ -51,6 +52,9 @@ dependencies:
   mockito: ^5.4.5
   pretty_dio_logger: ^1.4.0
   retrofit: ^4.4.0
+  smooth_page_indicator: ^1.2.1
+  # json_serializable: ^6.2.0
+  # build_runner: ^2.1.4
   geolocator: ^9.0.2
   geocoding: ^2.1.0
 
