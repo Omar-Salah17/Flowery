@@ -85,6 +85,16 @@ import '../../features/occasion/domain/use_cases/get_product_by_occasion_useCase
     as _i250;
 import '../../features/occasion/presentation/view_model/cubits/occasion_cubit.dart'
     as _i17;
+import '../../features/productsDetails/data/remote/remote_data_source.dart'
+    as _i996;
+import '../../features/productsDetails/data/remote/remote_data_source_impl.dart'
+    as _i150;
+import '../../features/productsDetails/data/repository/get_product_details_impl.dart'
+    as _i232;
+import '../../features/productsDetails/domain/repository/get_product_details_contract.dart'
+    as _i877;
+import '../../features/productsDetails/domain/useCases/get_product_details_use_case.dart'
+    as _i691;
 import '../apiManger/api_manager.dart' as _i29;
 import '../apiManger/apiService.dart' as _i171;
 import '../apiManger/dio_module.dart' as _i304;
@@ -97,8 +107,8 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
-    gh.singleton<_i29.ApiManager>(() => _i29.ApiManager());
     gh.singleton<_i361.LogInterceptor>(() => dioModule.provideLogger());
+    gh.singleton<_i29.ApiManager>(() => _i29.ApiManager());
     gh.singleton<_i646.GuestManager>(() => _i646.GuestManager());
     gh.factory<_i237.OccasionRemoteDataSourceContract>(
       () => _i61.OccasionRemoteDataSourceImpl(),
@@ -115,6 +125,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i250.GetProductByOccasionUsecase>(
       () => _i250.GetProductByOccasionUsecase(
         gh<_i234.OccasionRepositoryContract>(),
+      ),
+    );
+    gh.factory<_i996.RemoteDataSource>(() => _i150.RemoteDataSourceImpl());
+    gh.factory<_i877.GetProductDetailsContract>(
+      () => _i232.GetProductDetailsImpl(
+        remoteDataSource: gh<_i996.RemoteDataSource>(),
       ),
     );
     gh.factory<_i251.RegisterRepositoryContracr>(
@@ -144,6 +160,10 @@ extension GetItInjectableX on _i174.GetIt {
         getAllOccasionsUseCase: gh<_i34.GetAllOccasionsUseCase>(),
         getProductByOccasionUsecase: gh<_i250.GetProductByOccasionUsecase>(),
       ),
+    );
+    gh.factory<_i691.GetProductDetailsUseCase>(
+      () =>
+          _i691.GetProductDetailsUseCase(gh<_i877.GetProductDetailsContract>()),
     );
     gh.singleton<_i171.ApiService>(
       () => dioModule.provideApiService(gh<_i361.Dio>()),
@@ -209,7 +229,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i595.GetAllCategoriesUseCase>(
       () => _i595.GetAllCategoriesUseCase(
-        getAllCategoriesRepo: gh<_i826.CategoriesScreenRepo>(),
+        categoriesScreenRepo: gh<_i826.CategoriesScreenRepo>(),
       ),
     );
     gh.factory<_i86.GetProductsByCategoryUseCase>(

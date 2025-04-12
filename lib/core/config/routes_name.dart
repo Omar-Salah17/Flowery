@@ -12,5 +12,6 @@ class RoutesName {
   static const String resetPasswordScreen = "ResetPasswordScreen";
   static const String occasionScreen = "OccasionScreen";
   static const String bestSeller="BestSellerScreen";
+  static const String productsDetails = "ProductsDetails";
 }
 

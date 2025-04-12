@@ -16,7 +16,12 @@ class AppbarTitle extends StatelessWidget {
       automaticallyImplyLeading: false,
       title: Row(
         children: [
-          Icon(Icons.arrow_back_ios),
+          IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back_ios),
+          ),
           horizontalSpace(10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

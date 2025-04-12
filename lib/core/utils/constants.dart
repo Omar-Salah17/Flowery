@@ -11,4 +11,5 @@ class Constants {
   static const String homeOccasions = 'occasions';
 
   static const String loginEndPoint = "auth/signin";
+  static const String productDetails = "products";
 }
