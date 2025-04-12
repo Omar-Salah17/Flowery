@@ -1,13 +1,14 @@
 import 'package:flowery/core/helper/spacing.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
+import 'package:flowery/features/profile/presentation/view/cubit/profile_cubit.dart';
 
 import 'package:flowery/features/profile/presentation/widgets/main_profile_appbar.dart';
 import 'package:flowery/features/profile/presentation/widgets/settings_tile.dart';
 import 'package:flowery/features/profile/presentation/widgets/user_info_scetion.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 
 class ProfileMainScreen extends StatefulWidget {
   ProfileMainScreen({super.key});
@@ -32,8 +33,29 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
       body: Column(
         children: [
           verticalSpace(20.h),
-          UserInfoScetion(),
-          SettingsTile( 
+          BlocBuilder<ProfileCubit, ProfileState>(
+            builder: (context, state) {
+              if (state is ProfileLoading) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (state is ProfileError) {
+                return Center(
+                  child: Text(
+                    state.error,
+                    style: AppTextStyles.instance.textStyle18.copyWith(
+                      color: Colors.red,
+                    ),
+                  ),
+                );
+              } else if (state is ProfileSucess) {
+                return UserInfoScetion(user: state.user);
+              }
+              return Container();
+            
+            },
+          ),
+          SettingsTile(
             iconPath: 'assets/images/list.svg',
             title: 'My orders',
             onTap: () {

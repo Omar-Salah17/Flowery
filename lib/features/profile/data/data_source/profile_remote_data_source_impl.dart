@@ -1,6 +1,6 @@
 import 'package:flowery/core/apiManger/apiService.dart';
 import 'package:flowery/core/di/di.dart';
-import 'package:flowery/features/auth/login/data/models/login_respose.dart';
+import 'package:flowery/features/profile/data/model/user_response.dart';
 import 'package:flowery/features/profile/domain/repos/profile_data_source_contract%20.dart';
 import 'package:injectable/injectable.dart';
 
@@ -8,8 +8,12 @@ import 'package:injectable/injectable.dart';
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSourceContract {
   final apiService = getIt<ApiService>();
   @override
-  Future<User> getLoggedInUserData() async {
+  Future<UserData> getLoggedInUserData() async {
     var response = await apiService.getLoggedInUserData();
-    return response;
+    if (response.message == "success") {
+      return response.user!;
+    } else {
+      throw Exception("Failed to load user data");
+    }
   }
 }

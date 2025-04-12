@@ -95,8 +95,14 @@ import '../../features/productsDetails/domain/repository/get_product_details_con
     as _i877;
 import '../../features/productsDetails/domain/useCases/get_product_details_use_case.dart'
     as _i691;
+import '../../features/profile/data/data_source/profile_remote_data_source_impl.dart'
+    as _i531;
+import '../../features/profile/data/repo/profile_repository_impl.dart'
+    as _i1015;
 import '../../features/profile/domain/repos/profile_data_source_contract%20.dart'
     as _i837;
+import '../../features/profile/domain/repos/profile_repository_contract.dart'
+    as _i133;
 import '../../features/profile/domain/use_case/get_user_data.dart' as _i1032;
 import '../apiManger/api_manager.dart' as _i29;
 import '../apiManger/apiService.dart' as _i171;
@@ -130,10 +136,8 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i234.OccasionRepositoryContract>(),
       ),
     );
-    gh.factory<_i1032.GetUserData>(
-      () => _i1032.GetUserData(
-        profileDataSourceContract: gh<_i837.ProfileRemoteDataSourceContract>(),
-      ),
+    gh.factory<_i837.ProfileRemoteDataSourceContract>(
+      () => _i531.ProfileRemoteDataSourceImpl(),
     );
     gh.factory<_i996.RemoteDataSource>(() => _i150.RemoteDataSourceImpl());
     gh.factory<_i877.GetProductDetailsContract>(
@@ -166,6 +170,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i691.GetProductDetailsUseCase>(
       () =>
           _i691.GetProductDetailsUseCase(gh<_i877.GetProductDetailsContract>()),
+    );
+    gh.factory<_i133.ProfileRepositoryContract>(
+      () => _i1015.ProfileRepositoryImpl(
+        gh<_i837.ProfileRemoteDataSourceContract>(),
+      ),
+    );
+    gh.factory<_i1032.GetUserData>(
+      () => _i1032.GetUserData(
+        profileRepositoryContract: gh<_i133.ProfileRepositoryContract>(),
+      ),
     );
     gh.factory<_i17.OccasionCubit>(
       () => _i17.OccasionCubit(

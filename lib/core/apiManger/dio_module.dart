@@ -25,6 +25,17 @@ abstract class DioModule {
         baseUrl: Constants.baseUrl,
       ),
     );
+     dio.interceptors.add(
+    InterceptorsWrapper(
+      onRequest: (options, handler) async {
+        
+      
+          options.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjdlNDIxOGY4MzZlZThiZTcwNjJlYTVmIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDQ1MDExNTZ9.QtusqwxGHFgJo6cvXkr1pHGtQ67LPygvoNICFFPpnAE';
+        
+        return handler.next(options);
+      },
+    ),
+  );
     dio.interceptors.add(logInterceptor);
     return dio;
   }

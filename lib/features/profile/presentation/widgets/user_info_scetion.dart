@@ -1,12 +1,20 @@
-import 'package:flowery/core/helper/spacing.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flowery/features/profile/data/model/user_response.dart';
 import 'package:flutter/material.dart';
-import 'package:flowery/core/utils/app_text_styles.dart';
-import 'package:flowery/core/utils/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+import 'package:flowery/core/helper/spacing.dart';
+import 'package:flowery/core/utils/app_text_styles.dart';
+import 'package:flowery/core/utils/colors.dart';
+
 class UserInfoScetion extends StatelessWidget {
-  const UserInfoScetion({super.key});
+  final UserData user;
+  const UserInfoScetion({
+    Key? key,
+    required this.user,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +23,8 @@ class UserInfoScetion extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 50.r,
-            child: SvgPicture.asset(
-              "assets/images/Flower.svg",
-              height: 100.h,
-              width: 100.w,
+            child:CachedNetworkImage(imageUrl: user.photo??'',
+            errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
           ),
           verticalSpace(10.h),
@@ -26,7 +32,7 @@ class UserInfoScetion extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Nour',
+                '${user.firstName} ${user.lastName}',
                 style: AppTextStyles.instance.textStyle18.copyWith(
                   color: PalletsColors.black100,
                   fontWeight: FontWeight.w600,
@@ -41,7 +47,7 @@ class UserInfoScetion extends StatelessWidget {
             ],
           ),
           Text(
-            'Nour_Mohamed@gmail.com',
+            user.email??'email',
             style: AppTextStyles.instance.textStyle18.copyWith(
               color: PalletsColors.gray,
             ),
