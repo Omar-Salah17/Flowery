@@ -7,6 +7,7 @@ class Constants {
   static const String productsEndPoint = "products";
   static const String occasionEndPoint = "occasions";
   static const String bestSellerEndPoint = 'best-seller';
+  static const String logoutEndPoint= "auth/logout";
 
   static const String homeOccasions = 'occasions';
 
