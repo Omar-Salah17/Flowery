@@ -19,6 +19,7 @@ class GetProductDetailsImpl implements GetProductDetailsContract {
   ) async {
     try {
       var data = await remoteDataSource.getProductDetails(producrId);
+      
       return Right(data);
     } catch (e) {
       if (e is DioException) {

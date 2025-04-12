@@ -10,7 +10,7 @@ import 'package:flowery/core/utils/colors.dart';
 
 class OccasionItem extends StatelessWidget {
   Occasions occasion;
-  OccasionItem({Key? key, required this.occasion}) : super(key: key);
+  OccasionItem({super.key, required this.occasion});
 
   @override
   Widget build(BuildContext context) {

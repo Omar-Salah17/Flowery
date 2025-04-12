@@ -1,7 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flowery/core/di/di.dart';
-import 'package:flowery/core/utils/app_text_styles.dart';
-import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/home/presentation/widgets/occasion_item.dart';
 import 'package:flowery/features/occasion/data/models/occaions.dart';
 
