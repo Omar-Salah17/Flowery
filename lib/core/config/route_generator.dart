@@ -7,6 +7,7 @@ import 'package:flowery/features/auth/register/presentation/view/screens/registe
 import 'package:flowery/features/best_seller/presentation/view/best_seller_screen.dart';
 import 'package:flowery/features/occasion/presentation/view/occasion_screen.dart';
 import 'package:flowery/features/productsDetails/presentation/view/products_details.dart';
+import 'package:flowery/features/profile/presentation/view/change_password_screen.dart';
 
 import 'package:flowery/features/splash/view/splash.dart';
 import 'package:flutter/material.dart';
@@ -98,6 +99,11 @@ class RouteGenerator {
       case RoutesName.productsDetails:
         return MaterialPageRoute(
           builder: (context) => ProductsDetails(),
+          settings: Settings,
+        );
+        case RoutesName.changePasswordScreen:
+        return MaterialPageRoute(
+          builder: (context) => ChangePasswordScreen(),
           settings: Settings,
         );
 

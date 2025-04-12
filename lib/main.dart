@@ -24,7 +24,7 @@ class Flowery extends StatelessWidget {
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          initialRoute: RoutesName.initial,
+          initialRoute: RoutesName.changePasswordScreen,
           onGenerateRoute: RouteGenerator.onGenerator,
           theme: ApplicationTheme.themeData,
         );
