@@ -33,7 +33,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
         children: [
           verticalSpace(20.h),
           UserInfoScetion(),
-          SettingsTile(
+          SettingsTile( 
             iconPath: 'assets/images/list.svg',
             title: 'My orders',
             onTap: () {

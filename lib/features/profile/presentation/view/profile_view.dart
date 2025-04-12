@@ -6,8 +6,6 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProfileMainScreen() ;//Ma
-    
+    return ProfileMainScreen(); //Ma
   }
 }
- 
