@@ -4,8 +4,10 @@ import 'package:flowery/features/auth/forgetPassword/presentation/view/forget_pa
 import 'package:flowery/features/auth/forgetPassword/presentation/view/reset_password_screen.dart';
 import 'package:flowery/features/auth/login/presentation/view/screens/login.dart';
 import 'package:flowery/features/auth/register/presentation/view/screens/register_screen.dart';
-import 'package:flowery/features/productsDetails/presentation/view/products_details.dart';
 import 'package:flowery/features/best_seller/presentation/view/best_seller_screen.dart';
+import 'package:flowery/features/occasion/presentation/view/occasion_screen.dart';
+import 'package:flowery/features/productsDetails/presentation/view/products_details.dart';
+
 import 'package:flowery/features/splash/view/splash.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +15,7 @@ import '../../features/cart/presentation/view/cart_view.dart';
 import '../../features/categories/presentation/view/categories_screen.dart';
 import '../../features/home/presentation/view/home_view.dart';
 import '../../features/layout/Presentation/layout.dart';
-import '../../features/occasion/presentation/view/occasion_screen.dart';
+
 import '../../features/profile/presentation/view/profile_view.dart';
 
 class RouteGenerator {
@@ -28,6 +30,16 @@ class RouteGenerator {
       case RoutesName.login:
         return MaterialPageRoute(
           builder: (context) => Login(),
+          settings: Settings,
+        );
+      case RoutesName.bestSeller:
+        return MaterialPageRoute(
+          builder: (context) => BestSellerScreen(),
+          settings: Settings,
+        );
+      case RoutesName.occasionScreen:
+        return MaterialPageRoute(
+          builder: (context) => OccasionScreen(),
           settings: Settings,
         );
 
@@ -91,8 +103,9 @@ class RouteGenerator {
 
       default:
         return MaterialPageRoute(
-        
-          builder: (context) => Splash());
+          builder: (context) => Splash(),
+          settings: Settings,
+        );
     }
   }
 }

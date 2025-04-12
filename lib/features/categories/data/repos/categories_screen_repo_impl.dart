@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flowery/core/utils/error_handler.dart';
 import 'package:flowery/features/categories/data/data_source/categories_screen_remote_data_source.dart';
 import 'package:flowery/features/categories/data/models/categories_model/category.dart';
-import 'package:flowery/features/categories/data/models/products_model/product.dart';
+import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/features/categories/domain/repos/categories_screen_repo.dart';
 import 'package:injectable/injectable.dart';
 

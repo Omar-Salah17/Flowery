@@ -1,11 +1,10 @@
+import 'package:flowery/core/di/di.dart';
+import 'package:flowery/core/helper/spacing.dart';
+import 'package:flowery/core/utils/widgets/products_grid_view.dart';
+import 'package:flowery/features/home/presentation/widgets/tab_widget.dart';
 import 'package:flowery/features/occasion/presentation/view/widgets/appbar_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flowery/core/di/di.dart';
-import 'package:flowery/core/helper/spacing.dart';
-
-import 'package:flowery/features/home/presentation/widgets/product_item.dart';
-import 'package:flowery/features/home/presentation/widgets/tab_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../occasion/presentation/view_model/cubits/occasion_cubit.dart';
@@ -13,7 +12,7 @@ import '../../domain/use_cases/get_all_occasions_use_case.dart';
 import '../../domain/use_cases/get_product_by_occasion_useCase.dart';
 
 class OccasionScreen extends StatefulWidget {
-  const OccasionScreen({Key? key}) : super(key: key);
+  const OccasionScreen({super.key});
 
   @override
   State<OccasionScreen> createState() => _OccasionScreenState();
@@ -58,66 +57,52 @@ class _OccasionScreenState extends State<OccasionScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(preferredSize: Size.fromHeight(50.h), child: AppbarTitle()),
-      body: BlocProvider(
-        create: (_) => occasionCubit..getAllOccasions(),
-        child: BlocBuilder<OccasionCubit, OccasionState>(
-          buildWhen:
-              (previous, current) =>
-                  previous != current && current is OccasionProductSuccess,
-          builder: (context, state) {
-            if (state is OccasionProductSuccess) {
-              if (occasionCubit.tabController.indexIsChanging) {
-                occasionCubit.getProductByOccasion(
-                  occasionId:
-                      occasionCubit
-                          .occasions[occasionCubit.tabController.index]
-                          .id ??
-                      '',
-                );
-              }
-              return DefaultTabController(
-                length: occasionCubit.occasions.length,
-                initialIndex: occasionCubit.tabController.index,
-                child: Column(
-                  children: [
-                    TabWidget(
+    appBar: PreferredSize(
+      preferredSize: Size.fromHeight(50.h),
+      child: AppbarTitle(),
+    ),
+    body: BlocProvider(
+      create: (_) => occasionCubit..getAllOccasions(),
+      child: BlocBuilder<OccasionCubit, OccasionState>(
+        buildWhen: (previous, current) =>
+            previous != current && current is OccasionProductSuccess,
+        builder: (context, state) {
+          if (state is OccasionProductSuccess) {
+            return DefaultTabController(
+              length: occasionCubit.occasions.length,
+              initialIndex: occasionCubit.tabController.index,
+              child: CustomScrollView(
+                slivers: [
+                  
+                  SliverToBoxAdapter(
+                    child: TabWidget(
                       controller: occasionCubit.tabController,
-                      tabs:
-                          occasionCubit.occasions
-                              .map((occasion) => Tab(text: occasion.name))
-                              .toList(),
+                      tabs: occasionCubit.occasions
+                          .map((occasion) => Tab(text: occasion.name))
+                          .toList(),
                     ),
-                    verticalSpace(10),
-                    Expanded(
-                      child: GridView.builder(
-                        itemCount: occasionCubit.products.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              mainAxisSpacing: 17,
-                              crossAxisSpacing: 17,
-                              childAspectRatio: 0.7,
-                            ),
-                        itemBuilder: (context, index) {
-                          return state.products.isEmpty?
-                           const Center(child: Text("No products found")) : ProductItem(
-                            products: occasionCubit.products[index],
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            } else if (state is OccasionLoading) {
-              return const Center(child: CircularProgressIndicator.adaptive());
-            } else {
-              return const Center(child: Text("Something went wrong"));
-            }
-          },
-        ),
+                  ),
+                  
+                 
+                  SliverToBoxAdapter(
+                    child: verticalSpace(10),
+                  ),
+                  
+                  
+                  ProductsGridView(productsList: state.products),
+                ],
+              ),
+            );
+          } else if (state is OccasionError) {
+            return Center(child: Text(state.error));
+          } else {
+            return const Center(
+              child: CircularProgressIndicator.adaptive(),
+            );
+          }
+        },
       ),
-    );
+    ),
+  );
   }
 }

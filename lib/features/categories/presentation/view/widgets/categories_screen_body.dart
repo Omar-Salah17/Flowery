@@ -1,6 +1,6 @@
 import 'package:flowery/core/utils/helper_functions/snack_bar.dart';
 import 'package:flowery/features/categories/presentation/view/widgets/categories_title_list_view.dart';
-import 'package:flowery/features/categories/presentation/view/widgets/products_grid_view.dart';
+import 'package:flowery/features/categories/presentation/view/widgets/products_grid_view_bloc_consumer.dart';
 import 'package:flowery/features/categories/presentation/view_model/cubits/categories_cubit/categories_screen_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,7 +32,7 @@ class CategoriesScreenBody extends StatelessWidget {
                 ),
               ),
             ),
-            ProductsGridView(),
+            ProductsGridViewBlocConsumer(),
             SliverToBoxAdapter(child: SizedBox(height: 10.h)),
           ],
         );

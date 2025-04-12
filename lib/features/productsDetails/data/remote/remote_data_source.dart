@@ -1,6 +1,5 @@
-
-import 'package:flowery/features/productsDetails/data/model/product_details_model.dart';
+import 'package:flowery/core/utils/models/products_model/product.dart';
 
 abstract class RemoteDataSource {
-  Future<List<Product>> GetProductDetails(String producrId);
+  Future<Product> getProductDetails(String producrId);
 }
