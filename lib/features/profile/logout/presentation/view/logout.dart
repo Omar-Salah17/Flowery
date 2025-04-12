@@ -39,12 +39,11 @@ class Logout extends StatelessWidget {
             Spacer(),
             InkWell(
               onTap: (){
-                  var x =  context.read<LogoutViewModel>().
-                  userLogout(
-"eyJhbGciOiJIUzI1NiIsInR5cCI5IkpXVCJ9.eyJ1c2VyIjoiNjdmOTExMzRhOTgzMmQ4MzU5ZGRmZTk4Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDQ0OTk3OTF9.UgcDk1X509AaS8kyVjNp4nXIKludcioobmN_aVW-trU"
-                       );
-
-                  print(x);
+                  context.read<LogoutViewModel>()
+                      .showLogoutConfirmationDialog(
+                      context,
+                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjdmOTExMzRhOTgzMmQ4MzU5ZGRmZTk4Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDQ1MDA5MTV9.f_k5uSWb5b5TinYyIw58-6kA4vW9-Hv7JcA-3hupXsg"
+                  );
               },
 
               child: Icon(

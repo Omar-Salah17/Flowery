@@ -1,4 +1,6 @@
 
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:bloc/bloc.dart';
 
@@ -34,11 +36,36 @@ class LogoutViewModel extends Cubit<LogoutState>{
 
 
   }
-
-
-
-
-
-
+   Future<void> showLogoutConfirmationDialog(BuildContext context,String token) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // User must tap button to close dialog
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Text('Confirm Logout'),
+          content: Text('Are you sure you want to logout?'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(dialogContext).pop(); // Close the dialog
+              },
+            ),
+            TextButton(
+              child: Text('Logout'),
+              onPressed: () {
+                Navigator.of(dialogContext).pop(); // Close the dialog
+                // Call the logout function with proper error handling
+                userLogout(token).catchError((
+                    error) {
+                  print('Error during logout: $error');
+                });
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
 }
