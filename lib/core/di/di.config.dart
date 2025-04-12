@@ -107,8 +107,8 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
-    gh.singleton<_i361.LogInterceptor>(() => dioModule.provideLogger());
     gh.singleton<_i29.ApiManager>(() => _i29.ApiManager());
+    gh.singleton<_i361.LogInterceptor>(() => dioModule.provideLogger());
     gh.singleton<_i646.GuestManager>(() => _i646.GuestManager());
     gh.factory<_i237.OccasionRemoteDataSourceContract>(
       () => _i61.OccasionRemoteDataSourceImpl(),
@@ -155,15 +155,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i361.Dio>(
       () => dioModule.provideDio(gh<_i361.LogInterceptor>()),
     );
+    gh.factory<_i691.GetProductDetailsUseCase>(
+      () =>
+          _i691.GetProductDetailsUseCase(gh<_i877.GetProductDetailsContract>()),
+    );
     gh.factory<_i17.OccasionCubit>(
       () => _i17.OccasionCubit(
         getAllOccasionsUseCase: gh<_i34.GetAllOccasionsUseCase>(),
         getProductByOccasionUsecase: gh<_i250.GetProductByOccasionUsecase>(),
       ),
-    );
-    gh.factory<_i691.GetProductDetailsUseCase>(
-      () =>
-          _i691.GetProductDetailsUseCase(gh<_i877.GetProductDetailsContract>()),
     );
     gh.singleton<_i171.ApiService>(
       () => dioModule.provideApiService(gh<_i361.Dio>()),
@@ -213,6 +213,11 @@ extension GetItInjectableX on _i174.GetIt {
             gh<_i469.CategoriesScreenRemoteDataSource>(),
       ),
     );
+    gh.factory<_i595.GetAllCategoriesUseCase>(
+      () => _i595.GetAllCategoriesUseCase(
+        categoriesScreenRepo: gh<_i826.CategoriesScreenRepo>(),
+      ),
+    );
     gh.factory<_i629.BestSellerRepo>(
       () => _i12.BestSellerRepoImpl(gh<_i312.BestSellerDataSource>()),
     );
@@ -226,11 +231,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i717.BestSellerCubit>(
       () => _i717.BestSellerCubit(gh<_i461.GetBestSellerUseCase>()),
-    );
-    gh.factory<_i595.GetAllCategoriesUseCase>(
-      () => _i595.GetAllCategoriesUseCase(
-        categoriesScreenRepo: gh<_i826.CategoriesScreenRepo>(),
-      ),
     );
     gh.factory<_i86.GetProductsByCategoryUseCase>(
       () => _i86.GetProductsByCategoryUseCase(

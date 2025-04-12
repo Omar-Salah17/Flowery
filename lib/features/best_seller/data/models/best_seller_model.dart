@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:flowery/features/categories/data/models/products_model/product.dart';
+import 'package:flowery/core/utils/models/products_model/product.dart';
 
 part 'best_seller_model.g.dart'; // هذا مهم لتوليد الكود
 

@@ -1,20 +1,13 @@
 import 'package:flowery/core/utils/app_text_styles.dart';
-import 'package:flowery/core/utils/application_theme.dart';
 import 'package:flowery/core/utils/colors.dart';
-import 'package:flowery/features/productsDetails/data/model/product_details_model.dart';
-import 'package:flowery/features/productsDetails/presentation/viewModel/product_details_cubit/product_details_cubit.dart';
-import 'package:flowery/features/productsDetails/presentation/viewModel/product_details_cubit/product_details_states.dart';
+import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ProductDetailsBody extends StatefulWidget {
-  // final List<Product> product;
-  const ProductDetailsBody({
-    // required this.product,
-    super.key,
-  });
+  final Product product;
+  const ProductDetailsBody({required this.product, super.key});
 
   @override
   State<ProductDetailsBody> createState() => _ProductDetailsBodyState();
@@ -31,7 +24,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
         height: 400,
         width: double.infinity,
         // child:
-        //  Image.network("src"),
+        //  Image.network(),
       ),
     );
 
@@ -73,7 +66,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                   Row(
                     children: [
                       Text(
-                        "EGP 1,500",
+                        "EGP ${widget.product.price}",
                         style: AppTextStyles.instance.textStyle20.copyWith(
                           fontWeight: FontWeight.bold,
                         ),

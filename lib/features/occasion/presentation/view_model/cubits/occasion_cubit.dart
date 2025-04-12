@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../categories/data/models/products_model/product.dart';
+import '../../../../../core/utils/models/products_model/product.dart';
 import '../../../data/models/occaions.dart';
 import '../../../domain/use_cases/get_all_occasions_use_case.dart';
 import '../../../domain/use_cases/get_product_by_occasion_useCase.dart';

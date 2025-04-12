@@ -5,7 +5,7 @@ import 'package:flowery/features/occasion/domain/repos/occasion_repository_contr
 import 'package:flowery/features/occasion/domain/use_cases/get_all_occasions_use_case.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../categories/data/models/products_model/product.dart';
+import '../../../../core/utils/models/products_model/product.dart';
 @injectable
 class GetProductByOccasionUsecase {
   final OccasionRepositoryContract occasionRepositoryContract;

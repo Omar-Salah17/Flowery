@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flowery/core/utils/error_handler.dart';
-import 'package:flowery/features/categories/data/models/products_model/product.dart';
+import 'package:flowery/core/utils/models/products_model/product.dart';
 
 import '../../data/models/occaions.dart';
 

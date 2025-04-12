@@ -1,6 +1,6 @@
 
 
-import '../../../categories/data/models/products_model/products_model.dart';
+import '../../../../core/utils/models/products_model/products_model.dart';
 import '../../data/models/occaions.dart';
 
 abstract class OccasionRemoteDataSourceContract {

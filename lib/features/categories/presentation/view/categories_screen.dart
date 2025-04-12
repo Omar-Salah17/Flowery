@@ -21,8 +21,10 @@ class CategoriesScreen extends StatelessWidget {
               CategoriesScreenCubit(
                   getIt.get<GetAllCategoriesUseCase>(),
                   getIt.get<GetProductsByCategoryUseCase>(),
-                )..getAllCategories()..getProductsByCategory(),
-                
+                )
+                ..getAllCategories()
+                ..getProductsByCategory(),
+
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(100.h),

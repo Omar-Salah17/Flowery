@@ -10,8 +10,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class HomeOccasionsView extends StatelessWidget {
-  HomeOccasionsView({super.key,required this.occasions});
-  List<Occasions> occasions;
+ const HomeOccasionsView({super.key,required this.occasions});
+ final List<Occasions> occasions;
 
   @override
   Widget build(BuildContext context) {

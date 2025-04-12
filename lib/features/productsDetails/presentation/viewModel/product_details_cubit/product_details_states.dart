@@ -1,4 +1,4 @@
-import 'package:flowery/features/productsDetails/data/model/product_details_model.dart';
+import 'package:flowery/core/utils/models/products_model/product.dart';
 
 abstract class ProductDetailsState {}
 
@@ -7,7 +7,7 @@ class ProductDetailsInitial extends ProductDetailsState {}
 class ProductDetailsLoading extends ProductDetailsState {}
 
 class ProductDetailsSuccess extends ProductDetailsState {
-  final List<Product> product;
+  final Product product;
 
   ProductDetailsSuccess({required this.product});
 }
