@@ -57,6 +57,13 @@ import '../../features/best_seller/domain/use_case/get_best_seller_use_case.dart
     as _i461;
 import '../../features/best_seller/presentation/view_model/cubits/best_seller_cubit.dart'
     as _i717;
+import '../../features/cart/data/data%20sources/add_to_cart_data_source.dart'
+    as _i311;
+import '../../features/cart/data/data%20sources/add_to_cart_data_source_imp.dart'
+    as _i335;
+import '../../features/cart/data/repos/add_to_cart_repo_imp.dart' as _i467;
+import '../../features/cart/domain/repos/add_to_cart_repo.dart' as _i1023;
+import '../../features/cart/domain/usecases/add_to_cart_usecase.dart' as _i659;
 import '../../features/categories/data/data_source/categories_screen_remote_data_source.dart'
     as _i469;
 import '../../features/categories/data/data_source/categories_screen_remote_data_source_impl.dart'
@@ -128,6 +135,7 @@ extension GetItInjectableX on _i174.GetIt {
       ),
     );
     gh.factory<_i996.RemoteDataSource>(() => _i150.RemoteDataSourceImpl());
+    gh.factory<_i311.AddToCartDataSource>(() => _i335.AddToCartDataSourceImp());
     gh.factory<_i877.GetProductDetailsContract>(
       () => _i232.GetProductDetailsImpl(
         remoteDataSource: gh<_i996.RemoteDataSource>(),
@@ -150,6 +158,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i129.ForgetPasswordRemoteDataSource>(
       () => _i177.ForgetPasswordRemoteDataSourceImpl(
         apiManager: gh<_i29.ApiManager>(),
+      ),
+    );
+    gh.factory<_i1023.AddToCartRepo>(
+      () => _i467.AddToCartRepoImp(
+        addToCartDataSource: gh<_i311.AddToCartDataSource>(),
       ),
     );
     gh.singleton<_i361.Dio>(
@@ -203,6 +216,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i666.CategoriesScreenRemoteDataSourceImpl(
         apiService: gh<_i171.ApiService>(),
       ),
+    );
+    gh.factory<_i659.AddToCartUsecase>(
+      () => _i659.AddToCartUsecase(addToCartRepo: gh<_i1023.AddToCartRepo>()),
     );
     gh.factory<_i312.BestSellerDataSource>(
       () => _i158.BestSellerDataSourceImpl(gh<_i171.ApiService>()),

@@ -8,8 +8,9 @@ import 'package:flowery/features/auth/login/data/models/login_respose.dart';
 import 'package:flowery/features/auth/register/data/models/register_request.dart';
 import 'package:flowery/features/auth/register/data/models/register_response.dart';
 import 'package:flowery/features/best_seller/data/models/best_seller_model.dart';
+import 'package:flowery/features/cart/data/models/add_product_request.dart';
+import 'package:flowery/features/cart/data/models/add_product_response.dart';
 import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart';
-
 
 import 'package:retrofit/retrofit.dart';
 
@@ -33,13 +34,17 @@ abstract class ApiService {
   });
   @POST(Constants.loginEndPoint)
   Future<LoginResponse> loginUser(@Body() LoginRequest loginRequest);
-  
+
+  @POST(Constants.addToCartEndPoint)
+  Future<AddProductResponse> addToCart(
+    @Body() AddProductRequest addProductRequest,
+  );
 
   @GET(Constants.occasionEndPoint)
   Future<AllOccaions> getAllOccasions();
   @GET(Constants.productsEndPoint)
   Future<ProductsModel> getAllProductByOccasion({
-    @Query('occasion')  String? occasionId,
+    @Query('occasion') String? occasionId,
   });
 
   @GET(Constants.bestSellerEndPoint)
@@ -47,6 +52,4 @@ abstract class ApiService {
 
   @GET("products")
   Future<Product> getProductDetails(@Query("id") String id);
- 
-
 }

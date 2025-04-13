@@ -12,4 +12,5 @@ class Constants {
 
   static const String loginEndPoint = "auth/signin";
   static const String productDetails = "products";
+  static const String addToCartEndPoint = "cart";
 }
