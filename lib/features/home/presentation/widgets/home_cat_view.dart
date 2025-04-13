@@ -16,9 +16,9 @@ class HomeCatView extends StatelessWidget {
       height: 120.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: categories?.length ?? 0,
+        itemCount: categories.length ?? 0,
         itemBuilder: (context, index) {
-          final category = categories![index];
+          final category = categories[index];
           return Column(
             children: [
               Padding(
