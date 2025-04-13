@@ -77,10 +77,7 @@ class _ChangePasswordScreenBodyState extends State<ChangePasswordScreenBody> {
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   formKey.currentState!.save();
-                  context.read<ChangePasswordCubit>().changePassword(
-                    oldPassword: oldPassWord.text.trim(),
-                    newPassword: newPassWord.text.trim(),
-                  );
+                  triggerChangePasswordCubit(context);
                   autovalidateMode = AutovalidateMode.disabled;
                   setState(() {});
                 } else {
@@ -113,6 +110,13 @@ class _ChangePasswordScreenBodyState extends State<ChangePasswordScreenBody> {
           ],
         ),
       ),
+    );
+  }
+
+  void triggerChangePasswordCubit(BuildContext context) {
+    context.read<ChangePasswordCubit>().changePassword(
+      oldPassword: oldPassWord.text.trim(),
+      newPassword: newPassWord.text.trim(),
     );
   }
 }
