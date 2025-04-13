@@ -1,5 +1,4 @@
 import 'package:flowery/core/config/routes_name.dart';
-import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
