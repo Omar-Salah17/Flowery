@@ -61,9 +61,39 @@ import '../../features/cart/data/data%20sources/add_to_cart_data_source.dart'
     as _i311;
 import '../../features/cart/data/data%20sources/add_to_cart_data_source_imp.dart'
     as _i335;
+import '../../features/cart/data/data%20sources/clear%20cart/clear_cart_data_source.dart'
+    as _i600;
+import '../../features/cart/data/data%20sources/clear%20cart/clear_cart_data_source_imp.dart'
+    as _i195;
+import '../../features/cart/data/data%20sources/delete%20cart%20item/delete_cart_item_data_source.dart'
+    as _i599;
+import '../../features/cart/data/data%20sources/delete%20cart%20item/delete_cart_item_data_source_imp.dart'
+    as _i946;
+import '../../features/cart/data/data%20sources/get%20logged/get_logged_data_source.dart'
+    as _i109;
+import '../../features/cart/data/data%20sources/get%20logged/get_logged_data_source_imp.dart'
+    as _i82;
+import '../../features/cart/data/data%20sources/update%20product%20quantity/update_product_data_source.dart'
+    as _i136;
+import '../../features/cart/data/data%20sources/update%20product%20quantity/update_product_data_source_imp.dart'
+    as _i384;
 import '../../features/cart/data/repos/add_to_cart_repo_imp.dart' as _i467;
+import '../../features/cart/data/repos/clear_cart_repo_imp.dart' as _i365;
+import '../../features/cart/data/repos/delete_cart_item_repo_imp.dart' as _i48;
+import '../../features/cart/data/repos/get_logged_cart_repo_imp.dart' as _i817;
 import '../../features/cart/domain/repos/add_to_cart_repo.dart' as _i1023;
+import '../../features/cart/domain/repos/clear%20cart/clear_cart_repo.dart'
+    as _i96;
+import '../../features/cart/domain/repos/delete%20item/delete_cart_item_repo.dart'
+    as _i622;
+import '../../features/cart/domain/repos/logged/get_logged_cart_repo.dart'
+    as _i46;
 import '../../features/cart/domain/usecases/add_to_cart_usecase.dart' as _i659;
+import '../../features/cart/domain/usecases/clear_cart_usecase.dart' as _i240;
+import '../../features/cart/domain/usecases/delete_cart_item_usecase.dart'
+    as _i320;
+import '../../features/cart/domain/usecases/get_logged_cart_usecase.dart'
+    as _i70;
 import '../../features/categories/data/data_source/categories_screen_remote_data_source.dart'
     as _i469;
 import '../../features/categories/data/data_source/categories_screen_remote_data_source_impl.dart'
@@ -117,6 +147,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i29.ApiManager>(() => _i29.ApiManager());
     gh.singleton<_i361.LogInterceptor>(() => dioModule.provideLogger());
     gh.singleton<_i646.GuestManager>(() => _i646.GuestManager());
+    gh.factory<_i599.DeleteCartItemDataSource>(
+      () => _i946.DeleteCartItemDataSourceImp(),
+    );
     gh.factory<_i237.OccasionRemoteDataSourceContract>(
       () => _i61.OccasionRemoteDataSourceImpl(),
     );
@@ -134,7 +167,19 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i234.OccasionRepositoryContract>(),
       ),
     );
+    gh.factory<_i600.ClearCartDataSource>(() => _i195.ClearCartDataSourceImp());
+    gh.factory<_i109.GetLoggedCartDataSource>(
+      () => _i82.GetLoggedCartDataSourceImp(),
+    );
+    gh.factory<_i136.UpdateCartQuantityDataSource>(
+      () => _i384.UpdateCartQuantityDataSourceImp(),
+    );
     gh.factory<_i996.RemoteDataSource>(() => _i150.RemoteDataSourceImpl());
+    gh.factory<_i96.ClearCartRepo>(
+      () => _i365.ClearCartRepoImp(
+        clearCartDataSource: gh<_i600.ClearCartDataSource>(),
+      ),
+    );
     gh.factory<_i311.AddToCartDataSource>(() => _i335.AddToCartDataSourceImp());
     gh.factory<_i877.GetProductDetailsContract>(
       () => _i232.GetProductDetailsImpl(
@@ -145,6 +190,11 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i518.RegisterRepositoryImpl(
         repositoryDataSourceContract:
             gh<_i162.RegisterRepositoryDataSourceContract>(),
+      ),
+    );
+    gh.factory<_i622.DeleteCartItemRepo>(
+      () => _i48.DeleteCartItemRepoImp(
+        dataSource: gh<_i599.DeleteCartItemDataSource>(),
       ),
     );
     gh.factory<_i34.GetAllOccasionsUseCase>(
@@ -168,9 +218,20 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i361.Dio>(
       () => dioModule.provideDio(gh<_i361.LogInterceptor>()),
     );
+    gh.factory<_i46.GetLoggedCartRepo>(
+      () => _i817.GetLoggedCartRepoImp(
+        dataSource: gh<_i109.GetLoggedCartDataSource>(),
+      ),
+    );
     gh.factory<_i691.GetProductDetailsUseCase>(
       () =>
           _i691.GetProductDetailsUseCase(gh<_i877.GetProductDetailsContract>()),
+    );
+    gh.factory<_i240.ClearCartUsecase>(
+      () => _i240.ClearCartUsecase(clearCartRepo: gh<_i96.ClearCartRepo>()),
+    );
+    gh.factory<_i320.DeleteCartItemUsecase>(
+      () => _i320.DeleteCartItemUsecase(repo: gh<_i622.DeleteCartItemRepo>()),
     );
     gh.factory<_i17.OccasionCubit>(
       () => _i17.OccasionCubit(
@@ -216,6 +277,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i666.CategoriesScreenRemoteDataSourceImpl(
         apiService: gh<_i171.ApiService>(),
       ),
+    );
+    gh.factory<_i70.GetLoggedCartUsecase>(
+      () => _i70.GetLoggedCartUsecase(repo: gh<_i46.GetLoggedCartRepo>()),
     );
     gh.factory<_i659.AddToCartUsecase>(
       () => _i659.AddToCartUsecase(addToCartRepo: gh<_i1023.AddToCartRepo>()),

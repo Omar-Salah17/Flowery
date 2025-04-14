@@ -10,6 +10,11 @@ import 'package:flowery/features/auth/register/data/models/register_response.dar
 import 'package:flowery/features/best_seller/data/models/best_seller_model.dart';
 import 'package:flowery/features/cart/data/models/add_product_request.dart';
 import 'package:flowery/features/cart/data/models/add_product_response.dart';
+import 'package:flowery/features/cart/data/models/clear%20cart%20models/clear_cart_response.dart';
+import 'package:flowery/features/cart/data/models/delete%20item%20models/delete_specific_item_response.dart';
+import 'package:flowery/features/cart/data/models/get%20logged%20cart%20models/get_logged_cart_response.dart';
+import 'package:flowery/features/cart/data/models/update%20product%20models/update_product_request.dart';
+import 'package:flowery/features/cart/data/models/update%20product%20models/update_product_response.dart';
 import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart';
 
 import 'package:retrofit/retrofit.dart';
@@ -38,6 +43,27 @@ abstract class ApiService {
   @POST(Constants.addToCartEndPoint)
   Future<AddProductResponse> addToCart(
     @Body() AddProductRequest addProductRequest,
+  );
+
+  @GET(Constants.loginEndPoint)
+  Future<GetLoggedCartResponse> getLoggedCart(
+    @Header("Authorization") String token,
+  );
+
+  @DELETE(Constants.deleteSpecificCartItem)
+  Future<DeleteCartResponse> deleteCartItem(
+    @Path("cartItemId") String token,
+    @Header("Authorization") String cartItemId,
+  );
+
+  @DELETE(Constants.clearCart)
+  Future<ClearCartResponse> clearCart(@Header("Authorization") String token);
+
+  @PUT(Constants.updatCartProductQuantity)
+  Future<UpdateCartResponse> updateCartProductQuantity(
+    @Path("cartItemId") String cartItemId,
+    @Header("Authorization") String token,
+    @Body() UpdateProductRequest request,
   );
 
   @GET(Constants.occasionEndPoint)
