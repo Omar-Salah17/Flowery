@@ -1,7 +1,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:flowery/core/utils/constants.dart';
-import 'package:flowery/core/utils/services/secure_sotrage_service.dart';
+import 'package:flowery/core/utils/helper_functions/set_token_function.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
@@ -14,12 +14,7 @@ class ApiManager {
 
     ),
   );
-Future<void> setToken()async{
-  String? token = await SecureStorageService().readSecureData(Constants.userToken);
-  if (token != null && token.isNotEmpty) {
-    dio.options.headers['Authorization'] = 'Bearer $token';
-  }
-}
+
   Future<Response> getData({
     required String endPoint,
     Map<String, dynamic>? params,

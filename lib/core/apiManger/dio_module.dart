@@ -23,6 +23,7 @@ abstract class DioModule {
       BaseOptions(
         connectTimeout: const Duration(seconds: 60),
         baseUrl: Constants.baseUrl,
+        
       ),
     );
     dio.interceptors.add(logInterceptor);
