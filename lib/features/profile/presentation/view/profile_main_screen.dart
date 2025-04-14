@@ -18,7 +18,7 @@ class ProfileMainScreen extends StatefulWidget {
 }
 
 class _ProfileMainScreenState extends State<ProfileMainScreen> {
-  bool isSwitched = false;
+  bool isSwitched = true;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,9 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
             builder: (context, state) {
               if (state is ProfileLoading) {
                 return Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(
+                    color: PalletsColors.mainColorBase,
+                  ),
                 );
               } else if (state is ProfileError) {
                 return Center(

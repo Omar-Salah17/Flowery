@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 
 import 'package:flowery/features/auth/login/data/models/login_respose.dart';
 import 'package:flowery/features/profile/data/model/user_response.dart';
-import 'package:flowery/features/profile/domain/use_case/get_user_data.dart';
+import 'package:flowery/features/profile/domain/use_case/get_user_data_use_case.dart';
 
 part 'profile_state.dart';
 
