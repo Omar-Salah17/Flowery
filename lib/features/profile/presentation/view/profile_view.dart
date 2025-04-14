@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileView extends StatelessWidget {
-  var viewModel = ProfileCubit(getIt<GetUserData>());
+  var viewModel = ProfileCubit(getIt<GetUserDataUseCase>());
    ProfileView({super.key});
 
   @override

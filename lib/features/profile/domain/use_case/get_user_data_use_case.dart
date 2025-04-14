@@ -8,9 +8,9 @@ import 'package:injectable/injectable.dart';
 
 
 @injectable
-class GetUserData {
+class GetUserDataUseCase {
   final ProfileRepositoryContract profileRepositoryContract ;
-  GetUserData({required this.profileRepositoryContract});
+  GetUserDataUseCase({required this.profileRepositoryContract});
 Future<Either<Failure, UserData>>  invoke() async {
     return await profileRepositoryContract.getLoggedInUserData();
   }

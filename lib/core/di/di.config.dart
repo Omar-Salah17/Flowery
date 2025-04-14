@@ -103,7 +103,8 @@ import '../../features/profile/domain/repos/profile_data_source_contract%20.dart
     as _i837;
 import '../../features/profile/domain/repos/profile_repository_contract.dart'
     as _i133;
-import '../../features/profile/domain/use_case/get_user_data_use_case.dart' as _i1032;
+import '../../features/profile/domain/use_case/get_user_data_use_case.dart'
+    as _i743;
 import '../apiManger/api_manager.dart' as _i29;
 import '../apiManger/apiService.dart' as _i171;
 import '../apiManger/dio_module.dart' as _i304;
@@ -176,8 +177,8 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i837.ProfileRemoteDataSourceContract>(),
       ),
     );
-    gh.factory<_i1032.GetUserData>(
-      () => _i1032.GetUserData(
+    gh.factory<_i743.GetUserDataUseCase>(
+      () => _i743.GetUserDataUseCase(
         profileRepositoryContract: gh<_i133.ProfileRepositoryContract>(),
       ),
     );

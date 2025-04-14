@@ -9,7 +9,7 @@ import 'package:flowery/features/profile/domain/use_case/get_user_data_use_case.
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
-  final GetUserData getUserDataUseCase;
+  final GetUserDataUseCase getUserDataUseCase;
   ProfileCubit(
     this.getUserDataUseCase,
   ) : super(ProfileInitial());
