@@ -6,9 +6,9 @@ import '../../../../core/utils/colors.dart';
 import '../../../categories/data/models/categories_model/category.dart';
 
 class HomeCatView extends StatelessWidget {
- const HomeCatView({super.key, required this.categories});
+  const HomeCatView({super.key, required this.categories});
 
- final List<Category> categories;
+  final List<Category> categories;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

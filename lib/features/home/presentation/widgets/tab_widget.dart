@@ -4,22 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flowery/core/utils/colors.dart';
 
 class TabWidget extends StatelessWidget {
-  
   final TabController? controller;
-  List<Widget>tabs ; 
+  List<Widget> tabs;
   void Function(int)? onTap;
-  TabWidget({
-    super.key,
-  
-    this.controller,
-    required this.tabs,
-    this.onTap,
-  });
+  TabWidget({super.key, this.controller, required this.tabs, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     var text = Theme.of(context).textTheme;
-    
+
     return TabBar(
       controller: controller,
       onTap: onTap,

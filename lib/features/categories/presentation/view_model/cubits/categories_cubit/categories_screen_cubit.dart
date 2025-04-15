@@ -15,8 +15,8 @@ class CategoriesScreenCubit extends Cubit<CategoriesScreenState> {
   final GetAllCategoriesUseCase getAllCategoriesUseCase;
   final GetProductsByCategoryUseCase getProductsByCategoryUseCase;
   String selectedCategoryId = "all";
-   List<Category> categories = [];
- 
+  List<Category> categories = [];
+
   Future<void> getAllCategories() async {
     emit(CategoriesLoading());
     final result = await getAllCategoriesUseCase.call();
@@ -25,7 +25,7 @@ class CategoriesScreenCubit extends Cubit<CategoriesScreenState> {
         emit(CategoriesFailure(errorMessage: falilure.errorMessage));
       },
       (category) {
-categories = category;
+        categories = category;
         emit(CategoriesSuccess(categories: categories));
       },
     );
