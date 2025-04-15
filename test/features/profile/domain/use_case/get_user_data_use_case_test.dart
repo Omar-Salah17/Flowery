@@ -11,38 +11,39 @@ import 'get_user_data_use_case_test.mocks.dart';
 
 @GenerateMocks([ProfileRepositoryContract])
 void main() {
-  var repo = MockProfileRepositoryContract();
-    GetUserDataUseCase getUserDataUseCase = GetUserDataUseCase(
-        profileRepositoryContract: repo,
-      );
-
-  test(
-    'when call invoke from GetUserDataUseCase it should call getLoggedInUserData from profileRepositoryContract ',
-
-    () {
-      
-    //object of UserData
-      var result = UserData();
-      when(repo.getLoggedInUserData()).thenAnswer((_) async => Right(result));
-    
-      getUserDataUseCase.invoke();
-    }, 
-    
-  );
+  group("Test GetUserDataUseCase", () {
+    late MockProfileRepositoryContract repo;
+    late GetUserDataUseCase getUserDataUseCase;
+    setUp(() {
+      // Initialize the mock repository before each test
+      repo = MockProfileRepositoryContract();
+      getUserDataUseCase = GetUserDataUseCase(profileRepositoryContract: repo);
+    });
     test(
-      "",
+      'when call invoke from GetUserDataUseCase it should call getLoggedInUserData from profileRepositoryContract and when call getLoggedInUserData from profileRepositoryContract i expect to return Right<UserData> ',
+
       () async {
-        //arragne
-        var result = ServerFailure(errorMessage: 'connection time out');
-        when(
-          repo.getLoggedInUserData(),
-        ).thenAnswer((_) async => Left(result));
-        //act
-      var actual =  getUserDataUseCase.invoke();
-        //assert
+        //object of UserData
+        var result = UserData();
+        when(repo.getLoggedInUserData()).thenAnswer((_) async => Right(result));
+
+        var actual = await getUserDataUseCase.invoke();
+        verify(repo.getLoggedInUserData()).called(1);
+        expect(actual, equals(Right(result)));
+        //here im checking if the getLoggedInUserData from profileRepositoryContract was called for one time
+      },
+    );
+    test(
+      "when call invoke from GetUserDataUseCase it should call getLoggedInUserData from profileRepositoryContract and when call getLoggedInUserData from profileRepositoryContract i expect to return Left<Failure> ",
+      () async {
+        //object of Failure
+        var result = ServerFailure(errorMessage: "error");
+        when(repo.getLoggedInUserData()).thenAnswer((_) async => Left(result));
+        var actual = await getUserDataUseCase.invoke();
+
         verify(repo.getLoggedInUserData()).called(1);
         expect(actual, equals(Left(result)));
       },
     );
-  
+  });
 }

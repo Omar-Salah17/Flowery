@@ -137,9 +137,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i234.OccasionRepositoryContract>(),
       ),
     );
-    gh.factory<_i837.ProfileRemoteDataSourceContract>(
-      () => _i531.ProfileRemoteDataSourceImpl(),
-    );
     gh.factory<_i996.RemoteDataSource>(() => _i150.RemoteDataSourceImpl());
     gh.factory<_i877.GetProductDetailsContract>(
       () => _i232.GetProductDetailsImpl(
@@ -171,16 +168,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i691.GetProductDetailsUseCase>(
       () =>
           _i691.GetProductDetailsUseCase(gh<_i877.GetProductDetailsContract>()),
-    );
-    gh.factory<_i133.ProfileRepositoryContract>(
-      () => _i1015.ProfileRepositoryImpl(
-        gh<_i837.ProfileRemoteDataSourceContract>(),
-      ),
-    );
-    gh.factory<_i743.GetUserDataUseCase>(
-      () => _i743.GetUserDataUseCase(
-        profileRepositoryContract: gh<_i133.ProfileRepositoryContract>(),
-      ),
     );
     gh.factory<_i17.OccasionCubit>(
       () => _i17.OccasionCubit(
@@ -244,6 +231,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i629.BestSellerRepo>(
       () => _i12.BestSellerRepoImpl(gh<_i312.BestSellerDataSource>()),
     );
+    gh.factory<_i837.ProfileRemoteDataSourceContract>(
+      () =>
+          _i531.ProfileRemoteDataSourceImpl(apiService: gh<_i171.ApiService>()),
+    );
     gh.factory<_i461.GetBestSellerUseCase>(
       () => _i461.GetBestSellerUseCase(
         bestSellerRepo: gh<_i629.BestSellerRepo>(),
@@ -265,6 +256,16 @@ extension GetItInjectableX on _i174.GetIt {
         getCategories: gh<_i595.GetAllCategoriesUseCase>(),
         getBestSeller: gh<_i461.GetBestSellerUseCase>(),
         getOccasions: gh<_i34.GetAllOccasionsUseCase>(),
+      ),
+    );
+    gh.factory<_i133.ProfileRepositoryContract>(
+      () => _i1015.ProfileRepositoryImpl(
+        gh<_i837.ProfileRemoteDataSourceContract>(),
+      ),
+    );
+    gh.factory<_i743.GetUserDataUseCase>(
+      () => _i743.GetUserDataUseCase(
+        profileRepositoryContract: gh<_i133.ProfileRepositoryContract>(),
       ),
     );
     return this;
