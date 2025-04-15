@@ -9,6 +9,7 @@ import 'package:flowery/features/occasion/presentation/view/occasion_screen.dart
 import 'package:flowery/features/productsDetails/presentation/view/products_details.dart';
 
 import 'package:flowery/features/splash/view/splash.dart';
+import 'package:flowery/localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/cart/presentation/view/cart_view.dart';
@@ -98,6 +99,11 @@ class RouteGenerator {
       case RoutesName.productsDetails:
         return MaterialPageRoute(
           builder: (context) => ProductsDetails(),
+          settings: Settings,
+        );
+      case RoutesName.localization:
+        return MaterialPageRoute(
+          builder: (context) => Localization(),
           settings: Settings,
         );
 

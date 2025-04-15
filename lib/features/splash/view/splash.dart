@@ -1,6 +1,8 @@
 import 'dart:async';
-import 'package:flowery/core/utils/colors.dart';
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
+import 'package:flowery/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class Splash extends StatefulWidget {
