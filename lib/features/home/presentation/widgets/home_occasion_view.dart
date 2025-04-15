@@ -4,10 +4,9 @@ import 'package:flowery/features/occasion/data/models/occaions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 class HomeOccasionsView extends StatelessWidget {
- const HomeOccasionsView({super.key,required this.occasions});
- final List<Occasions> occasions;
+  const HomeOccasionsView({super.key, required this.occasions});
+  final List<Occasions> occasions;
 
   @override
   Widget build(BuildContext context) {

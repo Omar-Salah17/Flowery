@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../viewModel/currentUserLocationViewModel/location_state.dart';
 
-class CurrentUserLocationBody extends StatelessWidget{
+class CurrentUserLocationBody extends StatelessWidget {
   const CurrentUserLocationBody({super.key});
 
   @override

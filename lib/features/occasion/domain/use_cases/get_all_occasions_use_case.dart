@@ -10,11 +10,8 @@ import '../../data/models/occaions.dart';
 @injectable
 class GetAllOccasionsUseCase {
   OccasionRepositoryContract occasionRepositoryContract;
-  GetAllOccasionsUseCase({
-    required this.occasionRepositoryContract,
-  });
-Future<Either<Failure, List<Occasions>>>  invoke() async {
-return await  occasionRepositoryContract.getAllOccasions();
-  
+  GetAllOccasionsUseCase({required this.occasionRepositoryContract});
+  Future<Either<Failure, List<Occasions>>> invoke() async {
+    return await occasionRepositoryContract.getAllOccasions();
   }
 }

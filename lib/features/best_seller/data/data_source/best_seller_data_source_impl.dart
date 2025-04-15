@@ -5,15 +5,12 @@ import '../../../../core/apiManger/apiService.dart';
 import 'best_seller_data_source.dart';
 
 @Injectable(as: BestSellerDataSource)
-class BestSellerDataSourceImpl implements BestSellerDataSource{
+class BestSellerDataSourceImpl implements BestSellerDataSource {
   final ApiService apiService;
   BestSellerDataSourceImpl(this.apiService);
   @override
   Future<BestSellerModel> getBestSellerProduct() async {
     final response = await apiService.getBestSellerProduct();
     return response;
-
   }
-
-
 }

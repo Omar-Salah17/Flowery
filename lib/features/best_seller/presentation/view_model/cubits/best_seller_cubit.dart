@@ -8,7 +8,7 @@ part 'best_seller_state.dart';
 
 @injectable
 class BestSellerCubit extends Cubit<BestSellerState> {
-  final GetBestSellerUseCase getBestSellerUseCase ;
+  final GetBestSellerUseCase getBestSellerUseCase;
 
   BestSellerCubit(this.getBestSellerUseCase) : super(BestSellerInitial());
 
@@ -17,8 +17,8 @@ class BestSellerCubit extends Cubit<BestSellerState> {
     final result = await getBestSellerUseCase.call();
 
     result.fold(
-          (failure) => emit(BestSellerFailure(errorMessage: failure.errorMessage)),
-          (model) => emit(BestSellerSuccess(model: model)),
+      (failure) => emit(BestSellerFailure(errorMessage: failure.errorMessage)),
+      (model) => emit(BestSellerSuccess(model: model)),
     );
   }
 }

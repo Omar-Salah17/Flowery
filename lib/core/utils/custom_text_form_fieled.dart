@@ -1,6 +1,7 @@
 import 'package:flowery/core/utils/application_theme.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // ignore: must_be_immutable
 class CustomTextFormFieled extends StatelessWidget {
@@ -9,6 +10,8 @@ class CustomTextFormFieled extends StatelessWidget {
   final String hintText;
   final bool shouldObscureText;
   final String? Function(String?)? validator;
+  final Widget? suffix;
+  final bool? readOnly;
 
   const CustomTextFormFieled({
     super.key,
@@ -17,11 +20,16 @@ class CustomTextFormFieled extends StatelessWidget {
     required this.hintText,
     required this.shouldObscureText,
     this.validator,
+    this.suffix,
+    this.readOnly,
+
+
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: readOnly??false,
       validator: validator,
       controller: textEditingController,
       obscureText: shouldObscureText,
@@ -30,6 +38,9 @@ class CustomTextFormFieled extends StatelessWidget {
         color: PalletsColors.white70,
       ),
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.all(16.r),
+        suffix: suffix,
+
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(color: PalletsColors.error),
         ),
