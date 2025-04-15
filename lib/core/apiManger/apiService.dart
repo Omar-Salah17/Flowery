@@ -47,6 +47,10 @@ abstract class ApiService {
   @GET(Constants.bestSellerEndPoint)
   Future<BestSellerModel> getBestSellerProduct();
 
+
+  @GET(Constants.logoutEndPoint)
+  Future<String> logout(@Header('Authorization') String token);
+  
   @GET("products/{id}")
 Future<ProductDetailsModel> getProductDetails(@Path("id") String id);
 
@@ -57,8 +61,6 @@ Future<ProductDetailsModel> getProductDetails(@Path("id") String id);
       );
   @GET(Constants.profileDataENdPoint)
   Future<UserResponse> getLoggedInUserData();
-
-  
 
   @MultiPart()
   @PUT("auth/upload-photo")
