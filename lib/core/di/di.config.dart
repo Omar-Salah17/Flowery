@@ -81,6 +81,8 @@ import '../../features/cart/data/repos/add_to_cart_repo_imp.dart' as _i467;
 import '../../features/cart/data/repos/clear_cart_repo_imp.dart' as _i365;
 import '../../features/cart/data/repos/delete_cart_item_repo_imp.dart' as _i48;
 import '../../features/cart/data/repos/get_logged_cart_repo_imp.dart' as _i817;
+import '../../features/cart/data/repos/update_product_quantity_repo_imp.dart'
+    as _i277;
 import '../../features/cart/domain/repos/add_to_cart_repo.dart' as _i1023;
 import '../../features/cart/domain/repos/clear%20cart/clear_cart_repo.dart'
     as _i96;
@@ -88,12 +90,16 @@ import '../../features/cart/domain/repos/delete%20item/delete_cart_item_repo.dar
     as _i622;
 import '../../features/cart/domain/repos/logged/get_logged_cart_repo.dart'
     as _i46;
+import '../../features/cart/domain/repos/update%20product%20cart/update_product_cart_repo.dart'
+    as _i685;
 import '../../features/cart/domain/usecases/add_to_cart_usecase.dart' as _i659;
 import '../../features/cart/domain/usecases/clear_cart_usecase.dart' as _i240;
 import '../../features/cart/domain/usecases/delete_cart_item_usecase.dart'
     as _i320;
 import '../../features/cart/domain/usecases/get_logged_cart_usecase.dart'
     as _i70;
+import '../../features/cart/domain/usecases/update_product_quantity_repo.dart'
+    as _i390;
 import '../../features/categories/data/data_source/categories_screen_remote_data_source.dart'
     as _i469;
 import '../../features/categories/data/data_source/categories_screen_remote_data_source_impl.dart'
@@ -150,6 +156,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i599.DeleteCartItemDataSource>(
       () => _i946.DeleteCartItemDataSourceImp(),
     );
+    gh.factory<_i136.UpdateProductDataSource>(
+      () => _i384.UpdateProductDataSourceImp(),
+    );
     gh.factory<_i237.OccasionRemoteDataSourceContract>(
       () => _i61.OccasionRemoteDataSourceImpl(),
     );
@@ -170,9 +179,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i600.ClearCartDataSource>(() => _i195.ClearCartDataSourceImp());
     gh.factory<_i109.GetLoggedCartDataSource>(
       () => _i82.GetLoggedCartDataSourceImp(),
-    );
-    gh.factory<_i136.UpdateCartQuantityDataSource>(
-      () => _i384.UpdateCartQuantityDataSourceImp(),
     );
     gh.factory<_i996.RemoteDataSource>(() => _i150.RemoteDataSourceImpl());
     gh.factory<_i96.ClearCartRepo>(
@@ -232,6 +238,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i320.DeleteCartItemUsecase>(
       () => _i320.DeleteCartItemUsecase(repo: gh<_i622.DeleteCartItemRepo>()),
+    );
+    gh.factory<_i685.UpdateProductCartRepo>(
+      () => _i277.UpdateProductQuantityRepoImp(
+        updateProductDataSource: gh<_i136.UpdateProductDataSource>(),
+      ),
     );
     gh.factory<_i17.OccasionCubit>(
       () => _i17.OccasionCubit(
@@ -297,6 +308,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i595.GetAllCategoriesUseCase(
         categoriesScreenRepo: gh<_i826.CategoriesScreenRepo>(),
       ),
+    );
+    gh.factory<_i390.UpdateCartItemUseCase>(
+      () => _i390.UpdateCartItemUseCase(gh<_i685.UpdateProductCartRepo>()),
     );
     gh.factory<_i629.BestSellerRepo>(
       () => _i12.BestSellerRepoImpl(gh<_i312.BestSellerDataSource>()),

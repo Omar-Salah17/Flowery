@@ -3,7 +3,9 @@ import 'package:flowery/features/cart/data/data%20sources/update%20product%20qua
 import 'package:flowery/features/cart/data/models/update%20product%20models/update_product_request.dart';
 import 'package:flowery/features/cart/data/models/update%20product%20models/update_product_response.dart';
 import 'package:flowery/features/cart/domain/repos/update%20product%20cart/update_product_cart_repo.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as: UpdateProductCartRepo)
 class UpdateProductQuantityRepoImp implements UpdateProductCartRepo {
   final UpdateProductDataSource updateProductDataSource;
 
