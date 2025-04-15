@@ -5,10 +5,12 @@ import 'package:flowery/core/utils/models/products_model/products_model.dart';
 import 'package:flowery/features/auth/login/data/models/login_request.dart'
     show LoginRequest;
 import 'package:flowery/features/auth/login/data/models/login_respose.dart';
+import 'package:flowery/features/auth/login/presentation/view/screens/login.dart';
 import 'package:flowery/features/auth/register/data/models/register_request.dart';
 import 'package:flowery/features/auth/register/data/models/register_response.dart';
 import 'package:flowery/features/best_seller/data/models/best_seller_model.dart';
 import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart';
+import 'package:flowery/features/profile/data/model/user_response.dart';
 import 'package:flowery/features/productsDetails/data/models/product_details_model/product_details_model.dart';
 
 import 'package:retrofit/retrofit.dart';
@@ -45,6 +47,8 @@ abstract class ApiService {
   Future<BestSellerModel> getBestSellerProduct();
   @GET("products/{id}")
 Future<ProductDetailsModel> getProductDetails(@Path("id") String id);
+  @GET(Constants.profileDataENdPoint)
+  Future<UserResponse> getLoggedInUserData();
 
   // @GET("products")
   // Future<ProductDetailsModel> getProductDetails(@Query("id") String id);

@@ -103,6 +103,16 @@ import '../../features/profile/data/repos/profile_repo_impl.dart' as _i1072;
 import '../../features/profile/domain/repos/profile_repo.dart' as _i1007;
 import '../../features/profile/domain/use_case/change_password_use_case.dart'
     as _i342;
+import '../../features/profile/data/data_source/profile_remote_data_source_impl.dart'
+    as _i531;
+import '../../features/profile/data/repo/profile_repository_impl.dart'
+    as _i1015;
+import '../../features/profile/domain/repos/profile_data_source_contract%20.dart'
+    as _i837;
+import '../../features/profile/domain/repos/profile_repository_contract.dart'
+    as _i133;
+import '../../features/profile/domain/use_case/get_user_data_use_case.dart'
+    as _i743;
 import '../apiManger/api_manager.dart' as _i29;
 import '../apiManger/apiService.dart' as _i171;
 import '../apiManger/dio_module.dart' as _i304;
@@ -233,6 +243,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i629.BestSellerRepo>(
       () => _i12.BestSellerRepoImpl(gh<_i312.BestSellerDataSource>()),
     );
+    gh.factory<_i837.ProfileRemoteDataSourceContract>(
+      () =>
+          _i531.ProfileRemoteDataSourceImpl(apiService: gh<_i171.ApiService>()),
+    );
     gh.factory<_i461.GetBestSellerUseCase>(
       () => _i461.GetBestSellerUseCase(
         bestSellerRepo: gh<_i629.BestSellerRepo>(),
@@ -267,6 +281,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i691.GetProductDetailsUseCase>(
       () =>
           _i691.GetProductDetailsUseCase(gh<_i877.GetProductDetailsContract>()),
+    );
+    gh.factory<_i133.ProfileRepositoryContract>(
+      () => _i1015.ProfileRepositoryImpl(
+        gh<_i837.ProfileRemoteDataSourceContract>(),
+      ),
+    );
+    gh.factory<_i743.GetUserDataUseCase>(
+      () => _i743.GetUserDataUseCase(
+        profileRepositoryContract: gh<_i133.ProfileRepositoryContract>(),
+      ),
     );
     return this;
   }
