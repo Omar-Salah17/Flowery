@@ -106,6 +106,7 @@ import '../../features/profile/domain/use_case/change_password_use_case.dart'
 import '../apiManger/api_manager.dart' as _i29;
 import '../apiManger/apiService.dart' as _i171;
 import '../apiManger/dio_module.dart' as _i304;
+import '../utils/services/secure_sotrage_service.dart' as _i665;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -118,6 +119,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i29.ApiManager>(() => _i29.ApiManager());
     gh.singleton<_i361.LogInterceptor>(() => dioModule.provideLogger());
     gh.singleton<_i646.GuestManager>(() => _i646.GuestManager());
+    gh.singleton<_i665.SecureStorageService>(
+      () => _i665.SecureStorageService(),
+    );
     gh.factory<_i237.OccasionRemoteDataSourceContract>(
       () => _i61.OccasionRemoteDataSourceImpl(),
     );
