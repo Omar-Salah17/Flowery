@@ -13,31 +13,30 @@ part 'occasion_state.dart';
 class OccasionCubit extends Cubit<OccasionState> {
   GetAllOccasionsUseCase getAllOccasionsUseCase;
   GetProductByOccasionUsecase getProductByOccasionUsecase;
-  OccasionCubit({required this.getAllOccasionsUseCase , required this.getProductByOccasionUsecase})
-      : super(OccasionInitial());
-      List<Occasions> occasions = [];
-      List<Product> products = [];
-    late  TabController tabController;
- getAllOccasions() async {
+  OccasionCubit({
+    required this.getAllOccasionsUseCase,
+    required this.getProductByOccasionUsecase,
+  }) : super(OccasionInitial());
+  List<Occasions> occasions = [];
+  List<Product> products = [];
+  late TabController tabController;
+  getAllOccasions() async {
     emit(OccasionLoading());
     final result = await getAllOccasionsUseCase.invoke();
-    result.fold(
-      (l) => emit(OccasionError(l.errorMessage)),
-      (response) {  
-        occasions = response;
-         emit(OccasionSuccess(response));
-      },
-    );
- }
+    result.fold((l) => emit(OccasionError(l.errorMessage)), (response) {
+      occasions = response;
+      emit(OccasionSuccess(response));
+    });
+  }
+
   getProductByOccasion({required String occasionId}) async {
-      emit(OccasionLoading());
-      final result = await getProductByOccasionUsecase.invoke(occasionId: occasionId);
-      result.fold(
-        (l) => emit(OccasionError(l.errorMessage)),
-        (response) {
-          products = response;
-          emit(OccasionProductSuccess(response));
-        },
-      );
-    }
+    emit(OccasionLoading());
+    final result = await getProductByOccasionUsecase.invoke(
+      occasionId: occasionId,
+    );
+    result.fold((l) => emit(OccasionError(l.errorMessage)), (response) {
+      products = response;
+      emit(OccasionProductSuccess(response));
+    });
+  }
 }

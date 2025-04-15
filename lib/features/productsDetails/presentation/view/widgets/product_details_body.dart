@@ -14,126 +14,127 @@ class ProductDetailsBody extends StatefulWidget {
 }
 
 class _ProductDetailsBodyState extends State<ProductDetailsBody> {
-  final controller = PageController(viewportFraction: 0.8, keepPage: true);
+  final controller = PageController();
   @override
   Widget build(BuildContext context) {
     final pages = List.generate(
-      6,
+      widget.product.images?.length ?? 1,
       (index) => Container(
         color: PalletsColors.mainColor30,
-        height: 400,
+        height: 375.h,
         width: double.infinity,
-        // child:
-        //  Image.network(),
-      ),
-    );
-
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-
-          children: <Widget>[
-            SizedBox(
-              height: 343,
-              child: PageView.builder(
-                controller: controller,
-                // itemCount: pages.length,
-                itemBuilder: (_, index) {
-                  return pages[index % pages.length];
-                },
-              ),
-            ),
-            SizedBox(height: 9),
-            Center(
-              child: SmoothPageIndicator(
-                controller: controller,
-                count: pages.length,
-                effect: const WormEffect(
-                  dotHeight: 16,
-                  dotWidth: 16,
-                  type: WormType.thinUnderground,
-                  activeDotColor: PalletsColors.mainColorBase,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        "EGP ${widget.product.price}",
-                        style: AppTextStyles.instance.textStyle20.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Spacer(),
-                      Text(
-                        "Status: ",
-                        style: AppTextStyles.instance.textStyle16,
-                      ),
-                      Text(
-                        " In stock",
-                        style: AppTextStyles.instance.textStyle14,
-                      ),
-                    ],
-                  ),
-                  Text(
-                    "All prices include tax",
-                    style: AppTextStyles.instance.textStyle16,
-                  ),
-                  Text(
-                    "15 Pink Rose Bouquet",
-                    style: AppTextStyles.instance.textStyle16.copyWith(
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(height: 20.sp),
-                  Text(
-                    "Description",
-                    style: AppTextStyles.instance.textStyle16.copyWith(
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  Text(
-                    "Lorem ipsum dolor sit amet consectetur. Id sit morbi ornare morbi duis rhoncus orci massa.",
-                    style: AppTextStyles.instance.textStyle14,
-                  ),
-
-                  SizedBox(height: 20.sp),
-
-                  Text(
-                    "Bouquet include",
-                    style: AppTextStyles.instance.textStyle16.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "Pink roses:",
-                        style: AppTextStyles.instance.textStyle14,
-                      ),
-                      Text("15", style: AppTextStyles.instance.textStyle14),
-                    ],
-                  ),
-                  Text("White wrap", style: AppTextStyles.instance.textStyle14),
-                  SizedBox(height: 7),
-                  ElevatedButton(onPressed: () {}, child: Text("Add to cart")),
-                ],
-              ),
-            ),
-          ],
+        child: SizedBox.expand(
+          child: Image.network(
+            widget.product.images![index],
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+          ),
         ),
       ),
     );
+
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+
+        children: <Widget>[
+          SizedBox(
+            height: 375.h,
+            width: double.infinity,
+            child: PageView.builder(
+              controller: controller,
+              itemCount: pages.length,
+              itemBuilder: (_, index) {
+                return pages[index % pages.length];
+              },
+            ),
+          ),
+          SizedBox(height: 9),
+          Center(
+            child: SmoothPageIndicator(
+              controller: controller,
+              count: pages.length,
+              effect: const WormEffect(
+                dotHeight: 16,
+                dotWidth: 16,
+                type: WormType.thinUnderground,
+                activeDotColor: PalletsColors.mainColorBase,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      "EGP ${widget.product.price}",
+                      style: AppTextStyles.instance.textStyle20.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Spacer(),
+                    Text("Status: ", style: AppTextStyles.instance.textStyle16),
+                    Text(
+                      " In stock",
+                      style: AppTextStyles.instance.textStyle14,
+                    ),
+                  ],
+                ),
+                Text(
+                  "All prices include tax",
+                  style: AppTextStyles.instance.textStyle16,
+                ),
+                Text(
+                  "${widget.product.quantity} ${widget.product.title}",
+                  style: AppTextStyles.instance.textStyle16.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(height: 20.sp),
+                Text(
+                  "Description",
+                  style: AppTextStyles.instance.textStyle16.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Text(
+                  widget.product.description ?? "No description found",
+                  style: AppTextStyles.instance.textStyle14,
+                ),
+
+                SizedBox(height: 20.sp),
+
+                Text(
+                  "Bouquet include",
+                  style: AppTextStyles.instance.textStyle16.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "${widget.product.title}: ",
+                      style: AppTextStyles.instance.textStyle14,
+                    ),
+                    Text(
+                      "${widget.product.quantity}",
+                      style: AppTextStyles.instance.textStyle14,
+                    ),
+                  ],
+                ),
+                Text("White wrap", style: AppTextStyles.instance.textStyle14),
+                SizedBox(height: 7),
+                ElevatedButton(onPressed: () {}, child: Text("Add to cart")),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
-
-  // return Container();
 }
-
-// }

@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductsGridView extends StatelessWidget {
   const ProductsGridView({super.key, required this.productsList});
- final List<Product> productsList;
+  final List<Product> productsList;
   @override
   Widget build(BuildContext context) {
     return SliverPadding(

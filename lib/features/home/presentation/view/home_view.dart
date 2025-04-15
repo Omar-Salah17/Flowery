@@ -1,4 +1,3 @@
-
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/features/home/presentation/view/HomeViewBody.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,9 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<HomeCubit>(create: (context)=>getIt<HomeCubit>(),
-    child: HomeViewBody(),);
+    return BlocProvider<HomeCubit>(
+      create: (context) => getIt<HomeCubit>(),
+      child: HomeViewBody(),
+    );
   }
 }

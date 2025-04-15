@@ -1,4 +1,3 @@
-
 class LoginResponse {
   final String message;
   final User user;

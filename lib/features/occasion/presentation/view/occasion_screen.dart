@@ -57,52 +57,47 @@ class _OccasionScreenState extends State<OccasionScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    appBar: PreferredSize(
-      preferredSize: Size.fromHeight(50.h),
-      child: AppbarTitle(),
-    ),
-    body: BlocProvider(
-      create: (_) => occasionCubit..getAllOccasions(),
-      child: BlocBuilder<OccasionCubit, OccasionState>(
-        buildWhen: (previous, current) =>
-            previous != current && current is OccasionProductSuccess,
-        builder: (context, state) {
-          if (state is OccasionProductSuccess) {
-            return DefaultTabController(
-              length: occasionCubit.occasions.length,
-              initialIndex: occasionCubit.tabController.index,
-              child: CustomScrollView(
-                slivers: [
-                  
-                  SliverToBoxAdapter(
-                    child: TabWidget(
-                      controller: occasionCubit.tabController,
-                      tabs: occasionCubit.occasions
-                          .map((occasion) => Tab(text: occasion.name))
-                          .toList(),
-                    ),
-                  ),
-                  
-                 
-                  SliverToBoxAdapter(
-                    child: verticalSpace(10),
-                  ),
-                  
-                  
-                  ProductsGridView(productsList: state.products),
-                ],
-              ),
-            );
-          } else if (state is OccasionError) {
-            return Center(child: Text(state.error));
-          } else {
-            return const Center(
-              child: CircularProgressIndicator.adaptive(),
-            );
-          }
-        },
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50.h),
+        child: AppbarTitle(),
       ),
-    ),
-  );
+      body: BlocProvider(
+        create: (_) => occasionCubit..getAllOccasions(),
+        child: BlocBuilder<OccasionCubit, OccasionState>(
+          buildWhen:
+              (previous, current) =>
+                  previous != current && current is OccasionProductSuccess,
+          builder: (context, state) {
+            if (state is OccasionProductSuccess) {
+              return DefaultTabController(
+                length: occasionCubit.occasions.length,
+                initialIndex: occasionCubit.tabController.index,
+                child: CustomScrollView(
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: TabWidget(
+                        controller: occasionCubit.tabController,
+                        tabs:
+                            occasionCubit.occasions
+                                .map((occasion) => Tab(text: occasion.name))
+                                .toList(),
+                      ),
+                    ),
+
+                    SliverToBoxAdapter(child: verticalSpace(10)),
+
+                    ProductsGridView(productsList: state.products),
+                  ],
+                ),
+              );
+            } else if (state is OccasionError) {
+              return Center(child: Text(state.error));
+            } else {
+              return const Center(child: CircularProgressIndicator.adaptive());
+            }
+          },
+        ),
+      ),
+    );
   }
 }

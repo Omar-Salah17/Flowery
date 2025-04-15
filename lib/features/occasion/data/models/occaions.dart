@@ -1,4 +1,3 @@
-
 import 'package:json_annotation/json_annotation.dart';
 part 'occaions.g.dart';
 
@@ -13,7 +12,8 @@ class AllOccaions {
 
   AllOccaions({this.message, this.metadata, this.occasions});
 
-  factory AllOccaions.fromJson(Map<String, dynamic> json) => _$AllOccaionsFromJson(json);
+  factory AllOccaions.fromJson(Map<String, dynamic> json) =>
+      _$AllOccaionsFromJson(json);
 
   static List<AllOccaions> fromList(List<Map<String, dynamic>> list) {
     return list.map(AllOccaions.fromJson).toList();
@@ -39,9 +39,18 @@ class Occasions {
   @JsonKey(name: 'productsCount')
   int? productsCount;
 
-  Occasions({this.id, this.name, this.slug, this.image, this.createdAt, this.updatedAt, this.productsCount});
+  Occasions({
+    this.id,
+    this.name,
+    this.slug,
+    this.image,
+    this.createdAt,
+    this.updatedAt,
+    this.productsCount,
+  });
 
-  factory Occasions.fromJson(Map<String, dynamic> json) => _$OccasionsFromJson(json);
+  factory Occasions.fromJson(Map<String, dynamic> json) =>
+      _$OccasionsFromJson(json);
 
   static List<Occasions> fromList(List<Map<String, dynamic>> list) {
     return list.map(Occasions.fromJson).toList();
@@ -63,7 +72,8 @@ class Metadata {
 
   Metadata({this.currentPage, this.limit, this.totalPages, this.totalItems});
 
-  factory Metadata.fromJson(Map<String, dynamic> json) => _$MetadataFromJson(json);
+  factory Metadata.fromJson(Map<String, dynamic> json) =>
+      _$MetadataFromJson(json);
 
   static List<Metadata> fromList(List<Map<String, dynamic>> list) {
     return list.map(Metadata.fromJson).toList();

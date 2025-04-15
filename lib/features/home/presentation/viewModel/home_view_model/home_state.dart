@@ -5,7 +5,6 @@ import 'package:flowery/features/occasion/data/models/occaions.dart';
 import '../../../../../core/enums/request_enum.dart';
 import '../../../../categories/data/models/categories_model/category.dart';
 
-
 class HomeState extends Equatable {
   final RequestState categoriesState;
   final RequestState bestSellerState;
@@ -59,6 +58,4 @@ class HomeState extends Equatable {
     occasions,
     error,
   ];
-
-
 }

@@ -213,25 +213,25 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<Product> getProductDetails(String id) async {
+  Future<ProductDetailsModel> getProductDetails(String id) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'id': id};
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<Product>(
+    final _options = _setStreamType<ProductDetailsModel>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'products',
+            'products/${id}',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late Product _value;
+    late ProductDetailsModel _value;
     try {
-      _value = Product.fromJson(_result.data!);
+      _value = ProductDetailsModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

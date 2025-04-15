@@ -4,7 +4,6 @@ import 'package:geocoding/geocoding.dart';
 import '../../../data/models/plus_code_client.dart';
 import 'location_state.dart';
 
-
 class CurrentUserLocationViewModel extends Cubit<LocationState> {
   final PlusCodeClient _client;
 
@@ -30,7 +29,11 @@ class CurrentUserLocationViewModel extends Cubit<LocationState> {
       }
 
       if (permission == LocationPermission.deniedForever) {
-        emit(LocationError("Permission permanently denied , please enable it from the device Settings."));
+        emit(
+          LocationError(
+            "Permission permanently denied , please enable it from the device Settings.",
+          ),
+        );
         return;
       }
 
@@ -38,8 +41,14 @@ class CurrentUserLocationViewModel extends Cubit<LocationState> {
         desiredAccuracy: LocationAccuracy.high,
       );
 
-      final plusCode = await _getPlusCode(position.latitude, position.longitude);
-      final areaName = await _getAreaName(position.latitude, position.longitude);
+      final plusCode = await _getPlusCode(
+        position.latitude,
+        position.longitude,
+      );
+      final areaName = await _getAreaName(
+        position.latitude,
+        position.longitude,
+      );
 
       emit(LocationSuccess(plusCode: plusCode, areaName: areaName));
     } catch (_) {

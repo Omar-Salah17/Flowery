@@ -10,6 +10,8 @@ class GetProductsByCategoryUseCase {
   GetProductsByCategoryUseCase({required this.getAllCategoriesRepo});
 
   Future<Either<Failure, List<Product>>> call({String? categoryId}) async {
-    return await getAllCategoriesRepo.getProductsByCategory(categoryId: categoryId);
+    return await getAllCategoriesRepo.getProductsByCategory(
+      categoryId: categoryId,
+    );
   }
 }

@@ -9,7 +9,5 @@ abstract class PlusCodeClient {
   factory PlusCodeClient(Dio dio, {String baseUrl}) = _PlusCodeClient;
 
   @GET("/api")
-  Future<PlusCodeResponse> getPlusCode(
-      @Query("address") String coordinates,
-      );
+  Future<PlusCodeResponse> getPlusCode(@Query("address") String coordinates);
 }

@@ -9,7 +9,7 @@ import 'package:flowery/features/auth/register/data/models/register_request.dart
 import 'package:flowery/features/auth/register/data/models/register_response.dart';
 import 'package:flowery/features/best_seller/data/models/best_seller_model.dart';
 import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart';
-
+import 'package:flowery/features/productsDetails/data/models/product_details_model/product_details_model.dart';
 
 import 'package:retrofit/retrofit.dart';
 
@@ -33,20 +33,19 @@ abstract class ApiService {
   });
   @POST(Constants.loginEndPoint)
   Future<LoginResponse> loginUser(@Body() LoginRequest loginRequest);
-  
 
   @GET(Constants.occasionEndPoint)
   Future<AllOccaions> getAllOccasions();
   @GET(Constants.productsEndPoint)
   Future<ProductsModel> getAllProductByOccasion({
-    @Query('occasion')  String? occasionId,
+    @Query('occasion') String? occasionId,
   });
 
   @GET(Constants.bestSellerEndPoint)
   Future<BestSellerModel> getBestSellerProduct();
+  @GET("products/{id}")
+Future<ProductDetailsModel> getProductDetails(@Path("id") String id);
 
-  @GET("products")
-  Future<Product> getProductDetails(@Query("id") String id);
- 
-
+  // @GET("products")
+  // Future<ProductDetailsModel> getProductDetails(@Query("id") String id);
 }
