@@ -8,9 +8,12 @@ import 'package:flowery/features/best_seller/presentation/view/best_seller_scree
 import 'package:flowery/features/occasion/presentation/view/occasion_screen.dart';
 import 'package:flowery/features/productsDetails/presentation/view/products_details.dart';
 import 'package:flowery/features/profile/presentation/view/change_password_screen.dart';
+import 'package:flowery/features/profile/data/models/profile_response.dart';
+import 'package:flowery/features/profile/presentation/view/edit_profile_view.dart';
 
 import 'package:flowery/features/splash/view/splash.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../features/cart/presentation/view/cart_view.dart';
 import '../../features/categories/presentation/view/categories_screen.dart';
@@ -18,6 +21,8 @@ import '../../features/home/presentation/view/home_view.dart';
 import '../../features/layout/Presentation/layout.dart';
 
 import '../../features/profile/presentation/view/profile_view.dart';
+import '../../features/profile/presentation/view_model/edit_profile_cubit.dart';
+import '../di/di.dart';
 
 class RouteGenerator {
   static Route<dynamic>? onGenerator(RouteSettings Settings) {
@@ -89,7 +94,11 @@ class RouteGenerator {
           builder: (context) => CategoriesScreen(),
           settings: Settings,
         );
-
+ case RoutesName.changePasswordScreen:
+        return MaterialPageRoute(
+          builder: (context) => ChangePasswordScreen(),
+          settings: Settings,
+        );
       case RoutesName.home:
         return MaterialPageRoute(
           builder: (context) => HomeView(),
@@ -101,9 +110,14 @@ class RouteGenerator {
           builder: (context) => ProductsDetails(),
           settings: Settings,
         );
-        case RoutesName.changePasswordScreen:
+
+      case RoutesName.editProfile:
         return MaterialPageRoute(
-          builder: (context) => ChangePasswordScreen(),
+          builder: (context) =>   BlocProvider(
+            create:  (context) => getIt<EditProfileCubit>(),
+            child: EditProfileView(user: UserModel(),)
+
+          ),
           settings: Settings,
         );
 
