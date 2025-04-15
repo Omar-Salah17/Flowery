@@ -23,7 +23,15 @@ abstract class DioModule {
       BaseOptions(
         connectTimeout: const Duration(seconds: 60),
         baseUrl: Constants.baseUrl,
-        
+      ),
+    );
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
+          options.headers['Authorization'] = Constants.userToken;
+
+          return handler.next(options);
+        },
       ),
     );
     dio.interceptors.add(logInterceptor);
