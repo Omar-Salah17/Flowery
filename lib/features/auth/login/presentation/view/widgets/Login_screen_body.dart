@@ -133,7 +133,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                     child: CustomElevatedButton(
                       text: "Continue as guest",
                       onTap: () {
-                        Navigator.pushNamed(context, RoutesName.layout);
+                        Navigator.pushReplacementNamed(context, RoutesName.layout);
                       },
                       isPink: false,
                     ),
