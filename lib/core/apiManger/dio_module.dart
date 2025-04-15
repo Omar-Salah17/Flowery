@@ -25,7 +25,11 @@ abstract class DioModule {
         baseUrl: Constants.baseUrl,
       ),
     );
-    dio.interceptors.add(logInterceptor);
+
+    dio.interceptors.add(LogInterceptor(
+      requestBody: true,
+      responseBody: true,
+    ));
     return dio;
   }
 

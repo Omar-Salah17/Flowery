@@ -13,5 +13,6 @@ class RoutesName {
   static const String occasionScreen = "OccasionScreen";
   static const String bestSeller="BestSellerScreen";
   static const String productsDetails = "ProductsDetails";
+  static const String editProfile = "EditProfile";
 }
 
