@@ -99,14 +99,8 @@ import '../../features/profile/data/data_source/profile_remote_data_source.dart'
     as _i998;
 import '../../features/profile/data/data_source/profile_remote_data_source_impl.dart'
     as _i531;
-import '../../features/profile/data/repo/profile_repository_impl.dart'
-    as _i1015;
 import '../../features/profile/data/repos/profile_repo_impl.dart' as _i1072;
-import '../../features/profile/domain/repos/profile_data_source_contract%20.dart'
-    as _i837;
 import '../../features/profile/domain/repos/profile_repo.dart' as _i1007;
-import '../../features/profile/domain/repos/profile_repository_contract.dart'
-    as _i133;
 import '../../features/profile/domain/use_case/change_password_use_case.dart'
     as _i342;
 import '../../features/profile/domain/use_case/get_user_data_use_case.dart'
@@ -126,10 +120,10 @@ extension GetItInjectableX on _i174.GetIt {
     final dioModule = _$DioModule();
     gh.singleton<_i29.ApiManager>(() => _i29.ApiManager());
     gh.singleton<_i361.LogInterceptor>(() => dioModule.provideLogger());
-    gh.singleton<_i646.GuestManager>(() => _i646.GuestManager());
     gh.singleton<_i665.SecureStorageService>(
       () => _i665.SecureStorageService(),
     );
+    gh.singleton<_i646.GuestManager>(() => _i646.GuestManager());
     gh.factory<_i237.OccasionRemoteDataSourceContract>(
       () => _i61.OccasionRemoteDataSourceImpl(),
     );
@@ -145,6 +139,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i250.GetProductByOccasionUsecase>(
       () => _i250.GetProductByOccasionUsecase(
         gh<_i234.OccasionRepositoryContract>(),
+      ),
+    );
+    gh.singleton<_i361.Dio>(
+      () => dioModule.provideDio(
+        gh<_i361.LogInterceptor>(),
+        gh<_i665.SecureStorageService>(),
       ),
     );
     gh.factory<_i251.RegisterRepositoryContracr>(
@@ -164,14 +164,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i129.ForgetPasswordRemoteDataSource>(
       () => _i177.ForgetPasswordRemoteDataSourceImpl(
         apiManager: gh<_i29.ApiManager>(),
-      ),
-    );
-    gh.singleton<_i361.Dio>(
-      () => dioModule.provideDio(gh<_i361.LogInterceptor>()),
-    );
-    gh.factory<_i1007.ProfileRepo>(
-      () => _i1072.ProfileRepoImpl(
-        remoteDataSource: gh<_i998.ProfileRemoteDataSource>(),
       ),
     );
     gh.factory<_i17.OccasionCubit>(
@@ -238,20 +230,17 @@ extension GetItInjectableX on _i174.GetIt {
         categoriesScreenRepo: gh<_i826.CategoriesScreenRepo>(),
       ),
     );
-    gh.factory<_i342.ChangePasswordUseCase>(
-      () => _i342.ChangePasswordUseCase(profileRepo: gh<_i1007.ProfileRepo>()),
-    );
     gh.factory<_i629.BestSellerRepo>(
       () => _i12.BestSellerRepoImpl(gh<_i312.BestSellerDataSource>()),
-    );
-    gh.factory<_i837.ProfileRemoteDataSourceContract>(
-      () =>
-          _i531.ProfileRemoteDataSourceImpl(apiService: gh<_i171.ApiService>()),
     );
     gh.factory<_i461.GetBestSellerUseCase>(
       () => _i461.GetBestSellerUseCase(
         bestSellerRepo: gh<_i629.BestSellerRepo>(),
       ),
+    );
+    gh.factory<_i998.ProfileRemoteDataSource>(
+      () =>
+          _i531.ProfileRemoteDataSourceImpl(apiService: gh<_i171.ApiService>()),
     );
     gh.factory<_i877.GetProductDetailsContract>(
       () => _i232.GetProductDetailsImpl(
@@ -280,15 +269,18 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i691.GetProductDetailsUseCase(gh<_i877.GetProductDetailsContract>()),
     );
-    gh.factory<_i133.ProfileRepositoryContract>(
-      () => _i1015.ProfileRepositoryImpl(
-        gh<_i837.ProfileRemoteDataSourceContract>(),
+    gh.factory<_i1007.ProfileRepo>(
+      () => _i1072.ProfileRepoImpl(
+        remoteDataSource: gh<_i998.ProfileRemoteDataSource>(),
       ),
     );
     gh.factory<_i743.GetUserDataUseCase>(
       () => _i743.GetUserDataUseCase(
-        profileRepositoryContract: gh<_i133.ProfileRepositoryContract>(),
+        profileRepositoryContract: gh<_i1007.ProfileRepo>(),
       ),
+    );
+    gh.factory<_i342.ChangePasswordUseCase>(
+      () => _i342.ChangePasswordUseCase(profileRepo: gh<_i1007.ProfileRepo>()),
     );
     return this;
   }
