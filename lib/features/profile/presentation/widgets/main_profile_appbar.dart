@@ -10,23 +10,27 @@ class MainProfileAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        title: Row(
-          children: [
-            SvgPicture.asset("assets/images/Flower.svg"),
-            Text(
-              "Flowery",
-              style: AppTextStyles.instance.textStyle20Fell.copyWith(
-                color: PalletsColors.mainColorBase,
-              ),
+      automaticallyImplyLeading: false,
+      title: Row(
+        children: [
+          SvgPicture.asset("assets/images/Flower.svg"),
+          Text(
+            "Flowery",
+            style: AppTextStyles.instance.textStyle20Fell.copyWith(
+              color: PalletsColors.mainColorBase,
             ),
-          ],
-        ),
-        actions: [Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 16.0.w),
+          ),
+        ],
+      ),
+      actions: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0.w),
           child: Badge(
             label: Text('3'),
-            child: SvgPicture.asset('assets/images/notification.svg',)),
-        )],
-      );
+            child: SvgPicture.asset('assets/images/notification.svg'),
+          ),
+        ),
+      ],
+    );
   }
 }

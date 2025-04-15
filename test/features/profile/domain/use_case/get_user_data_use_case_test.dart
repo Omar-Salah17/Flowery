@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flowery/core/utils/error_handler.dart';
 import 'package:flowery/features/profile/data/model/user_response.dart';
-import 'package:flowery/features/profile/domain/repos/profile_repository_contract.dart';
+import 'package:flowery/features/profile/domain/repos/profile_repo.dart';
+
 import 'package:flowery/features/profile/domain/use_case/get_user_data_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -9,14 +10,14 @@ import 'package:mockito/mockito.dart';
 
 import 'get_user_data_use_case_test.mocks.dart';
 
-@GenerateMocks([ProfileRepositoryContract])
+@GenerateMocks([ProfileRepo])
 void main() {
   group("Test GetUserDataUseCase", () {
-    late MockProfileRepositoryContract repo;
+    late MockProfileRepo repo;
     late GetUserDataUseCase getUserDataUseCase;
     setUp(() {
       // Initialize the mock repository before each test
-      repo = MockProfileRepositoryContract();
+      repo = MockProfileRepo();
       getUserDataUseCase = GetUserDataUseCase(profileRepositoryContract: repo);
     });
     test(

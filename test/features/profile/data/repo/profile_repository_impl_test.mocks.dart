@@ -5,9 +5,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:flowery/features/profile/data/model/user_response.dart' as _i2;
-import 'package:flowery/features/profile/domain/repos/profile_data_source_contract%20.dart'
+import 'package:flowery/features/profile/data/data_source/profile_remote_data_source.dart'
     as _i3;
+import 'package:flowery/features/profile/data/model/user_response.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -29,14 +29,24 @@ class _FakeUserData_0 extends _i1.SmartFake implements _i2.UserData {
     : super(parent, parentInvocation);
 }
 
-/// A class which mocks [ProfileRemoteDataSourceContract].
+/// A class which mocks [ProfileRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProfileRemoteDataSourceContract extends _i1.Mock
-    implements _i3.ProfileRemoteDataSourceContract {
-  MockProfileRemoteDataSourceContract() {
+class MockProfileRemoteDataSource extends _i1.Mock
+    implements _i3.ProfileRemoteDataSource {
+  MockProfileRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
+
+  @override
+  _i4.Future<Map<String, dynamic>> changePassword(Map<String, dynamic>? data) =>
+      (super.noSuchMethod(
+            Invocation.method(#changePassword, [data]),
+            returnValue: _i4.Future<Map<String, dynamic>>.value(
+              <String, dynamic>{},
+            ),
+          )
+          as _i4.Future<Map<String, dynamic>>);
 
   @override
   _i4.Future<_i2.UserData> getLoggedInUserData() =>

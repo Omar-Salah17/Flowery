@@ -8,8 +8,7 @@ import 'dart:async' as _i4;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:flowery/core/utils/error_handler.dart' as _i5;
 import 'package:flowery/features/profile/data/model/user_response.dart' as _i6;
-import 'package:flowery/features/profile/domain/repos/profile_repository_contract.dart'
-    as _i3;
+import 'package:flowery/features/profile/domain/repos/profile_repo.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -31,14 +30,29 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
     : super(parent, parentInvocation);
 }
 
-/// A class which mocks [ProfileRepositoryContract].
+/// A class which mocks [ProfileRepo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProfileRepositoryContract extends _i1.Mock
-    implements _i3.ProfileRepositoryContract {
-  MockProfileRepositoryContract() {
+class MockProfileRepo extends _i1.Mock implements _i3.ProfileRepo {
+  MockProfileRepo() {
     _i1.throwOnMissingStub(this);
   }
+
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, Map<String, dynamic>>> changePassword(
+    Map<String, dynamic>? data,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#changePassword, [data]),
+            returnValue:
+                _i4.Future<_i2.Either<_i5.Failure, Map<String, dynamic>>>.value(
+                  _FakeEither_0<_i5.Failure, Map<String, dynamic>>(
+                    this,
+                    Invocation.method(#changePassword, [data]),
+                  ),
+                ),
+          )
+          as _i4.Future<_i2.Either<_i5.Failure, Map<String, dynamic>>>);
 
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i6.UserData>> getLoggedInUserData() =>

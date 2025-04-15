@@ -1,9 +1,10 @@
 import 'package:flowery/core/apiManger/apiService.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/error_handler.dart';
+import 'package:flowery/features/profile/data/data_source/profile_remote_data_source.dart';
 import 'package:flowery/features/profile/data/data_source/profile_remote_data_source_impl.dart';
 import 'package:flowery/features/profile/data/model/user_response.dart';
-import 'package:flowery/features/profile/domain/repos/profile_data_source_contract%20.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -15,7 +16,7 @@ void main() {
   group('Test ProfileRemoteDataSource', () {
     late ApiService apiService;
 
-    late ProfileRemoteDataSourceContract profileRemoteDataSourceContract;
+    late ProfileRemoteDataSource profileRemoteDataSourceContract;
     setUp(() {
       // Initialize the mock API service
       apiService = MockApiService();

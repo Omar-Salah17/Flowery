@@ -11,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileMainScreen extends StatefulWidget {
-  ProfileMainScreen({super.key});
+const  ProfileMainScreen({super.key});
 
   @override
   State<ProfileMainScreen> createState() => _ProfileMainScreenState();
