@@ -1,8 +1,10 @@
 import 'dart:developer';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/di/di.dart';
+import 'package:flowery/core/utils/constants.dart';
 import 'package:flowery/core/utils/custom_button.dart';
 import 'package:flowery/core/utils/custom_text_form_fieled.dart';
+import 'package:flowery/core/utils/services/secure_sotrage_service.dart';
 import 'package:flowery/core/utils/validator.dart';
 import 'package:flowery/features/auth/login/domain/use_cases/login_usecase.dart';
 import 'package:flowery/features/auth/login/presentation/view/widgets/remember_me_row.dart';
@@ -54,6 +56,9 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                 content: Text('Logged in successfully'),
               ),
             );
+
+            _saveUserToken(state);
+
             Navigator.pushNamed(context, RoutesName.layout);
           } else if (state is LoginFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -142,5 +147,17 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
         },
       ),
     );
+  }
+
+  Future<void> _saveUserToken(LoginSuccess state) async {
+    await SecureStorageService().writeSecureData(
+      Constants.userToken,
+      state.data.token,
+    );
+    String? token = await SecureStorageService().readSecureData(
+      Constants.userToken,
+    );
+    // print("user token $token");
+    log("user token is $token");
   }
 }

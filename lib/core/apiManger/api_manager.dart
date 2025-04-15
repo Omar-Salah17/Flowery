@@ -1,6 +1,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:flowery/core/utils/constants.dart';
+import 'package:flowery/core/utils/helper_functions/set_token_function.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
@@ -10,6 +11,7 @@ class ApiManager {
       baseUrl: Constants.baseUrl,
 
       headers: {'Content-Type': 'application/json'},
+
     ),
   );
 
@@ -39,8 +41,9 @@ class ApiManager {
 
   Future<Response> patchRequest(
     String endpoint,
-    Map<String, dynamic> data,
+    Map<String, dynamic> data
   ) async {
+   await setToken();
     final response = await dio.patch(endpoint, data: data);
     return response;
   }

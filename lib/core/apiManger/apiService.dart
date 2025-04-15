@@ -11,6 +11,7 @@ import 'package:flowery/features/best_seller/data/models/best_seller_model.dart'
 import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart';
 
 
+
 import 'package:retrofit/retrofit.dart';
 
 import '../../features/occasion/data/models/occaions.dart';
@@ -47,6 +48,8 @@ abstract class ApiService {
 
   @GET("products")
   Future<Product> getProductDetails(@Query("id") String id);
+
+  
  
 
 }

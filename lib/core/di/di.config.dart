@@ -95,6 +95,14 @@ import '../../features/productsDetails/domain/repository/get_product_details_con
     as _i877;
 import '../../features/productsDetails/domain/useCases/get_product_details_use_case.dart'
     as _i691;
+import '../../features/profile/data/data_source/profile_remote_data_source.dart'
+    as _i998;
+import '../../features/profile/data/data_source/profile_remote_data_source_impl.dart'
+    as _i531;
+import '../../features/profile/data/repos/profile_repo_impl.dart' as _i1072;
+import '../../features/profile/domain/repos/profile_repo.dart' as _i1007;
+import '../../features/profile/domain/use_case/change_password_use_case.dart'
+    as _i342;
 import '../apiManger/api_manager.dart' as _i29;
 import '../apiManger/apiService.dart' as _i171;
 import '../apiManger/dio_module.dart' as _i304;
@@ -159,6 +167,10 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i691.GetProductDetailsUseCase(gh<_i877.GetProductDetailsContract>()),
     );
+    gh.factory<_i998.ProfileRemoteDataSource>(
+      () =>
+          _i531.ProfileRemoteDataSourceImpl(apiManager: gh<_i29.ApiManager>()),
+    );
     gh.factory<_i17.OccasionCubit>(
       () => _i17.OccasionCubit(
         getAllOccasionsUseCase: gh<_i34.GetAllOccasionsUseCase>(),
@@ -218,6 +230,11 @@ extension GetItInjectableX on _i174.GetIt {
         categoriesScreenRepo: gh<_i826.CategoriesScreenRepo>(),
       ),
     );
+    gh.factory<_i1007.ProfileRepo>(
+      () => _i1072.ProfileRepoImpl(
+        remoteDataSource: gh<_i998.ProfileRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i629.BestSellerRepo>(
       () => _i12.BestSellerRepoImpl(gh<_i312.BestSellerDataSource>()),
     );
@@ -243,6 +260,9 @@ extension GetItInjectableX on _i174.GetIt {
         getBestSeller: gh<_i461.GetBestSellerUseCase>(),
         getOccasions: gh<_i34.GetAllOccasionsUseCase>(),
       ),
+    );
+    gh.factory<_i342.ChangePasswordUseCase>(
+      () => _i342.ChangePasswordUseCase(profileRepo: gh<_i1007.ProfileRepo>()),
     );
     return this;
   }
