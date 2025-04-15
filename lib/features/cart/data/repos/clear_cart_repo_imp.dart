@@ -14,9 +14,9 @@ class ClearCartRepoImp extends ClearCartRepo {
   ClearCartRepoImp({required this.clearCartDataSource});
 
   @override
-  Future<Either<Failure, ClearCartResponse>> clearCart(String token) async {
+  Future<Either<Failure, ClearCartResponse>> clearCart() async {
     try {
-      final result = await clearCartDataSource.clearCart(token);
+      final result = await clearCartDataSource.clearCart();
       return right(result);
     } catch (e) {
       if (e is DioException) {

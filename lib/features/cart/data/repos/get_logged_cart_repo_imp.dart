@@ -14,11 +14,9 @@ class GetLoggedCartRepoImp extends GetLoggedCartRepo {
   GetLoggedCartRepoImp({required this.dataSource});
 
   @override
-  Future<Either<Failure, GetLoggedCartResponse>> getLoggedCart({
-    required String token,
-  }) async {
+  Future<Either<Failure, GetLoggedCartResponse>> getLoggedCart() async {
     try {
-      final result = await dataSource.getLoggedCart(token: token);
+      final result = await dataSource.getLoggedCart();
       return right(result);
     } catch (e) {
       if (e is DioException) {

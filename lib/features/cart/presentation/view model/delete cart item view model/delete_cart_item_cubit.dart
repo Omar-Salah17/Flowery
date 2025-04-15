@@ -7,13 +7,10 @@ class DeleteCartItemCubit extends Cubit<DeleteCartItemState> {
 
   DeleteCartItemCubit(this.usecase) : super(DeleteCartItemInitial());
 
-  Future<void> deleteCartItem({
-    required String token,
-    required String cartItemId,
-  }) async {
+  Future<void> deleteCartItem({required String cartItemId}) async {
     emit(DeleteCartItemLoading());
 
-    final result = await usecase.invoke(token: token, cartItemId: cartItemId);
+    final result = await usecase.invoke(cartItemId: cartItemId);
 
     result.fold(
       (failure) =>

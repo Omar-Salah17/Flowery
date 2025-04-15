@@ -11,7 +11,7 @@ class GetLoggedCartDataSourceImp extends GetLoggedCartDataSource {
   final apiServices = getIt<ApiService>();
 
   @override
-  Future<GetLoggedCartResponse> getLoggedCart({required String token}) async {
-    return await apiServices.getLoggedCart(token);
+  Future<GetLoggedCartResponse> getLoggedCart() async {
+    return await apiServices.getLoggedCart();
   }
 }

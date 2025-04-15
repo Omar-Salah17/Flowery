@@ -4,7 +4,6 @@ import 'package:flowery/features/cart/data/models/delete%20item%20models/delete_
 
 abstract class DeleteCartItemRepo {
   Future<Either<Failure, DeleteCartResponse>> deleteCartItem({
-    required String token,
     required String cartItemId,
   });
 }

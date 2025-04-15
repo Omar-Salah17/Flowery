@@ -9,10 +9,7 @@ class DeleteCartItemDataSourceImp extends DeleteCartItemDataSource {
   final apiService = getIt<ApiService>();
 
   @override
-  Future<DeleteCartResponse> deleteCartItem({
-    required String token,
-    required String cartItemId,
-  }) {
-    return apiService.deleteCartItem(cartItemId, token);
+  Future<DeleteCartResponse> deleteCartItem({required String cartItemId}) {
+    return apiService.deleteCartItem(cartItemId);
   }
 }

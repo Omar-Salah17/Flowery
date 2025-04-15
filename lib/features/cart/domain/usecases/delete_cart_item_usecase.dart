@@ -10,9 +10,8 @@ class DeleteCartItemUsecase {
   DeleteCartItemUsecase({required this.repo});
 
   Future<Either<Failure, DeleteCartResponse>> invoke({
-    required String token,
     required String cartItemId,
   }) {
-    return repo.deleteCartItem(token: token, cartItemId: cartItemId);
+    return repo.deleteCartItem(cartItemId: cartItemId);
   }
 }

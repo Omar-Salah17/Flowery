@@ -13,14 +13,10 @@ class DeleteCartItemRepoImp extends DeleteCartItemRepo {
 
   @override
   Future<Either<Failure, DeleteCartResponse>> deleteCartItem({
-    required String token,
     required String cartItemId,
   }) async {
     try {
-      final result = await dataSource.deleteCartItem(
-        token: token,
-        cartItemId: cartItemId,
-      );
+      final result = await dataSource.deleteCartItem(cartItemId: cartItemId);
       return right(result);
     } catch (e) {
       if (e is DioException) {

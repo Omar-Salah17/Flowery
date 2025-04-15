@@ -12,13 +12,8 @@ class UpdateProductDataSourceImp implements UpdateProductDataSource {
   @override
   Future<UpdateCartResponse> updateCartItem(
     String cartItemId,
-    String token,
     UpdateProductRequest request,
   ) async {
-    return await apiServices.updateCartProductQuantity(
-      cartItemId,
-      token,
-      request,
-    );
+    return await apiServices.updateCartProductQuantity(cartItemId, request);
   }
 }

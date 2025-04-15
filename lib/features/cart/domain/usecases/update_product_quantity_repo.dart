@@ -12,9 +12,9 @@ class UpdateCartItemUseCase {
 
   Future<Either<String, UpdateCartResponse>> call({
     required String cartItemId,
-    required String token,
+
     required UpdateProductRequest request,
   }) {
-    return repo.updateCartItem(cartItemId, token, request);
+    return repo.updateCartItem(cartItemId, request);
   }
 }

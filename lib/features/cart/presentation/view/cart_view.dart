@@ -1,11 +1,18 @@
+import 'dart:developer';
+
+import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/custom_button.dart';
+import 'package:flowery/features/cart/domain/usecases/get_logged_cart_usecase.dart';
+import 'package:flowery/features/cart/presentation/view%20model/get%20logged%20cart%20view%20model/get_logged_cart_cubit.dart';
+import 'package:flowery/features/cart/presentation/view%20model/get%20logged%20cart%20view%20model/get_logged_cart_states.dart';
 import 'package:flowery/features/cart/presentation/view/widgets/cart_app_bar.dart';
 import 'package:flowery/features/cart/presentation/view/widgets/cart_item_widget.dart';
 import 'package:flowery/features/cart/presentation/view/widgets/price_row.dart';
 
 import 'package:flowery/features/home/presentation/view/currentUserLocation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CartView extends StatefulWidget {
@@ -55,47 +62,72 @@ class _CartViewState extends State<CartView> {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
-        child: Column(
-          children: [
-            CurrentUserLocation(),
-            SizedBox(
-              height: 435.h,
-              child: ListView.builder(
-                itemCount: cartItems.length,
-                itemBuilder: (context, index) {
-                  final item = cartItems[index];
-                  return Padding(
-                    padding: EdgeInsets.symmetric(vertical: 12.h),
-                    child: CartItemWidget(
-                      item: item,
-                      onDelete: () {
-                        setState(() {
-                          cartItems.removeAt(index);
-                        });
-                      },
-                      onQuantityChanged: (value) {
-                        print('Quantity changed: $value');
-                      },
-                    ),
-                  );
-                },
+        child: BlocProvider(
+          create:
+              (context) =>
+                  GetLoggedCartCubit(getIt.get<GetLoggedCartUsecase>())
+                    ..getLoggedCart(),
+          child: Column(
+            children: [
+              CurrentUserLocation(),
+              SizedBox(
+                height: 435.h,
+                child: BlocBuilder<GetLoggedCartCubit, GetLoggedCartState>(
+                  builder: (context, state) {
+                    log("inside builder");
+                    if (state is GetLoggedCartLoading) {
+                      return Center(child: CircularProgressIndicator());
+                    } else if (state is GetLoggedCartFailure) {
+                      return Center(
+                        child: Text("Error: ${state.errorMessage}"),
+                      );
+                    } else if (state is GetLoggedCartSuccess) {
+                      return ListView.builder(
+                        itemCount: state.response.numOfCartItems,
+                        itemBuilder: (context, index) {
+                          final item = state.response.cart.cartItems[index];
+                          return Padding(
+                            padding: EdgeInsets.symmetric(vertical: 12.h),
+                            child: CartItemWidget(
+                              item: item,
+                              onDelete: () {
+                                setState(() {
+                                  cartItems.removeAt(index);
+                                });
+                              },
+                              onQuantityChanged: (value) {
+                                print('Quantity changed: $value');
+                              },
+                            ),
+                          );
+                        },
+                      );
+                    } else {
+                      return Container();
+                    }
+                  },
+                ),
               ),
-            ),
-            SizedBox(height: 16.h),
-            PriceRow(title: "Sub Total", value: "100\$"),
-            PriceRow(title: "Delivery Fee", value: "10\$"),
-            Divider(thickness: 1.sp),
-            PriceRow(
-              title: "Total",
-              value: "110\$",
-              titleFontWeight: FontWeight.w500,
-              valueFontWeight: FontWeight.w500,
-              valueColor: PalletsColors.blackBase,
-              titleColor: PalletsColors.blackBase,
-            ),
-            SizedBox(height: 12.h),
-            CustomElevatedButton(text: "Checkout", isPink: true, onTap: () {}),
-          ],
+              SizedBox(height: 16.h),
+              PriceRow(title: "Sub Total", value: "100\$"),
+              PriceRow(title: "Delivery Fee", value: "10\$"),
+              Divider(thickness: 1.sp),
+              PriceRow(
+                title: "Total",
+                value: "110\$",
+                titleFontWeight: FontWeight.w500,
+                valueFontWeight: FontWeight.w500,
+                valueColor: PalletsColors.blackBase,
+                titleColor: PalletsColors.blackBase,
+              ),
+              SizedBox(height: 12.h),
+              CustomElevatedButton(
+                text: "Checkout",
+                isPink: true,
+                onTap: () {},
+              ),
+            ],
+          ),
         ),
       ),
     );

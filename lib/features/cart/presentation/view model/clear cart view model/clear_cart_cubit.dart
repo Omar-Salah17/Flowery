@@ -9,11 +9,11 @@ class ClearCartCubit extends Cubit<ClearCartState> {
 
   ClearCartCubit(this.clearCartUsecase) : super(ClearCartInitial());
 
-  Future<void> clearCart(String token) async {
+  Future<void> clearCart() async {
     emit(ClearCartLoading());
     log("ClearCartCubit: before invoke");
 
-    final result = await clearCartUsecase.invoke(token);
+    final result = await clearCartUsecase.invoke();
 
     result.fold(
       (failure) {

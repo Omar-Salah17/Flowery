@@ -11,7 +11,7 @@ class ClearCartUsecase {
 
   ClearCartUsecase({required this.clearCartRepo});
 
-  Future<Either<Failure, ClearCartResponse>> invoke(String token) {
-    return clearCartRepo.clearCart(token);
+  Future<Either<Failure, ClearCartResponse>> invoke() {
+    return clearCartRepo.clearCart();
   }
 }

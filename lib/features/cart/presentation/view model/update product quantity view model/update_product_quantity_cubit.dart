@@ -10,14 +10,13 @@ class UpdateCartCubit extends Cubit<UpdateCartState> {
 
   Future<void> updateCartItem({
     required String cartItemId,
-    required String token,
+
     required UpdateProductRequest request,
   }) async {
     emit(UpdateCartLoading());
 
     final result = await updateCartItemUseCase(
       cartItemId: cartItemId,
-      token: token,
       request: request,
     );
 

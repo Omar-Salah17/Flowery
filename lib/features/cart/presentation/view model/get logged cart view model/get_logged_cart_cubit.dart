@@ -9,11 +9,11 @@ class GetLoggedCartCubit extends Cubit<GetLoggedCartState> {
 
   final GetLoggedCartUsecase usecase;
 
-  Future<void> getLoggedCart(String token) async {
+  Future<void> getLoggedCart() async {
     emit(GetLoggedCartLoading());
     log("GetLoggedCartCubit: Loading...");
 
-    final result = await usecase.invoke(token: token);
+    final result = await usecase.invoke();
 
     result.fold(
       (failure) {

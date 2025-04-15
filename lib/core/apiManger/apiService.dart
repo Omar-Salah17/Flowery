@@ -45,24 +45,20 @@ abstract class ApiService {
     @Body() AddProductRequest addProductRequest,
   );
 
-  @GET(Constants.loginEndPoint)
-  Future<GetLoggedCartResponse> getLoggedCart(
-    @Header("Authorization") String token,
-  );
+  @GET(Constants.getLoggedCart)
+  Future<GetLoggedCartResponse> getLoggedCart();
 
   @DELETE(Constants.deleteSpecificCartItem)
   Future<DeleteCartResponse> deleteCartItem(
-    @Path("cartItemId") String token,
     @Header("Authorization") String cartItemId,
   );
 
   @DELETE(Constants.clearCart)
-  Future<ClearCartResponse> clearCart(@Header("Authorization") String token);
+  Future<ClearCartResponse> clearCart();
 
   @PUT(Constants.updatCartProductQuantity)
   Future<UpdateCartResponse> updateCartProductQuantity(
     @Path("cartItemId") String cartItemId,
-    @Header("Authorization") String token,
     @Body() UpdateProductRequest request,
   );
 

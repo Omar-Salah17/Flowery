@@ -28,7 +28,8 @@ abstract class DioModule {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          options.headers['Authorization'] = Constants.userToken;
+          options.headers['Authorization'] =
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjc2YjMwYjUxZDc0NDM1MjVjNmZlZGJhIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDQ3NTQ4MjJ9.U37QOqTvVE1muYJ9pp_oOUmCIcEHdEP7awvnkN2X5wk";
 
           return handler.next(options);
         },

@@ -11,9 +11,7 @@ class GetLoggedCartUsecase {
 
   GetLoggedCartUsecase({required this.repo});
 
-  Future<Either<Failure, GetLoggedCartResponse>> invoke({
-    required String token,
-  }) async {
-    return await repo.getLoggedCart(token: token);
+  Future<Either<Failure, GetLoggedCartResponse>> invoke() async {
+    return await repo.getLoggedCart();
   }
 }

@@ -149,6 +149,7 @@ import '../../features/profile/domain/use_case/change_password_use_case.dart'
 import '../apiManger/api_manager.dart' as _i29;
 import '../apiManger/apiService.dart' as _i171;
 import '../apiManger/dio_module.dart' as _i304;
+import '../utils/services/secure_sotrage_service.dart' as _i665;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -161,6 +162,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i29.ApiManager>(() => _i29.ApiManager());
     gh.singleton<_i361.LogInterceptor>(() => dioModule.provideLogger());
     gh.singleton<_i646.GuestManager>(() => _i646.GuestManager());
+    gh.singleton<_i665.SecureStorageService>(
+      () => _i665.SecureStorageService(),
+    );
     gh.factory<_i599.DeleteCartItemDataSource>(
       () => _i946.DeleteCartItemDataSourceImp(),
     );
@@ -247,14 +251,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i320.DeleteCartItemUsecase>(
       () => _i320.DeleteCartItemUsecase(repo: gh<_i622.DeleteCartItemRepo>()),
     );
+    gh.factory<_i998.ProfileRemoteDataSource>(
+      () =>
+          _i531.ProfileRemoteDataSourceImpl(apiManager: gh<_i29.ApiManager>()),
+    );
     gh.factory<_i685.UpdateProductCartRepo>(
       () => _i277.UpdateProductQuantityRepoImp(
         updateProductDataSource: gh<_i136.UpdateProductDataSource>(),
       ),
-    );
-    gh.factory<_i998.ProfileRemoteDataSource>(
-      () =>
-          _i531.ProfileRemoteDataSourceImpl(apiManager: gh<_i29.ApiManager>()),
     );
     gh.factory<_i17.OccasionCubit>(
       () => _i17.OccasionCubit(
@@ -321,13 +325,13 @@ extension GetItInjectableX on _i174.GetIt {
         categoriesScreenRepo: gh<_i826.CategoriesScreenRepo>(),
       ),
     );
-    gh.factory<_i390.UpdateCartItemUseCase>(
-      () => _i390.UpdateCartItemUseCase(gh<_i685.UpdateProductCartRepo>()),
-    );
     gh.factory<_i1007.ProfileRepo>(
       () => _i1072.ProfileRepoImpl(
         remoteDataSource: gh<_i998.ProfileRemoteDataSource>(),
       ),
+    );
+    gh.factory<_i390.UpdateCartItemUseCase>(
+      () => _i390.UpdateCartItemUseCase(gh<_i685.UpdateProductCartRepo>()),
     );
     gh.factory<_i629.BestSellerRepo>(
       () => _i12.BestSellerRepoImpl(gh<_i312.BestSellerDataSource>()),

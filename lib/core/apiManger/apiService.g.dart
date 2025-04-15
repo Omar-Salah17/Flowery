@@ -161,17 +161,16 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<GetLoggedCartResponse> getLoggedCart(String token) async {
+  Future<GetLoggedCartResponse> getLoggedCart() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<GetLoggedCartResponse>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'auth/signin',
+            'cart',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -189,10 +188,7 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<DeleteCartResponse> deleteCartItem(
-    String token,
-    String cartItemId,
-  ) async {
+  Future<DeleteCartResponse> deleteCartItem(String cartItemId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': cartItemId};
@@ -220,11 +216,10 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<ClearCartResponse> clearCart(String token) async {
+  Future<ClearCartResponse> clearCart() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<ClearCartResponse>(
       Options(method: 'DELETE', headers: _headers, extra: _extra)
@@ -250,13 +245,11 @@ class _ApiService implements ApiService {
   @override
   Future<UpdateCartResponse> updateCartProductQuantity(
     String cartItemId,
-    String token,
     UpdateProductRequest request,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _options = _setStreamType<UpdateCartResponse>(

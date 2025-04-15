@@ -13,13 +13,11 @@ class UpdateProductQuantityRepoImp implements UpdateProductCartRepo {
   @override
   Future<Either<String, UpdateCartResponse>> updateCartItem(
     String cartItemId,
-    String token,
     UpdateProductRequest request,
   ) async {
     try {
       final result = await updateProductDataSource.updateCartItem(
         cartItemId,
-        token,
         request,
       );
       return Right(result);

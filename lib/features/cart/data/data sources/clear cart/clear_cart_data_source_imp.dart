@@ -10,7 +10,7 @@ class ClearCartDataSourceImp extends ClearCartDataSource {
   final apiService = getIt<ApiService>();
 
   @override
-  Future<ClearCartResponse> clearCart(String token) {
-    return apiService.clearCart("Bearer $token");
+  Future<ClearCartResponse> clearCart() {
+    return apiService.clearCart();
   }
 }

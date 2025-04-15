@@ -5,7 +5,6 @@ import 'package:flowery/features/cart/data/models/update%20product%20models/upda
 abstract class UpdateProductCartRepo {
   Future<Either<String, UpdateCartResponse>> updateCartItem(
     String cartItemId,
-    String token,
     UpdateProductRequest request,
   );
 }
