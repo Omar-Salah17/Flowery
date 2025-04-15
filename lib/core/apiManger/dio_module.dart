@@ -30,7 +30,7 @@ abstract class DioModule {
       onRequest: (options, handler) async {
         
       
-          options.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjdlNDIxOGY4MzZlZThiZTcwNjJlYTVmIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDQ1MDExNTZ9.QtusqwxGHFgJo6cvXkr1pHGtQ67LPygvoNICFFPpnAE';
+          options.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjdmNmRhNDVhOTgzMmQ4MzU5ZGRjMzkxIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDQ2ODc0OTd9.5fiFpGLmapgezf6K0BlBX-budrq2Q5oUq2-MSX1gk98';
         
         return handler.next(options);
       },

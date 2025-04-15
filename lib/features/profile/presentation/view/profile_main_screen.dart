@@ -44,6 +44,8 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
               } else if (state is ProfileError) {
                 return Center(
                   child: Text(
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
                     state.error,
                     style: AppTextStyles.instance.textStyle18.copyWith(
                       color: Colors.red,
