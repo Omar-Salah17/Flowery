@@ -8,5 +8,6 @@ abstract class OccasionRepositoryContract {
   Future<Either<Failure, List<Occasions>>> getAllOccasions();
 
   Future<Either<Failure, List<Product>>> getProductsByOccasion(
-      String? occasionId);
+    String? occasionId,
+  );
 }

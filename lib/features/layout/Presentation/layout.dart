@@ -36,8 +36,11 @@ class _LayoutState extends State<Layout> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CategoriesScreenCubit( getIt.get<GetAllCategoriesUseCase>(),
-                  getIt.get<GetProductsByCategoryUseCase>(),)..getAllCategories(),
+      create:
+          (context) => CategoriesScreenCubit(
+            getIt.get<GetAllCategoriesUseCase>(),
+            getIt.get<GetProductsByCategoryUseCase>(),
+          )..getAllCategories(),
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,

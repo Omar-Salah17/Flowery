@@ -24,7 +24,9 @@ class CategoriesScreenRepoImpl implements CategoriesScreenRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log('error in CategoriesScreenRepoImpl getCategories method: ${e.toString()}');
+        log(
+          'error in CategoriesScreenRepoImpl getCategories method: ${e.toString()}',
+        );
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
@@ -44,7 +46,9 @@ class CategoriesScreenRepoImpl implements CategoriesScreenRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-         log('error in CategoriesScreenRepoImpl getProductsByCategory method: ${e.toString()}');
+        log(
+          'error in CategoriesScreenRepoImpl getProductsByCategory method: ${e.toString()}',
+        );
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }

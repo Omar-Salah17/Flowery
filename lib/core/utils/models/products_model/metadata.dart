@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-
 class Metadata extends Equatable {
   final int? currentPage;
   final int? totalPages;

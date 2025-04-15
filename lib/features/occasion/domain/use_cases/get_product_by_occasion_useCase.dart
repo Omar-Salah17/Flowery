@@ -4,15 +4,16 @@ import 'package:flowery/features/occasion/domain/repos/occasion_repository_contr
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/utils/models/products_model/product.dart';
+
 @injectable
 class GetProductByOccasionUsecase {
   final OccasionRepositoryContract occasionRepositoryContract;
 
   GetProductByOccasionUsecase(this.occasionRepositoryContract);
 
-Future<Either<Failure, List<Product>>>  invoke({required String occasionId}) async {
-  return   await occasionRepositoryContract.getProductsByOccasion(
-      occasionId
-    );
+  Future<Either<Failure, List<Product>>> invoke({
+    required String occasionId,
+  }) async {
+    return await occasionRepositoryContract.getProductsByOccasion(occasionId);
   }
 }

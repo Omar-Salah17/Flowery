@@ -5,5 +5,7 @@ import 'package:flowery/core/utils/models/products_model/product.dart';
 
 abstract class CategoriesScreenRepo {
   Future<Either<Failure, List<Category>>> getAllCategories();
-   Future<Either<Failure, List<Product>>> getProductsByCategory({String? categoryId});
+  Future<Either<Failure, List<Product>>> getProductsByCategory({
+    String? categoryId,
+  });
 }

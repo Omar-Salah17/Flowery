@@ -32,7 +32,7 @@ class ProductsGridViewBlocConsumer extends StatelessWidget {
               ),
             );
           } else {
-            return ProductsGridView(productsList:state.products,);
+            return ProductsGridView(productsList: state.products);
           }
         } else {
           return SliverFillRemaining(
@@ -47,5 +47,3 @@ class ProductsGridViewBlocConsumer extends StatelessWidget {
     );
   }
 }
-
-

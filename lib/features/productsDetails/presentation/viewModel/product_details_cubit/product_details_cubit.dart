@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
+import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/features/productsDetails/domain/useCases/get_product_details_use_case.dart';
 import 'package:flowery/features/productsDetails/presentation/viewModel/product_details_cubit/product_details_states.dart';
 
@@ -6,7 +9,7 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
   ProductDetailsCubit(this.getProductDetailsUseCase)
     : super(ProductDetailsInitial());
   final GetProductDetailsUseCase getProductDetailsUseCase;
-  fetchProduct(String productId) async {
+  Future<void> fetchProduct(String productId) async {
     emit(ProductDetailsLoading());
     var result = await getProductDetailsUseCase.getProductDetails(productId);
     result.fold(
@@ -14,6 +17,7 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
         emit(ProductDetailsError(message: failure.errorMessage));
       },
       (responce) {
+        log("data in ProductDetailsCubit $responce");
         emit(ProductDetailsSuccess(product: responce));
       },
     );

@@ -1,5 +1,4 @@
 import 'package:flowery/core/config/routes_name.dart';
-import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,9 +6,9 @@ import '../../../../core/utils/colors.dart';
 import '../../../categories/data/models/categories_model/category.dart';
 
 class HomeCatView extends StatelessWidget {
- const HomeCatView({super.key, required this.categories});
+  const HomeCatView({super.key, required this.categories});
 
- final List<Category> categories;
+  final List<Category> categories;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
