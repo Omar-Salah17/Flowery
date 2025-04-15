@@ -6,7 +6,6 @@
 import 'dart:async' as _i11;
 
 import 'package:flowery/core/apiManger/apiService.dart' as _i10;
-import 'package:flowery/core/utils/models/products_model/product.dart' as _i8;
 import 'package:flowery/core/utils/models/products_model/products_model.dart'
     as _i4;
 import 'package:flowery/features/auth/login/data/models/login_request.dart'
@@ -22,6 +21,8 @@ import 'package:flowery/features/best_seller/data/models/best_seller_model.dart'
 import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart'
     as _i3;
 import 'package:flowery/features/occasion/data/models/occaions.dart' as _i6;
+import 'package:flowery/features/productsDetails/data/models/product_details_model/product_details_model.dart'
+    as _i8;
 import 'package:flowery/features/profile/data/model/user_response.dart' as _i9;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -72,8 +73,9 @@ class _FakeBestSellerModel_5 extends _i1.SmartFake
     : super(parent, parentInvocation);
 }
 
-class _FakeProduct_6 extends _i1.SmartFake implements _i8.Product {
-  _FakeProduct_6(Object parent, Invocation parentInvocation)
+class _FakeProductDetailsModel_6 extends _i1.SmartFake
+    implements _i8.ProductDetailsModel {
+  _FakeProductDetailsModel_6(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
@@ -191,14 +193,17 @@ class MockApiService extends _i1.Mock implements _i10.ApiService {
           as _i11.Future<_i7.BestSellerModel>);
 
   @override
-  _i11.Future<_i8.Product> getProductDetails(String? id) =>
+  _i11.Future<_i8.ProductDetailsModel> getProductDetails(String? id) =>
       (super.noSuchMethod(
             Invocation.method(#getProductDetails, [id]),
-            returnValue: _i11.Future<_i8.Product>.value(
-              _FakeProduct_6(this, Invocation.method(#getProductDetails, [id])),
+            returnValue: _i11.Future<_i8.ProductDetailsModel>.value(
+              _FakeProductDetailsModel_6(
+                this,
+                Invocation.method(#getProductDetails, [id]),
+              ),
             ),
           )
-          as _i11.Future<_i8.Product>);
+          as _i11.Future<_i8.ProductDetailsModel>);
 
   @override
   _i11.Future<_i9.UserResponse> getLoggedInUserData() =>
