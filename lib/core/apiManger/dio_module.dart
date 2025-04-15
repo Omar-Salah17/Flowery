@@ -25,6 +25,15 @@ abstract class DioModule {
         baseUrl: Constants.baseUrl,
       ),
     );
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
+          options.headers['Authorization'] = Constants.userToken;
+
+          return handler.next(options);
+        },
+      ),
+    );
     dio.interceptors.add(logInterceptor);
     return dio;
   }
