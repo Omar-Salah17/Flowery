@@ -1,7 +1,8 @@
 import 'dart:io';
 
+import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
-import 'package:flowery/features/profile/data/models/profile_response.dart';
+import 'package:flowery/features/profile/data/model/user_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,7 +15,7 @@ import '../view_model/edit_profile_cubit.dart';
 import '../view_model/edit_profile_state.dart';
 
 class EditProfileView extends StatefulWidget {
-  final UserModel user;
+  final UserData user;
   EditProfileView({super.key, required this.user});
 
   @override
@@ -24,6 +25,7 @@ class EditProfileView extends StatefulWidget {
 class _EditProfileViewState extends State<EditProfileView> {
   final formKey = GlobalKey<FormState>();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
+
 
   late final TextEditingController firstNameController;
   late final TextEditingController lastNameController;
@@ -35,6 +37,8 @@ class _EditProfileViewState extends State<EditProfileView> {
   @override
   void initState() {
     super.initState();
+
+    print('**********************************${widget.user.firstName}');
     firstNameController = TextEditingController(text: widget.user.firstName);
     lastNameController = TextEditingController(text: widget.user.lastName);
     emailController = TextEditingController(text: widget.user.email);
@@ -66,7 +70,7 @@ class _EditProfileViewState extends State<EditProfileView> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
+        leading: IconButton(onPressed: () {Navigator.pop(context);}, icon: Icon(Icons.arrow_back_ios)),
         title: Text("Edit Profile", style: text.titleMedium),
       ),
       body: BlocConsumer<EditProfileCubit, EditProfileState>(
@@ -183,11 +187,14 @@ class _EditProfileViewState extends State<EditProfileView> {
                         text: '*********',
                       ),
                       suffix: GestureDetector(
-                        child: Text(
-                          'Change',
-                          style: AppTextStyles.instance.textStyle14.copyWith(
-                            color: PalletsColors.mainColorBase,
-                            fontWeight: FontWeight.w600,
+                        child: GestureDetector(
+                          onTap: ()=> Navigator.pushNamed(context, RoutesName.changePasswordScreen),
+                          child: Text(
+                            'Change',
+                            style: AppTextStyles.instance.textStyle14.copyWith(
+                              color: PalletsColors.mainColorBase,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                         onTap: () {},

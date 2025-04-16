@@ -14,7 +14,7 @@ class ChangePasswordScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () {Navigator.pop(context);},
             icon: Icon(Icons.arrow_back_ios),
           ),
           title: Text('Reset password'),

@@ -54,4 +54,27 @@ class UserData {
   }
 
   Map<String, dynamic> toJson() => _$UserDataToJson(this);
+
+}
+
+@JsonSerializable()
+class UpdatedUserModel {
+  final String? firstName;
+  final String? lastName;
+  final String? email;
+  final String? phone;
+
+
+
+  UpdatedUserModel( {
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.phone,
+
+  } );
+
+  factory UpdatedUserModel.fromJson(Map<String, dynamic> json) =>
+      _$UpdatedUserModelFromJson(json);
+  Map<String, dynamic> toJson() => _$UpdatedUserModelToJson(this);
 }

@@ -1,10 +1,11 @@
 import 'dart:io';
 
-import 'package:flowery/features/profile/domain/use_cases/upload_photo__use_case.dart';
+import 'package:flowery/features/profile/domain/use_case/upload_photo__use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:flowery/features/profile/data/models/profile_response.dart';
-import '../../domain/use_cases/edit_profile_use_case.dart';
+
+import '../../data/model/user_response.dart';
+import '../../domain/use_case/edit_profile_use_case.dart';
 import 'edit_profile_state.dart';
 
 @injectable

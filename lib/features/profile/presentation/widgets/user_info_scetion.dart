@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/features/profile/data/model/user_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,7 +41,7 @@ class UserInfoScetion extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  // Handle edit action
+                  Navigator.pushNamed(context, RoutesName.editProfile,arguments: user );
                 },
                 child: SvgPicture.asset('assets/images/pen.svg'),
               ),
