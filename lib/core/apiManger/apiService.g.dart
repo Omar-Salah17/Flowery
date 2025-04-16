@@ -255,7 +255,7 @@ class _ApiService implements ApiService {
       Options(method: 'PUT', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'cart',
+            'cart/${cartItemId}',
             queryParameters: queryParameters,
             data: _data,
           )

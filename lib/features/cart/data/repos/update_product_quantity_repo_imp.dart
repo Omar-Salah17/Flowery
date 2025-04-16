@@ -1,4 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:flowery/core/utils/error_handler.dart';
 import 'package:flowery/features/cart/data/data%20sources/update%20product%20quantity/update_product_data_source.dart';
 import 'package:flowery/features/cart/data/models/update%20product%20models/update_product_request.dart';
 import 'package:flowery/features/cart/data/models/update%20product%20models/update_product_response.dart';
@@ -11,7 +13,7 @@ class UpdateProductQuantityRepoImp implements UpdateProductCartRepo {
 
   UpdateProductQuantityRepoImp({required this.updateProductDataSource});
   @override
-  Future<Either<String, UpdateCartResponse>> updateCartItem(
+  Future<Either<Failure, UpdateCartResponse>> updateCartItem(
     String cartItemId,
     UpdateProductRequest request,
   ) async {
@@ -22,7 +24,11 @@ class UpdateProductQuantityRepoImp implements UpdateProductCartRepo {
       );
       return Right(result);
     } catch (e) {
-      return Left("Failed to update cart item: $e");
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      } else {
+        return left(ServerFailure(errorMessage: e.toString()));
+      }
     }
   }
 }

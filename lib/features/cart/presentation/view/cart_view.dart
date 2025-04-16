@@ -113,14 +113,14 @@ class _CartViewState extends State<CartView> {
                               },
                               cartCubit: cartCubit,
                               deleteCartItemCubit: deleteItemCubit,
+                              updateCartCubit: updateCartCubit,
+                              id: item.product.id,
                               onQuantityChanged: (value) {
                                 updateCartCubit.updateCartItem(
                                   cartItemId: item.product.id,
-                                  request: UpdateProductRequest(
-                                    quantity: value,
-                                  ),
+                                  request: UpdateProductRequest(quantity: 1),
                                 );
-                                print('Quantity changed: $value');
+                                print('Quantity changed: 1');
                               },
                             ),
                           );

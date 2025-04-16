@@ -60,9 +60,9 @@ abstract class ApiService {
   @DELETE(Constants.clearCart)
   Future<ClearCartResponse> clearCart();
 
-  @PUT(Constants.updatCartProductQuantity)
+  @PUT("cart/{id}")
   Future<UpdateCartResponse> updateCartProductQuantity(
-    @Path("cartItemId") String cartItemId,
+    @Path("id") String cartItemId,
     @Body() UpdateProductRequest request,
   );
 

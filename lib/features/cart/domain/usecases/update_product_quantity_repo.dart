@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flowery/core/utils/error_handler.dart';
 import 'package:flowery/features/cart/data/models/update%20product%20models/update_product_request.dart';
 import 'package:flowery/features/cart/data/models/update%20product%20models/update_product_response.dart';
 import 'package:flowery/features/cart/domain/repos/update%20product%20cart/update_product_cart_repo.dart';
@@ -10,7 +11,7 @@ class UpdateCartItemUseCase {
 
   UpdateCartItemUseCase(this.repo);
 
-  Future<Either<String, UpdateCartResponse>> call({
+  Future<Either<Failure, UpdateCartResponse>> call({
     required String cartItemId,
 
     required UpdateProductRequest request,

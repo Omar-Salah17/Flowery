@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flowery/core/apiManger/apiService.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/features/cart/data/data%20sources/update%20product%20quantity/update_product_data_source.dart';
@@ -14,6 +16,8 @@ class UpdateProductDataSourceImp implements UpdateProductDataSource {
     String cartItemId,
     UpdateProductRequest request,
   ) async {
+    log(cartItemId);
+    log(request.quantity.toString());
     return await apiServices.updateCartProductQuantity(cartItemId, request);
   }
 }

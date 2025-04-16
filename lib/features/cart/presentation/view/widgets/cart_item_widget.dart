@@ -8,6 +8,7 @@ import 'package:flowery/features/cart/domain/usecases/get_logged_cart_usecase.da
 import 'package:flowery/features/cart/presentation/view%20model/delete%20cart%20item%20view%20model/delete_cart_item_cubit.dart';
 import 'package:flowery/features/cart/presentation/view%20model/delete%20cart%20item%20view%20model/delete_cart_item_states.dart';
 import 'package:flowery/features/cart/presentation/view%20model/get%20logged%20cart%20view%20model/get_logged_cart_cubit.dart';
+import 'package:flowery/features/cart/presentation/view%20model/update%20product%20quantity%20view%20model/update_product_quantity_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,6 +21,8 @@ class CartItemWidget extends StatelessWidget {
   final ValueChanged<int> onQuantityChanged;
   final GetLoggedCartCubit cartCubit;
   final DeleteCartItemCubit deleteCartItemCubit;
+  final UpdateCartCubit updateCartCubit;
+  final String id;
 
   const CartItemWidget({
     super.key,
@@ -28,6 +31,8 @@ class CartItemWidget extends StatelessWidget {
     required this.onQuantityChanged,
     required this.cartCubit,
     required this.deleteCartItemCubit,
+    required this.updateCartCubit,
+    required this.id,
   });
 
   @override
@@ -126,7 +131,12 @@ class CartItemWidget extends StatelessWidget {
                   },
                 ),
                 const Spacer(),
-                QuantitySelector(initialValue: 1, onChanged: onQuantityChanged),
+                QuantitySelector(
+                  initialValue: 1,
+                  id: id,
+                  onChanged: onQuantityChanged,
+                  updateCartCubit: updateCartCubit,
+                ),
               ],
             ),
           ],
