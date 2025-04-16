@@ -1,200 +1,129 @@
+
+import 'package:json_annotation/json_annotation.dart';
+part 'add_product_response.g.dart';
+
+@JsonSerializable()
 class AddProductResponse {
+  @JsonKey(name: 'message')
   String? message;
+  @JsonKey(name: 'numOfCartItems')
   int? numOfCartItems;
+  @JsonKey(name: 'cart')
   Cart? cart;
 
   AddProductResponse({this.message, this.numOfCartItems, this.cart});
 
-  AddProductResponse.fromJson(Map<String, dynamic> json) {
-    message = json['message'];
-    numOfCartItems = json['numOfCartItems'];
-    cart = json['cart'] != null ? new Cart.fromJson(json['cart']) : null;
+  factory AddProductResponse.fromJson(Map<String, dynamic> json) => _$AddProductResponseFromJson(json);
+
+  static List<AddProductResponse> fromList(List<Map<String, dynamic>> list) {
+    return list.map(AddProductResponse.fromJson).toList();
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['message'] = this.message;
-    data['numOfCartItems'] = this.numOfCartItems;
-    if (this.cart != null) {
-      data['cart'] = this.cart!.toJson();
-    }
-    return data;
-  }
+  Map<String, dynamic> toJson() => _$AddProductResponseToJson(this);
 }
 
+@JsonSerializable()
 class Cart {
-  String? sId;
+  @JsonKey(name: 'user')
   String? user;
+  @JsonKey(name: 'cartItems')
   List<CartItems>? cartItems;
+  @JsonKey(name: '_id')
+  String? id;
+  @JsonKey(name: 'discount')
   int? discount;
+  @JsonKey(name: 'totalPrice')
   int? totalPrice;
+  @JsonKey(name: 'totalPriceAfterDiscount')
   int? totalPriceAfterDiscount;
+  @JsonKey(name: 'createdAt')
   String? createdAt;
+  @JsonKey(name: 'updatedAt')
   String? updatedAt;
-  int? iV;
+  @JsonKey(name: '__v')
+  int? v;
 
-  Cart({
-    this.sId,
-    this.user,
-    this.cartItems,
-    this.discount,
-    this.totalPrice,
-    this.totalPriceAfterDiscount,
-    this.createdAt,
-    this.updatedAt,
-    this.iV,
-  });
+  Cart({this.user, this.cartItems, this.id, this.discount, this.totalPrice, this.totalPriceAfterDiscount, this.createdAt, this.updatedAt, this.v});
 
-  Cart.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    user = json['user'];
-    if (json['cartItems'] != null) {
-      cartItems = <CartItems>[];
-      json['cartItems'].forEach((v) {
-        cartItems!.add(new CartItems.fromJson(v));
-      });
-    }
-    discount = json['discount'];
-    totalPrice = json['totalPrice'];
-    totalPriceAfterDiscount = json['totalPriceAfterDiscount'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
-    iV = json['__v'];
+  factory Cart.fromJson(Map<String, dynamic> json) => _$CartFromJson(json);
+
+  static List<Cart> fromList(List<Map<String, dynamic>> list) {
+    return list.map(Cart.fromJson).toList();
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['user'] = this.user;
-    if (this.cartItems != null) {
-      data['cartItems'] = this.cartItems!.map((v) => v.toJson()).toList();
-    }
-    data['discount'] = this.discount;
-    data['totalPrice'] = this.totalPrice;
-    data['totalPriceAfterDiscount'] = this.totalPriceAfterDiscount;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['__v'] = this.iV;
-    return data;
-  }
+  Map<String, dynamic> toJson() => _$CartToJson(this);
 }
 
+@JsonSerializable()
 class CartItems {
-  ProductCart? product;
+  @JsonKey(name: 'product')
+  Product? product;
+  @JsonKey(name: 'price')
   int? price;
+  @JsonKey(name: 'quantity')
   int? quantity;
-  String? sId;
-
-  CartItems({this.product, this.price, this.quantity, this.sId});
-
-  CartItems.fromJson(Map<String, dynamic> json) {
-    product =
-        json['product'] != null
-            ? new ProductCart.fromJson(json['product'])
-            : null;
-    price = json['price'];
-    quantity = json['quantity'];
-    sId = json['_id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.product != null) {
-      data['product'] = this.product!.toJson();
-    }
-    data['price'] = this.price;
-    data['quantity'] = this.quantity;
-    data['_id'] = this.sId;
-    return data;
-  }
-}
-
-class ProductCart {
-  double? rateAvg;
-  int? rateCount;
-  String? sId;
-  String? title;
-  String? slug;
-  String? description;
-  String? imgCover;
-  List<String>? images;
-  int? price;
-  int? priceAfterDiscount;
-  int? quantity;
-  String? category;
-  String? occasion;
-  String? createdAt;
-  String? updatedAt;
-  int? iV;
-  int? sold;
-  int? discount;
+  @JsonKey(name: '_id')
   String? id;
 
-  ProductCart({
-    this.rateAvg,
-    this.rateCount,
-    this.sId,
-    this.title,
-    this.slug,
-    this.description,
-    this.imgCover,
-    this.images,
-    this.price,
-    this.priceAfterDiscount,
-    this.quantity,
-    this.category,
-    this.occasion,
-    this.createdAt,
-    this.updatedAt,
-    this.iV,
-    this.sold,
-    this.discount,
-    this.id,
-  });
+  CartItems({this.product, this.price, this.quantity, this.id});
 
-  ProductCart.fromJson(Map<String, dynamic> json) {
-    rateAvg = json['rateAvg'];
-    rateCount = json['rateCount'];
-    sId = json['_id'];
-    title = json['title'];
-    slug = json['slug'];
-    description = json['description'];
-    imgCover = json['imgCover'];
-    images = json['images'].cast<String>();
-    price = json['price'];
-    priceAfterDiscount = json['priceAfterDiscount'];
-    quantity = json['quantity'];
-    category = json['category'];
-    occasion = json['occasion'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
-    iV = json['__v'];
-    sold = json['sold'];
-    discount = json['discount'];
-    id = json['id'];
+  factory CartItems.fromJson(Map<String, dynamic> json) => _$CartItemsFromJson(json);
+
+  static List<CartItems> fromList(List<Map<String, dynamic>> list) {
+    return list.map(CartItems.fromJson).toList();
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['rateAvg'] = this.rateAvg;
-    data['rateCount'] = this.rateCount;
-    data['_id'] = this.sId;
-    data['title'] = this.title;
-    data['slug'] = this.slug;
-    data['description'] = this.description;
-    data['imgCover'] = this.imgCover;
-    data['images'] = this.images;
-    data['price'] = this.price;
-    data['priceAfterDiscount'] = this.priceAfterDiscount;
-    data['quantity'] = this.quantity;
-    data['category'] = this.category;
-    data['occasion'] = this.occasion;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['__v'] = this.iV;
-    data['sold'] = this.sold;
-    data['discount'] = this.discount;
-    data['id'] = this.id;
-    return data;
+  Map<String, dynamic> toJson() => _$CartItemsToJson(this);
+}
+
+@JsonSerializable()
+class Product {
+  @JsonKey(name: '_id')
+  String? id;
+  @JsonKey(name: 'title')
+  String? title;
+  @JsonKey(name: 'slug')
+  String? slug;
+  @JsonKey(name: 'description')
+  String? description;
+  @JsonKey(name: 'imgCover')
+  String? imgCover;
+  @JsonKey(name: 'images')
+  List<String>? images;
+  @JsonKey(name: 'price')
+  int? price;
+  @JsonKey(name: 'priceAfterDiscount')
+  int? priceAfterDiscount;
+  @JsonKey(name: 'quantity')
+  int? quantity;
+  @JsonKey(name: 'category')
+  String? category;
+  @JsonKey(name: 'occasion')
+  String? occasion;
+  @JsonKey(name: 'createdAt')
+  String? createdAt;
+  @JsonKey(name: 'updatedAt')
+  String? updatedAt;
+  @JsonKey(name: '__v')
+  int? v;
+  @JsonKey(name: 'discount')
+  int? discount;
+  @JsonKey(name: 'sold')
+  int? sold;
+  @JsonKey(name: 'rateAvg')
+  double? rateAvg;
+  @JsonKey(name: 'rateCount')
+  int? rateCount;
+  @JsonKey(name: 'id')
+  
+
+  Product({this.id, this.title, this.slug, this.description, this.imgCover, this.images, this.price, this.priceAfterDiscount, this.quantity, this.category, this.occasion, this.createdAt, this.updatedAt, this.v, this.discount, this.sold, this.rateAvg, this.rateCount, });
+
+  factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
+
+  static List<Product> fromList(List<Map<String, dynamic>> list) {
+    return list.map(Product.fromJson).toList();
   }
+
+  Map<String, dynamic> toJson() => _$ProductToJson(this);
 }

@@ -181,9 +181,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i665.SecureStorageService(),
     );
     gh.singleton<_i646.GuestManager>(() => _i646.GuestManager());
-    gh.singleton<_i665.SecureStorageService>(
-      () => _i665.SecureStorageService(),
-    );
     gh.factory<_i599.DeleteCartItemDataSource>(
       () => _i946.DeleteCartItemDataSourceImp(),
     );
@@ -207,12 +204,22 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i234.OccasionRepositoryContract>(),
       ),
     );
+    gh.factory<_i600.ClearCartDataSource>(() => _i195.ClearCartDataSourceImp());
+    gh.factory<_i109.GetLoggedCartDataSource>(
+      () => _i82.GetLoggedCartDataSourceImp(),
+    );
     gh.singleton<_i361.Dio>(
       () => dioModule.provideDio(
         gh<_i361.LogInterceptor>(),
         gh<_i665.SecureStorageService>(),
       ),
     );
+    gh.factory<_i96.ClearCartRepo>(
+      () => _i365.ClearCartRepoImp(
+        clearCartDataSource: gh<_i600.ClearCartDataSource>(),
+      ),
+    );
+    gh.factory<_i311.AddToCartDataSource>(() => _i335.AddToCartDataSourceImp());
     gh.factory<_i251.RegisterRepositoryContracr>(
       () => _i518.RegisterRepositoryImpl(
         repositoryDataSourceContract:
@@ -235,6 +242,27 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i129.ForgetPasswordRemoteDataSource>(
       () => _i177.ForgetPasswordRemoteDataSourceImpl(
         apiManager: gh<_i29.ApiManager>(),
+      ),
+    );
+    gh.factory<_i1023.AddToCartRepo>(
+      () => _i467.AddToCartRepoImp(
+        addToCartDataSource: gh<_i311.AddToCartDataSource>(),
+      ),
+    );
+    gh.factory<_i46.GetLoggedCartRepo>(
+      () => _i817.GetLoggedCartRepoImp(
+        dataSource: gh<_i109.GetLoggedCartDataSource>(),
+      ),
+    );
+    gh.factory<_i240.ClearCartUsecase>(
+      () => _i240.ClearCartUsecase(clearCartRepo: gh<_i96.ClearCartRepo>()),
+    );
+    gh.factory<_i320.DeleteCartItemUsecase>(
+      () => _i320.DeleteCartItemUsecase(repo: gh<_i622.DeleteCartItemRepo>()),
+    );
+    gh.factory<_i685.UpdateProductCartRepo>(
+      () => _i277.UpdateProductQuantityRepoImp(
+        updateProductDataSource: gh<_i136.UpdateProductDataSource>(),
       ),
     );
     gh.factory<_i17.OccasionCubit>(
@@ -309,6 +337,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i519.ProfileDataSource>(
       () => _i853.ProfileDataSourceImpl(gh<_i171.ApiService>()),
+    );
+    gh.factory<_i390.UpdateCartItemUseCase>(
+      () => _i390.UpdateCartItemUseCase(gh<_i685.UpdateProductCartRepo>()),
     );
     gh.factory<_i629.BestSellerRepo>(
       () => _i12.BestSellerRepoImpl(gh<_i312.BestSellerDataSource>()),

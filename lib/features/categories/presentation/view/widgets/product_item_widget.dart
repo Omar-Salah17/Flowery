@@ -1,8 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flowery/core/config/routes_name.dart';
+import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/models/products_model/product.dart';
+import 'package:flowery/features/cart/data/models/add_product_request.dart';
+import 'package:flowery/features/cart/domain/usecases/add_to_cart_usecase.dart';
+import 'package:flowery/features/cart/presentation/view%20model/add_to_cart_cubit.dart';
+import 'package:flowery/features/cart/presentation/view%20model/add_to_cart_states.dart';
 import 'package:flowery/features/productsDetails/presentation/viewModel/product_details_cubit/product_details_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,6 +18,7 @@ class ProductItemWidget extends StatelessWidget {
   final Product product;
   @override
   Widget build(BuildContext context) {
+    AddToCartCubit addToCartCubit = AddToCartCubit(getIt<AddToCartUsecase>());
     return GestureDetector(
       onTap: () {
         // await context.read<ProductDetailsCubit>().fetchProduct(product.id!);
@@ -92,24 +98,55 @@ class ProductItemWidget extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 8.h),
-              ElevatedButton(
-                // style: ElevatedButton.styleFrom(
-                //   minimumSize: Size.fromHeight(30.h),
-                // ),
-                onPressed: () {},
-                child: Row(
-                  spacing: 8.w,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.shopping_cart_outlined),
-                    Text(
-                      'Add to cart',
-                      style: AppTextStyles.instance.textStyle13.copyWith(
-                        fontWeight: FontWeight.w500,
+              BlocConsumer<AddToCartCubit, AddToCartState>(
+                bloc: addToCartCubit,
+                listener: (context, state) {
+                  if (state is AddToCartSuccess) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.green,
+                        content: Text('Added to cart successfully'),
                       ),
+                    );
+                  }
+                  if (state is AddToCartFailure) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text('Failed to add to cart: ${state.errorMessage}'),
+                      ),
+                    );
+                  }
+                  
+                },
+                builder: (context, state) {
+                  return ElevatedButton(
+                    // style: ElevatedButton.styleFrom(
+                    //   minimumSize: Size.fromHeight(30.h),
+                    // ),
+                    onPressed: () {
+                      addToCartCubit.addToCart(addProductRequest: AddProductRequest(
+                        productId: product.id,
+                        quantity: product.quantity,
+                      ));
+                    },
+                    child: Row(
+                      spacing: 8.w,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.shopping_cart_outlined),
+                      state is AddToCartLoading ? CircularProgressIndicator(color: PalletsColors.mainColorBase,) :
+                      state is AddToCartSuccess ? Icon(Icons.check)
+                      :  Text(
+                          'Add to cart',
+                          style: AppTextStyles.instance.textStyle13.copyWith(
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  );
+                },
               ),
             ],
           ),

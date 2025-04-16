@@ -91,9 +91,11 @@ class _CartViewState extends State<CartView> {
                             child: CartItemWidget(
                               item: item,
                               onDelete: () {
-                                setState(() {
+                                
                                   cartItems.removeAt(index);
-                                });
+                                      GetLoggedCartCubit(getIt.get<GetLoggedCartUsecase>())
+                    ..getLoggedCart();
+                                
                               },
                               onQuantityChanged: (value) {
                                 print('Quantity changed: $value');

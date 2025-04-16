@@ -44,6 +44,28 @@ abstract class ApiService {
   @POST(Constants.loginEndPoint)
   Future<LoginResponse> loginUser(@Body() LoginRequest loginRequest);
 
+  @POST(Constants.addToCartEndPoint)
+  Future<AddProductResponse> addToCart(
+    @Body() AddProductRequest addProductRequest,
+  );
+
+  @GET(Constants.getLoggedCart)
+  Future<GetLoggedCartResponse> getLoggedCart();
+
+  @DELETE(Constants.deleteSpecificCartItem)
+  Future<DeleteCartResponse> deleteCartItem(
+    @Header("Authorization") String cartItemId,
+  );
+
+  @DELETE(Constants.clearCart)
+  Future<ClearCartResponse> clearCart();
+
+  @PUT(Constants.updatCartProductQuantity)
+  Future<UpdateCartResponse> updateCartProductQuantity(
+    @Path("cartItemId") String cartItemId,
+    @Body() UpdateProductRequest request,
+  );
+
   @GET(Constants.occasionEndPoint)
   Future<AllOccaions> getAllOccasions();
   @GET(Constants.productsEndPoint)

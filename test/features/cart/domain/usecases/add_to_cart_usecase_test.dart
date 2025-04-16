@@ -14,7 +14,7 @@ void main() {
   test('when call invoke in usecase it should call addToCart from repo ', () {
     var repo = MockAddToCartRepo();
     AddToCartUsecase usecase = AddToCartUsecase(addToCartRepo: repo);
-    final request = AddProductRequest(product: '1', quantity: 2);
+    final request = AddProductRequest(productId: '1', quantity: 2);
     final response = AddProductResponse(message: 'Added successfully');
 
     when(
