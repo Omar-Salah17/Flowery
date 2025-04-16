@@ -14,7 +14,6 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return ProfileViewBody();
 
     return BlocProvider(
       create: (context) => viewModel..getUserData(),

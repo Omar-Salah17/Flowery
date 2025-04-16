@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -7,6 +8,7 @@ import 'package:flowery/features/profile/data/data_source/profile_remote_data_so
 import 'package:flowery/features/profile/data/model/user_response.dart';
 import 'package:flowery/features/profile/domain/repos/profile_repo.dart';
 import 'package:injectable/injectable.dart';
+
 
 @Injectable(as: ProfileRepo)
 class ProfileRepoImpl implements ProfileRepo {
@@ -43,5 +45,41 @@ class ProfileRepoImpl implements ProfileRepo {
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
+  }
+  @override
+  Future<Either<Failure, UserResponse>> editProfile( UpdatedUserModel user) async {
+    try{
+      var data = await remoteDataSource.editProfile(user);
+      return Right(data);
+    }catch (e){
+      if(e is DioException){
+        return left(ServerFailure.fromDioException(e));
+      }else {
+        log('error  ${e.toString()}');
+        return left(ServerFailure(errorMessage: e.toString()));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> uploadPhoto(File photo) async{
+    try{
+      if(await photo.exists()){
+        print(" file exists. path: ${photo.path}");
+      } else {
+        print("file doesn't exist.");
+      }
+      var data = await remoteDataSource.uploadPhoto(photo);
+      return Right(data);
+    }catch (e){
+      if(e is DioException){
+        return left(ServerFailure.fromDioException(e));
+      }else {
+        log('error  ${e.toString()}');
+        return left(ServerFailure(errorMessage: e.toString()));
+      }
+    }
+
+
   }
 }
