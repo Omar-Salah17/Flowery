@@ -19,4 +19,5 @@ class Constants {
   static const String updatCartProductQuantity = "cart";
   static const String changePasswordEndPoint = "auth/change-password";
   static const String userToken = "token";
+  static const String profileDataENdPoint = "auth/profile-data";
 }

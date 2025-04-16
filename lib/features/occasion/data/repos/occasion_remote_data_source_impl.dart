@@ -5,20 +5,21 @@ import 'package:flowery/features/occasion/domain/repos/occasion_remote_data_sour
 import 'package:injectable/injectable.dart';
 
 import '../models/occaions.dart';
- @Injectable(as: OccasionRemoteDataSourceContract)
-class OccasionRemoteDataSourceImpl implements OccasionRemoteDataSourceContract {
 
-   final apiServices = getIt<ApiService>();
+@Injectable(as: OccasionRemoteDataSourceContract)
+class OccasionRemoteDataSourceImpl implements OccasionRemoteDataSourceContract {
+  final apiServices = getIt<ApiService>();
   @override
   Future<List<Occasions>> getAllOccasions() async {
-
-  var response = await apiServices.getAllOccasions();
-    return response.occasions??[];}
-
+    var response = await apiServices.getAllOccasions();
+    return response.occasions ?? [];
+  }
 
   @override
   Future<ProductsModel> getProductsByOccasion({String? occasionId}) async {
-    var response = await apiServices.getAllProductByOccasion(occasionId:occasionId);
+    var response = await apiServices.getAllProductByOccasion(
+      occasionId: occasionId,
+    );
     return response;
   }
 }

@@ -11,7 +11,6 @@ import 'package:injectable/injectable.dart';
 import '../models/occaions.dart';
 
 @Injectable(as: OccasionRepositoryContract)
-
 class OccasionRepositoryImpl implements OccasionRepositoryContract {
   final OccasionRemoteDataSourceContract occasionRemoteDataSourceContract;
   OccasionRepositoryImpl({required this.occasionRemoteDataSourceContract});

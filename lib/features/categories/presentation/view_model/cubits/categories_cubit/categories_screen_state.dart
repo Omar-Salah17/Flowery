@@ -14,15 +14,13 @@ final class CategoriesLoading extends CategoriesScreenState {}
 final class CategoriesSuccess extends CategoriesScreenState {
   final List<Category> categories;
 
-const  CategoriesSuccess({required this.categories});
-  
+  const CategoriesSuccess({required this.categories});
 }
 
 final class CategoriesFailure extends CategoriesScreenState {
   final String errorMessage;
 
- const CategoriesFailure({required this.errorMessage});
-  
+  const CategoriesFailure({required this.errorMessage});
 }
 
 final class ProductsByCategoryInitial extends CategoriesScreenState {}
@@ -30,17 +28,13 @@ final class ProductsByCategoryInitial extends CategoriesScreenState {}
 final class ProductsByCategoryLoading extends CategoriesScreenState {}
 
 final class ProductsByCategorySuccess extends CategoriesScreenState {
- 
   final List<Product> products;
 
- const ProductsByCategorySuccess({required this.products});
-
-  
+  const ProductsByCategorySuccess({required this.products});
 }
 
 final class ProductsByCategoryFailure extends CategoriesScreenState {
   final String errorMessage;
 
- const ProductsByCategoryFailure({required this.errorMessage});
-  
+  const ProductsByCategoryFailure({required this.errorMessage});
 }

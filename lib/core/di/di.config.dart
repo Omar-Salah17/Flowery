@@ -128,24 +128,40 @@ import '../../features/occasion/domain/use_cases/get_product_by_occasion_useCase
     as _i250;
 import '../../features/occasion/presentation/view_model/cubits/occasion_cubit.dart'
     as _i17;
-import '../../features/productsDetails/data/remote/remote_data_source.dart'
-    as _i996;
-import '../../features/productsDetails/data/remote/remote_data_source_impl.dart'
-    as _i150;
+import '../../features/productsDetails/data/remote/product_details_remote_data_source.dart'
+    as _i1048;
+import '../../features/productsDetails/data/remote/product_details_remote_data_source_impl.dart'
+    as _i442;
 import '../../features/productsDetails/data/repository/get_product_details_impl.dart'
     as _i232;
 import '../../features/productsDetails/domain/repository/get_product_details_contract.dart'
     as _i877;
 import '../../features/productsDetails/domain/useCases/get_product_details_use_case.dart'
     as _i691;
+import '../../features/profile/data/data_source/profile_data_source.dart'
+    as _i519;
+import '../../features/profile/data/data_source/profile_data_source_impl.dart'
+    as _i853;
 import '../../features/profile/data/data_source/profile_remote_data_source.dart'
     as _i998;
 import '../../features/profile/data/data_source/profile_remote_data_source_impl.dart'
     as _i531;
 import '../../features/profile/data/repos/profile_repo_impl.dart' as _i1072;
+import '../../features/profile/data/repositories/profile_repository_impl.dart'
+    as _i334;
 import '../../features/profile/domain/repos/profile_repo.dart' as _i1007;
+import '../../features/profile/domain/repositories/profile_repository.dart'
+    as _i894;
 import '../../features/profile/domain/use_case/change_password_use_case.dart'
     as _i342;
+import '../../features/profile/domain/use_case/get_user_data_use_case.dart'
+    as _i743;
+import '../../features/profile/domain/use_cases/edit_profile_use_case.dart'
+    as _i199;
+import '../../features/profile/domain/use_cases/upload_photo__use_case.dart'
+    as _i440;
+import '../../features/profile/presentation/view_model/edit_profile_cubit.dart'
+    as _i589;
 import '../apiManger/api_manager.dart' as _i29;
 import '../apiManger/apiService.dart' as _i171;
 import '../apiManger/dio_module.dart' as _i304;
@@ -161,6 +177,9 @@ extension GetItInjectableX on _i174.GetIt {
     final dioModule = _$DioModule();
     gh.singleton<_i29.ApiManager>(() => _i29.ApiManager());
     gh.singleton<_i361.LogInterceptor>(() => dioModule.provideLogger());
+    gh.singleton<_i665.SecureStorageService>(
+      () => _i665.SecureStorageService(),
+    );
     gh.singleton<_i646.GuestManager>(() => _i646.GuestManager());
     gh.singleton<_i665.SecureStorageService>(
       () => _i665.SecureStorageService(),
@@ -188,20 +207,10 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i234.OccasionRepositoryContract>(),
       ),
     );
-    gh.factory<_i600.ClearCartDataSource>(() => _i195.ClearCartDataSourceImp());
-    gh.factory<_i109.GetLoggedCartDataSource>(
-      () => _i82.GetLoggedCartDataSourceImp(),
-    );
-    gh.factory<_i996.RemoteDataSource>(() => _i150.RemoteDataSourceImpl());
-    gh.factory<_i96.ClearCartRepo>(
-      () => _i365.ClearCartRepoImp(
-        clearCartDataSource: gh<_i600.ClearCartDataSource>(),
-      ),
-    );
-    gh.factory<_i311.AddToCartDataSource>(() => _i335.AddToCartDataSourceImp());
-    gh.factory<_i877.GetProductDetailsContract>(
-      () => _i232.GetProductDetailsImpl(
-        remoteDataSource: gh<_i996.RemoteDataSource>(),
+    gh.singleton<_i361.Dio>(
+      () => dioModule.provideDio(
+        gh<_i361.LogInterceptor>(),
+        gh<_i665.SecureStorageService>(),
       ),
     );
     gh.factory<_i251.RegisterRepositoryContracr>(
@@ -226,38 +235,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i129.ForgetPasswordRemoteDataSource>(
       () => _i177.ForgetPasswordRemoteDataSourceImpl(
         apiManager: gh<_i29.ApiManager>(),
-      ),
-    );
-    gh.factory<_i1023.AddToCartRepo>(
-      () => _i467.AddToCartRepoImp(
-        addToCartDataSource: gh<_i311.AddToCartDataSource>(),
-      ),
-    );
-    gh.singleton<_i361.Dio>(
-      () => dioModule.provideDio(gh<_i361.LogInterceptor>()),
-    );
-    gh.factory<_i46.GetLoggedCartRepo>(
-      () => _i817.GetLoggedCartRepoImp(
-        dataSource: gh<_i109.GetLoggedCartDataSource>(),
-      ),
-    );
-    gh.factory<_i691.GetProductDetailsUseCase>(
-      () =>
-          _i691.GetProductDetailsUseCase(gh<_i877.GetProductDetailsContract>()),
-    );
-    gh.factory<_i240.ClearCartUsecase>(
-      () => _i240.ClearCartUsecase(clearCartRepo: gh<_i96.ClearCartRepo>()),
-    );
-    gh.factory<_i320.DeleteCartItemUsecase>(
-      () => _i320.DeleteCartItemUsecase(repo: gh<_i622.DeleteCartItemRepo>()),
-    );
-    gh.factory<_i998.ProfileRemoteDataSource>(
-      () =>
-          _i531.ProfileRemoteDataSourceImpl(apiManager: gh<_i29.ApiManager>()),
-    );
-    gh.factory<_i685.UpdateProductCartRepo>(
-      () => _i277.UpdateProductQuantityRepoImp(
-        updateProductDataSource: gh<_i136.UpdateProductDataSource>(),
       ),
     );
     gh.factory<_i17.OccasionCubit>(
@@ -288,6 +265,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i356.VerifyCodeUseCase>(
       () => _i356.VerifyCodeUseCase(
         forgetPasswordRepo: gh<_i497.ForgetPasswordRepo>(),
+      ),
+    );
+    gh.factory<_i1048.ProductDetailsRemoteDataSource>(
+      () => _i442.ProductDetailsRemoteDataSourceImpl(
+        apiServices: gh<_i171.ApiService>(),
       ),
     );
     gh.factory<_i118.RegisterUseCase>(
@@ -325,13 +307,8 @@ extension GetItInjectableX on _i174.GetIt {
         categoriesScreenRepo: gh<_i826.CategoriesScreenRepo>(),
       ),
     );
-    gh.factory<_i1007.ProfileRepo>(
-      () => _i1072.ProfileRepoImpl(
-        remoteDataSource: gh<_i998.ProfileRemoteDataSource>(),
-      ),
-    );
-    gh.factory<_i390.UpdateCartItemUseCase>(
-      () => _i390.UpdateCartItemUseCase(gh<_i685.UpdateProductCartRepo>()),
+    gh.factory<_i519.ProfileDataSource>(
+      () => _i853.ProfileDataSourceImpl(gh<_i171.ApiService>()),
     );
     gh.factory<_i629.BestSellerRepo>(
       () => _i12.BestSellerRepoImpl(gh<_i312.BestSellerDataSource>()),
@@ -339,6 +316,18 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i461.GetBestSellerUseCase>(
       () => _i461.GetBestSellerUseCase(
         bestSellerRepo: gh<_i629.BestSellerRepo>(),
+      ),
+    );
+    gh.factory<_i998.ProfileRemoteDataSource>(
+      () =>
+          _i531.ProfileRemoteDataSourceImpl(apiService: gh<_i171.ApiService>()),
+    );
+    gh.factory<_i894.ProfileRepository>(
+      () => _i334.ProfileRepositoryImpl(gh<_i519.ProfileDataSource>()),
+    );
+    gh.factory<_i877.GetProductDetailsContract>(
+      () => _i232.GetProductDetailsImpl(
+        remoteDataSource: gh<_i1048.ProductDetailsRemoteDataSource>(),
       ),
     );
     gh.factory<_i334.LoginUsecase>(
@@ -357,6 +346,32 @@ extension GetItInjectableX on _i174.GetIt {
         getCategories: gh<_i595.GetAllCategoriesUseCase>(),
         getBestSeller: gh<_i461.GetBestSellerUseCase>(),
         getOccasions: gh<_i34.GetAllOccasionsUseCase>(),
+      ),
+    );
+    gh.factory<_i199.EditProfileUseCase>(
+      () => _i199.EditProfileUseCase(gh<_i894.ProfileRepository>()),
+    );
+    gh.factory<_i440.UploadPhotoUseCase>(
+      () => _i440.UploadPhotoUseCase(gh<_i894.ProfileRepository>()),
+    );
+    gh.factory<_i691.GetProductDetailsUseCase>(
+      () =>
+          _i691.GetProductDetailsUseCase(gh<_i877.GetProductDetailsContract>()),
+    );
+    gh.factory<_i1007.ProfileRepo>(
+      () => _i1072.ProfileRepoImpl(
+        remoteDataSource: gh<_i998.ProfileRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i743.GetUserDataUseCase>(
+      () => _i743.GetUserDataUseCase(
+        profileRepositoryContract: gh<_i1007.ProfileRepo>(),
+      ),
+    );
+    gh.factory<_i589.EditProfileCubit>(
+      () => _i589.EditProfileCubit(
+        gh<_i199.EditProfileUseCase>(),
+        gh<_i440.UploadPhotoUseCase>(),
       ),
     );
     gh.factory<_i342.ChangePasswordUseCase>(

@@ -7,10 +7,8 @@ import 'package:injectable/injectable.dart';
 import '../../../../../core/enums/request_enum.dart';
 import 'home_state.dart';
 
-
 @injectable
 class HomeCubit extends Cubit<HomeState> {
-
   final GetAllCategoriesUseCase getCategories;
   final GetBestSellerUseCase getBestSeller;
   final GetAllOccasionsUseCase getOccasions;
@@ -21,23 +19,26 @@ class HomeCubit extends Cubit<HomeState> {
     required this.getOccasions,
   }) : super(const HomeState());
 
-
   Future<void> fetchCategories() async {
     emit(state.copyWith(categoriesState: RequestState.loading));
     final result = await getCategories();
 
     result.fold(
-          (failure) {
-        emit(state.copyWith(
-          categoriesState: RequestState.error,
-          error: failure.toString(),
-        ));
+      (failure) {
+        emit(
+          state.copyWith(
+            categoriesState: RequestState.error,
+            error: failure.toString(),
+          ),
+        );
       },
-          (cats) {
-        emit(state.copyWith(
-          categoriesState: RequestState.success,
-          categories: cats,
-        ));
+      (cats) {
+        emit(
+          state.copyWith(
+            categoriesState: RequestState.success,
+            categories: cats,
+          ),
+        );
       },
     );
   }
@@ -47,17 +48,21 @@ class HomeCubit extends Cubit<HomeState> {
     final result = await getBestSeller(); //
 
     result.fold(
-          (failure) {
-        emit(state.copyWith(
-          bestSellerState: RequestState.error,
-          error: failure.toString(),
-        ));
+      (failure) {
+        emit(
+          state.copyWith(
+            bestSellerState: RequestState.error,
+            error: failure.toString(),
+          ),
+        );
       },
-          (bestSellers) {
-        emit(state.copyWith(
-          bestSellerState: RequestState.success,
-          bestSellers: bestSellers.bestSeller,
-        ));
+      (bestSellers) {
+        emit(
+          state.copyWith(
+            bestSellerState: RequestState.success,
+            bestSellers: bestSellers.bestSeller,
+          ),
+        );
       },
     );
   }
@@ -67,17 +72,21 @@ class HomeCubit extends Cubit<HomeState> {
     final result = await getOccasions.invoke();
 
     result.fold(
-          (failure) {
-        emit(state.copyWith(
-          occasionState: RequestState.error,
-          error: failure.toString(),
-        ));
+      (failure) {
+        emit(
+          state.copyWith(
+            occasionState: RequestState.error,
+            error: failure.toString(),
+          ),
+        );
       },
-          (occasions) {
-        emit(state.copyWith(
-          occasionState: RequestState.success,
-          occasions: occasions,
-        ));
+      (occasions) {
+        emit(
+          state.copyWith(
+            occasionState: RequestState.success,
+            occasions: occasions,
+          ),
+        );
       },
     );
   }

@@ -10,6 +10,8 @@ class CustomTextFormFieled extends StatelessWidget {
   final String hintText;
   final bool shouldObscureText;
   final String? Function(String?)? validator;
+  final Widget? suffix;
+  final bool? readOnly;
 
   const CustomTextFormFieled({
     super.key,
@@ -18,11 +20,16 @@ class CustomTextFormFieled extends StatelessWidget {
     required this.hintText,
     required this.shouldObscureText,
     this.validator,
+    this.suffix,
+    this.readOnly,
+
+
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: readOnly??false,
       validator: validator,
       controller: textEditingController,
       obscureText: shouldObscureText,
@@ -32,6 +39,8 @@ class CustomTextFormFieled extends StatelessWidget {
       ),
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(16.r),
+        suffix: suffix,
+
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(color: PalletsColors.error),
         ),

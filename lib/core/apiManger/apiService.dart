@@ -1,6 +1,7 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flowery/core/utils/constants.dart';
-import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/core/utils/models/products_model/products_model.dart';
 import 'package:flowery/features/auth/login/data/models/login_request.dart'
     show LoginRequest;
@@ -16,10 +17,13 @@ import 'package:flowery/features/cart/data/models/get%20logged%20cart%20models/g
 import 'package:flowery/features/cart/data/models/update%20product%20models/update_product_request.dart';
 import 'package:flowery/features/cart/data/models/update%20product%20models/update_product_response.dart';
 import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart';
-
+import 'package:flowery/features/productsDetails/data/models/product_details_model/product_details_model.dart';
+import 'package:flowery/features/profile/data/model/user_response.dart';
+import 'package:flowery/features/profile/data/models/profile_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../features/occasion/data/models/occaions.dart';
+
 part 'apiService.g.dart';
 
 @RestApi(baseUrl: Constants.baseUrl)
@@ -40,28 +44,6 @@ abstract class ApiService {
   @POST(Constants.loginEndPoint)
   Future<LoginResponse> loginUser(@Body() LoginRequest loginRequest);
 
-  @POST(Constants.addToCartEndPoint)
-  Future<AddProductResponse> addToCart(
-    @Body() AddProductRequest addProductRequest,
-  );
-
-  @GET(Constants.getLoggedCart)
-  Future<GetLoggedCartResponse> getLoggedCart();
-
-  @DELETE(Constants.deleteSpecificCartItem)
-  Future<DeleteCartResponse> deleteCartItem(
-    @Header("Authorization") String cartItemId,
-  );
-
-  @DELETE(Constants.clearCart)
-  Future<ClearCartResponse> clearCart();
-
-  @PUT(Constants.updatCartProductQuantity)
-  Future<UpdateCartResponse> updateCartProductQuantity(
-    @Path("cartItemId") String cartItemId,
-    @Body() UpdateProductRequest request,
-  );
-
   @GET(Constants.occasionEndPoint)
   Future<AllOccaions> getAllOccasions();
   @GET(Constants.productsEndPoint)
@@ -72,6 +54,24 @@ abstract class ApiService {
   @GET(Constants.bestSellerEndPoint)
   Future<BestSellerModel> getBestSellerProduct();
 
-  @GET("products")
-  Future<Product> getProductDetails(@Query("id") String id);
+  @GET("products/{id}")
+Future<ProductDetailsModel> getProductDetails(@Path("id") String id);
+
+  @PUT("auth/editProfile")
+  Future<ProfileResponse>editProfile(
+      @Body() UpdatedUserModel user,
+      @Header("Authorization") String token,
+      );
+  @GET(Constants.profileDataENdPoint)
+  Future<UserResponse> getLoggedInUserData();
+
+  
+
+  @MultiPart()
+  @PUT("auth/upload-photo")
+  Future<String> uploadPhoto(
+      @Header("Authorization") String token,
+      @Part(name: "photo") File image,
+      );
+
 }

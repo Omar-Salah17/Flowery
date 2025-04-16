@@ -13,16 +13,17 @@ class CurrentUserLocation extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) {
-        final dio = Dio()
-          ..options.connectTimeout = const Duration(seconds: 5)
-          ..options.receiveTimeout = const Duration(seconds: 3);
+        final dio =
+            Dio()
+              ..options.connectTimeout = const Duration(seconds: 5)
+              ..options.receiveTimeout = const Duration(seconds: 3);
         final client = PlusCodeClient(dio);
 
         final cubit = CurrentUserLocationViewModel(client);
         cubit.fetchLocation();
         return cubit;
       },
-      child:  CurrentUserLocationBody(),
+      child: CurrentUserLocationBody(),
     );
   }
 }

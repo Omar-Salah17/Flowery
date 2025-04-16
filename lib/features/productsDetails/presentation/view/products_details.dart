@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/models/products_model/product.dart';
@@ -15,6 +17,7 @@ class ProductsDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)!.settings.arguments as Product;
+
     return BlocProvider(
       create:
           (context) =>
@@ -33,6 +36,7 @@ class ProductsDetails extends StatelessWidget {
         body: BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
           builder: (context, state) {
             if (state is ProductDetailsSuccess) {
+              log("product data i will receive in product details ${args.id}");
               return ProductDetailsBody(product: state.product);
             } else if (state is ProductDetailsError) {
               return Center(child: Text(state.message));
@@ -49,5 +53,3 @@ class ProductsDetails extends StatelessWidget {
     );
   }
 }
-
-
