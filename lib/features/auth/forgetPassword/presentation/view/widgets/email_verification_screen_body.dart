@@ -1,10 +1,12 @@
 import 'dart:developer';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/helper_functions/snack_bar.dart';
 import 'package:flowery/features/auth/forgetPassword/presentation/view/widgets/resend_code_widget.dart';
 import 'package:flowery/features/auth/forgetPassword/presentation/view_model/verify_code_cubit/email_verification_cubit.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -68,7 +70,7 @@ class _EmailVerificationScreenBodyState
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Email verification',
+                   LocaleKeys.emailVerificationTitle.tr(),
                     style: AppTextStyles.instance.textStyle18.copyWith(
                       fontWeight: FontWeight.w500,
                     ),
@@ -76,7 +78,7 @@ class _EmailVerificationScreenBodyState
                   SizedBox(height: 16.h),
                   Text(
                     textAlign: TextAlign.center,
-                    'Please enter your code that was sent to your email address',
+                    LocaleKeys.PleaseEnterYourCodeThatSendToYourEmailAddress.tr(),
                     style: AppTextStyles.instance.textStyle14,
                   ),
                 ],

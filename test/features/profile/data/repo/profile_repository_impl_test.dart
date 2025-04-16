@@ -1,6 +1,3 @@
-import 'dart:math';
-
-import 'package:dartz/dartz.dart';
 import 'package:flowery/core/utils/error_handler.dart';
 import 'package:flowery/features/profile/data/data_source/profile_remote_data_source.dart';
 import 'package:flowery/features/profile/data/model/user_response.dart';
@@ -22,7 +19,7 @@ void main() {
       remoteDataSourceContract = MockProfileRemoteDataSource();
       // Initialize the ProfileRepositoryImpl with the mocked data source
       profileRepositoryContract = ProfileRepoImpl(
-       remoteDataSource: remoteDataSourceContract,
+        remoteDataSource: remoteDataSourceContract,
       );
     });
     test(

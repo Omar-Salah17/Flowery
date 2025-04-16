@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/helper/spacing.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
@@ -6,6 +7,7 @@ import 'package:flowery/features/profile/presentation/view/cubit/profile_cubit.d
 import 'package:flowery/features/profile/presentation/widgets/main_profile_appbar.dart';
 import 'package:flowery/features/profile/presentation/widgets/settings_tile.dart';
 import 'package:flowery/features/profile/presentation/widgets/user_info_scetion.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -61,14 +63,14 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
           ),
           SettingsTile(
             iconPath: 'assets/images/list.svg',
-            title: 'My orders',
+            title: LocaleKeys.myOrders.tr(),
             onTap: () {
               // Navigate to My Orders
             },
           ),
           SettingsTile(
             iconPath: 'assets/images/location.svg',
-            title: 'Saved address',
+            title: LocaleKeys.savedAddress.tr(),
             onTap: () {
               // Navigate to Saved Address
             },
@@ -88,16 +90,16 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
                 setState(() {});
               },
             ),
-            title: 'Notifications',
+            title: LocaleKeys.notification.tr(),
           ),
           verticalSpace(10),
           Divider(color: PalletsColors.white70, height: .5.h),
           verticalSpace(10),
           SettingsTile(
-            title: 'Language',
+            title: LocaleKeys.language.tr(),
             icon: Icon(Icons.translate),
             trailing: Text(
-              'English',
+             LocaleKeys.local.tr(),
               style: AppTextStyles.instance.textStyle13.copyWith(
                 color: PalletsColors.mainColorBase,
               ),
@@ -107,17 +109,17 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
             },
           ),
           SettingsTile(
-            title: "About us",
+            title: LocaleKeys.aboutUs.tr(),
             onTap: () {
               // Navigate to About Us
             },
           ),
-          SettingsTile(title: "Terms & Conditions", onTap: () {}),
+          SettingsTile(title: LocaleKeys.termsConditions.tr(), onTap: () {}),
           verticalSpace(10),
           Divider(color: PalletsColors.white70, height: .5.h),
           verticalSpace(10),
           SettingsTile(
-            title: "Log out",
+            title: LocaleKeys.logout.tr(),
             onTap: () {
               // Log out action
             },

@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/widgets/products_grid_view.dart';
 import 'package:flowery/features/best_seller/presentation/view_model/cubits/best_seller_cubit.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +19,10 @@ class BestSellerScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          title: Text("Best seller", style: AppTextStyles.instance.textStyle24),
+          title: Text(
+            LocaleKeys.bestSeller.tr(),
+            style: AppTextStyles.instance.textStyle24,
+          ),
           centerTitle: false,
         ),
         body: CustomScrollView(
@@ -32,7 +37,7 @@ class BestSellerScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(left: 28.w),
                       child: Text(
-                        "Bloom with our exquisite best sellers",
+                        LocaleKeys.bloomSellers.tr(),
                         style: AppTextStyles.instance.textStyle13.copyWith(
                           color: PalletsColors.gray,
                           fontWeight: FontWeight.w500,

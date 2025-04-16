@@ -1,5 +1,4 @@
 import 'package:flowery/core/apiManger/apiService.dart';
-import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/error_handler.dart';
 import 'package:flowery/features/profile/data/data_source/profile_remote_data_source.dart';
 import 'package:flowery/features/profile/data/data_source/profile_remote_data_source_impl.dart';
@@ -37,15 +36,14 @@ void main() {
         expect(result, mockResponse);
       },
     );
-      test('getLoggedInUserData should return Failure when API call fails', (){
-    final mockError = ServerFailure(errorMessage: "error");
-    when(apiService.getLoggedInUserData()).thenThrow(mockError);
-    
+    test('getLoggedInUserData should return Failure when API call fails', () {
+      final mockError = ServerFailure(errorMessage: "error");
+      when(apiService.getLoggedInUserData()).thenThrow(mockError);
+
       final result = profileRemoteDataSourceContract.getLoggedInUserData();
-    verify(apiService.getLoggedInUserData()).called(1);
-    
-    expect(result, throwsA(isA<ServerFailure>()));
-  });
-  
+      verify(apiService.getLoggedInUserData()).called(1);
+
+      expect(result, throwsA(isA<ServerFailure>()));
+    });
   });
 }

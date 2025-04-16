@@ -15,7 +15,7 @@ import '../view_model/edit_profile_state.dart';
 
 class EditProfileView extends StatefulWidget {
   final UserModel user;
-  EditProfileView({super.key, required this.user});
+  const EditProfileView({super.key, required this.user});
 
   @override
   State<EditProfileView> createState() => _EditProfileViewState();
@@ -95,12 +95,13 @@ class _EditProfileViewState extends State<EditProfileView> {
                         children: [
                           CircleAvatar(
                             radius: 50,
-                            backgroundImage: selectedImage != null
-                                ? FileImage(selectedImage!)
-                                : (widget.user.photo != null
-                                ? NetworkImage(widget.user.photo!)
-                                : const AssetImage(''))
-                            as ImageProvider,
+                            backgroundImage:
+                                selectedImage != null
+                                    ? FileImage(selectedImage!)
+                                    : (widget.user.photo != null
+                                            ? NetworkImage(widget.user.photo!)
+                                            : const AssetImage(''))
+                                        as ImageProvider,
                           ),
                           Positioned(
                             bottom: 0,
@@ -109,7 +110,9 @@ class _EditProfileViewState extends State<EditProfileView> {
                               width: 24,
                               height: 24,
                               decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
                                 color: PalletsColors.mainColor30,
                               ),
                               child: IconButton(
@@ -200,27 +203,26 @@ class _EditProfileViewState extends State<EditProfileView> {
                     state.status == EditProfileStatus.loading
                         ? const CircularProgressIndicator()
                         : ElevatedButton(
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          final updatedUser = UpdatedUserModel(
-                            firstName: firstNameController.text.trim(),
-                            lastName: lastNameController.text.trim(),
-                            email: emailController.text.trim(),
-                            phone: phoneNumberController.text.trim(),
-                          );
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              final updatedUser = UpdatedUserModel(
+                                firstName: firstNameController.text.trim(),
+                                lastName: lastNameController.text.trim(),
+                                email: emailController.text.trim(),
+                                phone: phoneNumberController.text.trim(),
+                              );
 
+                              cubit.uploadProfilePhoto(selectedImage);
 
-                          cubit.uploadProfilePhoto(selectedImage);
-
-                          cubit.editProfile(updatedUser);
-                        } else {
-                          setState(() {
-                            autoValidateMode = AutovalidateMode.always;
-                          });
-                        }
-                      },
-                      child: const Text("Update Profile"),
-                    ),
+                              cubit.editProfile(updatedUser);
+                            } else {
+                              setState(() {
+                                autoValidateMode = AutovalidateMode.always;
+                              });
+                            }
+                          },
+                          child: const Text("Update Profile"),
+                        ),
                   ],
                 ),
               ),

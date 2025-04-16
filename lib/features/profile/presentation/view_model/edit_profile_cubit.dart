@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/features/profile/domain/use_cases/upload_photo__use_case.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flowery/features/profile/data/models/profile_response.dart';
@@ -13,22 +15,22 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   final UploadPhotoUseCase uploadPhotoUseCase;
 
   EditProfileCubit(this.editProfileUseCase, this.uploadPhotoUseCase)
-      : super(const EditProfileState());
+    : super(const EditProfileState());
 
   Future<void> uploadProfilePhoto(File? photo) async {
     try {
       emit(state.copyWith(status: EditProfileStatus.loading));
 
-
-
-      await uploadPhotoUseCase( photo!);
+      await uploadPhotoUseCase(photo!);
 
       emit(state.copyWith(status: EditProfileStatus.success));
     } catch (e) {
-      emit(state.copyWith(
-        status: EditProfileStatus.failure,
-        errorMessage: "Failed to upload photo",
-      ));
+      emit(
+        state.copyWith(
+          status: EditProfileStatus.failure,
+          errorMessage: LocaleKeys.failedToUploadPhoto.tr(),
+        ),
+      );
     }
   }
 
@@ -38,14 +40,15 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     final result = await editProfileUseCase(updatedUser);
 
     result.fold(
-          (failure) => emit(state.copyWith(
-        status: EditProfileStatus.failure,
-        errorMessage: failure.errorMessage,
-      )),
-          (profile) => emit(state.copyWith(
-        status: EditProfileStatus.success,
-        profile: profile,
-      )),
+      (failure) => emit(
+        state.copyWith(
+          status: EditProfileStatus.failure,
+          errorMessage: failure.errorMessage,
+        ),
+      ),
+      (profile) => emit(
+        state.copyWith(status: EditProfileStatus.success, profile: profile),
+      ),
     );
   }
 }

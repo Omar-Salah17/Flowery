@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/constants.dart';
@@ -11,6 +12,7 @@ import 'package:flowery/features/auth/login/presentation/view/widgets/remember_m
 import 'package:flowery/features/auth/login/presentation/view/widgets/sign_up_link.dart';
 import 'package:flowery/features/auth/login/presentation/view_model/login_cubit.dart';
 import 'package:flowery/features/auth/login/presentation/view_model/login_status.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -53,7 +55,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 backgroundColor: Colors.green,
-                content: Text('Logged in successfully'),
+                content: Text(LocaleKeys.LoggedInSuccessfully.tr()),
               ),
             );
 
@@ -79,16 +81,16 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                 children: [
                   SizedBox(height: 36.h),
                   CustomTextFormFieled(
-                    hintText: "Enter your email",
-                    labelText: "Email",
+                    hintText: LocaleKeys.enterYourEmail.tr(),
+                    labelText: LocaleKeys.email.tr(),
                     textEditingController: emailController,
                     validator: (value) => Validator.validateEmail(value),
                     shouldObscureText: false,
                   ),
                   SizedBox(height: 16.h),
                   CustomTextFormFieled(
-                    hintText: "Enter your Password",
-                    labelText: "Password",
+                    hintText: LocaleKeys.enterYourPassword.tr(),
+                    labelText: LocaleKeys.password.tr(),
                     textEditingController: passwordController,
                     validator: (value) => Validator.validatePassword(value),
                     shouldObscureText: true,
@@ -106,7 +108,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                   SizedBox(
                     width: double.infinity,
                     child: CustomElevatedButton(
-                      text: "Login",
+                      text: LocaleKeys.login.tr(),
                       onTap: () async {
                         if (formKey.currentState!.validate()) {
                           log("inside method");
@@ -131,9 +133,12 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                   SizedBox(
                     width: double.infinity,
                     child: CustomElevatedButton(
-                      text: "Continue as guest",
+                      text: LocaleKeys.continueAsGuest.tr(),
                       onTap: () {
-                        Navigator.pushReplacementNamed(context, RoutesName.layout);
+                        Navigator.pushReplacementNamed(
+                          context,
+                          RoutesName.layout,
+                        );
                       },
                       isPink: false,
                     ),

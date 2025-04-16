@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/apiManger/api_manager.dart';
 import 'package:flowery/core/utils/constants.dart';
 import 'package:flowery/features/auth/forgetPassword/data/dataSource/forget_password_remot_data_source.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: ForgetPasswordRemoteDataSource)
@@ -13,7 +15,7 @@ class ForgetPasswordRemoteDataSourceImpl
   Future<Map<String, dynamic>> forgetPassword({required String email}) async {
     var response = await apiManager.postData(
       endPoint: Constants.forgetPasswordEndPoint,
-      data: {"email": email},
+      data: {LocaleKeys.email: email},
     );
     return response.data;
   }
@@ -22,7 +24,7 @@ class ForgetPasswordRemoteDataSourceImpl
   Future<Map<String, dynamic>> verfiyCode({required String resetCode}) async {
     var response = await apiManager.postData(
       endPoint: Constants.verfiyCodeEndPoint,
-      data: {"resetCode": resetCode},
+      data: {LocaleKeys.resetcode.tr(): resetCode},
     );
     return response.data;
   }
@@ -34,7 +36,7 @@ class ForgetPasswordRemoteDataSourceImpl
   }) async {
     var response = await apiManager.putRequest(
       Constants.resetPasswordEndPoint,
-      {"email": email, "newPassword": newPassword},
+      {LocaleKeys.email.tr(): email, LocaleKeys.newPassword.tr(): newPassword},
     );
     return response.data;
   }
