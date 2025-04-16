@@ -3,12 +3,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/features/profile/data/model/user_response.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:flowery/core/helper/spacing.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
+
+import '../view/cubit/profile_cubit.dart';
 
 class UserInfoScetion extends StatelessWidget {
   final UserData user;
@@ -22,11 +25,8 @@ class UserInfoScetion extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          CircleAvatar(
+          CircleAvatar(backgroundImage: NetworkImage(user.photo!,),
             radius: 50.r,
-            child:CachedNetworkImage(imageUrl: user.photo??'',
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-            ),
           ),
           verticalSpace(10.h),
           Row(
@@ -39,9 +39,13 @@ class UserInfoScetion extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
+
+
               InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, RoutesName.editProfile,arguments: user );
+                onTap: () async {
+                  await Navigator.pushNamed(context, RoutesName.editProfile, arguments: user);
+                  context.read<ProfileCubit>().getUserData();
+
                 },
                 child: SvgPicture.asset('assets/images/pen.svg'),
               ),
