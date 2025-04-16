@@ -3,7 +3,9 @@ import 'package:flowery/features/cart/presentation/view%20model/get%20logged%20c
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flowery/features/cart/domain/usecases/get_logged_cart_usecase.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class GetLoggedCartCubit extends Cubit<GetLoggedCartState> {
   GetLoggedCartCubit(this.usecase) : super(GetLoggedCartInitial());
 

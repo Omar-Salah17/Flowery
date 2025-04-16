@@ -4,23 +4,30 @@ import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/cart/data/models/get%20logged%20cart%20models/get_logged_cart_response.dart';
 import 'package:flowery/features/cart/domain/usecases/delete_cart_item_usecase.dart';
+import 'package:flowery/features/cart/domain/usecases/get_logged_cart_usecase.dart';
 import 'package:flowery/features/cart/presentation/view%20model/delete%20cart%20item%20view%20model/delete_cart_item_cubit.dart';
 import 'package:flowery/features/cart/presentation/view%20model/delete%20cart%20item%20view%20model/delete_cart_item_states.dart';
-import 'package:flowery/features/cart/presentation/view/widgets/quantity_selector.dart';
+import 'package:flowery/features/cart/presentation/view%20model/get%20logged%20cart%20view%20model/get_logged_cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'quantity_selector.dart';
 
 class CartItemWidget extends StatelessWidget {
   final CartItem item;
   final VoidCallback onDelete;
   final ValueChanged<int> onQuantityChanged;
+  final GetLoggedCartCubit cartCubit;
+  final DeleteCartItemCubit deleteCartItemCubit;
 
   const CartItemWidget({
     super.key,
     required this.item,
     required this.onDelete,
     required this.onQuantityChanged,
+    required this.cartCubit,
+    required this.deleteCartItemCubit,
   });
 
   @override
@@ -94,37 +101,29 @@ class CartItemWidget extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                BlocProvider(
-                  create:
-                      (context) => DeleteCartItemCubit(
-                        getIt.get<DeleteCartItemUsecase>(),
-                      ),
-
-                  child: BlocConsumer<DeleteCartItemCubit, DeleteCartItemState>(
-                    listener: (context, state) {
-                      if (state is DeleteCartItemFailure) {
-                        // Show error message
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(state.errorMessage)),
-                        );
-                      } else if (state is DeleteCartItemSuccess) {
-                        // Show success message
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("Item deleted successfully!")),
-                        );
-                      }
-                    },
-                    builder: (context, state) {
-                      return GestureDetector(
-                        onTap: () {
-                          context.read<DeleteCartItemCubit>().deleteCartItem(
-                            cartItemId: item.id,
-                          );
-                        },
-                        child: Image.asset("assets/images/delete.png"),
+                BlocConsumer<DeleteCartItemCubit, DeleteCartItemState>(
+                  listener: (context, state) {
+                    if (state is DeleteCartItemFailure) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(state.errorMessage)),
                       );
-                    },
-                  ),
+                    } else if (state is DeleteCartItemSuccess) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text("Item deleted successfully!")),
+                      );
+                    }
+                  },
+                  builder: (context, state) {
+                    return GestureDetector(
+                      onTap: () {
+                        deleteCartItemCubit.deleteCartItem(
+                          cartItemId: item.product.id,
+                        );
+                        cartCubit.getLoggedCart();
+                      },
+                      child: Image.asset("assets/images/delete.png"),
+                    );
+                  },
                 ),
                 const Spacer(),
                 QuantitySelector(initialValue: 1, onChanged: onQuantityChanged),

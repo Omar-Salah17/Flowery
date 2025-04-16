@@ -14,7 +14,8 @@ class Constants {
   static const String productDetails = "products";
   static const String addToCartEndPoint = "cart";
   static const String getLoggedCart = "cart";
-  static const String deleteSpecificCartItem = "cart";
+  static const String deleteSpecificCartItem = "cart/{cartItemId}";
+
   static const String clearCart = "cart";
   static const String updatCartProductQuantity = "cart";
   static const String changePasswordEndPoint = "auth/change-password";

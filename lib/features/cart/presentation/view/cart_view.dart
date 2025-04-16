@@ -31,6 +31,7 @@ class _CartViewState extends State<CartView> {
   var cartCubit = GetLoggedCartCubit(getIt.get<GetLoggedCartUsecase>());
   var updateCartCubit = UpdateCartCubit(getIt<UpdateCartItemUseCase>());
   var deleteItemCubit = DeleteCartItemCubit(getIt<DeleteCartItemUsecase>());
+
   List<Map<String, dynamic>> cartItems = [
     {
       'title': 'Red roses',
@@ -80,7 +81,6 @@ class _CartViewState extends State<CartView> {
               create: (context) => cartCubit..getLoggedCart(),
             ),
           ],
-
           child: Column(
             children: [
               CurrentUserLocation(),
@@ -100,19 +100,22 @@ class _CartViewState extends State<CartView> {
                         itemCount: state.response.numOfCartItems,
                         itemBuilder: (context, index) {
                           final item = state.response.cart.cartItems[index];
+                          log("ideeeees");
+                          log(state.response.cart.id);
+                          log(state.response.cart.cartItems[index].id);
+                          log(state.response.cart.cartItems[index].product.id);
                           return Padding(
                             padding: EdgeInsets.symmetric(vertical: 12.h),
                             child: CartItemWidget(
                               item: item,
                               onDelete: () {
-                                // cartItems.removeAt(index);
-                              deleteItemCubit.deleteCartItem(cartItemId: item.id);
                                 cartCubit.getLoggedCart();
-                                
                               },
+                              cartCubit: cartCubit,
+                              deleteCartItemCubit: deleteItemCubit,
                               onQuantityChanged: (value) {
                                 updateCartCubit.updateCartItem(
-                                  cartItemId: item.id,
+                                  cartItemId: item.product.id,
                                   request: UpdateProductRequest(
                                     quantity: value,
                                   ),

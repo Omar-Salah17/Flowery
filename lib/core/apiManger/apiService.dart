@@ -54,7 +54,7 @@ abstract class ApiService {
 
   @DELETE(Constants.deleteSpecificCartItem)
   Future<DeleteCartResponse> deleteCartItem(
-    @Header("Authorization") String cartItemId,
+    @Path("cartItemId") String cartItemId,
   );
 
   @DELETE(Constants.clearCart)
@@ -77,23 +77,20 @@ abstract class ApiService {
   Future<BestSellerModel> getBestSellerProduct();
 
   @GET("products/{id}")
-Future<ProductDetailsModel> getProductDetails(@Path("id") String id);
+  Future<ProductDetailsModel> getProductDetails(@Path("id") String id);
 
   @PUT("auth/editProfile")
-  Future<ProfileResponse>editProfile(
-      @Body() UpdatedUserModel user,
-      @Header("Authorization") String token,
-      );
+  Future<ProfileResponse> editProfile(
+    @Body() UpdatedUserModel user,
+    @Header("Authorization") String token,
+  );
   @GET(Constants.profileDataENdPoint)
   Future<UserResponse> getLoggedInUserData();
-
-  
 
   @MultiPart()
   @PUT("auth/upload-photo")
   Future<String> uploadPhoto(
-      @Header("Authorization") String token,
-      @Part(name: "photo") File image,
-      );
-
+    @Header("Authorization") String token,
+    @Part(name: "photo") File image,
+  );
 }

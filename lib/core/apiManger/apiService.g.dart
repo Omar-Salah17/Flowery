@@ -191,14 +191,13 @@ class _ApiService implements ApiService {
   Future<DeleteCartResponse> deleteCartItem(String cartItemId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': cartItemId};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<DeleteCartResponse>(
       Options(method: 'DELETE', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'cart',
+            'cart/${cartItemId}',
             queryParameters: queryParameters,
             data: _data,
           )
