@@ -1,0 +1,29 @@
+name: flutter_linting_action
+
+on:
+  push:
+  pull_request:
+    branches:
+      - development
+
+jobs:
+  flutter_linting_action:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.29.2
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run Flutter analyzer
+        run: flutter analyze
+
+      - name: Check code formatting
+        run: dart format . --set-exit-if-changed

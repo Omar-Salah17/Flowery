@@ -1,5 +1,4 @@
 
-import 'package:flowery/features/profile/presentation/view/widgets/profile_view_body.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/features/profile/domain/use_case/get_user_data_use_case.dart';
 import 'package:flowery/features/profile/presentation/view/cubit/profile_cubit.dart';
