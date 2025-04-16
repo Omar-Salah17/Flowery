@@ -195,14 +195,11 @@ class MockApiService extends _i1.Mock implements _i10.ApiService {
           as _i11.Future<_i7.BestSellerModel>);
 
   @override
-  _i11.Future<String> logout(String? token) =>
+  _i11.Future<String> logout() =>
       (super.noSuchMethod(
-            Invocation.method(#logout, [token]),
+            Invocation.method(#logout, []),
             returnValue: _i11.Future<String>.value(
-              _i14.dummyValue<String>(
-                this,
-                Invocation.method(#logout, [token]),
-              ),
+              _i14.dummyValue<String>(this, Invocation.method(#logout, [])),
             ),
           )
           as _i11.Future<String>);

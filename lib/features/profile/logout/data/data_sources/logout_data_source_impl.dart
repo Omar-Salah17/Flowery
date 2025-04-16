@@ -10,8 +10,8 @@ class LogoutDataSourceImpl implements LogoutDataSource{
   final apiService = getIt<ApiService>();
 
   @override
-  Future<String> logout(String token) async{
-    var response = await apiService.logout(token);
+  Future<String> logout() async{
+    var response = await apiService.logout();
     return response;
   }
 

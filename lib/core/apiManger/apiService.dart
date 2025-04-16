@@ -50,7 +50,7 @@ abstract class ApiService {
 
 
   @GET(Constants.logoutEndPoint)
-  Future<String> logout(@Header('Authorization') String token);
+  Future<String> logout();
   
   @GET("products/{id}")
 Future<ProductDetailsModel> getProductDetails(@Path("id") String id);

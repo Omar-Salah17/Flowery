@@ -11,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileMainScreen extends StatefulWidget {
-const  ProfileMainScreen({super.key});
+  const ProfileMainScreen({super.key});
 
   @override
   State<ProfileMainScreen> createState() => _ProfileMainScreenState();
@@ -56,7 +56,6 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
                 return UserInfoScetion(user: state.user);
               }
               return Container();
-            
             },
           ),
           SettingsTile(
@@ -119,7 +118,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
           SettingsTile(
             title: "Log out",
             onTap: () {
-              // Log out action
+              context.read<ProfileCubit>().showLogoutConfirmationDialog(context);
             },
             icon: Icon(Icons.logout),
           ),

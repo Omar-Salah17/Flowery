@@ -44,3 +44,19 @@ Map<String, dynamic> _$UserDataToJson(UserData instance) => <String, dynamic>{
   'addresses': instance.addresses,
   'createdAt': instance.createdAt,
 };
+
+UpdatedUserModel _$UpdatedUserModelFromJson(Map<String, dynamic> json) =>
+    UpdatedUserModel(
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
+      email: json['email'] as String?,
+      phone: json['phone'] as String?,
+    );
+
+Map<String, dynamic> _$UpdatedUserModelToJson(UpdatedUserModel instance) =>
+    <String, dynamic>{
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'email': instance.email,
+      'phone': instance.phone,
+    };

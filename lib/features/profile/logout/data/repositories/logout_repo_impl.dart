@@ -13,10 +13,10 @@ class LogoutRepoImpl implements LogoutRepo{
   LogoutRepoImpl(this.logoutDataSource);
 
   @override
-  Future<Either<Failure, String>> logout(String token)async{
+  Future<Either<Failure, String>> logout()async{
     try{
-      String bearerToken = "Bearer $token";
-      var res = await logoutDataSource.logout(bearerToken);
+      
+      var res = await logoutDataSource.logout();
       return right(res);
     }catch(e){
       if(e is DioException){

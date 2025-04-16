@@ -12,8 +12,8 @@ class LogoutUseCase{
   LogoutRepo logoutRepo;
   LogoutUseCase(this.logoutRepo);
 
-  Future<Either<Failure,String>> call(String token)async{
-    return await logoutRepo.logout(token);
+  Future<Either<Failure,String>> call()async{
+    return await logoutRepo.logout();
   }
 
 }

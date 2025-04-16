@@ -4,6 +4,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
+import 'dart:io' as _i7;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:flowery/core/utils/error_handler.dart' as _i5;
@@ -67,4 +68,33 @@ class MockProfileRepo extends _i1.Mock implements _i3.ProfileRepo {
                 ),
           )
           as _i4.Future<_i2.Either<_i5.Failure, _i6.UserData>>);
+
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, _i6.UserResponse>> editProfile(
+    _i6.UpdatedUserModel? user,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#editProfile, [user]),
+            returnValue:
+                _i4.Future<_i2.Either<_i5.Failure, _i6.UserResponse>>.value(
+                  _FakeEither_0<_i5.Failure, _i6.UserResponse>(
+                    this,
+                    Invocation.method(#editProfile, [user]),
+                  ),
+                ),
+          )
+          as _i4.Future<_i2.Either<_i5.Failure, _i6.UserResponse>>);
+
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, String>> uploadPhoto(_i7.File? photo) =>
+      (super.noSuchMethod(
+            Invocation.method(#uploadPhoto, [photo]),
+            returnValue: _i4.Future<_i2.Either<_i5.Failure, String>>.value(
+              _FakeEither_0<_i5.Failure, String>(
+                this,
+                Invocation.method(#uploadPhoto, [photo]),
+              ),
+            ),
+          )
+          as _i4.Future<_i2.Either<_i5.Failure, String>>);
 }

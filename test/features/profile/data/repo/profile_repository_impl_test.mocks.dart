@@ -4,11 +4,13 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
+import 'dart:io' as _i5;
 
 import 'package:flowery/features/profile/data/data_source/profile_remote_data_source.dart'
     as _i3;
 import 'package:flowery/features/profile/data/model/user_response.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/src/dummies.dart' as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,6 +28,11 @@ import 'package:mockito/mockito.dart' as _i1;
 
 class _FakeUserData_0 extends _i1.SmartFake implements _i2.UserData {
   _FakeUserData_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeUserResponse_1 extends _i1.SmartFake implements _i2.UserResponse {
+  _FakeUserResponse_1(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
@@ -60,4 +67,30 @@ class MockProfileRemoteDataSource extends _i1.Mock
             ),
           )
           as _i4.Future<_i2.UserData>);
+
+  @override
+  _i4.Future<_i2.UserResponse> editProfile(_i2.UpdatedUserModel? user) =>
+      (super.noSuchMethod(
+            Invocation.method(#editProfile, [user]),
+            returnValue: _i4.Future<_i2.UserResponse>.value(
+              _FakeUserResponse_1(
+                this,
+                Invocation.method(#editProfile, [user]),
+              ),
+            ),
+          )
+          as _i4.Future<_i2.UserResponse>);
+
+  @override
+  _i4.Future<String> uploadPhoto(_i5.File? photo) =>
+      (super.noSuchMethod(
+            Invocation.method(#uploadPhoto, [photo]),
+            returnValue: _i4.Future<String>.value(
+              _i6.dummyValue<String>(
+                this,
+                Invocation.method(#uploadPhoto, [photo]),
+              ),
+            ),
+          )
+          as _i4.Future<String>);
 }
