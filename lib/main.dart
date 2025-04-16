@@ -12,9 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 void main() {
   configureDependencies();
   Bloc.observer = SimpleBlocObserver();
-  runApp(
-    BlocProvider(create: (context) =>  AddToCartCubit(getIt<AddToCartUsecase>()), child: const Flowery()),
-  );
+  runApp(const Flowery());
 }
 
 class Flowery extends StatelessWidget {
@@ -26,11 +24,14 @@ class Flowery extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          initialRoute: RoutesName.login,
-          onGenerateRoute: RouteGenerator.onGenerator,
-          theme: ApplicationTheme.themeData,
+        return BlocProvider(
+          create: (context) => AddToCartCubit(getIt<AddToCartUsecase>()),
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            initialRoute: RoutesName.login,
+            onGenerateRoute: RouteGenerator.onGenerator,
+            theme: ApplicationTheme.themeData,
+          ),
         );
       },
     );

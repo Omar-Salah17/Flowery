@@ -3,9 +3,14 @@ import 'dart:developer';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/custom_button.dart';
+import 'package:flowery/features/cart/data/models/update%20product%20models/update_product_request.dart';
+import 'package:flowery/features/cart/domain/usecases/delete_cart_item_usecase.dart';
 import 'package:flowery/features/cart/domain/usecases/get_logged_cart_usecase.dart';
+import 'package:flowery/features/cart/domain/usecases/update_product_quantity_repo.dart';
+import 'package:flowery/features/cart/presentation/view%20model/delete%20cart%20item%20view%20model/delete_cart_item_cubit.dart';
 import 'package:flowery/features/cart/presentation/view%20model/get%20logged%20cart%20view%20model/get_logged_cart_cubit.dart';
 import 'package:flowery/features/cart/presentation/view%20model/get%20logged%20cart%20view%20model/get_logged_cart_states.dart';
+import 'package:flowery/features/cart/presentation/view%20model/update%20product%20quantity%20view%20model/update_product_quantity_cubit.dart';
 import 'package:flowery/features/cart/presentation/view/widgets/cart_app_bar.dart';
 import 'package:flowery/features/cart/presentation/view/widgets/cart_item_widget.dart';
 import 'package:flowery/features/cart/presentation/view/widgets/price_row.dart';
@@ -23,6 +28,9 @@ class CartView extends StatefulWidget {
 }
 
 class _CartViewState extends State<CartView> {
+  var cartCubit = GetLoggedCartCubit(getIt.get<GetLoggedCartUsecase>());
+  var updateCartCubit = UpdateCartCubit(getIt<UpdateCartItemUseCase>());
+  var deleteItemCubit = DeleteCartItemCubit(getIt<DeleteCartItemUsecase>());
   List<Map<String, dynamic>> cartItems = [
     {
       'title': 'Red roses',
@@ -62,11 +70,17 @@ class _CartViewState extends State<CartView> {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
-        child: BlocProvider(
-          create:
-              (context) =>
-                  GetLoggedCartCubit(getIt.get<GetLoggedCartUsecase>())
-                    ..getLoggedCart(),
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider<DeleteCartItemCubit>(
+              create: (context) => deleteItemCubit,
+            ),
+            BlocProvider<UpdateCartCubit>(create: (context) => updateCartCubit),
+            BlocProvider<GetLoggedCartCubit>(
+              create: (context) => cartCubit..getLoggedCart(),
+            ),
+          ],
+
           child: Column(
             children: [
               CurrentUserLocation(),
@@ -91,13 +105,18 @@ class _CartViewState extends State<CartView> {
                             child: CartItemWidget(
                               item: item,
                               onDelete: () {
-                                
-                                  cartItems.removeAt(index);
-                                      GetLoggedCartCubit(getIt.get<GetLoggedCartUsecase>())
-                    ..getLoggedCart();
+                                // cartItems.removeAt(index);
+                              deleteItemCubit.deleteCartItem(cartItemId: item.id);
+                                cartCubit.getLoggedCart();
                                 
                               },
                               onQuantityChanged: (value) {
+                                updateCartCubit.updateCartItem(
+                                  cartItemId: item.id,
+                                  request: UpdateProductRequest(
+                                    quantity: value,
+                                  ),
+                                );
                                 print('Quantity changed: $value');
                               },
                             ),

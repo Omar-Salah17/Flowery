@@ -10,7 +10,7 @@ class AddToCartCubit extends Cubit<AddToCartState> {
   AddToCartCubit(this.addToCartUsecase) : super(AddToCartInitial());
 
   final AddToCartUsecase addToCartUsecase;
-static AddToCartUsecase get(context) => BlocProvider.of(context);
+ static AddToCartCubit get(context) => BlocProvider.of(context);
   Future<void> addToCart({required AddProductRequest addProductRequest}) async {
     emit(AddToCartLoading());
     log("AddToCartCubit: before invoke");

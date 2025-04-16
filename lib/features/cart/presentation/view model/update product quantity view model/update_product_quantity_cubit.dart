@@ -7,7 +7,7 @@ class UpdateCartCubit extends Cubit<UpdateCartState> {
   final UpdateCartItemUseCase updateCartItemUseCase;
 
   UpdateCartCubit(this.updateCartItemUseCase) : super(UpdateCartInitial());
-
+  static UpdateCartCubit get(context) => BlocProvider.of(context);
   Future<void> updateCartItem({
     required String cartItemId,
 
