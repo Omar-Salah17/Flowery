@@ -118,10 +118,10 @@ extension GetItInjectableX on _i174.GetIt {
     final dioModule = _$DioModule();
     gh.singleton<_i29.ApiManager>(() => _i29.ApiManager());
     gh.singleton<_i361.LogInterceptor>(() => dioModule.provideLogger());
-    gh.singleton<_i646.GuestManager>(() => _i646.GuestManager());
     gh.singleton<_i665.SecureStorageService>(
       () => _i665.SecureStorageService(),
     );
+    gh.singleton<_i646.GuestManager>(() => _i646.GuestManager());
     gh.factory<_i237.OccasionRemoteDataSourceContract>(
       () => _i61.OccasionRemoteDataSourceImpl(),
     );
