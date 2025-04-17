@@ -60,6 +60,7 @@ dependencies:
  
   easy_localization: ^3.0.7+1
   provider: ^6.1.4
+  flutter_settings_ui: ^3.0.1
 
 dev_dependencies:
   build_runner: ^2.3.3

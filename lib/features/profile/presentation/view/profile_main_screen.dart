@@ -26,6 +26,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final appConfigProvider = getIt<AppConfigProvider>();
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50.h),
@@ -98,19 +99,20 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
           verticalSpace(10),
           SettingsTile(
             title: LocaleKeys.language.tr(),
-            icon: Icon(Icons.translate),
+
+            onTap: () {
+              _showLanguageBottomSheet(context);
+              setState(() {});
+            },
+
             trailing: Text(
-              LocaleKeys.local.tr(),
+              appConfigProvider.isEn() ? "English" : "العربية",
               style: AppTextStyles.instance.textStyle13.copyWith(
                 color: PalletsColors.mainColorBase,
               ),
             ),
-            onTap: () {
-              changeLanguge();
-              setState(() {});
-              // Language bottom sheet
-            },
           ),
+
           SettingsTile(
             title: LocaleKeys.aboutUs.tr(),
             onTap: () {
@@ -133,12 +135,44 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
     );
   }
 
-  void changeLanguge() {
-    final appConfigProvider = getIt<AppConfigProvider>();
-    final newLang = appConfigProvider.isEn() ? "ar" : "en";
-    appConfigProvider.changeCurrentLanguge(newLang);
+  void _showLanguageBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (_) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.language),
+              title: const Text('English'),
+              onTap: () {
+                _changeLanguage(context, 'en');
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.language),
+              title: const Text('العربية'),
+              onTap: () {
+                _changeLanguage(context, 'ar');
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
-    // Set the locale in EasyLocalization
-    context.setLocale(Locale(newLang));
+  void _changeLanguage(BuildContext context, String newLang) {
+    final appConfigProvider = getIt<AppConfigProvider>();
+
+    if (appConfigProvider.currentLanguge != newLang) {
+      appConfigProvider.changeCurrentLanguge(newLang);
+      context.setLocale(Locale(newLang));
+    }
+
+    Navigator.pop(context); // close bottom sheet
   }
 }

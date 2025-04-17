@@ -45,7 +45,7 @@ void main() async {
 }
 
 class Flowery extends StatefulWidget {
-  Flowery({super.key});
+  const Flowery({super.key});
 
   @override
   State<Flowery> createState() => _FloweryState();
@@ -68,7 +68,7 @@ class _FloweryState extends State<Flowery> {
           supportedLocales: context.supportedLocales,
           locale: context.locale,
 
-          initialRoute: RoutesName.profile,
+          initialRoute: RoutesName.localization,
           onGenerateRoute: RouteGenerator.onGenerator,
           theme: ApplicationTheme.themeData,
         );
