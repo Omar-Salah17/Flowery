@@ -269,6 +269,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i320.DeleteCartItemUsecase>(
       () => _i320.DeleteCartItemUsecase(repo: gh<_i622.DeleteCartItemRepo>()),
     );
+    gh.factory<_i872.LogoutRepo>(
+      () => _i107.LogoutRepoImpl(gh<_i621.LogoutDataSource>()),
+    );
     gh.factory<_i965.DeleteCartItemCubit>(
       () => _i965.DeleteCartItemCubit(gh<_i320.DeleteCartItemUsecase>()),
     );
