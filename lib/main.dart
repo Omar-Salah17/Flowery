@@ -3,16 +3,25 @@ import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/application_theme.dart';
 import 'package:flowery/core/utils/simple_bloc_observer.dart';
-import 'package:flowery/features/cart/domain/usecases/add_to_cart_usecase.dart';
-import 'package:flowery/features/cart/presentation/view%20model/add_to_cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'features/cart/presentation/view model/cubit/cart_cubit.dart';
+
 void main() {
   configureDependencies();
   Bloc.observer = SimpleBlocObserver();
-  runApp(const Flowery());
+
+  runApp(
+      MultiBlocProvider(
+        providers: [
+          BlocProvider<CartCubit>(
+            create: (context) => getIt<CartCubit>())],
+
+        child: const Flowery()), // Replace with your main app widget
+      
+        );
 }
 
 class Flowery extends StatelessWidget {

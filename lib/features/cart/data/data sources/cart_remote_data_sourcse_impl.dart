@@ -42,7 +42,9 @@ class CartRemoteDataSourcseImpl implements CartRemoteDataSource {
   }) async {
     var response = await apiService.updateCartProductQuantity(
       productId,
-      productQuantity
+        {
+        "quantity": productQuantity,
+      },
     );
     return response;
   }

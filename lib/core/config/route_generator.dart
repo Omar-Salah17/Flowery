@@ -5,6 +5,7 @@ import 'package:flowery/features/auth/forgetPassword/presentation/view/reset_pas
 import 'package:flowery/features/auth/login/presentation/view/screens/login.dart';
 import 'package:flowery/features/auth/register/presentation/view/screens/register_screen.dart';
 import 'package:flowery/features/best_seller/presentation/view/best_seller_screen.dart';
+import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_cubit.dart';
 import 'package:flowery/features/occasion/presentation/view/occasion_screen.dart';
 import 'package:flowery/features/productsDetails/presentation/view/products_details.dart';
 import 'package:flowery/features/profile/data/model/user_response.dart';
@@ -107,7 +108,10 @@ class RouteGenerator {
 
       case RoutesName.productsDetails:
         return MaterialPageRoute(
-          builder: (context) => ProductsDetails(),
+        builder:
+        (context) => BlocProvider(
+    create: (context) => getIt<CartCubit>(),
+    child: ProductsDetails(),),
           settings: Settings,
         );
 

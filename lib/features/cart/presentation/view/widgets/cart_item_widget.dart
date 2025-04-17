@@ -1,10 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/cart/data/models/cart_model/cart_item.dart';
-
-import 'package:flowery/features/cart/domain/usecases/delete_cart_item_usecase.dart';
+import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_cubit.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,18 +11,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'quantity_selector.dart';
 
 class CartItemWidget extends StatelessWidget {
-  final VoidCallback onDelete;
-  final ValueChanged<int> onQuantityChanged;
 
-  final String id;
   final CartItem cartItem;
   const CartItemWidget({
     super.key,
-
-    required this.onDelete,
-    required this.onQuantityChanged,
-
-    required this.id, required this.cartItem,
+    required this.cartItem,
   });
 
   @override
@@ -100,17 +91,16 @@ class CartItemWidget extends StatelessWidget {
               children: [
                 GestureDetector(
                       onTap: () {
-                      
-                       
+                      context.read<CartCubit>().deleteCartItem(cartItem.product!.id!);
+                      print('deleated');
                       },
                       child: Image.asset("assets/images/delete.png"),
                     ),
                 const Spacer(),
                 QuantitySelector(
-                  initialValue: 1,
-                  id: id,
-                  onChanged: onQuantityChanged,
-                  updateCartCubit: updateCartCubit,
+                  initialValue: cartItem.quantity ?? 1,
+                  id: cartItem.product!.id!,
+
                 ),
               ],
             ),

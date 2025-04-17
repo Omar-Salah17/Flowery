@@ -6,7 +6,7 @@ class Product extends Equatable {
   final String? slug;
   final String? description;
   final String? imgCover;
-  final List<String>? images;
+  final List<dynamic>? images;
   final int? price;
   final int? priceAfterDiscount;
   final int? quantity;

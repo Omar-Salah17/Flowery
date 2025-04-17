@@ -6,7 +6,7 @@ abstract class CartRemoteDataSource {
     required AddProductRequest addProductRequest,
   });
   Future<CartResponse> clearCart();
-  Future<CartResponse> updateProductQuantity({required int productQuantity , required String productId});
+  Future<CartResponse> updateProductQuantity({required int productQuantity, required String productId});
   Future<CartResponse> getUserCart();
   Future<CartResponse> removeFromCart({required String productId});
 }

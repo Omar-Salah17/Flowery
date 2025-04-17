@@ -7,9 +7,10 @@ import 'package:flowery/features/cart/domain/usecases/clear_cart_usecase.dart';
 import 'package:flowery/features/cart/domain/usecases/delete_cart_item_usecase.dart';
 import 'package:flowery/features/cart/domain/usecases/get_user_cart_usecase.dart';
 import 'package:flowery/features/cart/domain/usecases/update_product_quantity_use_case.dart';
+import 'package:injectable/injectable.dart';
 
 part 'cart_state.dart';
-
+@injectable
 class CartCubit extends Cubit<CartState> {
   CartCubit(
     this.addToCartUsecase,

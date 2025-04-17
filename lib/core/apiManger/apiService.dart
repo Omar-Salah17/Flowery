@@ -56,7 +56,7 @@ abstract class ApiService {
   @PUT("cart/{id}")
   Future<CartResponse> updateCartProductQuantity(
     @Path("id") String cartItemId,
-    @Body() int quantity,
+    @Body() Map<String, dynamic> productQuantity,
   );
 
   @GET(Constants.occasionEndPoint)

@@ -1,24 +1,27 @@
-import 'dart:developer';
-
-import 'package:flowery/core/di/di.dart';
-import 'package:flowery/core/utils/colors.dart';
-import 'package:flowery/core/utils/custom_button.dart';
-
-import 'package:flowery/features/cart/domain/usecases/delete_cart_item_usecase.dart';
-
-import 'package:flowery/features/cart/domain/usecases/update_product_quantity_use_case.dart';
-
-import 'package:flowery/features/cart/presentation/view/widgets/cart_app_bar.dart';
 import 'package:flowery/features/cart/presentation/view/widgets/cart_item_widget.dart';
 import 'package:flowery/features/cart/presentation/view/widgets/price_row.dart';
-
-import 'package:flowery/features/home/presentation/view/currentUserLocation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CartView extends StatelessWidget {
+import '../../../../core/utils/colors.dart';
+import '../../../../core/utils/custom_button.dart';
+import '../../../home/presentation/view/currentUserLocation.dart';
+import '../view model/cubit/cart_cubit.dart';
+
+class CartView extends StatefulWidget {
   const CartView({super.key});
+
+  @override
+  State<CartView> createState() => _CartViewState();
+}
+
+class _CartViewState extends State<CartView> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<CartCubit>().getUserCart();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,64 +30,63 @@ class CartView extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: Padding(
           padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
-          child: CartAppBar(cartItems: cartItems),
+          child: Text("Cart"),
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w),
-        child: Column(
-          children: [
-            CurrentUserLocation(),
-            SizedBox(
-              height: 435.h,
-              child:  ListView.builder(
-                      itemCount: 3,
-                      itemBuilder: (context, index) {
-                       
-                       
-                        return Padding(
-                          padding: EdgeInsets.symmetric(vertical: 12.h),
-                          child: CartItemWidget(
-                            item: item,
-                            onDelete: () {
-                              cartCubit.getLoggedCart();
-                            },
-                            cartCubit: cartCubit,
-                            deleteCartItemCubit: deleteItemCubit,
-                            updateCartCubit: updateCartCubit,
-                            id: item.product.id,
-                            onQuantityChanged: (value) {
-                              updateCartCubit.updateCartItem(
-                                cartItemId: item.product.id,
-                                request: UpdateProductRequest(quantity: 1),
-                              );
-                              print('Quantity changed: 1');
-                            },
-                          ),
-                        );
-                      },
-                    );
-            ),
-            SizedBox(height: 16.h),
-            PriceRow(title: "Sub Total", value: "100\$"),
-            PriceRow(title: "Delivery Fee", value: "10\$"),
-            Divider(thickness: 1.sp),
-            PriceRow(
-              title: "Total",
-              value: "110\$",
-              titleFontWeight: FontWeight.w500,
-              valueFontWeight: FontWeight.w500,
-              valueColor: PalletsColors.blackBase,
-              titleColor: PalletsColors.blackBase,
-            ),
-            SizedBox(height: 12.h),
-            CustomElevatedButton(
-              text: "Checkout",
-              isPink: true,
-              onTap: () {},
-            ),
-          ],
-        ),
+      body: BlocBuilder<CartCubit, CartState>(
+        builder: (context, state) {
+          if (state is CartSuccess) {
+            final cartItems = state.cartResponse.cart!.cartItems;
+
+            return Column(
+              children: [
+                CurrentUserLocation(),
+                SizedBox(
+                  height: 435.h,
+                  child: ListView.builder(
+                    itemCount: cartItems!.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: EdgeInsets.symmetric(vertical: 12.h),
+                        child: CartItemWidget(cartItem: cartItems[index]),
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(height: 16.h),
+                PriceRow(
+                    title: "Sub Total",
+                    value: "${state.cartResponse.cart!.totalPrice}\$"),
+                PriceRow(title: "Delivery Fee", value: "10\$"),
+                Divider(thickness: 1.sp),
+                PriceRow(
+                  title: "Total",
+                  value: "${state.cartResponse.cart!.totalPrice! + 10}\$",
+                  titleFontWeight: FontWeight.w500,
+                  valueFontWeight: FontWeight.w500,
+                  valueColor: PalletsColors.blackBase,
+                  titleColor: PalletsColors.blackBase,
+                ),
+                SizedBox(height: 12.h),
+                CustomElevatedButton(
+                  text: "Checkout",
+                  isPink: true,
+                  onTap: () {},
+                ),
+              ],
+            );
+          }
+
+          if (state is CartLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (state is CartFailure) {
+            return Center(child: Text(state.errorMessage));
+          }
+
+          return const SizedBox();
+        },
       ),
     );
   }

@@ -212,19 +212,19 @@ class MockApiService extends _i1.Mock implements _i11.ApiService {
   @override
   _i12.Future<_i6.CartResponse> updateCartProductQuantity(
     String? cartItemId,
-    int? quantity,
+    Map<String, dynamic>? productQuantity,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#updateCartProductQuantity, [
               cartItemId,
-              quantity,
+              productQuantity,
             ]),
             returnValue: _i12.Future<_i6.CartResponse>.value(
               _FakeCartResponse_4(
                 this,
                 Invocation.method(#updateCartProductQuantity, [
                   cartItemId,
-                  quantity,
+                  productQuantity,
                 ]),
               ),
             ),

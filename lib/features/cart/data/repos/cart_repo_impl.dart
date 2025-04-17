@@ -84,13 +84,14 @@ CartRepoImpl({required this.cartRemoteDataSource});
 
   @override
   Future<Either<Failure, CartResponse>> updateProductQuantity({
-    required int productQuantity,
+  required int productQuantity,
     required String productId,
   }) async {
     try {
       var data = await cartRemoteDataSource.updateProductQuantity(
         productId: productId,
         productQuantity: productQuantity,
+
       );
       return right(data);
     } catch (e) {

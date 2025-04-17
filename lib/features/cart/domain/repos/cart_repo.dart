@@ -8,7 +8,7 @@ abstract class CartRepo {
     required AddProductRequest addProductRequest,
   });
   Future<Either<Failure,CartResponse>> clearCart();
-  Future<Either<Failure,CartResponse>> updateProductQuantity({required int productQuantity , required String productId});
+  Future<Either<Failure,CartResponse>> updateProductQuantity({ required int productQuantity , required String productId});
   Future<Either<Failure,CartResponse>>getUserCart();
   Future<Either<Failure,CartResponse>> removeFromCart({required String productId});
 }

@@ -1,20 +1,16 @@
 import 'dart:developer';
-
-import 'package:flowery/features/cart/data/models/update%20product%20models/update_product_request.dart';
-import 'package:flowery/features/cart/presentation/view%20model/update%20product%20quantity%20view%20model/update_product_quantity_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../view model/cubit/cart_cubit.dart';
 
 class QuantitySelector extends StatefulWidget {
   final int initialValue;
-  final void Function(int)? onChanged;
-  final UpdateCartCubit updateCartCubit;
   final String id;
 
   const QuantitySelector({
     super.key,
-    this.initialValue = 0,
-    this.onChanged,
-    required this.updateCartCubit,
+    this.initialValue = 1,
     required this.id,
   });
 
@@ -39,10 +35,7 @@ class _QuantitySelectorState extends State<QuantitySelector> {
     });
     log("id");
     log(widget.id);
-    widget.updateCartCubit.updateCartItem(
-      cartItemId: widget.id,
-      request: UpdateProductRequest(quantity: 1),
-    );
+      context.read<CartCubit>().updateProductQuantity(widget.id, count);
   }
 
   void _decrement() {
@@ -50,7 +43,7 @@ class _QuantitySelectorState extends State<QuantitySelector> {
       setState(() {
         count--;
       });
-      widget.onChanged?.call(count);
+      context.read<CartCubit>().updateProductQuantity(widget.id, count);
     }
   }
 
