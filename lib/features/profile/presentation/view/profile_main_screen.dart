@@ -1,3 +1,4 @@
+import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/helper/spacing.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
@@ -119,6 +120,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
             title: "Log out",
             onTap: () {
               context.read<ProfileCubit>().showLogoutConfirmationDialog(context);
+              Navigator.pushNamed(context, RoutesName.login);
             },
             icon: Icon(Icons.logout),
           ),

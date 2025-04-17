@@ -28,7 +28,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     } catch (e) {
       emit(state.copyWith(
         status: EditProfileStatus.failure,
-        errorMessage: "Failed to upload photo",
+        errorMessage: e.toString(),
       ));
     }
   }

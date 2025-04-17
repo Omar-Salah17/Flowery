@@ -60,6 +60,8 @@ class _EditProfileViewState extends State<EditProfileView> {
       setState(() {
         selectedImage = File(picked.path);
       });
+    }else{
+      selectedImage= File(widget.user.photo!);
     }
   }
 
@@ -207,7 +209,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                     state.status == EditProfileStatus.loading
                         ? const CircularProgressIndicator()
                         : ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (formKey.currentState!.validate()) {
                           final updatedUser = UpdatedUserModel(
                             firstName: firstNameController.text.trim(),
@@ -215,11 +217,10 @@ class _EditProfileViewState extends State<EditProfileView> {
                             email: emailController.text.trim(),
                             phone: phoneNumberController.text.trim(),
                           );
-
-
-                          cubit.uploadProfilePhoto(selectedImage);
-
-                          cubit.editProfile(updatedUser);
+                            if(selectedImage!=null) {
+                              await cubit.uploadProfilePhoto(selectedImage);
+                            }                          await cubit.editProfile(updatedUser);
+                          Navigator.pop(context);
                         } else {
                           setState(() {
                             autoValidateMode = AutovalidateMode.always;

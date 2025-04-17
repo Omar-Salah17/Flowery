@@ -7,9 +7,11 @@ import 'package:flowery/features/profile/data/model/user_response.dart';
 import 'package:flowery/features/profile/domain/use_case/get_user_data_use_case.dart';
 import 'package:flowery/features/profile/logout/domain/use_cases/logout_use_case.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 
 part 'profile_state.dart';
 
+@injectable
 class ProfileCubit extends Cubit<ProfileState> {
   final GetUserDataUseCase getUserDataUseCase;
   final LogoutUseCase logoutUseCase;
@@ -42,6 +44,7 @@ class ProfileCubit extends Cubit<ProfileState> {
         ,
             (message) {
           emit(LogoutSuccessState(message));
+
 
         },);
    
