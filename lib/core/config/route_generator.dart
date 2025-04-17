@@ -12,7 +12,6 @@ import 'package:flowery/features/profile/data/models/profile_response.dart';
 import 'package:flowery/features/profile/presentation/view/edit_profile_view.dart';
 
 import 'package:flowery/features/splash/view/splash.dart';
-import 'package:flowery/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -95,7 +94,7 @@ class RouteGenerator {
           builder: (context) => CategoriesScreen(),
           settings: Settings,
         );
- case RoutesName.changePasswordScreen:
+      case RoutesName.changePasswordScreen:
         return MaterialPageRoute(
           builder: (context) => ChangePasswordScreen(),
           settings: Settings,
@@ -111,19 +110,14 @@ class RouteGenerator {
           builder: (context) => ProductsDetails(),
           settings: Settings,
         );
-      case RoutesName.localization:
-        return MaterialPageRoute(
-          builder: (context) => Localization(),
-          settings: Settings,
-        );
 
       case RoutesName.editProfile:
         return MaterialPageRoute(
-          builder: (context) =>   BlocProvider(
-            create:  (context) => getIt<EditProfileCubit>(),
-            child: EditProfileView(user: UserModel(),)
-
-          ),
+          builder:
+              (context) => BlocProvider(
+                create: (context) => getIt<EditProfileCubit>(),
+                child: EditProfileView(user: UserModel()),
+              ),
           settings: Settings,
         );
 

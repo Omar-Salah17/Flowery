@@ -66,7 +66,13 @@ class ProductItemWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "EGP${product.priceAfterDiscount}",
+                          LocaleKeys.egp.tr(),
+                          style: AppTextStyles.instance.textStyle14.copyWith(
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Text(
+                          "${product.priceAfterDiscount}",
                           style: AppTextStyles.instance.textStyle14.copyWith(
                             fontWeight: FontWeight.w500,
                           ),

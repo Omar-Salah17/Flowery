@@ -16,5 +16,4 @@ class RoutesName {
   static const String changePasswordScreen = "changePasswordScreen";
 
   static const String editProfile = "EditProfile";
-  static const String localization = "Localization";
 }
