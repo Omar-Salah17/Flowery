@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -33,7 +35,7 @@ class HomeCatView extends StatelessWidget {
                       color: PalletsColors.mainColor10,
                     ),
                     child: Image.network(
-                      category.image ?? "No Image Found",
+                      category.image ?? LocaleKeys.noImageFound.tr(),
                       width: 18.17.w,
                       height: 22.5.h,
                     ),
@@ -44,7 +46,7 @@ class HomeCatView extends StatelessWidget {
                 (category.name != null && category.name!.isNotEmpty)
                     ? category.name![0].toUpperCase() +
                         category.name!.substring(1)
-                    : "No name found",
+                    : LocaleKeys.noNameFound.tr(),
               ),
             ],
           );

@@ -107,5 +107,24 @@ abstract class  LocaleKeys {
   static const resetcode = 'resetcode';
   static const emailNotFound = 'emailNotFound';
   static const userRegisteredSuccessfully = 'userRegisteredSuccessfully';
+  static const resendCodeIn = 'resendCodeIn';
+  static const seconds = 'seconds';
+  static const agreeToTerms = 'agreeToTerms';
+  static const all = 'all';
+  static const Male = 'Male';
+  static const Female = 'Female';
+  static const noTitle = 'noTitle';
+  static const egp = 'egp';
+  static const noProductsInCategory = 'noProductsInCategory';
+  static const failedToLoadCategories = 'failedToLoadCategories';
+  static const failedToLoadBestSellers = 'failedToLoadBestSellers';
+  static const failedToLoadOccasions = 'failedToLoadOccasions';
+  static const noImageFound = 'noImageFound';
+  static const noNameFound = 'noNameFound';
+  static const noDescriptionFound = 'noDescriptionFound';
+  static const editProfile = 'editProfile';
+  static const profileUpdatedSuccessfully = 'profileUpdatedSuccessfully';
+  static const updateFailed = 'updateFailed';
+  static const updateProfile = 'updateProfile';
 
 }

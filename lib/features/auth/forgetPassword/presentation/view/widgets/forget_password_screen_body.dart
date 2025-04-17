@@ -100,7 +100,7 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
                     Navigator.pushNamed(
                       context,
                       RoutesName.emailVerificationScreen,
-                      arguments: {LocaleKeys.email.tr(): emailController.text.trim()},
+                      arguments: {"email": emailController.text.trim()},
                     );
                     log(
                       'email from Navigating to EmailVerificationScreen is ${emailController.text.trim()}',

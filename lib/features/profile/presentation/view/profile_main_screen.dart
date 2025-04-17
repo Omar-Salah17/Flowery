@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/helper/spacing.dart';
+import 'package:flowery/core/provider/app_config_provider.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/profile/presentation/view/cubit/profile_cubit.dart';
@@ -13,7 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileMainScreen extends StatefulWidget {
-const  ProfileMainScreen({super.key});
+  const ProfileMainScreen({super.key});
 
   @override
   State<ProfileMainScreen> createState() => _ProfileMainScreenState();
@@ -58,7 +60,6 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
                 return UserInfoScetion(user: state.user);
               }
               return Container();
-            
             },
           ),
           SettingsTile(
@@ -99,12 +100,14 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
             title: LocaleKeys.language.tr(),
             icon: Icon(Icons.translate),
             trailing: Text(
-             LocaleKeys.local.tr(),
+              LocaleKeys.local.tr(),
               style: AppTextStyles.instance.textStyle13.copyWith(
                 color: PalletsColors.mainColorBase,
               ),
             ),
             onTap: () {
+              changeLanguge();
+              setState(() {});
               // Language bottom sheet
             },
           ),
@@ -128,5 +131,14 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
         ],
       ),
     );
+  }
+
+  void changeLanguge() {
+    final appConfigProvider = getIt<AppConfigProvider>();
+    final newLang = appConfigProvider.isEn() ? "ar" : "en";
+    appConfigProvider.changeCurrentLanguge(newLang);
+
+    // Set the locale in EasyLocalization
+    context.setLocale(Locale(newLang));
   }
 }

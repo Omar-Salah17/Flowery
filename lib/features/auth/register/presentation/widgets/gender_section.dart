@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/helper/spacing.dart';
 import 'package:flowery/core/utils/colors.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,7 +20,7 @@ class _GenderSectionState extends State<GenderSection> {
     return Row(
       children: [
         Text(
-          'Gender',
+          LocaleKeys.gender.tr(),
           style: text.bodySmall!.copyWith(
             fontWeight: FontWeight.w500,
             fontSize: 18.sp,
@@ -26,7 +28,7 @@ class _GenderSectionState extends State<GenderSection> {
         ),
         horizontalSpace(20),
         Radio<String>(
-          value: "Female",
+          value: LocaleKeys.Female.tr(),
           groupValue: gender,
           onChanged: (value) {
             setState(() {
@@ -36,7 +38,7 @@ class _GenderSectionState extends State<GenderSection> {
           activeColor: PalletsColors.mainColorBase,
         ),
         Text(
-          "Female",
+          LocaleKeys.Female.tr(),
           style: text.bodyMedium!.copyWith(
             color: PalletsColors.gray,
             fontWeight: FontWeight.w500,
@@ -46,7 +48,7 @@ class _GenderSectionState extends State<GenderSection> {
         horizontalSpace(20),
         Radio<String>(
           activeColor: PalletsColors.mainColorBase,
-          value: "Male",
+          value: LocaleKeys.Male.tr(),
           groupValue: gender,
           onChanged: (value) {
             setState(() {
@@ -55,7 +57,7 @@ class _GenderSectionState extends State<GenderSection> {
           },
         ),
         Text(
-          "Male",
+          LocaleKeys.Male.tr(),
           style: text.bodyMedium!.copyWith(
             color: PalletsColors.gray,
             fontWeight: FontWeight.w500,

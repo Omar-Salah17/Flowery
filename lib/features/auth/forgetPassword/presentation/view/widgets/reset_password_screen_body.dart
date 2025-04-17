@@ -58,7 +58,7 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
               children: [
                 SizedBox(height: 40.h),
                 Text(
-                 LocaleKeys.resetPassword.tr(),
+                  LocaleKeys.resetPassword.tr(),
                   style: AppTextStyles.instance.textStyle18.copyWith(
                     fontWeight: FontWeight.w500,
                   ),

@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/features/profile/data/models/profile_response.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -67,17 +69,23 @@ class _EditProfileViewState extends State<EditProfileView> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
-        title: Text("Edit Profile", style: text.titleMedium),
+        title: Text(LocaleKeys.editProfile.tr(), style: text.titleMedium),
       ),
       body: BlocConsumer<EditProfileCubit, EditProfileState>(
         listener: (context, state) {
           if (state.status == EditProfileStatus.success) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("Profile updated successfully")),
+              SnackBar(
+                content: Text(LocaleKeys.profileUpdatedSuccessfully.tr()),
+              ),
             );
           } else if (state.status == EditProfileStatus.failure) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.errorMessage ?? "Update failed")),
+              SnackBar(
+                content: Text(
+                  state.errorMessage ?? LocaleKeys.updateFailed.tr(),
+                ),
+              ),
             );
           }
         },
@@ -136,7 +144,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                       children: [
                         Expanded(
                           child: CustomTextFormFieled(
-                            labelText: 'First Name',
+                            labelText: LocaleKeys.firstName.tr(),
                             shouldObscureText: false,
                             textEditingController: firstNameController,
                             validator: Validator.validateName,
@@ -146,7 +154,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                         horizontalSpace(20),
                         Expanded(
                           child: CustomTextFormFieled(
-                            labelText: 'Last Name',
+                            labelText: LocaleKeys.lastName.tr(),
                             shouldObscureText: false,
                             textEditingController: lastNameController,
                             validator: Validator.validateName,
@@ -159,7 +167,7 @@ class _EditProfileViewState extends State<EditProfileView> {
 
                     // Email
                     CustomTextFormFieled(
-                      labelText: 'Email',
+                      labelText: LocaleKeys.email.tr(),
                       shouldObscureText: false,
                       textEditingController: emailController,
                       validator: Validator.validateEmail,
@@ -169,7 +177,7 @@ class _EditProfileViewState extends State<EditProfileView> {
 
                     // Phone Number
                     CustomTextFormFieled(
-                      labelText: 'Phone Number',
+                      labelText: LocaleKeys.phoneNumber.tr(),
                       shouldObscureText: false,
                       textEditingController: phoneNumberController,
                       validator: Validator.validatePhoneNumber,
@@ -178,8 +186,8 @@ class _EditProfileViewState extends State<EditProfileView> {
                     verticalSpace(30),
 
                     CustomTextFormFieled(
-                      hintText: 'Enter your password',
-                      labelText: 'Password',
+                      hintText: LocaleKeys.enterYourPassword.tr(),
+                      labelText: LocaleKeys.password.tr(),
                       shouldObscureText: true,
                       readOnly: true,
                       textEditingController: TextEditingController(
@@ -187,7 +195,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                       ),
                       suffix: GestureDetector(
                         child: Text(
-                          'Change',
+                          LocaleKeys.change.tr(),
                           style: AppTextStyles.instance.textStyle14.copyWith(
                             color: PalletsColors.mainColorBase,
                             fontWeight: FontWeight.w600,
@@ -221,7 +229,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                               });
                             }
                           },
-                          child: const Text("Update Profile"),
+                          child: Text(LocaleKeys.updateProfile.tr()),
                         ),
                   ],
                 ),

@@ -37,7 +37,7 @@ class _RegisterState extends State<Register> {
           children: [
             Icon(Icons.arrow_back_ios),
             horizontalSpace(10),
-            Text('Sign Up', style: text.titleMedium),
+            Text(LocaleKeys.signup.tr(), style: text.titleMedium),
           ],
         ),
       ),
@@ -187,7 +187,7 @@ class _RegisterState extends State<Register> {
                           activeColor: PalletsColors.mainColorBase,
                         ),
                         Text(
-                          "Female",
+                         LocaleKeys.Female.tr(),
                           style: text.bodyMedium!.copyWith(
                             color: PalletsColors.gray,
                             fontWeight: FontWeight.w500,
@@ -205,7 +205,7 @@ class _RegisterState extends State<Register> {
                           },
                         ),
                         Text(
-                          "Male",
+                          LocaleKeys.Male.tr(),
                           style: text.bodyMedium!.copyWith(
                             color: PalletsColors.gray,
                             fontWeight: FontWeight.w500,

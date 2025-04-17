@@ -69,7 +69,7 @@ class HomeViewBody extends StatelessWidget {
                       return HomeCatView(categories: state.categories ?? []);
                     case RequestState.error:
                       return Center(
-                        child: Text(state.error ?? "Failed to load categories"),
+                        child: Text(state.error ?? LocaleKeys.failedToLoadCategories.tr()),
                       );
                     default:
                       return const SizedBox.shrink();
@@ -96,7 +96,7 @@ class HomeViewBody extends StatelessWidget {
                     case RequestState.error:
                       return Center(
                         child: Text(
-                          state.error ?? "Failed to load best sellers",
+                          state.error ?? LocaleKeys.failedToLoadBestSellers.tr(),
                         ),
                       );
                     default:
@@ -125,7 +125,7 @@ class HomeViewBody extends StatelessWidget {
                       );
                     case RequestState.error:
                       return Center(
-                        child: Text(state.error ?? "Failed to load occasions"),
+                        child: Text(state.error ?? LocaleKeys.failedToLoadOccasions.tr()),
                       );
                     default:
                       return const SizedBox.shrink();

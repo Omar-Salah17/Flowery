@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/utils/colors.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,9 +18,9 @@ class CreateAccountSection extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
           children: [
-            TextSpan(text: "Creating an account, you agree to our "),
+            TextSpan(text: LocaleKeys.agreeTerms.tr()),
             TextSpan(
-              text: "Terms & Conditions",
+              text: LocaleKeys.termsConditions.tr(),
               style: text.bodySmall?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: PalletsColors.black100,

@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,7 +18,7 @@ class CustomSearchBar extends StatelessWidget {
           hintStyle: AppTextStyles.instance.textStyle14.copyWith(
             color: PalletsColors.white80,
           ),
-          hintText: "Search",
+          hintText: LocaleKeys.search.tr(),
           prefixIconColor: PalletsColors.white80,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),

@@ -44,9 +44,16 @@ void main() async {
   );
 }
 
-class Flowery extends StatelessWidget {
+class Flowery extends StatefulWidget {
   Flowery({super.key});
+
+  @override
+  State<Flowery> createState() => _FloweryState();
+}
+
+class _FloweryState extends State<Flowery> {
   late AppConfigProvider appConfigProvider;
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -61,7 +68,7 @@ class Flowery extends StatelessWidget {
           supportedLocales: context.supportedLocales,
           locale: context.locale,
 
-          initialRoute: RoutesName.localization,
+          initialRoute: RoutesName.profile,
           onGenerateRoute: RouteGenerator.onGenerator,
           theme: ApplicationTheme.themeData,
         );
