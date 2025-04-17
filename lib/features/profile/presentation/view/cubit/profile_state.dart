@@ -29,23 +29,16 @@ final class ProfileError extends ProfileState {
   List<Object> get props => [error];
 }
 
+class LogoutInitState extends ProfileState {}
 
+class LogoutLoadingState extends ProfileState {}
 
-
-
-class LogoutInitState extends ProfileState{}
-
-
-class LogoutLoadingState extends ProfileState{}
-
-class LogoutFailureState extends ProfileState{
+class LogoutFailureState extends ProfileState {
   String errorMessage;
   LogoutFailureState(this.errorMessage);
 }
 
-class LogoutSuccessState extends ProfileState{
+class LogoutSuccessState extends ProfileState {
   String message;
   LogoutSuccessState(this.message);
 }
-
-

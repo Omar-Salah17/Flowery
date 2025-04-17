@@ -15,7 +15,7 @@ class SettingsTile extends StatelessWidget {
   final VoidCallback? onTap;
   const SettingsTile({
     super.key,
-     this.icon,
+    this.icon,
     this.iconPath,
     required this.title,
     this.trailing,
@@ -30,9 +30,7 @@ class SettingsTile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: Row(
           children: [
-            if (icon != null) icon! else         
-
-            SvgPicture.asset('$iconPath'),
+            if (icon != null) icon! else SvgPicture.asset('$iconPath'),
             horizontalSpace(10),
             Expanded(
               child: Text(
@@ -43,13 +41,14 @@ class SettingsTile extends StatelessWidget {
                 ),
               ),
             ),
-            if (trailing != null) trailing! else         
-                 Icon(
+            if (trailing != null)
+              trailing!
+            else
+              Icon(
                 Icons.arrow_forward_ios,
                 size: 22.sp,
                 color: PalletsColors.gray,
               ),
-
           ],
         ),
       ),

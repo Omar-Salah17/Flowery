@@ -19,7 +19,10 @@ abstract class DioModule {
   }
 
   @Singleton()
-  Dio provideDio(LogInterceptor logInterceptor, SecureStorageService secureStorageService) {
+  Dio provideDio(
+    LogInterceptor logInterceptor,
+    SecureStorageService secureStorageService,
+  ) {
     var dio = Dio(
       BaseOptions(
         connectTimeout: const Duration(seconds: 60),
@@ -30,7 +33,9 @@ abstract class DioModule {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          final token = await secureStorageService.readSecureData(Constants.userToken);
+          final token = await secureStorageService.readSecureData(
+            Constants.userToken,
+          );
           if (token != null && token.isNotEmpty) {
             options.headers['Authorization'] = 'Bearer $token';
           }

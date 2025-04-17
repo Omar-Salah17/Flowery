@@ -15,17 +15,15 @@ import '../view/cubit/profile_cubit.dart';
 
 class UserInfoScetion extends StatelessWidget {
   final UserData user;
-  const UserInfoScetion({
-    super.key,
-    required this.user,
-  });
+  const UserInfoScetion({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
         children: [
-          CircleAvatar(backgroundImage: NetworkImage(user.photo!,),
+          CircleAvatar(
+            backgroundImage: NetworkImage(user.photo!),
             radius: 50.r,
           ),
           verticalSpace(10.h),
@@ -40,19 +38,21 @@ class UserInfoScetion extends StatelessWidget {
                 ),
               ),
 
-
               InkWell(
                 onTap: () async {
-                  await Navigator.pushNamed(context, RoutesName.editProfile, arguments: user);
+                  await Navigator.pushNamed(
+                    context,
+                    RoutesName.editProfile,
+                    arguments: user,
+                  );
                   context.read<ProfileCubit>().getUserData();
-
                 },
                 child: SvgPicture.asset('assets/images/pen.svg'),
               ),
             ],
           ),
           Text(
-            user.email??'email',
+            user.email ?? 'email',
             style: AppTextStyles.instance.textStyle18.copyWith(
               color: PalletsColors.gray,
             ),

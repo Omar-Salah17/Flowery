@@ -1,5 +1,3 @@
-
-abstract class LogoutDataSource{
+abstract class LogoutDataSource {
   Future<String> logout();
-
 }

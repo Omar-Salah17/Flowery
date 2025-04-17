@@ -94,7 +94,7 @@ class RouteGenerator {
           builder: (context) => CategoriesScreen(),
           settings: Settings,
         );
- case RoutesName.changePasswordScreen:
+      case RoutesName.changePasswordScreen:
         return MaterialPageRoute(
           builder: (context) => ChangePasswordScreen(),
           settings: Settings,
@@ -114,10 +114,11 @@ class RouteGenerator {
       case RoutesName.editProfile:
         final userData = Settings.arguments as UserData;
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => getIt<EditProfileCubit>(),
-            child: EditProfileView(user: userData),
-          ),
+          builder:
+              (context) => BlocProvider(
+                create: (context) => getIt<EditProfileCubit>(),
+                child: EditProfileView(user: userData),
+              ),
           settings: Settings,
         );
 

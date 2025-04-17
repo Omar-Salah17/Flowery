@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Product extends Equatable {
-  // final String? id;
+  final String? id;
   final String? title;
   final String? slug;
   final String? description;
@@ -19,10 +19,10 @@ class Product extends Equatable {
   final int? sold;
   final double? rateAvg;
   final int? rateCount;
-  final String? id;
+  // final String? id;
 
   const Product({
-    // this.id,
+    this.id,
     this.title,
     this.slug,
     this.description,
@@ -40,21 +40,16 @@ class Product extends Equatable {
     this.sold,
     this.rateAvg,
     this.rateCount,
-    this.id,
+    // this.id,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
-    // id: json['_id'] as String?,
+    id: json['_id'] as String?,
     title: json['title'] as String?,
     slug: json['slug'] as String?,
     description: json['description'] as String?,
     imgCover: json['imgCover'] as String?,
-    images:
-        json['images'] == null
-            ? null
-            : (json['images'] as List<dynamic>)
-                .map((image) => image as String)
-                .toList(),
+    images: json['images'] as List<String>?,
     price: json['price'] as int?,
     priceAfterDiscount: json['priceAfterDiscount'] as int?,
     quantity: json['quantity'] as int?,
@@ -73,11 +68,11 @@ class Product extends Equatable {
     sold: json['sold'] as int?,
     rateAvg: (json['rateAvg'] as num?)?.toDouble(),
     rateCount: json['rateCount'] as int?,
-    id: json['id'] as String?,
+    // id: json['id'] as String?,
   );
 
   Map<String, dynamic> toJson() => {
-    // '_id': id,
+    '_id': id,
     'title': title,
     'slug': slug,
     'description': description,
@@ -95,13 +90,13 @@ class Product extends Equatable {
     'sold': sold,
     'rateAvg': rateAvg,
     'rateCount': rateCount,
-    'id': id,
+    // 'id': id,
   };
 
   @override
   List<Object?> get props {
     return [
-      // id,
+      id,
       title,
       slug,
       description,
@@ -119,7 +114,7 @@ class Product extends Equatable {
       sold,
       rateAvg,
       rateCount,
-      id,
+      // id,
     ];
   }
 }

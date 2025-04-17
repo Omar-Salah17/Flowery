@@ -33,8 +33,8 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
   @override
   void initState() {
     super.initState();
-    emailController = TextEditingController(text: 'mariaamk1@gmail.com');
-    passwordController = TextEditingController(text: 'Ahmed@123');
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
   }
 
   @override
@@ -134,7 +134,10 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                     child: CustomElevatedButton(
                       text: "Continue as guest",
                       onTap: () {
-                        Navigator.pushReplacementNamed(context, RoutesName.layout);
+                        Navigator.pushReplacementNamed(
+                          context,
+                          RoutesName.layout,
+                        );
                       },
                       isPink: false,
                     ),

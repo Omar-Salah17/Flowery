@@ -9,7 +9,6 @@ import 'package:flowery/features/profile/data/model/user_response.dart';
 import 'package:flowery/features/profile/domain/repos/profile_repo.dart';
 import 'package:injectable/injectable.dart';
 
-
 @Injectable(as: ProfileRepo)
 class ProfileRepoImpl implements ProfileRepo {
   final ProfileRemoteDataSource remoteDataSource;
@@ -33,28 +32,33 @@ class ProfileRepoImpl implements ProfileRepo {
   }
 
   @override
-  Future<Either<Failure, UserData>> getLoggedInUserData()async {
-     try {
-          var result = await remoteDataSource.getLoggedInUserData();
+  Future<Either<Failure, UserData>> getLoggedInUserData() async {
+    try {
+      var result = await remoteDataSource.getLoggedInUserData();
       return Right(result);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log('error in ProfileRepoImpl in getLoggedInUserData method: ${e.toString()}');
+        log(
+          'error in ProfileRepoImpl in getLoggedInUserData method: ${e.toString()}',
+        );
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
   }
+
   @override
-  Future<Either<Failure, UserResponse>> editProfile( UpdatedUserModel user) async {
-    try{
+  Future<Either<Failure, UserResponse>> editProfile(
+    UpdatedUserModel user,
+  ) async {
+    try {
       var data = await remoteDataSource.editProfile(user);
       return Right(data);
-    }catch (e){
-      if(e is DioException){
+    } catch (e) {
+      if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
-      }else {
+      } else {
         log('error  ${e.toString()}');
         return left(ServerFailure(errorMessage: e.toString()));
       }
@@ -62,24 +66,22 @@ class ProfileRepoImpl implements ProfileRepo {
   }
 
   @override
-  Future<Either<Failure, String>> uploadPhoto(File photo) async{
-    try{
-      if(await photo.exists()){
+  Future<Either<Failure, String>> uploadPhoto(File photo) async {
+    try {
+      if (await photo.exists()) {
         print(" file exists. path: ${photo.path}");
       } else {
         print("file doesn't exist.");
       }
       var data = await remoteDataSource.uploadPhoto(photo);
       return Right(data);
-    }catch (e){
-      if(e is DioException){
+    } catch (e) {
+      if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
-      }else {
+      } else {
         log('error  ${e.toString()}');
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
-
-
   }
 }

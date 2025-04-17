@@ -1,5 +1,11 @@
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/colors.dart';
+import 'package:flowery/features/cart/domain/usecases/add_to_cart_usecase.dart';
+import 'package:flowery/features/cart/domain/usecases/clear_cart_usecase.dart';
+import 'package:flowery/features/cart/domain/usecases/delete_cart_item_usecase.dart';
+import 'package:flowery/features/cart/domain/usecases/get_user_cart_usecase.dart';
+import 'package:flowery/features/cart/domain/usecases/update_product_quantity_use_case.dart';
+import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_cubit.dart';
 import 'package:flowery/features/categories/domain/use_case/get_all_categories_use_case.dart';
 import 'package:flowery/features/categories/domain/use_case/get_products_by_category_use_case.dart';
 import 'package:flowery/features/categories/presentation/view_model/cubits/categories_cubit/categories_screen_cubit.dart';
@@ -35,12 +41,26 @@ class _LayoutState extends State<Layout> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create:
-          (context) => CategoriesScreenCubit(
-            getIt.get<GetAllCategoriesUseCase>(),
-            getIt.get<GetProductsByCategoryUseCase>(),
-          )..getAllCategories(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create:
+              (context) => CategoriesScreenCubit(
+                getIt.get<GetAllCategoriesUseCase>(),
+                getIt.get<GetProductsByCategoryUseCase>(),
+              )..getAllCategories(),
+        ),
+        BlocProvider(
+          create:
+              (context) => CartCubit(
+                getIt.get<AddToCartUsecase>(),
+                getIt.get<UpdateProductQuantityUseCase>(),
+                getIt.get<GetUserCartUsecase>(),
+                getIt.get<DeleteCartItemUsecase>(),
+                getIt.get<ClearCartUsecase>(),
+              ),
+        ),
+      ],
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,

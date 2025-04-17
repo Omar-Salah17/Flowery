@@ -10,14 +10,12 @@ import 'package:flowery/features/profile/data/model/user_response.dart';
 
 import 'package:injectable/injectable.dart';
 
-
 @Injectable(as: ProfileRemoteDataSource)
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
-   ApiManager apiManager = ApiManager();
+  ApiManager apiManager = ApiManager();
   ApiService apiService;
-  ProfileRemoteDataSourceImpl( {required this.apiService});
+  ProfileRemoteDataSourceImpl({required this.apiService});
   @override
-
   Future<UserData> getLoggedInUserData() async {
     var response = await apiService.getLoggedInUserData();
     if (response.message == "success") {
@@ -28,23 +26,23 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
   }
 
   @override
-  Future<Map<String, dynamic>> changePassword(Map<String, dynamic> data)async {
- var response =await  apiManager.patchRequest(Constants.changePasswordEndPoint, data);
+  Future<Map<String, dynamic>> changePassword(Map<String, dynamic> data) async {
+    var response = await apiManager.patchRequest(
+      Constants.changePasswordEndPoint,
+      data,
+    );
     return response.data;
   }
 
-   @override
-  Future<UserResponse> editProfile(  UpdatedUserModel user) async {
-  final response = await apiService.editProfile(user,);
-     return response;
-   }
+  @override
+  Future<UserResponse> editProfile(UpdatedUserModel user) async {
+    final response = await apiService.editProfile(user);
+    return response;
+  }
 
-   @override
-   Future<String> uploadPhoto(File photo) async{
-
-
-
-       final response = await apiService.uploadPhoto(photo);
-     return response;
-   }
+  @override
+  Future<String> uploadPhoto(File photo) async {
+    final response = await apiService.uploadPhoto(photo);
+    return response;
+  }
 }

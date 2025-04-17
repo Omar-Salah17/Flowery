@@ -22,14 +22,12 @@ class CustomTextFormFieled extends StatelessWidget {
     this.validator,
     this.suffix,
     this.readOnly,
-
-
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      readOnly: readOnly??false,
+      readOnly: readOnly ?? false,
       validator: validator,
       controller: textEditingController,
       obscureText: shouldObscureText,

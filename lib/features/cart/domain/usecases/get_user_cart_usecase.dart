@@ -6,12 +6,12 @@ import 'package:flowery/features/cart/domain/repos/cart_repo.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class ClearCartUsecase {
+class GetUserCartUsecase {
   final CartRepo cartRepo;
 
-  ClearCartUsecase(this.cartRepo);
+  GetUserCartUsecase(this.cartRepo);
 
-  Future<Either<Failure, CartResponse>> invoke() {
-    return cartRepo.clearCart();
+  Future<Either<Failure, CartResponse>> invoke() async {
+    return await cartRepo.getUserCart();
   }
 }

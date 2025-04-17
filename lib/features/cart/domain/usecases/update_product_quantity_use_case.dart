@@ -6,12 +6,19 @@ import 'package:flowery/features/cart/domain/repos/cart_repo.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class ClearCartUsecase {
+class UpdateProductQuantityUseCase {
   final CartRepo cartRepo;
 
-  ClearCartUsecase(this.cartRepo);
+  UpdateProductQuantityUseCase(this.cartRepo);
 
-  Future<Either<Failure, CartResponse>> invoke() {
-    return cartRepo.clearCart();
+  Future<Either<Failure, CartResponse>> call({
+    required String cartItemId,
+
+    required int productQuantity,
+  }) {
+    return cartRepo.updateProductQuantity(
+      productQuantity: productQuantity,
+      productId: cartItemId,
+    );
   }
 }

@@ -5,12 +5,11 @@ import 'package:flowery/features/profile/data/model/user_response.dart';
 import 'package:flowery/features/profile/domain/repos/profile_repo.dart';
 import 'package:injectable/injectable.dart';
 
-
 @injectable
 class GetUserDataUseCase {
-  final ProfileRepo profileRepositoryContract ;
+  final ProfileRepo profileRepositoryContract;
   GetUserDataUseCase({required this.profileRepositoryContract});
-Future<Either<Failure, UserData>>  invoke() async {
+  Future<Either<Failure, UserData>> invoke() async {
     return await profileRepositoryContract.getLoggedInUserData();
   }
 }

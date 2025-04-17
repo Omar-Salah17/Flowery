@@ -63,7 +63,6 @@ class HomeViewBody extends StatelessWidget {
                 builder: (context, state) {
                   switch (state.categoriesState) {
                     case RequestState.loading:
-
                     case RequestState.success:
                       return HomeCatView(categories: state.categories ?? []);
                     case RequestState.error:
@@ -90,7 +89,6 @@ class HomeViewBody extends StatelessWidget {
                 builder: (context, state) {
                   switch (state.bestSellerState) {
                     case RequestState.loading:
-
                     case RequestState.success:
                       return HomeBestSeller(product: state.bestSellers ?? []);
                     case RequestState.error:
@@ -119,7 +117,6 @@ class HomeViewBody extends StatelessWidget {
                 builder: (context, state) {
                   switch (state.occasionState) {
                     case RequestState.loading:
-
                     case RequestState.success:
                       return HomeOccasionsView(
                         occasions: state.occasions ?? [],

@@ -14,22 +14,22 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   final UploadPhotoUseCase uploadPhotoUseCase;
 
   EditProfileCubit(this.editProfileUseCase, this.uploadPhotoUseCase)
-      : super(const EditProfileState());
+    : super(const EditProfileState());
 
   Future<void> uploadProfilePhoto(File? photo) async {
     try {
       emit(state.copyWith(status: EditProfileStatus.loading));
 
-
-
-      await uploadPhotoUseCase( photo!);
+      await uploadPhotoUseCase(photo!);
 
       emit(state.copyWith(status: EditProfileStatus.success));
     } catch (e) {
-      emit(state.copyWith(
-        status: EditProfileStatus.failure,
-        errorMessage: e.toString(),
-      ));
+      emit(
+        state.copyWith(
+          status: EditProfileStatus.failure,
+          errorMessage: e.toString(),
+        ),
+      );
     }
   }
 
@@ -39,14 +39,15 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     final result = await editProfileUseCase(updatedUser);
 
     result.fold(
-          (failure) => emit(state.copyWith(
-        status: EditProfileStatus.failure,
-        errorMessage: failure.errorMessage,
-      )),
-          (profile) => emit(state.copyWith(
-        status: EditProfileStatus.success,
-        profile: profile,
-      )),
+      (failure) => emit(
+        state.copyWith(
+          status: EditProfileStatus.failure,
+          errorMessage: failure.errorMessage,
+        ),
+      ),
+      (profile) => emit(
+        state.copyWith(status: EditProfileStatus.success, profile: profile),
+      ),
     );
   }
 }

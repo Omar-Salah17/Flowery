@@ -8,7 +8,13 @@ class ChangePasswordUseCase {
   final ProfileRepo profileRepo;
 
   ChangePasswordUseCase({required this.profileRepo});
-  Future<Either<Failure, Map<String, dynamic>>> call({required String oldPassword, required String newPassword}) async{
-    return await profileRepo.changePassword({"password": oldPassword, "newPassword": newPassword});
+  Future<Either<Failure, Map<String, dynamic>>> call({
+    required String oldPassword,
+    required String newPassword,
+  }) async {
+    return await profileRepo.changePassword({
+      "password": oldPassword,
+      "newPassword": newPassword,
+    });
   }
 }

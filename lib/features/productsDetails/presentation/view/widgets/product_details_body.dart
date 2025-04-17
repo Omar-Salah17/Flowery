@@ -131,21 +131,24 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                 ),
                 Text("White wrap", style: AppTextStyles.instance.textStyle14),
                 SizedBox(height: 7),
-                ElevatedButton(onPressed: () {
-                  AddToCartCubit.get(context).addToCart(
-                    addProductRequest: AddProductRequest(
-                      productId: widget.product.id,
-                      quantity: 1,
-                    ),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      backgroundColor: Colors.green,
-                      content: Text("Product added to cart"),
-                      duration: Duration(seconds: 2),
-                    ),
-                  );
-                }, child: Text("Add to cart")),
+                ElevatedButton(
+                  onPressed: () {
+                    AddToCartCubit.get(context).addToCart(
+                      addProductRequest: AddProductRequest(
+                        productId: widget.product.id,
+                        quantity: 1,
+                      ),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.green,
+                        content: Text("Product added to cart"),
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                  },
+                  child: Text("Add to cart"),
+                ),
               ],
             ),
           ),

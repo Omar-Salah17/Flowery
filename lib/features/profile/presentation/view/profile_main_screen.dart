@@ -119,7 +119,9 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
           SettingsTile(
             title: "Log out",
             onTap: () {
-              context.read<ProfileCubit>().showLogoutConfirmationDialog(context);
+              context.read<ProfileCubit>().showLogoutConfirmationDialog(
+                context,
+              );
               Navigator.pushNamed(context, RoutesName.login);
             },
             icon: Icon(Icons.logout),

@@ -10,6 +10,7 @@ import 'package:flowery/features/cart/presentation/view%20model/add_to_cart_cubi
 import 'package:flowery/features/cart/presentation/view%20model/add_to_cart_states.dart';
 import 'package:flowery/features/productsDetails/presentation/viewModel/product_details_cubit/product_details_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductItemWidget extends StatelessWidget {
@@ -112,11 +113,12 @@ class ProductItemWidget extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         backgroundColor: Colors.red,
-                        content: Text('Failed to add to cart: ${state.errorMessage}'),
+                        content: Text(
+                          'Failed to add to cart: ${state.errorMessage}',
+                        ),
                       ),
                     );
                   }
-                  
                 },
                 builder: (context, state) {
                   return ElevatedButton(
@@ -124,24 +126,29 @@ class ProductItemWidget extends StatelessWidget {
                     //   minimumSize: Size.fromHeight(30.h),
                     // ),
                     onPressed: () {
-                      addToCartCubit.addToCart(addProductRequest: AddProductRequest(
-                        productId: product.id,
-                        quantity: product.quantity,
-                      ));
+                      addToCartCubit.addToCart(
+                        addProductRequest: AddProductRequest(
+                          productId: product.id,
+                          quantity: product.quantity,
+                        ),
+                      );
                     },
                     child: Row(
                       spacing: 8.w,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(Icons.shopping_cart_outlined),
-                      state is AddToCartLoading ? CircularProgressIndicator(color: PalletsColors.mainColorBase,) :
-                      state is AddToCartSuccess ? Icon(Icons.check)
-                      :  Text(
-                          'Add to cart',
-                          style: AppTextStyles.instance.textStyle13.copyWith(
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
+                        state is AddToCartLoading
+                            ? CircularProgressIndicator(
+                              color: PalletsColors.mainColorBase,
+                            )
+                            : state is AddToCartSuccess
+                            ? Icon(Icons.check)
+                            : Text(
+                              'Add to cart',
+                              style: AppTextStyles.instance.textStyle13
+                                  .copyWith(fontWeight: FontWeight.w500),
+                            ),
                       ],
                     ),
                   );

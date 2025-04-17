@@ -10,11 +10,14 @@ class ChangePasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ChangePasswordCubit(getIt.get<ChangePasswordUseCase>()),
+      create:
+          (context) => ChangePasswordCubit(getIt.get<ChangePasswordUseCase>()),
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            onPressed: () {Navigator.pop(context);},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             icon: Icon(Icons.arrow_back_ios),
           ),
           title: Text('Reset password'),

@@ -10,7 +10,6 @@ class ApiManager {
       baseUrl: Constants.baseUrl,
 
       headers: {'Content-Type': 'application/json'},
-
     ),
   );
 
@@ -40,9 +39,9 @@ class ApiManager {
 
   Future<Response> patchRequest(
     String endpoint,
-    Map<String, dynamic> data
+    Map<String, dynamic> data,
   ) async {
-   await setToken();
+    await setToken();
     final response = await dio.patch(endpoint, data: data);
     return response;
   }

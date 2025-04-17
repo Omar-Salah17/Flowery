@@ -14,9 +14,8 @@ part 'profile_state.dart';
 class ProfileCubit extends Cubit<ProfileState> {
   final GetUserDataUseCase getUserDataUseCase;
   final LogoutUseCase logoutUseCase;
-  ProfileCubit(
-    this.getUserDataUseCase, this.logoutUseCase,
-  ) : super(ProfileInitial());
+  ProfileCubit(this.getUserDataUseCase, this.logoutUseCase)
+    : super(ProfileInitial());
   void getUserData() async {
     emit(ProfileLoading());
     final result = await getUserDataUseCase.invoke();
@@ -28,29 +27,23 @@ class ProfileCubit extends Cubit<ProfileState> {
         print("${user.firstName}=================================");
         print(user.lastName);
         print(user.email);
-        emit(ProfileSucess(user:user));
+        emit(ProfileSucess(user: user));
       },
     );
-    
   }
-   Future<void> userLogout()async{
-   
-      var result =await logoutUseCase.call();
-      result.fold(
-            (err) {
-          emit(LogoutFailureState(err.errorMessage));
-        }
-        ,
-            (message) {
-          emit(LogoutSuccessState(message));
 
-
-        },);
-   
-
-
-
+  Future<void> userLogout() async {
+    var result = await logoutUseCase.call();
+    result.fold(
+      (err) {
+        emit(LogoutFailureState(err.errorMessage));
+      },
+      (message) {
+        emit(LogoutSuccessState(message));
+      },
+    );
   }
+
   Future<void> showLogoutConfirmationDialog(BuildContext context) async {
     return showDialog<void>(
       context: context,
@@ -71,8 +64,7 @@ class ProfileCubit extends Cubit<ProfileState> {
               onPressed: () {
                 Navigator.of(dialogContext).pop(); // Close the dialog
                 // Call the logout function with proper error handling
-                userLogout().catchError((
-                    error) {
+                userLogout().catchError((error) {
                   print('Error during logout: $error');
                 });
               },
@@ -82,5 +74,4 @@ class ProfileCubit extends Cubit<ProfileState> {
       },
     );
   }
-
 }

@@ -8,7 +8,8 @@ class EditProfileState extends Equatable {
   final EditProfileStatus status;
   final UserResponse? profile;
   final String? errorMessage;
-  final File? photo;  // This will hold the current selected photo or uploaded photo
+  final File?
+  photo; // This will hold the current selected photo or uploaded photo
 
   const EditProfileState({
     this.status = EditProfileStatus.initial,
@@ -21,16 +22,16 @@ class EditProfileState extends Equatable {
     EditProfileStatus? status,
     UserResponse? profile,
     String? errorMessage,
-    File? photo,  // Add this to allow updating the photo in the state
+    File? photo, // Add this to allow updating the photo in the state
   }) {
     return EditProfileState(
       status: status ?? this.status,
       profile: profile ?? this.profile,
       errorMessage: errorMessage ?? this.errorMessage,
-      photo: photo ?? this.photo,  // Update photo if provided
+      photo: photo ?? this.photo, // Update photo if provided
     );
   }
 
   @override
-  List<Object?> get props => [status, profile, errorMessage, photo];  // Include photo in props
+  List<Object?> get props => [status, profile, errorMessage, photo]; // Include photo in props
 }

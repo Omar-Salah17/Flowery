@@ -1,4 +1,3 @@
-
 import 'package:json_annotation/json_annotation.dart';
 part 'user_response.g.dart';
 
@@ -11,7 +10,8 @@ class UserResponse {
 
   UserResponse({this.message, this.user});
 
-  factory UserResponse.fromJson(Map<String, dynamic> json) => _$UserResponseFromJson(json);
+  factory UserResponse.fromJson(Map<String, dynamic> json) =>
+      _$UserResponseFromJson(json);
 
   static List<UserResponse> fromList(List<Map<String, dynamic>> list) {
     return list.map(UserResponse.fromJson).toList();
@@ -45,16 +45,28 @@ class UserData {
   @JsonKey(name: 'createdAt')
   String? createdAt;
 
-  UserData({this.id, this.firstName, this.lastName, this.email, this.gender, this.phone, this.photo, this.role, this.wishlist, this.addresses, this.createdAt});
+  UserData({
+    this.id,
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.gender,
+    this.phone,
+    this.photo,
+    this.role,
+    this.wishlist,
+    this.addresses,
+    this.createdAt,
+  });
 
-  factory UserData.fromJson(Map<String, dynamic> json) => _$UserDataFromJson(json);
+  factory UserData.fromJson(Map<String, dynamic> json) =>
+      _$UserDataFromJson(json);
 
   static List<UserData> fromList(List<Map<String, dynamic>> list) {
     return list.map(UserData.fromJson).toList();
   }
 
   Map<String, dynamic> toJson() => _$UserDataToJson(this);
-
 }
 
 @JsonSerializable()
@@ -64,15 +76,7 @@ class UpdatedUserModel {
   final String? email;
   final String? phone;
 
-
-
-  UpdatedUserModel( {
-    this.firstName,
-    this.lastName,
-    this.email,
-    this.phone,
-
-  } );
+  UpdatedUserModel({this.firstName, this.lastName, this.email, this.phone});
 
   factory UpdatedUserModel.fromJson(Map<String, dynamic> json) =>
       _$UpdatedUserModelFromJson(json);

@@ -2,13 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
-import 'package:flowery/features/cart/data/models/get%20logged%20cart%20models/get_logged_cart_response.dart';
+import 'package:flowery/features/cart/data/models/cart_model/cart_item.dart';
+
 import 'package:flowery/features/cart/domain/usecases/delete_cart_item_usecase.dart';
-import 'package:flowery/features/cart/domain/usecases/get_logged_cart_usecase.dart';
-import 'package:flowery/features/cart/presentation/view%20model/delete%20cart%20item%20view%20model/delete_cart_item_cubit.dart';
-import 'package:flowery/features/cart/presentation/view%20model/delete%20cart%20item%20view%20model/delete_cart_item_states.dart';
-import 'package:flowery/features/cart/presentation/view%20model/get%20logged%20cart%20view%20model/get_logged_cart_cubit.dart';
-import 'package:flowery/features/cart/presentation/view%20model/update%20product%20quantity%20view%20model/update_product_quantity_cubit.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,23 +13,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'quantity_selector.dart';
 
 class CartItemWidget extends StatelessWidget {
-  final CartItem item;
   final VoidCallback onDelete;
   final ValueChanged<int> onQuantityChanged;
-  final GetLoggedCartCubit cartCubit;
-  final DeleteCartItemCubit deleteCartItemCubit;
-  final UpdateCartCubit updateCartCubit;
-  final String id;
 
+  final String id;
+  final CartItem cartItem;
   const CartItemWidget({
     super.key,
-    required this.item,
+
     required this.onDelete,
     required this.onQuantityChanged,
-    required this.cartCubit,
-    required this.deleteCartItemCubit,
-    required this.updateCartCubit,
-    required this.id,
+
+    required this.id, required this.cartItem,
   });
 
   @override
@@ -56,7 +48,7 @@ class CartItemWidget extends StatelessWidget {
                 height: 160.h,
                 width: 95.w,
                 fit: BoxFit.contain,
-                imageUrl: item.product.imgCover,
+                imageUrl: cartItem.product?.imgCover??'',
                 progressIndicatorBuilder:
                     (context, url, progress) => Center(
                       child: CircularProgressIndicator(
@@ -74,7 +66,7 @@ class CartItemWidget extends StatelessWidget {
                 SizedBox(
                   width: 100.w,
                   child: Text(
-                    item.product.title,
+                    cartItem.product?.title ?? "No Title",
                     overflow: TextOverflow.ellipsis,
                     style: AppTextStyles.instance.textStyle16.copyWith(
                       color: PalletsColors.blackBase,
@@ -85,7 +77,7 @@ class CartItemWidget extends StatelessWidget {
                 SizedBox(
                   width: 100.w,
                   child: Text(
-                    item.product.description,
+                    cartItem.product?.description?? "No desc",
                     overflow: TextOverflow.ellipsis,
                     style: AppTextStyles.instance.textStyle13.copyWith(
                       color: PalletsColors.white90,
@@ -94,7 +86,7 @@ class CartItemWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 24.h),
                 Text(
-                  item.product.price.toString(),
+                  cartItem.product?.price.toString() ?? '0',
                   style: AppTextStyles.instance.textStyle14.copyWith(
                     fontWeight: FontWeight.w600,
                     color: PalletsColors.blackBase,
@@ -106,30 +98,13 @@ class CartItemWidget extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                BlocConsumer<DeleteCartItemCubit, DeleteCartItemState>(
-                  listener: (context, state) {
-                    if (state is DeleteCartItemFailure) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(state.errorMessage)),
-                      );
-                    } else if (state is DeleteCartItemSuccess) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text("Item deleted successfully!")),
-                      );
-                    }
-                  },
-                  builder: (context, state) {
-                    return GestureDetector(
+                GestureDetector(
                       onTap: () {
-                        deleteCartItemCubit.deleteCartItem(
-                          cartItemId: item.product.id,
-                        );
-                        cartCubit.getLoggedCart();
+                      
+                       
                       },
                       child: Image.asset("assets/images/delete.png"),
-                    );
-                  },
-                ),
+                    ),
                 const Spacer(),
                 QuantitySelector(
                   initialValue: 1,

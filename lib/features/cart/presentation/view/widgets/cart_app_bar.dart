@@ -1,11 +1,12 @@
 import 'package:flowery/core/utils/app_text_styles.dart';
+import 'package:flowery/features/cart/data/models/cart_model/cart_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CartAppBar extends StatelessWidget {
   const CartAppBar({super.key, required this.cartItems});
 
-  final List<Map<String, dynamic>> cartItems;
+  final CartResponse cartItems;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class CartAppBar extends StatelessWidget {
         ),
         SizedBox(width: 4.w),
         Text(
-          "(${cartItems.length} Items)",
+          "(${cartItems.numOfCartItems} Items)",
           style: AppTextStyles.instance.textStyle20.copyWith(
             fontWeight: FontWeight.w500,
             color: Color.fromRGBO(83, 83, 83, 1),
