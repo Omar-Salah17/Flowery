@@ -2,14 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/provider/app_config_provider.dart';
-import 'package:flowery/core/utils/app_text_styles.dart';
-import 'package:flowery/core/utils/colors.dart';
-import 'package:flowery/features/profile/presentation/widgets/settings_tile.dart';
 import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 
 class Localization extends StatefulWidget {
   const Localization({super.key});

@@ -68,7 +68,7 @@ class _FloweryState extends State<Flowery> {
           supportedLocales: context.supportedLocales,
           locale: context.locale,
 
-          initialRoute: RoutesName.localization,
+          initialRoute: RoutesName.productsDetails,
           onGenerateRoute: RouteGenerator.onGenerator,
           theme: ApplicationTheme.themeData,
         );

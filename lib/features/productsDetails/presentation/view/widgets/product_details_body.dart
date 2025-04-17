@@ -74,13 +74,22 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                 Row(
                   children: [
                     Text(
-                      "EGP ${widget.product.price}",
+                      LocaleKeys.egp.tr(),
+                      style: AppTextStyles.instance.textStyle20.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      " ${widget.product.price}",
                       style: AppTextStyles.instance.textStyle20.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Spacer(),
-                    Text(LocaleKeys.status.tr(), style: AppTextStyles.instance.textStyle16),
+                    Text(
+                      LocaleKeys.status.tr(),
+                      style: AppTextStyles.instance.textStyle16,
+                    ),
                     Text(
                       LocaleKeys.inStock.tr(),
                       style: AppTextStyles.instance.textStyle14,
@@ -88,7 +97,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                   ],
                 ),
                 Text(
-                 LocaleKeys.includeTax.tr(),
+                  LocaleKeys.includeTax.tr(),
                   style: AppTextStyles.instance.textStyle16,
                 ),
                 Text(
@@ -105,7 +114,8 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                   ),
                 ),
                 Text(
-                  widget.product.description ?? LocaleKeys.noDescriptionFound.tr(),
+                  widget.product.description ??
+                      LocaleKeys.noDescriptionFound.tr(),
                   style: AppTextStyles.instance.textStyle14,
                 ),
 
@@ -129,9 +139,15 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                     ),
                   ],
                 ),
-                Text(LocaleKeys.whiteWrap.tr(), style: AppTextStyles.instance.textStyle14),
+                Text(
+                  LocaleKeys.whiteWrap.tr(),
+                  style: AppTextStyles.instance.textStyle14,
+                ),
                 SizedBox(height: 7),
-                ElevatedButton(onPressed: () {}, child: Text(LocaleKeys.addToCart.tr())),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Text(LocaleKeys.addToCart.tr()),
+                ),
               ],
             ),
           ),

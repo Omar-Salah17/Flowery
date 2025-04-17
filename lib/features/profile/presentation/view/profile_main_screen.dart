@@ -173,6 +173,6 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
       context.setLocale(Locale(newLang));
     }
 
-    Navigator.pop(context); // close bottom sheet
+    Navigator.pop(context);
   }
 }
