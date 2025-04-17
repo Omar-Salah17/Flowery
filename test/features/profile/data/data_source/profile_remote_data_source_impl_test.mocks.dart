@@ -3,30 +3,46 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i11;
-import 'dart:io' as _i15;
+import 'dart:async' as _i17;
+import 'dart:io' as _i22;
 
-import 'package:flowery/core/apiManger/apiService.dart' as _i10;
+import 'package:flowery/core/apiManger/apiService.dart' as _i16;
 import 'package:flowery/core/utils/models/products_model/products_model.dart'
     as _i4;
 import 'package:flowery/features/auth/login/data/models/login_request.dart'
-    as _i13;
+    as _i19;
 import 'package:flowery/features/auth/login/data/models/login_respose.dart'
     as _i5;
 import 'package:flowery/features/auth/register/data/models/register_request.dart'
-    as _i12;
+    as _i18;
 import 'package:flowery/features/auth/register/data/models/register_response.dart'
     as _i2;
 import 'package:flowery/features/best_seller/data/models/best_seller_model.dart'
+    as _i12;
+import 'package:flowery/features/cart/data/models/add_product_request.dart'
+    as _i20;
+import 'package:flowery/features/cart/data/models/add_product_response.dart'
+    as _i6;
+import 'package:flowery/features/cart/data/models/clear%20cart%20models/clear_cart_response.dart'
+    as _i9;
+import 'package:flowery/features/cart/data/models/delete%20item%20models/delete_specific_item_response.dart'
+    as _i8;
+import 'package:flowery/features/cart/data/models/get%20logged%20cart%20models/get_logged_cart_response.dart'
     as _i7;
+import 'package:flowery/features/cart/data/models/update%20product%20models/update_product_request.dart'
+    as _i21;
+import 'package:flowery/features/cart/data/models/update%20product%20models/update_product_response.dart'
+    as _i10;
 import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart'
     as _i3;
-import 'package:flowery/features/occasion/data/models/occaions.dart' as _i6;
+import 'package:flowery/features/occasion/data/models/occaions.dart' as _i11;
 import 'package:flowery/features/productsDetails/data/models/product_details_model/product_details_model.dart'
-    as _i8;
-import 'package:flowery/features/profile/data/model/user_response.dart' as _i9;
+    as _i13;
+import 'package:flowery/features/profile/data/model/user_response.dart' as _i15;
+import 'package:flowery/features/profile/data/models/profile_response.dart'
+    as _i14;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i14;
+import 'package:mockito/src/dummies.dart' as _i23;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -64,71 +80,107 @@ class _FakeLoginResponse_3 extends _i1.SmartFake implements _i5.LoginResponse {
     : super(parent, parentInvocation);
 }
 
-class _FakeAllOccaions_4 extends _i1.SmartFake implements _i6.AllOccaions {
-  _FakeAllOccaions_4(Object parent, Invocation parentInvocation)
+class _FakeAddProductResponse_4 extends _i1.SmartFake
+    implements _i6.AddProductResponse {
+  _FakeAddProductResponse_4(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
-class _FakeBestSellerModel_5 extends _i1.SmartFake
-    implements _i7.BestSellerModel {
-  _FakeBestSellerModel_5(Object parent, Invocation parentInvocation)
+class _FakeGetLoggedCartResponse_5 extends _i1.SmartFake
+    implements _i7.GetLoggedCartResponse {
+  _FakeGetLoggedCartResponse_5(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
-class _FakeProductDetailsModel_6 extends _i1.SmartFake
-    implements _i8.ProductDetailsModel {
-  _FakeProductDetailsModel_6(Object parent, Invocation parentInvocation)
+class _FakeDeleteCartResponse_6 extends _i1.SmartFake
+    implements _i8.DeleteCartResponse {
+  _FakeDeleteCartResponse_6(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
-class _FakeUserResponse_7 extends _i1.SmartFake implements _i9.UserResponse {
-  _FakeUserResponse_7(Object parent, Invocation parentInvocation)
+class _FakeClearCartResponse_7 extends _i1.SmartFake
+    implements _i9.ClearCartResponse {
+  _FakeClearCartResponse_7(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeUpdateCartResponse_8 extends _i1.SmartFake
+    implements _i10.UpdateCartResponse {
+  _FakeUpdateCartResponse_8(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeAllOccaions_9 extends _i1.SmartFake implements _i11.AllOccaions {
+  _FakeAllOccaions_9(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeBestSellerModel_10 extends _i1.SmartFake
+    implements _i12.BestSellerModel {
+  _FakeBestSellerModel_10(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeProductDetailsModel_11 extends _i1.SmartFake
+    implements _i13.ProductDetailsModel {
+  _FakeProductDetailsModel_11(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeProfileResponse_12 extends _i1.SmartFake
+    implements _i14.ProfileResponse {
+  _FakeProfileResponse_12(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeUserResponse_13 extends _i1.SmartFake implements _i15.UserResponse {
+  _FakeUserResponse_13(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
 /// A class which mocks [ApiService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockApiService extends _i1.Mock implements _i10.ApiService {
+class MockApiService extends _i1.Mock implements _i16.ApiService {
   MockApiService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i11.Future<_i2.RegisterResponse> registerUser(
-    _i12.RegisterRequest? registerRequest,
+  _i17.Future<_i2.RegisterResponse> registerUser(
+    _i18.RegisterRequest? registerRequest,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#registerUser, [registerRequest]),
-            returnValue: _i11.Future<_i2.RegisterResponse>.value(
+            returnValue: _i17.Future<_i2.RegisterResponse>.value(
               _FakeRegisterResponse_0(
                 this,
                 Invocation.method(#registerUser, [registerRequest]),
               ),
             ),
           )
-          as _i11.Future<_i2.RegisterResponse>);
+          as _i17.Future<_i2.RegisterResponse>);
 
   @override
-  _i11.Future<_i3.CategoriesModel> getCategories() =>
+  _i17.Future<_i3.CategoriesModel> getCategories() =>
       (super.noSuchMethod(
             Invocation.method(#getCategories, []),
-            returnValue: _i11.Future<_i3.CategoriesModel>.value(
+            returnValue: _i17.Future<_i3.CategoriesModel>.value(
               _FakeCategoriesModel_1(
                 this,
                 Invocation.method(#getCategories, []),
               ),
             ),
           )
-          as _i11.Future<_i3.CategoriesModel>);
+          as _i17.Future<_i3.CategoriesModel>);
 
   @override
-  _i11.Future<_i4.ProductsModel> getProductsByCategory({String? categoryId}) =>
+  _i17.Future<_i4.ProductsModel> getProductsByCategory({String? categoryId}) =>
       (super.noSuchMethod(
             Invocation.method(#getProductsByCategory, [], {
               #categoryId: categoryId,
             }),
-            returnValue: _i11.Future<_i4.ProductsModel>.value(
+            returnValue: _i17.Future<_i4.ProductsModel>.value(
               _FakeProductsModel_2(
                 this,
                 Invocation.method(#getProductsByCategory, [], {
@@ -137,40 +189,113 @@ class MockApiService extends _i1.Mock implements _i10.ApiService {
               ),
             ),
           )
-          as _i11.Future<_i4.ProductsModel>);
+          as _i17.Future<_i4.ProductsModel>);
 
   @override
-  _i11.Future<_i5.LoginResponse> loginUser(_i13.LoginRequest? loginRequest) =>
+  _i17.Future<_i5.LoginResponse> loginUser(_i19.LoginRequest? loginRequest) =>
       (super.noSuchMethod(
             Invocation.method(#loginUser, [loginRequest]),
-            returnValue: _i11.Future<_i5.LoginResponse>.value(
+            returnValue: _i17.Future<_i5.LoginResponse>.value(
               _FakeLoginResponse_3(
                 this,
                 Invocation.method(#loginUser, [loginRequest]),
               ),
             ),
           )
-          as _i11.Future<_i5.LoginResponse>);
+          as _i17.Future<_i5.LoginResponse>);
 
   @override
-  _i11.Future<_i6.AllOccaions> getAllOccasions() =>
+  _i17.Future<_i6.AddProductResponse> addToCart(
+    _i20.AddProductRequest? addProductRequest,
+  ) =>
       (super.noSuchMethod(
-            Invocation.method(#getAllOccasions, []),
-            returnValue: _i11.Future<_i6.AllOccaions>.value(
-              _FakeAllOccaions_4(this, Invocation.method(#getAllOccasions, [])),
+            Invocation.method(#addToCart, [addProductRequest]),
+            returnValue: _i17.Future<_i6.AddProductResponse>.value(
+              _FakeAddProductResponse_4(
+                this,
+                Invocation.method(#addToCart, [addProductRequest]),
+              ),
             ),
           )
-          as _i11.Future<_i6.AllOccaions>);
+          as _i17.Future<_i6.AddProductResponse>);
 
   @override
-  _i11.Future<_i4.ProductsModel> getAllProductByOccasion({
+  _i17.Future<_i7.GetLoggedCartResponse> getLoggedCart() =>
+      (super.noSuchMethod(
+            Invocation.method(#getLoggedCart, []),
+            returnValue: _i17.Future<_i7.GetLoggedCartResponse>.value(
+              _FakeGetLoggedCartResponse_5(
+                this,
+                Invocation.method(#getLoggedCart, []),
+              ),
+            ),
+          )
+          as _i17.Future<_i7.GetLoggedCartResponse>);
+
+  @override
+  _i17.Future<_i8.DeleteCartResponse> deleteCartItem(String? cartItemId) =>
+      (super.noSuchMethod(
+            Invocation.method(#deleteCartItem, [cartItemId]),
+            returnValue: _i17.Future<_i8.DeleteCartResponse>.value(
+              _FakeDeleteCartResponse_6(
+                this,
+                Invocation.method(#deleteCartItem, [cartItemId]),
+              ),
+            ),
+          )
+          as _i17.Future<_i8.DeleteCartResponse>);
+
+  @override
+  _i17.Future<_i9.ClearCartResponse> clearCart() =>
+      (super.noSuchMethod(
+            Invocation.method(#clearCart, []),
+            returnValue: _i17.Future<_i9.ClearCartResponse>.value(
+              _FakeClearCartResponse_7(this, Invocation.method(#clearCart, [])),
+            ),
+          )
+          as _i17.Future<_i9.ClearCartResponse>);
+
+  @override
+  _i17.Future<_i10.UpdateCartResponse> updateCartProductQuantity(
+    String? cartItemId,
+    _i21.UpdateProductRequest? request,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#updateCartProductQuantity, [
+              cartItemId,
+              request,
+            ]),
+            returnValue: _i17.Future<_i10.UpdateCartResponse>.value(
+              _FakeUpdateCartResponse_8(
+                this,
+                Invocation.method(#updateCartProductQuantity, [
+                  cartItemId,
+                  request,
+                ]),
+              ),
+            ),
+          )
+          as _i17.Future<_i10.UpdateCartResponse>);
+
+  @override
+  _i17.Future<_i11.AllOccaions> getAllOccasions() =>
+      (super.noSuchMethod(
+            Invocation.method(#getAllOccasions, []),
+            returnValue: _i17.Future<_i11.AllOccaions>.value(
+              _FakeAllOccaions_9(this, Invocation.method(#getAllOccasions, [])),
+            ),
+          )
+          as _i17.Future<_i11.AllOccaions>);
+
+  @override
+  _i17.Future<_i4.ProductsModel> getAllProductByOccasion({
     String? occasionId,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#getAllProductByOccasion, [], {
               #occasionId: occasionId,
             }),
-            returnValue: _i11.Future<_i4.ProductsModel>.value(
+            returnValue: _i17.Future<_i4.ProductsModel>.value(
               _FakeProductsModel_2(
                 this,
                 Invocation.method(#getAllProductByOccasion, [], {
@@ -179,80 +304,73 @@ class MockApiService extends _i1.Mock implements _i10.ApiService {
               ),
             ),
           )
-          as _i11.Future<_i4.ProductsModel>);
+          as _i17.Future<_i4.ProductsModel>);
 
   @override
-  _i11.Future<_i7.BestSellerModel> getBestSellerProduct() =>
+  _i17.Future<_i12.BestSellerModel> getBestSellerProduct() =>
       (super.noSuchMethod(
             Invocation.method(#getBestSellerProduct, []),
-            returnValue: _i11.Future<_i7.BestSellerModel>.value(
-              _FakeBestSellerModel_5(
+            returnValue: _i17.Future<_i12.BestSellerModel>.value(
+              _FakeBestSellerModel_10(
                 this,
                 Invocation.method(#getBestSellerProduct, []),
               ),
             ),
           )
-          as _i11.Future<_i7.BestSellerModel>);
+          as _i17.Future<_i12.BestSellerModel>);
 
   @override
-  _i11.Future<String> logout() =>
-      (super.noSuchMethod(
-            Invocation.method(#logout, []),
-            returnValue: _i11.Future<String>.value(
-              _i14.dummyValue<String>(this, Invocation.method(#logout, [])),
-            ),
-          )
-          as _i11.Future<String>);
-
-  @override
-  _i11.Future<_i8.ProductDetailsModel> getProductDetails(String? id) =>
+  _i17.Future<_i13.ProductDetailsModel> getProductDetails(String? id) =>
       (super.noSuchMethod(
             Invocation.method(#getProductDetails, [id]),
-            returnValue: _i11.Future<_i8.ProductDetailsModel>.value(
-              _FakeProductDetailsModel_6(
+            returnValue: _i17.Future<_i13.ProductDetailsModel>.value(
+              _FakeProductDetailsModel_11(
                 this,
                 Invocation.method(#getProductDetails, [id]),
               ),
             ),
           )
-          as _i11.Future<_i8.ProductDetailsModel>);
+          as _i17.Future<_i13.ProductDetailsModel>);
 
   @override
-  _i11.Future<_i9.UserResponse> editProfile(_i9.UpdatedUserModel? user) =>
+  _i17.Future<_i14.ProfileResponse> editProfile(
+    _i14.UpdatedUserModel? user,
+    String? token,
+  ) =>
       (super.noSuchMethod(
-            Invocation.method(#editProfile, [user]),
-            returnValue: _i11.Future<_i9.UserResponse>.value(
-              _FakeUserResponse_7(
+            Invocation.method(#editProfile, [user, token]),
+            returnValue: _i17.Future<_i14.ProfileResponse>.value(
+              _FakeProfileResponse_12(
                 this,
                 Invocation.method(#editProfile, [user]),
               ),
             ),
           )
-          as _i11.Future<_i9.UserResponse>);
+          as _i17.Future<_i14.ProfileResponse>);
 
   @override
-  _i11.Future<_i9.UserResponse> getLoggedInUserData() =>
+  _i17.Future<_i15.UserResponse> getLoggedInUserData() =>
       (super.noSuchMethod(
             Invocation.method(#getLoggedInUserData, []),
-            returnValue: _i11.Future<_i9.UserResponse>.value(
-              _FakeUserResponse_7(
+            returnValue: _i17.Future<_i15.UserResponse>.value(
+              _FakeUserResponse_13(
                 this,
                 Invocation.method(#getLoggedInUserData, []),
               ),
             ),
           )
-          as _i11.Future<_i9.UserResponse>);
+          as _i17.Future<_i15.UserResponse>);
 
   @override
-  _i11.Future<String> uploadPhoto(_i15.File? image) =>
+  _i17.Future<String> uploadPhoto(String? token, _i22.File? image) =>
       (super.noSuchMethod(
-            Invocation.method(#uploadPhoto, [image]),
-            returnValue: _i11.Future<String>.value(
-              _i14.dummyValue<String>(
+            Invocation.method(#uploadPhoto, [token, image]),
+            returnValue: _i17.Future<String>.value(
+              _i23.dummyValue<String>(
                 this,
                 Invocation.method(#uploadPhoto, [image]),
               ),
             ),
           )
-          as _i11.Future<String>);
+          as _i17.Future<String>);
 }

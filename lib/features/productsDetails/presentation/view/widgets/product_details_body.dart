@@ -1,6 +1,8 @@
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/models/products_model/product.dart';
+import 'package:flowery/features/cart/data/models/add_product_request.dart';
+import 'package:flowery/features/cart/presentation/view%20model/add_to_cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -129,7 +131,21 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                 ),
                 Text("White wrap", style: AppTextStyles.instance.textStyle14),
                 SizedBox(height: 7),
-                ElevatedButton(onPressed: () {}, child: Text("Add to cart")),
+                ElevatedButton(onPressed: () {
+                  AddToCartCubit.get(context).addToCart(
+                    addProductRequest: AddProductRequest(
+                      productId: widget.product.id,
+                      quantity: 1,
+                    ),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: Colors.green,
+                      content: Text("Product added to cart"),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                }, child: Text("Add to cart")),
               ],
             ),
           ),

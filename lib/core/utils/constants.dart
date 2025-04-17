@@ -13,6 +13,12 @@ class Constants {
 
   static const String loginEndPoint = "auth/signin";
   static const String productDetails = "products";
+  static const String addToCartEndPoint = "cart";
+  static const String getLoggedCart = "cart";
+  static const String deleteSpecificCartItem = "cart/{cartItemId}";
+
+  static const String clearCart = "cart";
+  static const String updatCartProductQuantity = "cart/{cartItemId}";
   static const String changePasswordEndPoint = "auth/change-password";
   static const String userToken = "token";
   static const String profileDataENdPoint = "auth/profile-data";

@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/constants.dart';
+
 import 'package:flowery/core/utils/custom_button.dart';
 import 'package:flowery/core/utils/custom_text_form_fieled.dart';
 import 'package:flowery/core/utils/services/secure_sotrage_service.dart';
@@ -32,8 +33,8 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
   @override
   void initState() {
     super.initState();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
+    emailController = TextEditingController(text: 'mariaamk1@gmail.com');
+    passwordController = TextEditingController(text: 'Ahmed@123');
   }
 
   @override
