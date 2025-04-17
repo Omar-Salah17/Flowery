@@ -71,6 +71,8 @@ import '../../features/cart/domain/usecases/get_user_cart_usecase.dart'
     as _i691;
 import '../../features/cart/domain/usecases/update_product_quantity_use_case.dart'
     as _i412;
+import '../../features/cart/presentation/view%20model/cubit/cart_cubit.dart'
+    as _i1069;
 import '../../features/categories/data/data_source/categories_screen_remote_data_source.dart'
     as _i469;
 import '../../features/categories/data/data_source/categories_screen_remote_data_source_impl.dart'
@@ -351,6 +353,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i743.GetUserDataUseCase>(
       () => _i743.GetUserDataUseCase(
         profileRepositoryContract: gh<_i1007.ProfileRepo>(),
+      ),
+    );
+    gh.factory<_i1069.CartCubit>(
+      () => _i1069.CartCubit(
+        gh<_i659.AddToCartUsecase>(),
+        gh<_i412.UpdateProductQuantityUseCase>(),
+        gh<_i691.GetUserCartUsecase>(),
+        gh<_i320.DeleteCartItemUsecase>(),
+        gh<_i240.ClearCartUsecase>(),
       ),
     );
     gh.factory<_i342.ChangePasswordUseCase>(

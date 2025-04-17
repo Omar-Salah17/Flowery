@@ -4,6 +4,7 @@ import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_cubit.dart';
+import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_state.dart';
 import 'package:flowery/features/productsDetails/domain/useCases/get_product_details_use_case.dart';
 import 'package:flowery/features/productsDetails/presentation/viewModel/product_details_cubit/product_details_cubit.dart';
 import 'package:flowery/features/productsDetails/presentation/viewModel/product_details_cubit/product_details_states.dart';

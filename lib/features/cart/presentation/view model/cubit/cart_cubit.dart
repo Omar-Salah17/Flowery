@@ -7,9 +7,10 @@ import 'package:flowery/features/cart/domain/usecases/clear_cart_usecase.dart';
 import 'package:flowery/features/cart/domain/usecases/delete_cart_item_usecase.dart';
 import 'package:flowery/features/cart/domain/usecases/get_user_cart_usecase.dart';
 import 'package:flowery/features/cart/domain/usecases/update_product_quantity_use_case.dart';
+import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_state.dart';
 import 'package:injectable/injectable.dart';
 
-part 'cart_state.dart';
+
 @injectable
 class CartCubit extends Cubit<CartState> {
   CartCubit(
@@ -25,6 +26,7 @@ class CartCubit extends Cubit<CartState> {
   final DeleteCartItemUsecase deleteCartItemUsecase;
 
   final ClearCartUsecase clearCartUsecase;
+ 
   Future<void> addToCart(AddProductRequest addProductRequest) async {
     emit(CartLoading());
     final result = await addToCartUsecase.invoke(
@@ -40,18 +42,16 @@ class CartCubit extends Cubit<CartState> {
     );
   }
 
-  Future<void> getUserCart() async {
-    emit(CartLoading());
-    final result = await getUserCartUsecase.invoke();
-    result.fold(
-      (failure) {
-        emit(CartFailure(errorMessage: failure.errorMessage));
-      },
-      (response) {
-        emit(CartSuccess(cartResponse: response));
-      },
-    );
-  }
+  Future<void> getUserCart({bool silent = false}) async {
+  if (!silent) emit(const CartLoading());
+  else emit(const CartLoading(isSilent: true));
+
+  final result = await getUserCartUsecase.invoke();
+  result.fold(
+    (failure) => emit(CartFailure(errorMessage: failure.errorMessage)),
+    (response) => emit(CartSuccess(cartResponse: response)),
+  );
+}
 
   Future<void> clearCart() async {
     emit(CartLoading());

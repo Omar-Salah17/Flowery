@@ -1,3 +1,5 @@
+import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_state.dart';
+import 'package:flowery/features/cart/presentation/view/widgets/cart_app_bar.dart';
 import 'package:flowery/features/cart/presentation/view/widgets/cart_item_widget.dart';
 import 'package:flowery/features/cart/presentation/view/widgets/price_row.dart';
 import 'package:flutter/material.dart';
@@ -29,59 +31,69 @@ class _CartViewState extends State<CartView> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Padding(
-          padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
-          child: Text("Cart"),
+          padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 5.w),
+          child: BlocBuilder<CartCubit, CartState>(
+            builder: (context, state) {
+              if (state is CartSuccess) {
+                return CartAppBar(cartItems: state.cartResponse);
+              } else if (state is CartFailure) {
+                return Center(child: Text(state.errorMessage));
+              } else {
+                return SizedBox();
+              }
+            },
+          ),
         ),
       ),
       body: BlocBuilder<CartCubit, CartState>(
+        buildWhen:
+            (previous, current) => current is! CartLoading || !current.isSilent,
         builder: (context, state) {
           if (state is CartSuccess) {
-            final cartItems = state.cartResponse.cart!.cartItems;
-
-            return Column(
-              children: [
-                CurrentUserLocation(),
-                SizedBox(
-                  height: 435.h,
-                  child: ListView.builder(
-                    itemCount: cartItems!.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(vertical: 12.h),
-                        child: CartItemWidget(cartItem: cartItems[index]),
-                      );
-                    },
+            final cartItems = state.cartResponse.cart!.cartItems!;
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: Column(
+                children: [
+                  const CurrentUserLocation(),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: cartItems.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.symmetric(vertical: 12.h),
+                          child: CartItemWidget(cartItem: cartItems[index]),
+                        );
+                      },
+                    ),
                   ),
-                ),
-                SizedBox(height: 16.h),
-                PriceRow(
+                  SizedBox(height: 16.h),
+                  PriceRow(
                     title: "Sub Total",
-                    value: "${state.cartResponse.cart!.totalPrice}\$"),
-                PriceRow(title: "Delivery Fee", value: "10\$"),
-                Divider(thickness: 1.sp),
-                PriceRow(
-                  title: "Total",
-                  value: "${state.cartResponse.cart!.totalPrice! + 10}\$",
-                  titleFontWeight: FontWeight.w500,
-                  valueFontWeight: FontWeight.w500,
-                  valueColor: PalletsColors.blackBase,
-                  titleColor: PalletsColors.blackBase,
-                ),
-                SizedBox(height: 12.h),
-                CustomElevatedButton(
-                  text: "Checkout",
-                  isPink: true,
-                  onTap: () {},
-                ),
-              ],
+                    value: "${state.cartResponse.cart!.totalPrice} \EGP",
+                  ),
+                  PriceRow(title: "Delivery Fee", value: "10 \EGP"),
+                  Divider(thickness: 1.sp),
+                  PriceRow(
+                    title: "Total",
+                    value: "${state.cartResponse.cart!.totalPrice! + 10} \EGP",
+                    titleFontWeight: FontWeight.w500,
+                    valueFontWeight: FontWeight.w500,
+                    valueColor: PalletsColors.blackBase,
+                    titleColor: PalletsColors.blackBase,
+                  ),
+                  SizedBox(height: 12.h),
+                  CustomElevatedButton(
+                    text: "Checkout",
+                    isPink: true,
+                    onTap: () {},
+                  ),
+                ],
+              ),
             );
-          }
-
-          if (state is CartLoading) {
+          } else if (state is CartLoading && !state.isSilent) {
             return const Center(child: CircularProgressIndicator());
-          }
-
-          if (state is CartFailure) {
+          } else if (state is CartFailure) {
             return Center(child: Text(state.errorMessage));
           }
 

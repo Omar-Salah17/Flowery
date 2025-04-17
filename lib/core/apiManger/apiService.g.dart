@@ -242,12 +242,13 @@ class _ApiService implements ApiService {
   @override
   Future<CartResponse> updateCartProductQuantity(
     String cartItemId,
-    int quantity,
+    Map<String, dynamic> productQuantity,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = quantity;
+    final _data = <String, dynamic>{};
+    _data.addAll(productQuantity);
     final _options = _setStreamType<CartResponse>(
       Options(method: 'PUT', headers: _headers, extra: _extra)
           .compose(

@@ -92,7 +92,7 @@ class CartItemWidget extends StatelessWidget {
                 GestureDetector(
                       onTap: () {
                       context.read<CartCubit>().deleteCartItem(cartItem.product!.id!);
-                      print('deleated');
+                     
                       },
                       child: Image.asset("assets/images/delete.png"),
                     ),
