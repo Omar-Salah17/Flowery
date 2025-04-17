@@ -24,7 +24,6 @@ class CartCubit extends Cubit<CartState> {
   final UpdateProductQuantityUseCase updateProductQuantityUseCase;
   final GetUserCartUsecase getUserCartUsecase;
   final DeleteCartItemUsecase deleteCartItemUsecase;
-
   final ClearCartUsecase clearCartUsecase;
  
   Future<void> addToCart(AddProductRequest addProductRequest) async {
@@ -42,9 +41,8 @@ class CartCubit extends Cubit<CartState> {
     );
   }
 
-  Future<void> getUserCart({bool silent = false}) async {
-  if (!silent) emit(const CartLoading());
-  else emit(const CartLoading(isSilent: true));
+  Future<void> getUserCart() async {
+
 
   final result = await getUserCartUsecase.invoke();
   result.fold(
@@ -54,7 +52,7 @@ class CartCubit extends Cubit<CartState> {
 }
 
   Future<void> clearCart() async {
-    emit(CartLoading());
+
     final result = await clearCartUsecase.invoke();
     result.fold(
       (failure) {
@@ -67,7 +65,7 @@ class CartCubit extends Cubit<CartState> {
   }
 
   Future<void> deleteCartItem(String cartItemId) async {
-    emit(CartLoading());
+
     final result = await deleteCartItemUsecase.invoke(cartItemId: cartItemId);
     result.fold(
       (failure) {
@@ -83,7 +81,7 @@ class CartCubit extends Cubit<CartState> {
     String cartItemId,
     int productQuantity,
   ) async {
-    emit(CartLoading());
+
     final result = await updateProductQuantityUseCase.call(
       cartItemId: cartItemId,
       productQuantity: productQuantity,

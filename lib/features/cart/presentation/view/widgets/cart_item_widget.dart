@@ -19,6 +19,7 @@ class CartItemWidget extends StatelessWidget {
   });
 
   @override
+  @override
   Widget build(BuildContext context) {
     return Container(
       height: 125.h,
@@ -36,77 +37,93 @@ class CartItemWidget extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(16.r),
               child: CachedNetworkImage(
-                height: 160.h,
-                width: 95.w,
-                fit: BoxFit.contain,
-                imageUrl: cartItem.product?.imgCover??'',
-                progressIndicatorBuilder:
-                    (context, url, progress) => Center(
-                      child: CircularProgressIndicator(
-                        value: progress.progress,
-                        color: PalletsColors.mainColorBase,
-                      ),
-                    ),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+                height: 100.h,
+                width: 80.w,
+                fit: BoxFit.cover,
+                imageUrl: cartItem.product?.imgCover ?? '',
+                progressIndicatorBuilder: (context, url, progress) => Center(
+                  child: CircularProgressIndicator(
+                    value: progress.progress,
+                    color: PalletsColors.mainColorBase,
+                  ),
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
             SizedBox(width: 12.w),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: 100.w,
-                  child: Text(
-                    cartItem.product?.title ?? "No Title",
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTextStyles.instance.textStyle16.copyWith(
-                      color: PalletsColors.blackBase,
-                      fontWeight: FontWeight.w500,
-                    ),
+            Expanded(
+              child: Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              cartItem.product?.title ?? "No Title",
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppTextStyles.instance.textStyle16.copyWith(
+                                color: PalletsColors.blackBase,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            SizedBox(height: 4.h),
+                            Text(
+                              cartItem.product?.description ?? "No desc",
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppTextStyles.instance.textStyle13.copyWith(
+                                color: PalletsColors.white90,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          context.read<CartCubit>().deleteCartItem(cartItem.product!.id!);
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 8.w),
+                          child: Image.asset(
+                            "assets/images/delete.png",
+                            height: 20.h,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                SizedBox(
-                  width: 100.w,
-                  child: Text(
-                    cartItem.product?.description?? "No desc",
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTextStyles.instance.textStyle13.copyWith(
-                      color: PalletsColors.white90,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 24.h),
-                Text(
-                  cartItem.product?.price.toString() ?? '0',
-                  style: AppTextStyles.instance.textStyle14.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: PalletsColors.blackBase,
-                  ),
-                ),
-              ],
-            ),
-            const Spacer(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                GestureDetector(
-                      onTap: () {
-                      context.read<CartCubit>().deleteCartItem(cartItem.product!.id!);
-                     
-                      },
-                      child: Image.asset("assets/images/delete.png"),
-                    ),
-                const Spacer(),
-                QuantitySelector(
-                  initialValue: cartItem.quantity ?? 1,
-                  id: cartItem.product!.id!,
 
-                ),
-              ],
-            ),
+                  Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                    children: [
+                      Text(
+                        'EGP ${cartItem.product?.price.toString()}' ?? '0',
+                        style: AppTextStyles.instance.textStyle14.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: PalletsColors.blackBase,
+                        ),
+                      ),
+
+                      QuantitySelector(
+                        initialValue: cartItem.quantity ?? 1,
+                        id: cartItem.product!.id!,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )
+
           ],
         ),
       ),
     );
   }
+
 }
