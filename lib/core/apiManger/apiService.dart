@@ -13,7 +13,6 @@ import 'package:flowery/features/categories/data/models/categories_model/categor
 import 'package:flowery/features/productsDetails/data/models/product_details_model/product_details_model.dart';
 import 'package:flowery/features/profile/data/model/user_response.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:http_parser/http_parser.dart';
 
 
 import '../../features/occasion/data/models/occaions.dart';

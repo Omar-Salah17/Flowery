@@ -14,13 +14,13 @@ class SettingsTile extends StatelessWidget {
   final Widget? trailing;
   final VoidCallback? onTap;
   const SettingsTile({
-    Key? key,
+    super.key,
      this.icon,
     this.iconPath,
     required this.title,
     this.trailing,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

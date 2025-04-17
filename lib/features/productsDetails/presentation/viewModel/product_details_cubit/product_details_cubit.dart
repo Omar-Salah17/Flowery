@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/features/productsDetails/domain/useCases/get_product_details_use_case.dart';
 import 'package:flowery/features/productsDetails/presentation/viewModel/product_details_cubit/product_details_states.dart';
 
