@@ -16,7 +16,7 @@ import '../view_model/edit_profile_state.dart';
 
 class EditProfileView extends StatefulWidget {
   final UserData user;
-  EditProfileView({super.key, required this.user});
+  const EditProfileView({super.key, required this.user});
 
   @override
   State<EditProfileView> createState() => _EditProfileViewState();

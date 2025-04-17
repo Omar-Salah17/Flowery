@@ -33,7 +33,8 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     return response.data;
   }
 
-   Future<UserResponse> editProfile(  UpdatedUserModel user) async {
+   @override
+  Future<UserResponse> editProfile(  UpdatedUserModel user) async {
   final response = await apiService.editProfile(user,);
      return response;
    }

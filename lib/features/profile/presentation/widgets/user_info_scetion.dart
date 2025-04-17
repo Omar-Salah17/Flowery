@@ -16,9 +16,9 @@ import '../view/cubit/profile_cubit.dart';
 class UserInfoScetion extends StatelessWidget {
   final UserData user;
   const UserInfoScetion({
-    Key? key,
+    super.key,
     required this.user,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
