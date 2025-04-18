@@ -121,7 +121,7 @@ class RouteGenerator {
           builder:
               (context) => BlocProvider(
                 create: (context) => getIt<EditProfileCubit>(),
-                child: EditProfileView(user: UserModel()),
+                child: EditProfileView(user: userData),
               ),
           settings: Settings,
         );
