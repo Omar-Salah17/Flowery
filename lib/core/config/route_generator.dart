@@ -1,4 +1,5 @@
 import 'package:flowery/core/config/routes_name.dart';
+import 'package:flowery/features/address/presentation/view/save_address_view.dart';
 import 'package:flowery/features/auth/forgetPassword/presentation/view/email_verification_screen.dart';
 import 'package:flowery/features/auth/forgetPassword/presentation/view/forget_password_screen.dart';
 import 'package:flowery/features/auth/forgetPassword/presentation/view/reset_password_screen.dart';
@@ -83,6 +84,12 @@ class RouteGenerator {
           builder: (context) => ProfileView(),
           settings: Settings,
         );
+        case RoutesName.saveAddressScreen:
+        return MaterialPageRoute(
+          builder: (context) => SaveAddressView(),
+    
+        );
+
 
       case RoutesName.cart:
         return MaterialPageRoute(
