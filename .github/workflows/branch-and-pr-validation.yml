@@ -1,0 +1,46 @@
+name: Branch-And-PR-Validation
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+  push:
+    branches-ignore:
+      - main # Ignore pushes to the main branch
+
+jobs:
+  validate-branch-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Validate branch name
+        id: validate_branch
+        run: |
+          BRANCH_NAME=$(echo ${{ github.head_ref }} | tr '[:upper:]' '[:lower:]')
+          echo "Branch name: $BRANCH_NAME"
+
+          # Define allowed branch name patterns
+          if [[ $BRANCH_NAME =~ ^(feature|bugfix|hotfix|release)/[a-z0-9\-]+$ ]]; then
+            echo "Branch name is valid."
+          else
+            echo "Error: Invalid branch name. Branch names must follow the pattern: feature/, bugfix/, hotfix/, or release/"
+            exit 1
+          fi
+
+  validate-pr-title:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Validate PR title
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          echo "PR Title: $PR_TITLE"
+
+          # Define allowed PR title patterns
+          if [[ $PR_TITLE =~ ^(feat|fix|docs|style|refactor|test|chore):\ .+ ]];  then
+            echo "PR title is valid."
+          else
+            echo "Error: Invalid PR title. PR titles must either start with '[TICKET-123]' or follow the conventional commit format (e.g., 'feat:', 'fix:')"
+            exit 1
+          fi
