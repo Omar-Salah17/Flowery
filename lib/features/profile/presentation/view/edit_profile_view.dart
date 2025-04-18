@@ -120,13 +120,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                                             ? NetworkImage(widget.user.photo!)
                                             : const AssetImage(''))
                                         as ImageProvider,
-                            backgroundImage:
-                                selectedImage != null
-                                    ? FileImage(selectedImage!)
-                                    : (widget.user.photo != null
-                                            ? NetworkImage(widget.user.photo!)
-                                            : const AssetImage(''))
-                                        as ImageProvider,
+                           
                           ),
                           Positioned(
                             bottom: 0,
@@ -138,9 +132,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(20),
                                 ),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(20),
-                                ),
+                               
                                 color: PalletsColors.mainColor30,
                               ),
                               child: IconButton(

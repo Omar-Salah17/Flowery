@@ -6,7 +6,9 @@ import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/features/cart/data/models/add_product_request.dart';
 import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_state.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../cart/presentation/view model/cubit/cart_cubit.dart';
@@ -99,11 +101,14 @@ class ProductItemWidget extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 8.h),
-        BlocBuilder<CartCubit, CartState>(
+              BlocBuilder<CartCubit, CartState>(
                 builder: (context, state) {
-                  final isLoading = state is CartLoading && state.productId == product.id;
-                  final isSuccess = state is CartSuccess && state.productId == product.id;
-                  final isFailure = state is CartFailure && state.productId == product.id;
+                  final isLoading =
+                      state is CartLoading && state.productId == product.id;
+                  final isSuccess =
+                      state is CartSuccess && state.productId == product.id;
+                  final isFailure =
+                      state is CartFailure && state.productId == product.id;
 
                   // عرض SnackBar لحالة النجاح
                   if (isSuccess) {
@@ -132,45 +137,48 @@ class ProductItemWidget extends StatelessWidget {
                   }
 
                   return ElevatedButton(
-                    onPressed: isLoading
-                        ? null
-                        : () {
-                      context.read<CartCubit>().addToCart(
-                        AddProductRequest(
-                          productId: product.id,
-                          quantity: 1,
-                        ),
-                      );
-                    },
-                    child: isLoading
-                        ? SizedBox(
-                      height: 16,
-                      width: 16,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
-                        : Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.shopping_cart_outlined, size: 18),
-                        SizedBox(width: 6),
-                        Text(
-                          'Add to cart',
-                          style: AppTextStyles.instance.textStyle13.copyWith(
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
+                    onPressed:
+                        isLoading
+                            ? null
+                            : () {
+                              context.read<CartCubit>().addToCart(
+                                AddProductRequest(
+                                  productId: product.id,
+                                  quantity: 1,
+                                ),
+                              );
+                            },
+                    child:
+                        isLoading
+                            ? SizedBox(
+                              height: 16,
+                              width: 16,
+                              child: CircularProgressIndicator(
+                                color: PalletsColors.mainColorBase,
+                              ),
+                            )
+                            : Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.shopping_cart_outlined, size: 18),
+                                SizedBox(width: 6),
+                                Text(
+                                  'Add to cart',
+                                  style: AppTextStyles.instance.textStyle13
+                                      .copyWith(fontWeight: FontWeight.w500),
+                                ),
+                              ],
+                            ),
                   );
                 },
               ),
-              ])
-              ),
-    ),
-          );
-
-}}
-
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 double discountPercentage(int priceAfterDiscount, int originalPrice) {
   if (originalPrice <= 0 || priceAfterDiscount <= 0) return 0.0;
