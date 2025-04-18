@@ -110,14 +110,12 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                       text: "Login",
                       onTap: () async {
                         if (formKey.currentState!.validate()) {
-                          log("inside method");
-                          log(emailController.text);
-                          log(passwordController.text);
+                        
                           await context.read<LoginCubit>().login(
                             email: emailController.text.trim(),
                             password: passwordController.text.trim(),
                           );
-                          log("after calling");
+                          
                           autoValidateMode = AutovalidateMode.disabled;
                         } else {
                           setState(() {
