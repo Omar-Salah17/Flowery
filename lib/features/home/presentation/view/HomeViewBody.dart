@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
@@ -6,6 +7,7 @@ import 'package:flowery/features/categories/presentation/view_model/cubits/categ
 import 'package:flowery/features/home/presentation/widgets/home_best_seller.dart';
 import 'package:flowery/features/home/presentation/widgets/home_cat_view.dart';
 import 'package:flowery/features/home/presentation/widgets/view_all_widget.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -50,7 +52,7 @@ class HomeViewBody extends StatelessWidget {
               const CurrentUserLocation(),
 
               ViewAllWidget(
-                title: "Categories",
+                title: LocaleKeys.categories.tr(),
                 onTap: () {
                   context.read<CategoriesScreenCubit>().getProductsByCategory();
                   Navigator.pushNamed(context, RoutesName.categories);
@@ -67,7 +69,7 @@ class HomeViewBody extends StatelessWidget {
                       return HomeCatView(categories: state.categories ?? []);
                     case RequestState.error:
                       return Center(
-                        child: Text(state.error ?? "Failed to load categories"),
+                        child: Text(state.error ?? LocaleKeys.failedToLoadCategories.tr()),
                       );
                     default:
                       return const SizedBox.shrink();
@@ -77,7 +79,7 @@ class HomeViewBody extends StatelessWidget {
 
               const SizedBox(height: 16),
               ViewAllWidget(
-                title: "Best seller",
+                title: LocaleKeys.bestSeller.tr(),
                 onTap: () {
                   Navigator.pushNamed(context, RoutesName.bestSeller);
                 },
@@ -94,7 +96,7 @@ class HomeViewBody extends StatelessWidget {
                     case RequestState.error:
                       return Center(
                         child: Text(
-                          state.error ?? "Failed to load best sellers",
+                          state.error ?? LocaleKeys.failedToLoadBestSellers.tr(),
                         ),
                       );
                     default:
@@ -105,7 +107,7 @@ class HomeViewBody extends StatelessWidget {
 
               const SizedBox(height: 16),
               ViewAllWidget(
-                title: "Occasion",
+                title: LocaleKeys.occasion.tr(),
                 onTap: () {
                   Navigator.pushNamed(context, RoutesName.occasionScreen);
                 },
@@ -123,7 +125,7 @@ class HomeViewBody extends StatelessWidget {
                       );
                     case RequestState.error:
                       return Center(
-                        child: Text(state.error ?? "Failed to load occasions"),
+                        child: Text(state.error ?? LocaleKeys.failedToLoadOccasions.tr()),
                       );
                     default:
                       return const SizedBox.shrink();

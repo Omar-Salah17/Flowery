@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
@@ -7,6 +8,7 @@ import 'package:flowery/core/utils/custom_text_form_fieled.dart';
 import 'package:flowery/core/utils/helper_functions/snack_bar.dart';
 import 'package:flowery/core/utils/validator.dart';
 import 'package:flowery/features/auth/forgetPassword/presentation/view_model/forget_pass_cubit/forget_password_cubit.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -51,7 +53,7 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Forget password',
+                    LocaleKeys.forgetPassword.tr(),
                     style: AppTextStyles.instance.textStyle18.copyWith(
                       fontWeight: FontWeight.w500,
                     ),
@@ -59,7 +61,7 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
                   SizedBox(height: 16.h),
                   Text(
                     textAlign: TextAlign.center,
-                    'Please enter your email associated to your account',
+                   LocaleKeys.PleaseEnterYourEmailAssociatedToYourAccount.tr(),
                     style: AppTextStyles.instance.textStyle14,
                   ),
                 ],
@@ -68,8 +70,8 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
             SizedBox(height: 32.h),
             CustomTextFormFieled(
               textEditingController: emailController,
-              labelText: 'Email',
-              hintText: "Enter Your Email",
+              labelText: LocaleKeys.email.tr(),
+              hintText: LocaleKeys.enterYourEmail.tr(),
               shouldObscureText: false,
               validator: (value) {
                 return Validator.validateEmail(value);
@@ -115,7 +117,7 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
                       ),
                     );
                   } else {
-                    return Text('Confirm');
+                    return Text(LocaleKeys.confirm.tr());
                   }
                 },
               ),

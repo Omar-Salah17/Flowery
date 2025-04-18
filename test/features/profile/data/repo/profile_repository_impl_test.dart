@@ -20,7 +20,7 @@ void main() {
       remoteDataSourceContract = MockProfileRemoteDataSource();
       // Initialize the ProfileRepositoryImpl with the mocked data source
       profileRepositoryContract = ProfileRepoImpl(
-       remoteDataSource: remoteDataSourceContract,
+        remoteDataSource: remoteDataSourceContract,
       );
     });
     test(

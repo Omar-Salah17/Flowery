@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
@@ -5,6 +6,7 @@ import 'package:flowery/core/utils/custom_text_form_fieled.dart';
 import 'package:flowery/core/utils/helper_functions/snack_bar.dart';
 import 'package:flowery/core/utils/validator.dart';
 import 'package:flowery/features/auth/forgetPassword/presentation/view_model/reset_password_cubit/reset_password_cubit.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -56,7 +58,7 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
               children: [
                 SizedBox(height: 40.h),
                 Text(
-                  "Reset Password",
+                  LocaleKeys.resetPassword.tr(),
                   style: AppTextStyles.instance.textStyle18.copyWith(
                     fontWeight: FontWeight.w500,
                   ),
@@ -65,7 +67,7 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
                   child: Text(
-                    "Password must not be empty and must contain 6 characters with upper case letter and one number at least ",
+                    LocaleKeys.passwordValidation.tr(),
                     textAlign: TextAlign.center,
                     style: AppTextStyles.instance.textStyle14.copyWith(
                       color: PalletsColors.gray,
@@ -75,8 +77,8 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
                 SizedBox(height: 32.h),
                 CustomTextFormFieled(
                   textEditingController: newPasswordController,
-                  labelText: 'New password',
-                  hintText: 'Enter you password',
+                  labelText: LocaleKeys.newPassword.tr(),
+                  hintText: LocaleKeys.enterYourPassword.tr(),
                   shouldObscureText: true,
                   validator: (value) {
                     return Validator.validatePassword(value);
@@ -85,8 +87,8 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
                 SizedBox(height: 24.h),
                 CustomTextFormFieled(
                   textEditingController: confirmPasswordController,
-                  labelText: 'Confirm password',
-                  hintText: 'Confirm password',
+                  labelText: LocaleKeys.confirmPassword.tr(),
+                  hintText: LocaleKeys.confirmPassword.tr(),
                   shouldObscureText: true,
                   validator: (value) {
                     return Validator.validateConfirmPassword(
@@ -112,7 +114,7 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
                               color: PalletsColors.white10,
                             ),
                           )
-                          : Text('Confirm'),
+                          : Text(LocaleKeys.confirm.tr()),
                 ),
               ],
             );

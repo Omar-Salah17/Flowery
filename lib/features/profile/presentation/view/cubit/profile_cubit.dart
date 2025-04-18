@@ -28,6 +28,7 @@ class ProfileCubit extends Cubit<ProfileState> {
         print(user.lastName);
         print(user.email);
         emit(ProfileSucess(user: user));
+        emit(ProfileSucess(user: user));
       },
     );
   }

@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/categories/data/models/categories_model/category.dart';
 import 'package:flowery/features/categories/presentation/view/widgets/categories_title_widget.dart';
 import 'package:flowery/features/categories/presentation/view_model/cubits/categories_cubit/categories_screen_cubit.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,10 +39,10 @@ class _CategoriesTitleListViewState extends State<CategoriesTitleListView> {
               child: Column(
                 children: [
                   Text(
-                    'All',
+                   LocaleKeys.all.tr(),
                     style: AppTextStyles.instance.textStyle16.copyWith(
                       color:
-                          selectedCat == "all"
+                          selectedCat == LocaleKeys.all.tr()
                               ? PalletsColors.mainColorBase
                               : PalletsColors.white70,
                     ),
@@ -50,7 +52,7 @@ class _CategoriesTitleListViewState extends State<CategoriesTitleListView> {
                     width: 15.w,
                     decoration: BoxDecoration(
                       color:
-                          selectedCat == "all"
+                          selectedCat == LocaleKeys.all.tr()
                               ? PalletsColors.mainColorBase
                               : PalletsColors.white70,
                       borderRadius: BorderRadius.only(

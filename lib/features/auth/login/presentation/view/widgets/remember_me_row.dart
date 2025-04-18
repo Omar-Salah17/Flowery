@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/colors.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 
 class RememberMeRow extends StatelessWidget {
@@ -22,14 +24,17 @@ class RememberMeRow extends StatelessWidget {
           activeColor: PalletsColors.mainColorBase,
           checkColor: Colors.white,
         ),
-        Text("Remember me", style: Theme.of(context).textTheme.bodyMedium),
+        Text(
+          LocaleKeys.remmemberMe.tr(),
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
         const Spacer(),
         GestureDetector(
           onTap: () {
             Navigator.pushNamed(context, RoutesName.forgetPassword);
           },
           child: Text(
-            "Forget password?",
+            LocaleKeys.forgetPassword.tr(),
             style: TextStyle(
               decoration: TextDecoration.underline,
               color: const Color.fromRGBO(12, 16, 21, 1),

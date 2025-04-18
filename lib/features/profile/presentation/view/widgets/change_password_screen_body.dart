@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/custom_text_form_fieled.dart';
 import 'package:flowery/core/utils/helper_functions/snack_bar.dart';
 import 'package:flowery/core/utils/validator.dart';
 import 'package:flowery/features/profile/presentation/view_model/change_pass_cubit/change_password_cubit.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -48,23 +50,23 @@ class _ChangePasswordScreenBodyState extends State<ChangePasswordScreenBody> {
             SizedBox(height: 32.h),
             CustomTextFormFieled(
               textEditingController: oldPassWord,
-              labelText: 'Current password',
-              hintText: 'Current password',
+              labelText: LocaleKeys.currentPassword.tr(),
+              hintText: LocaleKeys.currentPassword.tr(),
               shouldObscureText: true,
             ),
             SizedBox(height: 24.h),
             CustomTextFormFieled(
               textEditingController: newPassWord,
-              labelText: 'New password',
-              hintText: 'New password',
+              labelText: LocaleKeys.newPassword.tr(),
+              hintText: LocaleKeys.newPassword.tr(),
               shouldObscureText: true,
               validator: (value) => Validator.validatePassword(value),
             ),
             SizedBox(height: 24.h),
             CustomTextFormFieled(
               textEditingController: confirmPassword,
-              labelText: 'Confirm password',
-              hintText: 'Confirm password',
+              labelText: LocaleKeys.confirmPassword.tr(),
+              hintText: LocaleKeys.confirmPassword.tr(),
               shouldObscureText: true,
               validator:
                   (value) => Validator.validateConfirmPassword(

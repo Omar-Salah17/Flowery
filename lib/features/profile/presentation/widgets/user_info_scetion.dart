@@ -1,7 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flowery/core/config/routes_name.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/features/profile/data/model/user_response.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,6 +18,7 @@ import '../view/cubit/profile_cubit.dart';
 class UserInfoScetion extends StatelessWidget {
   final UserData user;
   const UserInfoScetion({super.key, required this.user});
+  const UserInfoScetion({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +28,10 @@ class UserInfoScetion extends StatelessWidget {
           CircleAvatar(
             backgroundImage: NetworkImage(user.photo!),
             radius: 50.r,
+            child: CachedNetworkImage(
+              imageUrl: user.photo ?? '',
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+            ),
           ),
           verticalSpace(10.h),
           Row(
@@ -52,7 +59,7 @@ class UserInfoScetion extends StatelessWidget {
             ],
           ),
           Text(
-            user.email ?? 'email',
+            user.email ?? LocaleKeys.email.tr(),
             style: AppTextStyles.instance.textStyle18.copyWith(
               color: PalletsColors.gray,
             ),

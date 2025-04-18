@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,7 +24,7 @@ class CategoriesScreenAppBar extends StatelessWidget {
                   bottom: 15.5.h,
                   left: 19.w,
                 ),
-                hintText: 'Search',
+                hintText: LocaleKeys.search.tr(),
                 hintStyle: TextStyle(
                   fontSize: AppTextStyles.instance.textStyle14.fontSize,
                   color: PalletsColors.white70,

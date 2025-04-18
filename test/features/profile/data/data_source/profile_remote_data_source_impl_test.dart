@@ -36,15 +36,14 @@ void main() {
         expect(result, mockResponse);
       },
     );
-      test('getLoggedInUserData should return Failure when API call fails', (){
-    final mockError = ServerFailure(errorMessage: "error");
-    when(apiService.getLoggedInUserData()).thenThrow(mockError);
-    
+    test('getLoggedInUserData should return Failure when API call fails', () {
+      final mockError = ServerFailure(errorMessage: "error");
+      when(apiService.getLoggedInUserData()).thenThrow(mockError);
+
       final result = profileRemoteDataSourceContract.getLoggedInUserData();
-    verify(apiService.getLoggedInUserData()).called(1);
-    
-    expect(result, throwsA(isA<ServerFailure>()));
-  });
-  
+      verify(apiService.getLoggedInUserData()).called(1);
+
+      expect(result, throwsA(isA<ServerFailure>()));
+    });
   });
 }

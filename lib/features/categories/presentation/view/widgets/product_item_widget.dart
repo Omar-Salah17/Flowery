@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
@@ -6,7 +7,6 @@ import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/features/cart/data/models/add_product_request.dart';
 import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../cart/presentation/view model/cubit/cart_cubit.dart';
@@ -59,7 +59,7 @@ class ProductItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      product.title ?? 'No title',
+                      product.title ?? LocaleKeys.noTitle.tr(),
                       overflow: TextOverflow.ellipsis,
                       style: AppTextStyles.instance.textStyle12,
                     ),
@@ -68,7 +68,13 @@ class ProductItemWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "EGP${product.priceAfterDiscount}",
+                          LocaleKeys.egp.tr(),
+                          style: AppTextStyles.instance.textStyle14.copyWith(
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Text(
+                          "${product.priceAfterDiscount}",
                           style: AppTextStyles.instance.textStyle14.copyWith(
                             fontWeight: FontWeight.w500,
                           ),

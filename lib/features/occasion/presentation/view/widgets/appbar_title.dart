@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/helper/spacing.dart';
 import 'package:flowery/core/utils/colors.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 
 class AppbarTitle extends StatelessWidget {
@@ -26,9 +28,9 @@ class AppbarTitle extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Occasion', style: text.titleMedium),
+              Text(LocaleKeys.occasion.tr(), style: text.titleMedium),
               Text(
-                'Bloom with our exquisite best sellers',
+                LocaleKeys.bloomSellers.tr(),
                 style: text.labelSmall?.copyWith(color: PalletsColors.gray),
               ),
               verticalSpace(8),

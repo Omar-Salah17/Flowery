@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/colors.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 
 class AlreadyHaveAccountSection extends StatelessWidget {
@@ -13,7 +15,7 @@ class AlreadyHaveAccountSection extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Already have an account?',
+          LocaleKeys.alreadyHaveAccount.tr(),
           style: text.bodySmall!.copyWith(
             color: PalletsColors.black100,
             fontWeight: FontWeight.w500,
@@ -24,7 +26,7 @@ class AlreadyHaveAccountSection extends StatelessWidget {
             Navigator.pushNamed(context, RoutesName.login);
           },
           child: Text(
-            'Login',
+            LocaleKeys.login.tr(),
             style: text.bodySmall!.copyWith(
               color: PalletsColors.mainColorBase,
               decoration: TextDecoration.underline,

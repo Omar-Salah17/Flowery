@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/enums/gender_enum.dart';
@@ -10,6 +11,7 @@ import 'package:flowery/features/auth/register/domain/use_cases/register_use_cas
 import 'package:flowery/features/auth/register/presentation/cubit/register_cubit.dart';
 import 'package:flowery/features/auth/register/presentation/widgets/already_have_account_section.dart';
 import 'package:flowery/features/auth/register/presentation/widgets/create_account_section.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,7 +37,7 @@ class _RegisterState extends State<Register> {
           children: [
             Icon(Icons.arrow_back_ios),
             horizontalSpace(10),
-            Text('Sign Up', style: text.titleMedium),
+            Text(LocaleKeys.signup.tr(), style: text.titleMedium),
           ],
         ),
       ),
@@ -47,7 +49,7 @@ class _RegisterState extends State<Register> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   backgroundColor: Colors.green,
-                  content: Text('User Registered Successfully'),
+                  content: Text(LocaleKeys.userRegisteredSuccessfully.tr()),
                 ),
               );
               Navigator.pushNamed(context, RoutesName.layout);
@@ -72,8 +74,8 @@ class _RegisterState extends State<Register> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: CustomTextFormFieled(
-                            hintText: 'Enter First Name',
-                            labelText: 'First Name',
+                            hintText: LocaleKeys.enterFirstName.tr(),
+                            labelText: LocaleKeys.firstName.tr(),
                             shouldObscureText: false,
                             textEditingController: cubit.firstNameController,
                             validator: (val) => Validator.validateName(val),
@@ -85,8 +87,8 @@ class _RegisterState extends State<Register> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: CustomTextFormFieled(
-                            hintText: 'Enter Last Name',
-                            labelText: 'Last Name',
+                            hintText: LocaleKeys.enterLastName.tr(),
+                            labelText: LocaleKeys.lastName.tr(),
                             shouldObscureText: false,
                             textEditingController: cubit.lastNameController,
                             validator: (val) => Validator.validateName(val),
@@ -101,8 +103,8 @@ class _RegisterState extends State<Register> {
                       vertical: 15.h,
                     ),
                     child: CustomTextFormFieled(
-                      hintText: 'Enter your email',
-                      labelText: 'email',
+                      hintText: LocaleKeys.enterYourEmail.tr(),
+                      labelText: LocaleKeys.email.tr(),
                       shouldObscureText: false,
                       textEditingController: cubit.emailController,
                       validator: (val) {
@@ -117,8 +119,8 @@ class _RegisterState extends State<Register> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: CustomTextFormFieled(
-                            hintText: 'Enter your password',
-                            labelText: 'Password',
+                            hintText: LocaleKeys.enterYourPassword.tr(),
+                            labelText: LocaleKeys.password.tr(),
                             shouldObscureText: true,
                             textEditingController: cubit.passwordController,
                             validator:
@@ -136,8 +138,8 @@ class _RegisterState extends State<Register> {
                                   val,
                                   cubit.passwordController.text,
                                 ),
-                            hintText: 'Confirm your password',
-                            labelText: 'Confirm Password',
+                            hintText: LocaleKeys.confirmPassword.tr(),
+                            labelText: LocaleKeys.confirmPassword.tr(),
                             shouldObscureText: true,
                             textEditingController:
                                 cubit.confirmPasswordController,
@@ -152,8 +154,8 @@ class _RegisterState extends State<Register> {
                       vertical: 15.h,
                     ),
                     child: CustomTextFormFieled(
-                      hintText: 'Enter your phone number',
-                      labelText: 'Phone Number',
+                      hintText: LocaleKeys.enterPhoneNumber,
+                      labelText: LocaleKeys.phoneNumber.tr(),
                       shouldObscureText: false,
                       textEditingController: cubit.phoneNumberController,
                       validator: (val) => Validator.validatePhoneNumber(val),
@@ -167,7 +169,7 @@ class _RegisterState extends State<Register> {
                     child: Row(
                       children: [
                         Text(
-                          'Gender',
+                          LocaleKeys.gender.tr(),
                           style: text.bodySmall!.copyWith(
                             fontWeight: FontWeight.w500,
                             fontSize: 18.sp,
@@ -185,7 +187,7 @@ class _RegisterState extends State<Register> {
                           activeColor: PalletsColors.mainColorBase,
                         ),
                         Text(
-                          "Female",
+                         LocaleKeys.Female.tr(),
                           style: text.bodyMedium!.copyWith(
                             color: PalletsColors.gray,
                             fontWeight: FontWeight.w500,
@@ -203,7 +205,7 @@ class _RegisterState extends State<Register> {
                           },
                         ),
                         Text(
-                          "Male",
+                          LocaleKeys.Male.tr(),
                           style: text.bodyMedium!.copyWith(
                             color: PalletsColors.gray,
                             fontWeight: FontWeight.w500,
@@ -230,7 +232,7 @@ class _RegisterState extends State<Register> {
                           });
                         }
                       },
-                      child: Text('Sign Up'),
+                      child: Text(LocaleKeys.signup.tr()),
                     ),
                   ),
                   AlreadyHaveAccountSection(),

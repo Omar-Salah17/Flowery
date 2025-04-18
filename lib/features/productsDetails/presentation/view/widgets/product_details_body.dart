@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/features/cart/data/models/add_product_request.dart';
 import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_cubit.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -75,21 +77,30 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                 Row(
                   children: [
                     Text(
-                      "EGP ${widget.product.price}",
+                      LocaleKeys.egp.tr(),
+                      style: AppTextStyles.instance.textStyle20.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      " ${widget.product.price}",
                       style: AppTextStyles.instance.textStyle20.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Spacer(),
-                    Text("Status: ", style: AppTextStyles.instance.textStyle16),
                     Text(
-                      " In stock",
+                      LocaleKeys.status.tr(),
+                      style: AppTextStyles.instance.textStyle16,
+                    ),
+                    Text(
+                      LocaleKeys.inStock.tr(),
                       style: AppTextStyles.instance.textStyle14,
                     ),
                   ],
                 ),
                 Text(
-                  "All prices include tax",
+                  LocaleKeys.includeTax.tr(),
                   style: AppTextStyles.instance.textStyle16,
                 ),
                 Text(
@@ -100,20 +111,21 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                 ),
                 SizedBox(height: 20.sp),
                 Text(
-                  "Description",
+                  LocaleKeys.description.tr(),
                   style: AppTextStyles.instance.textStyle16.copyWith(
                     fontWeight: FontWeight.w500,
                   ),
                 ),
                 Text(
-                  widget.product.description ?? "No description found",
+                  widget.product.description ??
+                      LocaleKeys.noDescriptionFound.tr(),
                   style: AppTextStyles.instance.textStyle14,
                 ),
 
                 SizedBox(height: 20.sp),
 
                 Text(
-                  "Bouquet include",
+                  LocaleKeys.bouquetInclude.tr(),
                   style: AppTextStyles.instance.textStyle16.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -130,10 +142,14 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                     ),
                   ],
                 ),
-                Text("White wrap", style: AppTextStyles.instance.textStyle14),
+                Text(
+                  LocaleKeys.whiteWrap.tr(),
+                  style: AppTextStyles.instance.textStyle14,
+                ),
                 SizedBox(height: 7),
                 ElevatedButton(
-                    onPressed: () {
+                    
+                  onPressed: () {
                       context.read<CartCubit>().addToCart(
                         AddProductRequest(
                           productId: widget.product.id,
@@ -141,9 +157,11 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                         ),
                       );
                     },
-                    child: Text("Add to cart"),
+                   
+                  child: Text(LocaleKeys.addToCart.tr(),
                   ),
 
+                ),
               ],
             ),
           ),

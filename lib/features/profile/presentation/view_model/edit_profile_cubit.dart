@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/features/profile/domain/use_case/upload_photo__use_case.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -15,6 +17,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
 
   EditProfileCubit(this.editProfileUseCase, this.uploadPhotoUseCase)
     : super(const EditProfileState());
+    : super(const EditProfileState());
 
   Future<void> uploadProfilePhoto(File? photo) async {
     try {
@@ -27,7 +30,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
       emit(
         state.copyWith(
           status: EditProfileStatus.failure,
-          errorMessage: e.toString(),
+          errorMessage: LocaleKeys.failedToUploadPhoto.tr(),
         ),
       );
     }

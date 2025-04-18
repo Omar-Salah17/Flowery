@@ -142,6 +142,7 @@ import '../../features/profile/presentation/view_model/edit_profile_cubit.dart'
 import '../apiManger/api_manager.dart' as _i29;
 import '../apiManger/apiService.dart' as _i171;
 import '../apiManger/dio_module.dart' as _i304;
+import '../provider/app_config_provider.dart' as _i291;
 import '../utils/services/secure_sotrage_service.dart' as _i665;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -152,11 +153,12 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
-    gh.singleton<_i29.ApiManager>(() => _i29.ApiManager());
-    gh.singleton<_i361.LogInterceptor>(() => dioModule.provideLogger());
+    gh.singleton<_i291.AppConfigProvider>(() => _i291.AppConfigProvider());
     gh.singleton<_i665.SecureStorageService>(
       () => _i665.SecureStorageService(),
     );
+    gh.singleton<_i361.LogInterceptor>(() => dioModule.provideLogger());
+    gh.singleton<_i29.ApiManager>(() => _i29.ApiManager());
     gh.singleton<_i646.GuestManager>(() => _i646.GuestManager());
     gh.factory<_i237.OccasionRemoteDataSourceContract>(
       () => _i61.OccasionRemoteDataSourceImpl(),
@@ -313,6 +315,12 @@ extension GetItInjectableX on _i174.GetIt {
         getBestSeller: gh<_i461.GetBestSellerUseCase>(),
         getOccasions: gh<_i34.GetAllOccasionsUseCase>(),
       ),
+    );
+    gh.factory<_i440.UploadPhotoUseCase>(
+      () => _i440.UploadPhotoUseCase(gh<_i894.ProfileRepository>()),
+    );
+    gh.factory<_i199.EditProfileUseCase>(
+      () => _i199.EditProfileUseCase(gh<_i894.ProfileRepository>()),
     );
     gh.factory<_i691.GetProductDetailsUseCase>(
       () =>
