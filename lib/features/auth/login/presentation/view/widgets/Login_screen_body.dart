@@ -60,7 +60,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
 
             _saveUserToken(state);
 
-            Navigator.pushNamed(context, RoutesName.layout);
+            Navigator.pushReplacementNamed(context, RoutesName.layout);
           } else if (state is LoginFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
