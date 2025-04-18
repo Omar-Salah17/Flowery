@@ -93,29 +93,37 @@ class ProductItemWidget extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 8.h),
-              BlocConsumer<CartCubit, CartState>(
-                listener: (context, state) {
-                  if (state is CartSuccess) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        backgroundColor: Colors.green,
-                        content: Text('Added to cart successfully'),
-                      ),
-                    );
-                  }
-                  if (state is CartFailure) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        backgroundColor: Colors.red,
-                        content: Text(
-                          'Failed to add to cart: ${state.errorMessage}',
-                        ),
-                      ),
-                    );
-                  }
-                },
+        BlocBuilder<CartCubit, CartState>(
                 builder: (context, state) {
-                  final isLoading = state is CartLoading;
+                  final isLoading = state is CartLoading && state.productId == product.id;
+                  final isSuccess = state is CartSuccess && state.productId == product.id;
+                  final isFailure = state is CartFailure && state.productId == product.id;
+
+                  // عرض SnackBar لحالة النجاح
+                  if (isSuccess) {
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          backgroundColor: Colors.green,
+                          content: Text('Added to cart successfully'),
+                        ),
+                      );
+                      context.read<CartCubit>().resetCartState();
+                    });
+                  }
+
+                  // عرض SnackBar لحالة الفشل
+                  if (isFailure) {
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          backgroundColor: Colors.red,
+                          content: Text('${state.errorMessage}'),
+                        ),
+                      );
+                      context.read<CartCubit>().resetCartState();
+                    });
+                  }
 
                   return ElevatedButton(
                     onPressed: isLoading
@@ -124,18 +132,15 @@ class ProductItemWidget extends StatelessWidget {
                       context.read<CartCubit>().addToCart(
                         AddProductRequest(
                           productId: product.id,
-                          quantity: 1, // Default quantity
+                          quantity: 1,
                         ),
                       );
                     },
                     child: isLoading
                         ? SizedBox(
-                      height: 18,
-                      width: 18,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: Colors.white,
-                      ),
+                      height: 16,
+                      width: 16,
+                      child: CircularProgressIndicator(strokeWidth: 2),
                     )
                         : Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -144,21 +149,21 @@ class ProductItemWidget extends StatelessWidget {
                         SizedBox(width: 6),
                         Text(
                           'Add to cart',
-                          style: AppTextStyles.instance.textStyle13
-                              .copyWith(fontWeight: FontWeight.w500),
+                          style: AppTextStyles.instance.textStyle13.copyWith(
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ],
                     ),
                   );
                 },
               ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+              ])
+              ),
+    ),
+          );
+
+}}
 
 
 double discountPercentage(int priceAfterDiscount, int originalPrice) {

@@ -47,7 +47,7 @@ class _CartViewState extends State<CartView> {
       ),
       body: BlocBuilder<CartCubit, CartState>(
         buildWhen:
-            (previous, current) => current is! CartLoading || !current.isSilent,
+            (previous, current) => current is! CartLoading,
         builder: (context, state) {
           if (state is CartSuccess) {
             final cartItems = state.cartResponse.cart!.cartItems!;
@@ -91,7 +91,7 @@ class _CartViewState extends State<CartView> {
                 ],
               ),
             );
-          } else if (state is CartLoading && !state.isSilent) {
+          } else if (state is CartLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is CartFailure) {
             return Center(child: Text(state.errorMessage));

@@ -1,7 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flowery/features/cart/data/models/add_product_request.dart';
-import 'package:flowery/features/cart/data/models/cart_model/cart_response.dart';
 import 'package:flowery/features/cart/domain/usecases/add_to_cart_usecase.dart';
 import 'package:flowery/features/cart/domain/usecases/clear_cart_usecase.dart';
 import 'package:flowery/features/cart/domain/usecases/delete_cart_item_usecase.dart';
@@ -27,19 +25,28 @@ class CartCubit extends Cubit<CartState> {
   final ClearCartUsecase clearCartUsecase;
  
   Future<void> addToCart(AddProductRequest addProductRequest) async {
-    emit(CartLoading());
+    var loadingProductId=addProductRequest.productId;
+    emit(CartLoading(productId: loadingProductId));
+
     final result = await addToCartUsecase.invoke(
       addProductRequest: addProductRequest,
     );
     result.fold(
       (failure) {
-        emit(CartFailure(errorMessage: failure.errorMessage));
+        if(failure.errorMessage=='Requested resource not found.'){
+        emit(CartFailure(errorMessage: 'Product Sold out', productId: loadingProductId));}
+        else{
+          emit(CartFailure(errorMessage: failure.errorMessage, productId: loadingProductId));
+        }
       },
       (response) {
-        emit(CartSuccess(cartResponse: response));
+        emit(CartSuccess(cartResponse: response, productId: loadingProductId));
       },
     );
   }
+
+  void resetCartState() {
+    emit(CartInitial());}
 
   Future<void> getUserCart() async {
 

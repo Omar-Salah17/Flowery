@@ -25,9 +25,13 @@ CartRepoImpl({required this.cartRemoteDataSource});
       return right(data);
     } catch (e) {
       if (e is DioException) {
+        print( "Dioooooooooooo${e.toString()}");
         return left(ServerFailure.fromDioException(e));
+
       } else {
         log("error in CartRepoImpl addToCart method: ${e.toString()}");
+        ///
+        print( "notDioooooooooooo${e.toString()}");
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
