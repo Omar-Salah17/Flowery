@@ -13,6 +13,16 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../features/address/data/repos/repos/address_repository_impl.dart'
+    as _i769;
+import '../../features/address/data/repos/repos_data_sourse/address_remote_data_source_impl.dart'
+    as _i497;
+import '../../features/address/domain/repos/repos/Address_repository_contract.dart'
+    as _i315;
+import '../../features/address/domain/repos/repos_data_sourse/adderss_data_source_contract.dart'
+    as _i922;
+import '../../features/address/domain/use_case/get_logged_user_address_use_case.dart'
+    as _i1033;
 import '../../features/auth/forgetPassword/data/dataSource/forget_password_remot_data_source.dart'
     as _i129;
 import '../../features/auth/forgetPassword/data/dataSource/forget_password_remote_data_source_impl.dart'
@@ -293,6 +303,10 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i1048.ProductDetailsRemoteDataSource>(),
       ),
     );
+    gh.factory<_i922.AdderssRemoteDataSource>(
+      () =>
+          _i497.AddressRemoteDataSourceImpl(apiService: gh<_i171.ApiService>()),
+    );
     gh.factory<_i123.CartRepo>(
       () => _i806.CartRepoImpl(
         cartRemoteDataSource: gh<_i569.CartRemoteDataSource>(),
@@ -343,6 +357,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i412.UpdateProductQuantityUseCase>(
       () => _i412.UpdateProductQuantityUseCase(gh<_i123.CartRepo>()),
     );
+    gh.factory<_i315.AddressRepositoryContract>(
+      () => _i769.AddressRepositoryImpl(
+        addressRemoteDataSource: gh<_i922.AdderssRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i659.AddToCartUsecase>(
       () => _i659.AddToCartUsecase(cartRepo: gh<_i123.CartRepo>()),
     );
@@ -355,6 +374,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i743.GetUserDataUseCase>(
       () => _i743.GetUserDataUseCase(
         profileRepositoryContract: gh<_i1007.ProfileRepo>(),
+      ),
+    );
+    gh.factory<_i1033.GetLoggedUserAddressUseCase>(
+      () => _i1033.GetLoggedUserAddressUseCase(
+        gh<_i315.AddressRepositoryContract>(),
       ),
     );
     gh.factory<_i1069.CartCubit>(

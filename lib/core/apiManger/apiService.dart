@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flowery/core/utils/constants.dart';
 import 'package:flowery/core/utils/models/products_model/products_model.dart';
+import 'package:flowery/features/address/data/models/logged_user_address_model.dart';
 import 'package:flowery/features/auth/login/data/models/login_request.dart'
     show LoginRequest;
 import 'package:flowery/features/auth/login/data/models/login_respose.dart';
@@ -83,4 +84,6 @@ abstract class ApiService {
   @MultiPart()
   @PUT(Constants.uploadPhotoEndPoint)
   Future<String> uploadPhoto(@Part(name: "photo") File image);
+  @GET(Constants.loggedUserAdderss)
+  Future<LoggedUserAddressModel> getLoggedUserAddress();
 }
