@@ -3,9 +3,8 @@ import 'package:dartz/dartz.dart';
 import 'package:flowery/core/utils/error_handler.dart';
 import 'package:flowery/features/auth/register/data/models/register_request.dart';
 import 'package:flowery/features/auth/register/domain/entities/register_entity.dart';
-import 'package:injectable/injectable.dart';
-
 import 'package:flowery/features/auth/register/domain/repository/contract_repos/register_repository_contracr.dart';
+import 'package:injectable/injectable.dart';
 
 @injectable
 class RegisterUseCase {

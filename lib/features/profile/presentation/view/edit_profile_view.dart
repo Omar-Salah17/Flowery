@@ -1,21 +1,20 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:flowery/core/config/routes_name.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flowery/core/config/routes_name.dart';
+import 'package:flowery/core/helper/spacing.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
+import 'package:flowery/core/utils/colors.dart';
+import 'package:flowery/core/utils/custom_text_form_fieled.dart';
+import 'package:flowery/core/utils/validator.dart';
 import 'package:flowery/features/profile/data/model/user_response.dart';
+import 'package:flowery/features/profile/presentation/view_model/edit_profile_cubit.dart';
+import 'package:flowery/features/profile/presentation/view_model/edit_profile_state.dart';
 import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '../../../../core/helper/spacing.dart';
-import '../../../../core/utils/colors.dart';
-import '../../../../core/utils/custom_text_form_fieled.dart';
-import '../../../../core/utils/validator.dart';
-import '../view_model/edit_profile_cubit.dart';
-import '../view_model/edit_profile_state.dart';
 
 class EditProfileView extends StatefulWidget {
   final UserData user;
@@ -78,7 +77,7 @@ class _EditProfileViewState extends State<EditProfileView> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back_ios),
         ),
         title: Text(LocaleKeys.editProfile.tr(), style: text.titleMedium),
       ),
@@ -228,9 +227,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                     verticalSpace(100),
 
                     // Save Button
-                    state.status == EditProfileStatus.loading
-                        ? const CircularProgressIndicator()
-                        : ElevatedButton(
+                    if (state.status == EditProfileStatus.loading) const CircularProgressIndicator() else ElevatedButton(
                           onPressed: () async {
                             if (formKey.currentState!.validate()) {
                               final updatedUser = UpdatedUserModel(

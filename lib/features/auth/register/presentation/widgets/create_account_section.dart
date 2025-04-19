@@ -8,7 +8,7 @@ class CreateAccountSection extends StatelessWidget {
   const CreateAccountSection({super.key});
   @override
   Widget build(BuildContext context) {
-    var text = Theme.of(context).textTheme;
+    final text = Theme.of(context).textTheme;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       child: RichText(

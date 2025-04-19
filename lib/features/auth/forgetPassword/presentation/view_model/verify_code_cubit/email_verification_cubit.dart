@@ -13,7 +13,7 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
   final VerifyCodeUseCase verifyCodeUseCase;
   Future<void> verifyCode(String resetCode) async {
     emit(EmailVerificationLoading());
-    var result = await verifyCodeUseCase.call(resetCode: resetCode);
+    final result = await verifyCodeUseCase.call(resetCode: resetCode);
     result.fold(
       (failure) {
         log(
@@ -25,7 +25,7 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
         log(
           'Verification Success in EmailVerificationCubit : ${response["status"]}',
         );
-        emit(EmailVerificationSuccess(status: response["status"]));
+        emit(EmailVerificationSuccess(status: response["status"] as String));
       },
     );
   }

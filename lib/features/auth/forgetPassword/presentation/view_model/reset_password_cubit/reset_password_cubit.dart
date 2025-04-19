@@ -13,7 +13,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     required String newPassword,
   }) async {
     emit(ResetPasswordLoading());
-    var result = await resetPasswirdUseCase.call(
+    final result = await resetPasswirdUseCase.call(
       email: email,
       newPassword: newPassword,
     );

@@ -1,11 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
+import 'package:flowery/core/utils/colors.dart';
+import 'package:flowery/features/categories/data/models/categories_model/category.dart';
 import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/utils/colors.dart';
-import '../../../categories/data/models/categories_model/category.dart';
 
 class HomeCatView extends StatelessWidget {
   const HomeCatView({super.key, required this.categories});
@@ -23,13 +22,13 @@ class HomeCatView extends StatelessWidget {
           return Column(
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8).r,
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8).r,
                 child: GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, RoutesName.categories);
                   },
                   child: Container(
-                    padding: EdgeInsets.all(20).r,
+                    padding: const EdgeInsets.all(20).r,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       color: PalletsColors.mainColor10,

@@ -1,9 +1,8 @@
 
+import 'package:flowery/core/api_manger/api_manager.dart';
 import 'package:flowery/core/utils/constants.dart';
 import 'package:flowery/features/auth/forgetPassword/data/dataSource/forget_password_remot_data_source.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../../../core/api_manger/api_manager.dart';
 
 @Injectable(as: ForgetPasswordRemoteDataSource)
 class ForgetPasswordRemoteDataSourceImpl
@@ -13,20 +12,20 @@ class ForgetPasswordRemoteDataSourceImpl
   ForgetPasswordRemoteDataSourceImpl({required this.apiManager});
   @override
   Future<Map<String, dynamic>> forgetPassword({required String email}) async {
-    var response = await apiManager.postData(
+    final response = await apiManager.postData(
       endPoint: Constants.forgetPasswordEndPoint,
       data: {"email": email},
     );
-    return response.data;
+    return response.data as Map<String, dynamic>;
   }
 
   @override
   Future<Map<String, dynamic>> verfiyCode({required String resetCode}) async {
-    var response = await apiManager.postData(
+    final response = await apiManager.postData(
       endPoint: Constants.verfiyCodeEndPoint,
       data: {"resetCode": resetCode},
     );
-    return response.data;
+    return response.data as Map<String, dynamic>;
   }
 
   @override
@@ -34,10 +33,10 @@ class ForgetPasswordRemoteDataSourceImpl
     required String email,
     required String newPassword,
   }) async {
-    var response = await apiManager.putRequest(
+    final response = await apiManager.putRequest(
       Constants.resetPasswordEndPoint,
       {"email": email, "newPassword": newPassword},
     );
-    return response.data;
+    return response.data as Map<String, dynamic>;
   }
 }

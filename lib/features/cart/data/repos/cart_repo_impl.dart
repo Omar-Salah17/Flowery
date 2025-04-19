@@ -19,7 +19,7 @@ CartRepoImpl({required this.cartRemoteDataSource});
     required AddProductRequest addProductRequest,
   }) async {
     try {
-      var data = await cartRemoteDataSource.addToCart(
+      final data = await cartRemoteDataSource.addToCart(
         addProductRequest: addProductRequest,
       );
       return right(data);
@@ -27,7 +27,7 @@ CartRepoImpl({required this.cartRemoteDataSource});
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log("error in CartRepoImpl addToCart method: ${e.toString()}");
+        log("error in CartRepoImpl addToCart method: $e");
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
@@ -36,13 +36,13 @@ CartRepoImpl({required this.cartRemoteDataSource});
   @override
   Future<Either<Failure, CartResponse>> clearCart() async {
     try {
-      var data = await cartRemoteDataSource.clearCart();
+      final data = await cartRemoteDataSource.clearCart();
       return right(data);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log("error in CartRepoImpl clearCart method: ${e.toString()}");
+        log("error in CartRepoImpl clearCart method: $e");
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
@@ -51,13 +51,13 @@ CartRepoImpl({required this.cartRemoteDataSource});
   @override
   Future<Either<Failure, CartResponse>> getUserCart() async {
     try {
-      var data = await cartRemoteDataSource.getUserCart();
+      final data = await cartRemoteDataSource.getUserCart();
       return right(data);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log("error in CartRepoImpl getUserCart method: ${e.toString()}");
+        log("error in CartRepoImpl getUserCart method: $e");
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
@@ -68,7 +68,7 @@ CartRepoImpl({required this.cartRemoteDataSource});
     required String productId,
   }) async {
     try {
-      var data = await cartRemoteDataSource.removeFromCart(
+      final data = await cartRemoteDataSource.removeFromCart(
         productId: productId,
       );
       return right(data);
@@ -76,7 +76,7 @@ CartRepoImpl({required this.cartRemoteDataSource});
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log("error in CartRepoImpl removeFromCart method: ${e.toString()}");
+        log("error in CartRepoImpl removeFromCart method: $e");
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
@@ -88,7 +88,7 @@ CartRepoImpl({required this.cartRemoteDataSource});
     required String productId,
   }) async {
     try {
-      var data = await cartRemoteDataSource.updateProductQuantity(
+      final data = await cartRemoteDataSource.updateProductQuantity(
         productId: productId,
         productQuantity: productQuantity,
 
@@ -98,7 +98,7 @@ CartRepoImpl({required this.cartRemoteDataSource});
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log("error in CartRepoImpl updateProductQuantity method: ${e.toString()}");
+        log("error in CartRepoImpl updateProductQuantity method: $e");
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }

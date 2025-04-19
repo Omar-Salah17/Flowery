@@ -34,9 +34,9 @@ void main() {
     test(
       'when call invoke in useCase it should call deleteCartItem from repo and when call deleteCartItem from repo i expect to return Left<Failure>',
       () async {
-        var result = ServerFailure(errorMessage: "error");
+        final result = ServerFailure(errorMessage: "error");
         when(repo.getUserCart()).thenAnswer((_) async => Left(result));
-        var actual = await useCase.invoke();
+        final actual = await useCase.invoke();
         verify(repo.getUserCart()).called(1);
         expect(actual, equals(Left(result)));
       },

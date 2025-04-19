@@ -9,7 +9,7 @@ class SecureStorageService {
   }
 
   Future<String?> readSecureData(String key) async {
-    String? value = await secureStorage.read(key: key);
+    final String? value = await secureStorage.read(key: key);
     return value;
   }
 }

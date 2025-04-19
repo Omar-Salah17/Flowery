@@ -1,7 +1,7 @@
+import 'package:flowery/core/api_manger/api_service.dart';
+import 'package:flowery/core/di/di.dart';
+import 'package:flowery/features/profile/logout/data/data_sources/logout_data_source.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../../core/api_manger/api_service.dart';
-import '../../../../../core/di/di.dart';
-import 'logout_data_source.dart';
 
 @Injectable(as: LogoutDataSource)
 class LogoutDataSourceImpl implements LogoutDataSource {
@@ -9,7 +9,7 @@ class LogoutDataSourceImpl implements LogoutDataSource {
 
   @override
   Future<String> logout() async {
-    var response = await apiService.logout();
+    final response = await apiService.logout();
     return response;
   }
 }

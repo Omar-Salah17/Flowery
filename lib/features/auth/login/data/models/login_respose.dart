@@ -11,9 +11,9 @@ class LoginResponse {
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
     return LoginResponse(
-      message: json['message'],
-      user: User.fromJson(json['user']),
-      token: json['token'],
+      message: json['message'] as String,
+      user: User.fromJson(json['user'] as Map<String, dynamic>),
+      token: json['token'] as String,
     );
   }
 
@@ -51,17 +51,17 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      id: json['_id'],
-      firstName: json['firstName'],
-      lastName: json['lastName'],
-      email: json['email'],
-      gender: json['gender'],
-      phone: json['phone'],
-      photo: json['photo'],
-      role: json['role'],
-      wishlist: List<dynamic>.from(json['wishlist'] ?? []),
-      addresses: List<dynamic>.from(json['addresses'] ?? []),
-      createdAt: json['createdAt'],
+      id: json['_id'] as String,
+      firstName: json['firstName'] as String,
+      lastName: json['lastName'] as String,
+      email: json['email'] as String,
+      gender: json['gender'] as String,
+      phone: json['phone'] as String,
+      photo: json['photo'] as String,
+      role: json['role'] as String,
+      wishlist: List<dynamic>.from(json['wishlist'] as List<dynamic>) ,
+      addresses: List<dynamic>.from(json['addresses'] as List<dynamic>),
+      createdAt: json['createdAt'] as String,
     );
   }
 

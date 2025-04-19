@@ -25,7 +25,7 @@ class CartCubit extends Cubit<CartState> {
   final ClearCartUsecase clearCartUsecase;
  
   Future<void> addToCart(AddProductRequest addProductRequest) async {
-    var loadingProductId=addProductRequest.productId;
+    final loadingProductId=addProductRequest.productId;
     emit(CartLoading(productId: loadingProductId));
 
     final result = await addToCartUsecase.invoke(

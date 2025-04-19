@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterStates> {
-  RegisterCubit(this._registerUseCase) : super(RegisterStates());
+  RegisterCubit(this._registerUseCase) : super(const RegisterStates());
   final RegisterUseCase _registerUseCase;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -18,18 +18,18 @@ class RegisterCubit extends Cubit<RegisterStates> {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
-  var formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   static Gender selectedGender = Gender.female;
 
-  selectGender(Gender value) {
+   void selectGender(Gender value) {
     selectedGender = value;
     emit(state.copyWith(state: RequestState.selectGender));
   }
 
-  register() async {
+   Future<void> register() async {
     emit(state.copyWith(state: RequestState.loading));
 
-    var either = await _registerUseCase.invoke(
+    final either = await _registerUseCase.invoke(
       registerRequest: RegisterRequest(
         email: emailController.text,
         password: passwordController.text,

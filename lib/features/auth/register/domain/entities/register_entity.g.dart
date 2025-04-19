@@ -34,17 +34,3 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) => UserEntity(
   createdAt: json['createdAt'] as String,
 );
 
-Map<String, dynamic> _$UserEntityToJson(UserEntity instance) =>
-    <String, dynamic>{
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
-      'email': instance.email,
-      'gender': instance.gender,
-      'phone': instance.phone,
-      'photo': instance.photo,
-      'role': instance.role,
-      'wishlist': instance.wishlist,
-      '_id': instance.id,
-      'addresses': instance.addresses,
-      'createdAt': instance.createdAt,
-    };

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-import 'category.dart';
-import 'metadata.dart';
+import 'package:flowery/features/categories/data/models/categories_model/category.dart';
+import 'package:flowery/features/categories/data/models/categories_model/metadata.dart';
 
 class CategoriesModel extends Equatable {
   final String? message;

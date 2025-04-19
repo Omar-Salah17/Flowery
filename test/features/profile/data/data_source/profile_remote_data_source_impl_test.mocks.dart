@@ -6,7 +6,7 @@
 import 'dart:async' as _i12;
 import 'dart:io' as _i17;
 
-import 'package:flowery/core/apiManger/apiService.dart' as _i11;
+import 'package:flowery/core/api_manger/api_service.dart' as _i11;
 import 'package:flowery/core/utils/models/products_model/products_model.dart'
     as _i4;
 import 'package:flowery/features/auth/login/data/models/login_request.dart'

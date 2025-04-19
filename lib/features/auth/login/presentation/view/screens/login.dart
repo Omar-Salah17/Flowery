@@ -22,7 +22,7 @@ class _LoginState extends State<Login> {
           style: Theme.of(context).appBarTheme.titleTextStyle,
         ),
       ),
-      body: LoginScreenBody(),
+      body: const LoginScreenBody(),
     );
   }
 }

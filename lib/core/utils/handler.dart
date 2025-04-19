@@ -1,7 +1,8 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flowery/core/utils/error_handler.dart';
-import 'dart:io';
 
 class RequestHandler {
   static Future<Either<Failure, T>> handle<T>(

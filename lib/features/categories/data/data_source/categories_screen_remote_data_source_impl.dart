@@ -1,9 +1,8 @@
+import 'package:flowery/core/api_manger/api_service.dart';
+import 'package:flowery/core/utils/models/products_model/products_model.dart';
 import 'package:flowery/features/categories/data/data_source/categories_screen_remote_data_source.dart';
 import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart';
-import 'package:flowery/core/utils/models/products_model/products_model.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../../core/api_manger/api_service.dart';
 
 @Injectable(as: CategoriesScreenRemoteDataSource)
 class CategoriesScreenRemoteDataSourceImpl
@@ -13,13 +12,13 @@ class CategoriesScreenRemoteDataSourceImpl
   CategoriesScreenRemoteDataSourceImpl({required this.apiService});
   @override
   Future<CategoriesModel> getCategories() async {
-    var response = await apiService.getCategories();
+    final response = await apiService.getCategories();
     return response;
   }
 
   @override
   Future<ProductsModel> getProductsByCategory({String? categoryId}) async {
-    var response = await apiService.getProductsByCategory(
+    final response = await apiService.getProductsByCategory(
       categoryId: categoryId,
     );
     return response;

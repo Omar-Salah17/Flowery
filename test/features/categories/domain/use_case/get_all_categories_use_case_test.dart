@@ -25,12 +25,12 @@ void main() {
       () async {
         //arragne
        
-        var result = <Category>[];
+        final result = <Category>[];
         when(
           mockCategoriesScreenRepo.getAllCategories(),
         ).thenAnswer((_) async => Right(result));
         //act
-        var actual = await useCase.call();
+        final actual = await useCase.call();
         //here im checking if the getAllCategories from categoriesScreenRepo was called for one time
         //assert , verifications . expectation
         verify(mockCategoriesScreenRepo.getAllCategories()).called(1);
@@ -41,12 +41,12 @@ void main() {
       "When trigger call method from GetAllCategoriesUseCase it should call getAllCategories from categoriesScreenRepo and when call getAllCategories from categoriesScreenRepo i expect to return Left<Failure>",
       () async {
         //arragne
-        var result = ServerFailure(errorMessage: 'connection time out');
+        final result = ServerFailure(errorMessage: 'connection time out');
         when(
           mockCategoriesScreenRepo.getAllCategories(),
         ).thenAnswer((_) async => Left(result));
         //act
-        var actual = await useCase.call();
+        final actual = await useCase.call();
         //assert
         verify(mockCategoriesScreenRepo.getAllCategories()).called(1);
         expect(actual, equals(Left(result)));

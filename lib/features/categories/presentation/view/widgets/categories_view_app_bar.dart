@@ -32,11 +32,11 @@ class CategoriesScreenAppBar extends StatelessWidget {
                 ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.r),
-                  borderSide: BorderSide(color: PalletsColors.white70),
+                  borderSide: const BorderSide(color: PalletsColors.white70),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.r),
-                  borderSide: BorderSide(color: PalletsColors.white70),
+                  borderSide: const BorderSide(color: PalletsColors.white70),
                 ),
                 prefixIcon: Icon(
                   Icons.search,

@@ -6,13 +6,13 @@ class OcaasionsResponse {
   OcaasionsResponse({this.message, this.metadata, this.occasions});
 
   OcaasionsResponse.fromJson(Map<String, dynamic> json) {
-    message = json['message'];
+    message = json['message'] as String?;
     metadata =
-        json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
+        json['metadata'] != null ? Metadata.fromJson(json['metadata'] as Map<String, dynamic>) : null;
     if (json['occasions'] != null) {
       occasions = <Occasions>[];
       json['occasions'].forEach((v) {
-        occasions!.add(Occasions.fromJson(v));
+        occasions!.add(Occasions.fromJson(v as Map<String, dynamic>));
       });
     }
   }
@@ -39,10 +39,10 @@ class Metadata {
   Metadata({this.currentPage, this.limit, this.totalPages, this.totalItems});
 
   Metadata.fromJson(Map<String, dynamic> json) {
-    currentPage = json['currentPage'];
-    limit = json['limit'];
-    totalPages = json['totalPages'];
-    totalItems = json['totalItems'];
+    currentPage = json['currentPage'] as int?;
+    limit = json['limit'] as int?;
+    totalPages = json['totalPages'] as int?;
+    totalItems = json['totalItems'] as int?;
   }
 
   Map<String, dynamic> toJson() {
@@ -75,13 +75,13 @@ class Occasions {
   });
 
   Occasions.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    name = json['name'];
-    slug = json['slug'];
-    image = json['image'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
-    productsCount = json['productsCount'];
+    sId = json['_id'] as String?;
+    name = json['name'] as String?;
+    slug = json['slug'] as String?;
+    image = json['image'] as String?;
+    createdAt = json['createdAt'] as String;
+    updatedAt = json['updatedAt'] as String;
+    productsCount = json['productsCount'] as int?;
   }
 
   Map<String, dynamic> toJson() {

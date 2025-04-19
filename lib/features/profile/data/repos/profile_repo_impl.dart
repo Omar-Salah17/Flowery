@@ -19,13 +19,13 @@ class ProfileRepoImpl implements ProfileRepo {
     Map<String, dynamic> data,
   ) async {
     try {
-      var response = await remoteDataSource.changePassword(data);
+      final response = await remoteDataSource.changePassword(data);
       return Right(response);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log('error in ProfileRepoImpl changePassword method: ${e.toString()}');
+        log('error in ProfileRepoImpl changePassword method: $e');
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
@@ -34,14 +34,14 @@ class ProfileRepoImpl implements ProfileRepo {
   @override
   Future<Either<Failure, UserData>> getLoggedInUserData() async {
     try {
-      var result = await remoteDataSource.getLoggedInUserData();
+      final result = await remoteDataSource.getLoggedInUserData();
       return Right(result);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
         log(
-          'error in ProfileRepoImpl in getLoggedInUserData method: ${e.toString()}',
+          'error in ProfileRepoImpl in getLoggedInUserData method: $e',
         );
         return left(ServerFailure(errorMessage: e.toString()));
       }
@@ -53,13 +53,13 @@ class ProfileRepoImpl implements ProfileRepo {
     UpdatedUserModel user,
   ) async {
     try {
-      var data = await remoteDataSource.editProfile(user);
+      final data = await remoteDataSource.editProfile(user);
       return Right(data);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log('error  ${e.toString()}');
+        log('error  $e');
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
@@ -73,13 +73,13 @@ class ProfileRepoImpl implements ProfileRepo {
       } else {
         log("file doesn't exist.");
       }
-      var data = await remoteDataSource.uploadPhoto(photo);
+      final data = await remoteDataSource.uploadPhoto(photo);
       return Right(data);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log('error  ${e.toString()}');
+        log('error  $e');
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }

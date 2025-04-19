@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/material.dart';
-
 import 'package:flowery/core/utils/colors.dart';
+import 'package:flutter/material.dart';
 
 class TabWidget extends StatelessWidget {
   final TabController? controller;
@@ -11,7 +10,7 @@ class TabWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var text = Theme.of(context).textTheme;
+    final text = Theme.of(context).textTheme;
 
     return TabBar(
       controller: controller,

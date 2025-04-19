@@ -46,7 +46,7 @@ class HomeBestSeller extends StatelessWidget {
                               color: PalletsColors.mainColorBase,
                             ),
                           ),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
+                      errorWidget: (context, url, error) => const Icon(Icons.error),
                     ),
                     SizedBox(height: 8.h),
                     Text(
@@ -67,7 +67,7 @@ class HomeBestSeller extends StatelessWidget {
                             color: const Color.fromRGBO(12, 16, 21, 1),
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                       ],
                     ),
                   ],

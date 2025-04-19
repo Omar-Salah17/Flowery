@@ -46,7 +46,7 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
         child: BlocConsumer<ResetPasswordCubit, ResetPasswordState>(
           listener: (context, state) {
             if (state is ResetPasswordSuccess) {
-              showSnackBar(context, state.data["message"]);
+              showSnackBar(context, state.data["message"] as String);
               Navigator.pushNamed(context, RoutesName.login);
             } else if (state is ResetPasswordFailure) {
               showErrorSnackBar(context, state.errorMessage);
@@ -54,7 +54,6 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
           },
           builder: (context, state) {
             return Column(
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(height: 40.h),
                 Text(
@@ -109,7 +108,7 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
                   },
                   child:
                       state is ResetPasswordLoading
-                          ? Center(
+                          ? const Center(
                             child: CircularProgressIndicator(
                               color: PalletsColors.white10,
                             ),
