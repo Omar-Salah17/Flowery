@@ -11,7 +11,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return 
-    return 
+    
        BlocProvider(
       create: (context) => getIt<HomeCubit>(),
     
