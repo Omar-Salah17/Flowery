@@ -30,13 +30,13 @@ class CartViewBody extends StatelessWidget {
         Spacer(),
         PriceRow(
           title: "Sub Total",
-          value: "${cartResponse.cart!.totalPrice} \EGP",
+          value: "${cartResponse.cart!.totalPrice} EGP",
         ),
-        PriceRow(title: "Delivery Fee", value: "10 \EGP"),
+        PriceRow(title: "Delivery Fee", value: "10 EGP"),
         Divider(thickness: 1.sp),
         PriceRow(
           title: "Total",
-          value: "${cartResponse.cart!.totalPrice! + 10} \EGP",
+          value: "${cartResponse.cart!.totalPrice! + 10} EGP",
           titleFontWeight: FontWeight.w500,
           valueFontWeight: FontWeight.w500,
           valueColor: PalletsColors.blackBase,

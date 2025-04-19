@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flowery/core/utils/error_handler.dart';
+import 'package:flowery/features/address/data/models/address_model.dart';
 import 'package:flowery/features/address/data/models/logged_user_address_model.dart';
 import 'package:flowery/features/address/domain/repos/repos/Address_repository_contract.dart';
 import 'package:flowery/features/address/domain/repos/repos_data_sourse/adderss_data_source_contract.dart';
@@ -23,4 +24,20 @@ class AddressRepositoryImpl implements AddressRepositoryContract {
       }
     }
   }
+  
+@override
+  Future<Either<Failure, List<Address>?>> deleteAddress(String addressId) async {
+    try {
+      var response = await addressRemoteDataSource.deleteAddress(addressId: addressId);
+      return right(response);
+    } catch (e) {
+      if (e is ServerFailure) {
+        return left(e);
+      } else {
+        return left(ServerFailure(errorMessage: e.toString()));
+      }
+    }
+  }
+  
+  
 }

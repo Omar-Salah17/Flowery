@@ -26,4 +26,5 @@ class Constants {
   static const String uploadPhotoEndPoint = "auth/upload-photo";
 
   static const String loggedUserAdderss='addresses';
+  static const String deleteAddressEndPoint='addresses/{addressId}';
 }

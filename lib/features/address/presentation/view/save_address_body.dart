@@ -35,80 +35,65 @@ class SaveAddressBody extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Expanded(
-            child: BlocBuilder<AddressCubit, AddressState>(
-              bloc: addressCubit..getLoggedUserAddress(),
-              builder: (context, state) {
-                if (state is AddressLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(
-                      color: PalletsColors.mainColorBase,
-                    ),
-                  );
-                } else if (state is AddressError) {
-                  return Center(
-                    child: Text(
-                      state.errorMessage,
-                      style: AppTextStyles.instance.textStyle16.copyWith(
-                        color: Colors.red,
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.3,
+            child: BlocProvider(
+              create: (context) => addressCubit..getLoggedUserAddress(),
+              child: BlocBuilder<AddressCubit, AddressState>(
+                buildWhen:
+                    (previous, current) =>
+                        previous != current && current is AddressSuccess,
+                builder: (context, state) {
+                  if (state is AddressLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        color: PalletsColors.mainColorBase,
                       ),
-                    ),
-                  );
-                } else if (state is AddressSuccess) {
-                  final addressList = state.addressList;
-                  return ListView.builder(
-      
-        itemCount: addressList!.length + 1, 
-        itemBuilder: (context, index) {
-          if (index < addressList.length) {
-            return AddressItem(address: addressList[index]);
-          } else {
-            return Padding(
-             padding:  EdgeInsets.symmetric(
-              horizontal: 20.w,
-              vertical: 10.h,
-            ),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.r),
-                  ),
-                ),
-                onPressed: () {},
-                child: Text('Add New Address'),
+                    );
+                  } else if (state is AddressError) {
+                    return Center(
+                      child: Text(
+                        state.errorMessage,
+                        style: AppTextStyles.instance.textStyle16.copyWith(
+                          color: Colors.red,
+                        ),
+                      ),
+                    );
+                  } else if (state is AddressSuccess) {
+                    final addressList = state.addressList;
+                    return state.addressList!.isEmpty
+                        ? Center(
+                          child: Text(
+                            'List is empty',
+                            style: AppTextStyles.instance.textStyle16.copyWith(
+                              color: PalletsColors.gray,
+                            ),
+                          ),
+                        )
+                        : ListView.builder(
+                          itemCount: state.addressList!.length,
+                          itemBuilder: (context, index) {
+                            return AddressItem(address: addressList![index]);
+                          },
+                        );
+                  }
+                  return Container();
+                },
               ),
-            );
-          }
-        },
-      );
-                }
-                return Center(
-                  child: Text(
-                    'List is empty',
-                    style: AppTextStyles.instance.textStyle16.copyWith(
-                      color: PalletsColors.gray,
-                    ),
-                  ),
-                );
-              },
             ),
           ),
-        //   Padding(
-        //     padding:  EdgeInsets.symmetric(
-        //       horizontal: 20.w,
-        //       vertical: 10.h,
-        //     ),
-        //     child: ElevatedButton(
-        //       style: ElevatedButton.styleFrom(
-        //         shape: RoundedRectangleBorder(
-        //           borderRadius: BorderRadius.circular(15.r),
-        //         ),
-        //       ),
-        //       onPressed: () {},
-        //       child: Text('Add New Address'),
-        //     ),
-        //   ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 10.h),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.r),
+                ),
+              ),
+              onPressed: () {},
+              child: Text(LocaleKeys.addNewAddress.tr()),
+            ),
+          ),
         ],
       ),
     );

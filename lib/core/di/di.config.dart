@@ -21,6 +21,8 @@ import '../../features/address/domain/repos/repos/Address_repository_contract.da
     as _i315;
 import '../../features/address/domain/repos/repos_data_sourse/adderss_data_source_contract.dart'
     as _i922;
+import '../../features/address/domain/use_case/delete_address_use_case.dart'
+    as _i864;
 import '../../features/address/domain/use_case/get_logged_user_address_use_case.dart'
     as _i1033;
 import '../../features/auth/forgetPassword/data/dataSource/forget_password_remot_data_source.dart'
@@ -380,6 +382,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i1033.GetLoggedUserAddressUseCase(
         gh<_i315.AddressRepositoryContract>(),
       ),
+    );
+    gh.factory<_i864.DeleteAddressUseCase>(
+      () => _i864.DeleteAddressUseCase(gh<_i315.AddressRepositoryContract>()),
     );
     gh.factory<_i1069.CartCubit>(
       () => _i1069.CartCubit(
