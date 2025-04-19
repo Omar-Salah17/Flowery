@@ -5,24 +5,12 @@ import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/provider/app_config_provider.dart';
 import 'package:flowery/core/utils/application_theme.dart';
 import 'package:flowery/core/utils/simple_bloc_observer.dart';
+import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_cubit.dart';
 import 'package:flowery/generated/codegen_loader.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
-// void main() async {
-
-//   runApp(
-//     EasyLocalization(
-//       supportedLocales: [Locale('en', 'US'), Locale('de', 'DE')],
-//       path:
-//           'assets/translations', // <-- change the path of the translation files
-//       fallbackLocale: Locale('en', 'US'),
-//       child: MyApp(),
-//     ),
-//   );
-// }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,21 +44,24 @@ class _FloweryState extends State<Flowery> {
 
   @override
   Widget build(BuildContext context) {
+    var cartCubit = getIt<CartCubit>();
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
         appConfigProvider = Provider.of<AppConfigProvider>(context);
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-
-          initialRoute: RoutesName.initial,
-          onGenerateRoute: RouteGenerator.onGenerator,
-          theme: ApplicationTheme.themeData,
+        return BlocProvider(
+          create: (context) => cartCubit,
+          child: MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  localizationsDelegates: context.localizationDelegates,
+                  supportedLocales: context.supportedLocales,
+                  locale: context.locale,
+                  initialRoute: RoutesName.initial,
+                  onGenerateRoute: RouteGenerator.onGenerator,
+                  theme: ApplicationTheme.themeData,
+                ),
         );
       },
     );
