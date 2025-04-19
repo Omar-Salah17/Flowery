@@ -15,6 +15,7 @@ import 'package:flowery/features/cart/data/models/cart_model/cart_response.dart'
 import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart';
 import 'package:flowery/features/productsDetails/data/models/product_details_model/product_details_model.dart';
 import 'package:flowery/features/profile/data/model/user_response.dart';
+
 import 'package:retrofit/retrofit.dart';
 
 import '../../features/occasion/data/models/occaions.dart';
@@ -46,9 +47,7 @@ abstract class ApiService {
   Future<CartResponse> getUserCart();
 
   @DELETE(Constants.deleteSpecificCartItem)
-  Future<CartResponse> deleteCartItem(
-    @Path("cartItemId") String cartItemId,
-  );
+  Future<CartResponse> deleteCartItem(@Path("cartItemId") String cartItemId);
 
   @DELETE(Constants.clearCart)
   Future<CartResponse> clearCart();
