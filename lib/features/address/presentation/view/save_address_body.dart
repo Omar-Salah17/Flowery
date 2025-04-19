@@ -3,7 +3,6 @@ import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/provider/app_config_provider.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
-import 'package:flowery/features/address/domain/use_case/get_logged_user_address_use_case.dart';
 import 'package:flowery/features/address/presentation/cubit/address_cubit.dart';
 import 'package:flowery/features/address/presentation/widgets/address_item.dart';
 import 'package:flowery/generated/locale_keys.g.dart';
