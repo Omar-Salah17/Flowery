@@ -129,7 +129,7 @@ class ProductItemWidget extends StatelessWidget {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           backgroundColor: Colors.red,
-                          content: Text('${state.errorMessage}'),
+                          content: Text(state.errorMessage),
                         ),
                       );
                       context.read<CartCubit>().resetCartState();

@@ -10,9 +10,9 @@ class AddProductRequest {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['product'] = this.productId;
-    data['quantity'] = this.quantity;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['product'] = productId;
+    data['quantity'] = quantity;
     return data;
   }
 }
