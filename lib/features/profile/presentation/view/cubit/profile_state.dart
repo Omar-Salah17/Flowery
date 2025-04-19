@@ -34,11 +34,11 @@ class LogoutInitState extends ProfileState {}
 class LogoutLoadingState extends ProfileState {}
 
 class LogoutFailureState extends ProfileState {
-  String errorMessage;
-  LogoutFailureState(this.errorMessage);
+  final String errorMessage;
+  const LogoutFailureState(this.errorMessage);
 }
 
 class LogoutSuccessState extends ProfileState {
-  String message;
-  LogoutSuccessState(this.message);
+ final  String message;
+  const LogoutSuccessState(this.message);
 }

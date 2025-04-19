@@ -6,13 +6,13 @@ import 'package:injectable/injectable.dart';
 import '../../../../../core/utils/models/products_model/product.dart';
 import '../../../data/models/occaions.dart';
 import '../../../domain/use_cases/get_all_occasions_use_case.dart';
-import '../../../domain/use_cases/get_product_by_occasion_useCase.dart';
+import '../../../domain/use_cases/get_product_by_occasion_use_case.dart';
 part 'occasion_state.dart';
 
 @injectable
 class OccasionCubit extends Cubit<OccasionState> {
   GetAllOccasionsUseCase getAllOccasionsUseCase;
-  GetProductByOccasionUsecase getProductByOccasionUsecase;
+  GetProductByOccasionUseCase getProductByOccasionUsecase;
   OccasionCubit({
     required this.getAllOccasionsUseCase,
     required this.getProductByOccasionUsecase,

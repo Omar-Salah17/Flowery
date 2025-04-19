@@ -26,84 +26,84 @@ import '../../features/profile/presentation/view_model/edit_profile_cubit.dart';
 import '../di/di.dart';
 
 class RouteGenerator {
-  static Route<dynamic>? onGenerator(RouteSettings Settings) {
-    switch (Settings.name) {
+  static Route<dynamic>? onGenerator(RouteSettings settings) {
+    switch (settings.name) {
       case RoutesName.initial:
         return MaterialPageRoute(
           builder: (context) => Splash(),
-          settings: Settings,
+          settings: settings,
         );
 
       case RoutesName.login:
         return MaterialPageRoute(
           builder: (context) => Login(),
-          settings: Settings,
+          settings: settings,
         );
       case RoutesName.bestSeller:
         return MaterialPageRoute(
           builder: (context) => BestSellerScreen(),
-          settings: Settings,
+          settings: settings,
         );
       case RoutesName.occasionScreen:
         return MaterialPageRoute(
           builder: (context) => OccasionScreen(),
-          settings: Settings,
+          settings: settings,
         );
 
       case RoutesName.register:
         return MaterialPageRoute(
           builder: (context) => Register(),
-          settings: Settings,
+          settings: settings,
         );
 
       case RoutesName.forgetPassword:
         return MaterialPageRoute(
           builder: (context) => ForgetPasswordScreen(),
-          settings: Settings,
+          settings: settings,
         );
       case RoutesName.emailVerificationScreen:
         return MaterialPageRoute(
           builder: (context) => EmailVerificationScreen(),
-          settings: Settings,
+          settings: settings,
         );
       case RoutesName.resetPasswordScreen:
         return MaterialPageRoute(
           builder: (context) => ResetPasswordScreen(),
-          settings: Settings,
+          settings: settings,
         );
 
       case RoutesName.layout:
         return MaterialPageRoute(
           builder: (context) => Layout(),
-          settings: Settings,
+          settings: settings,
         );
 
       case RoutesName.profile:
         return MaterialPageRoute(
           builder: (context) => ProfileView(),
-          settings: Settings,
+          settings: settings,
         );
 
       case RoutesName.cart:
         return MaterialPageRoute(
           builder: (context) => CartView(),
-          settings: Settings,
+          settings: settings,
         );
 
       case RoutesName.categories:
         return MaterialPageRoute(
           builder: (context) => CategoriesScreen(),
-          settings: Settings,
+          settings: settings,
         );
       case RoutesName.changePasswordScreen:
         return MaterialPageRoute(
           builder: (context) => ChangePasswordScreen(),
-          settings: Settings,
+          settings: settings,
         );
       case RoutesName.home:
         return MaterialPageRoute(
           builder: (context) => HomeView(),
-          settings: Settings,
+          settings: settings,
         );
 
       case RoutesName.productsDetails:
@@ -112,24 +112,24 @@ class RouteGenerator {
         (context) => BlocProvider(
     create: (context) => getIt<CartCubit>(),
     child: ProductsDetails(),),
-          settings: Settings,
+          settings: settings,
         );
 
       case RoutesName.editProfile:
-        final userData = Settings.arguments as UserData;
+        final userData = settings.arguments as UserData;
         return MaterialPageRoute(
           builder:
               (context) => BlocProvider(
                 create: (context) => getIt<EditProfileCubit>(),
                 child: EditProfileView(user: userData),
               ),
-          settings: Settings,
+          settings: settings,
         );
 
       default:
         return MaterialPageRoute(
           builder: (context) => Splash(),
-          settings: Settings,
+          settings: settings,
         );
     }
   }

@@ -8,8 +8,8 @@ import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 
 class OccasionItem extends StatelessWidget {
-  Occasions occasion;
-  OccasionItem({super.key, required this.occasion});
+  final Occasions occasion;
+  const OccasionItem({super.key, required this.occasion});
 
   @override
   Widget build(BuildContext context) {

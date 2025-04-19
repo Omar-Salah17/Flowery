@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -24,9 +26,9 @@ class ProfileCubit extends Cubit<ProfileState> {
         emit(ProfileError(failure.errorMessage));
       },
       (user) {
-        print("${user.firstName}=================================");
-        print(user.lastName);
-        print(user.email);
+        log("${user.firstName}=================================");
+        log("${user.lastName}");
+        log("${user.email}");
         emit(ProfileSucess(user: user));
         emit(ProfileSucess(user: user));
       },
@@ -66,7 +68,7 @@ class ProfileCubit extends Cubit<ProfileState> {
                 Navigator.of(dialogContext).pop(); // Close the dialog
                 // Call the logout function with proper error handling
                 userLogout().catchError((error) {
-                  print('Error during logout: $error');
+                  log('Error during logout: $error');
                 });
               },
             ),

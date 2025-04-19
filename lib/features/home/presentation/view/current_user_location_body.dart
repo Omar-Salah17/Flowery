@@ -1,4 +1,4 @@
-import 'package:flowery/features/home/presentation/viewModel/currentUserLocationViewModel/CurrentUserLocationViewModel.dart';
+import 'package:flowery/features/home/presentation/viewModel/currentUserLocationViewModel/current_user_location_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

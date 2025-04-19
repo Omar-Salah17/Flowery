@@ -33,11 +33,7 @@ class ServerFailure extends Failure {
         return ServerFailure(
           errorMessage: 'UnExcepted error , Please try again',
         );
-      default:
-        return ServerFailure(
-          errorMessage: 'Oops there is an error , Please try later',
-        );
-    }
+      }
   }
   factory ServerFailure.fromResponse(int statusCode, dynamic jsonData) {
     switch (statusCode) {

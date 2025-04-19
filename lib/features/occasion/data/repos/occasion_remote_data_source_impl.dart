@@ -1,9 +1,9 @@
-import 'package:flowery/core/apiManger/apiService.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/models/products_model/products_model.dart';
 import 'package:flowery/features/occasion/domain/repos/occasion_remote_data_source_contract.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/api_manger/api_service.dart';
 import '../models/occaions.dart';
 
 @Injectable(as: OccasionRemoteDataSourceContract)

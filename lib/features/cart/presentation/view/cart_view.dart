@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/utils/colors.dart';
-import '../../../home/presentation/view/currentUserLocation.dart';
+import '../../../home/presentation/view/current_user_location.dart';
 import '../view model/cubit/cart_cubit.dart';
 
 class CartView extends StatefulWidget {

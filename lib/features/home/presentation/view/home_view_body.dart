@@ -3,7 +3,6 @@ import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/categories/presentation/view_model/cubits/categories_cubit/categories_screen_cubit.dart';
-
 import 'package:flowery/features/home/presentation/widgets/home_best_seller.dart';
 import 'package:flowery/features/home/presentation/widgets/home_cat_view.dart';
 import 'package:flowery/features/home/presentation/widgets/view_all_widget.dart';
@@ -11,13 +10,12 @@ import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../../../core/enums/request_enum.dart';
 import '../viewModel/home_view_model/home_cubit.dart';
 import '../viewModel/home_view_model/home_state.dart';
 import '../widgets/home_occasion_view.dart';
-import 'SearchBar.dart';
-import 'currentUserLocation.dart';
+import 'search_bar.dart';
+import 'current_user_location.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});

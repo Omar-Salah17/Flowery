@@ -16,10 +16,10 @@ class Layout extends StatefulWidget {
   const Layout({super.key});
 
   @override
-  _LayoutState createState() => _LayoutState();
+  LayoutState createState() => LayoutState();
 }
 
-class _LayoutState extends State<Layout> {
+class LayoutState extends State<Layout> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [

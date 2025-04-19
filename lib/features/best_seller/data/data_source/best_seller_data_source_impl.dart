@@ -1,7 +1,6 @@
 import 'package:flowery/features/best_seller/data/models/best_seller_model.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../../core/apiManger/apiService.dart';
+import '../../../../core/api_manger/api_service.dart';
 import 'best_seller_data_source.dart';
 
 @Injectable(as: BestSellerDataSource)

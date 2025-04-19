@@ -9,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../occasion/presentation/view_model/cubits/occasion_cubit.dart';
 import '../../domain/use_cases/get_all_occasions_use_case.dart';
-import '../../domain/use_cases/get_product_by_occasion_useCase.dart';
+import '../../domain/use_cases/get_product_by_occasion_use_case.dart';
 
 class OccasionScreen extends StatefulWidget {
   const OccasionScreen({super.key});
@@ -22,7 +22,7 @@ class _OccasionScreenState extends State<OccasionScreen>
     with TickerProviderStateMixin {
   OccasionCubit occasionCubit = OccasionCubit(
     getAllOccasionsUseCase: getIt<GetAllOccasionsUseCase>(),
-    getProductByOccasionUsecase: getIt<GetProductByOccasionUsecase>(),
+    getProductByOccasionUsecase: getIt<GetProductByOccasionUseCase>(),
   );
   @override
   void initState() {

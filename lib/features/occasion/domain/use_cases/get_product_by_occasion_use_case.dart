@@ -6,10 +6,10 @@ import 'package:injectable/injectable.dart';
 import '../../../../core/utils/models/products_model/product.dart';
 
 @injectable
-class GetProductByOccasionUsecase {
+class GetProductByOccasionUseCase {
   final OccasionRepositoryContract occasionRepositoryContract;
 
-  GetProductByOccasionUsecase(this.occasionRepositoryContract);
+  GetProductByOccasionUseCase(this.occasionRepositoryContract);
 
   Future<Either<Failure, List<Product>>> invoke({
     required String occasionId,

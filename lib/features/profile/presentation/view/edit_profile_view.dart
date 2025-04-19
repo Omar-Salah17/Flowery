@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flowery/core/config/routes_name.dart';
@@ -39,7 +40,7 @@ class _EditProfileViewState extends State<EditProfileView> {
   void initState() {
     super.initState();
 
-    print('**********************************${widget.user.firstName}');
+    log('*****${widget.user.firstName}');
     firstNameController = TextEditingController(text: widget.user.firstName);
     lastNameController = TextEditingController(text: widget.user.lastName);
     emailController = TextEditingController(text: widget.user.email);

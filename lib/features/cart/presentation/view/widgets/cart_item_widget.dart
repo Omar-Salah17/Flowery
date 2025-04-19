@@ -103,7 +103,7 @@ class CartItemWidget extends StatelessWidget {
 
                     children: [
                       Text(
-                        'EGP ${cartItem.product?.price.toString()}' ?? '0',
+                        'EGP ${cartItem.product?.price.toString()}' ,
                         style: AppTextStyles.instance.textStyle14.copyWith(
                           fontWeight: FontWeight.w600,
                           color: PalletsColors.blackBase,

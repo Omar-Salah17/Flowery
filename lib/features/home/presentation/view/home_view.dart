@@ -1,5 +1,5 @@
 import 'package:flowery/core/di/di.dart';
-import 'package:flowery/features/home/presentation/view/HomeViewBody.dart';
+import 'package:flowery/features/home/presentation/view/home_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

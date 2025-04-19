@@ -41,7 +41,7 @@ class RequestHandler {
       case DioExceptionType.badResponse:
         if (e.response != null) {
           final statusCode = e.response!.statusCode;
-          final errorMessage = e.response!.data.toString();
+
 
           switch (statusCode) {
             case 400:

@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeBestSeller extends StatelessWidget {
-  HomeBestSeller({super.key, required this.product});
-  List<Product> product;
+  const HomeBestSeller({super.key, required this.product});
+ final List<Product> product;
 
   @override
   Widget build(BuildContext context) {

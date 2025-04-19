@@ -5,9 +5,9 @@ import 'package:flowery/core/utils/colors.dart';
 
 class TabWidget extends StatelessWidget {
   final TabController? controller;
-  List<Widget> tabs;
-  void Function(int)? onTap;
-  TabWidget({super.key, this.controller, required this.tabs, this.onTap});
+  final List<Widget> tabs;
+  final void Function(int)? onTap;
+  const TabWidget({super.key, this.controller, required this.tabs, this.onTap});
 
   @override
   Widget build(BuildContext context) {

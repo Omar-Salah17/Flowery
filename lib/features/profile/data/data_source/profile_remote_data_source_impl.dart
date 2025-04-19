@@ -1,14 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
-import 'package:flowery/core/apiManger/apiService.dart';
-import 'package:flowery/core/apiManger/api_manager.dart';
 import 'package:flowery/core/utils/constants.dart';
 import 'package:flowery/core/utils/error_handler.dart';
 import 'package:flowery/features/profile/data/data_source/profile_remote_data_source.dart';
 import 'package:flowery/features/profile/data/model/user_response.dart';
 
 import 'package:injectable/injectable.dart';
+
+import '../../../../core/api_manger/api_manager.dart';
+import '../../../../core/api_manger/api_service.dart';
 
 @Injectable(as: ProfileRemoteDataSource)
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {

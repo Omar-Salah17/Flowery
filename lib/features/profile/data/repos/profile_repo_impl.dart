@@ -69,9 +69,9 @@ class ProfileRepoImpl implements ProfileRepo {
   Future<Either<Failure, String>> uploadPhoto(File photo) async {
     try {
       if (await photo.exists()) {
-        print(" file exists. path: ${photo.path}");
+        log(" file exists. path: ${photo.path}");
       } else {
-        print("file doesn't exist.");
+        log("file doesn't exist.");
       }
       var data = await remoteDataSource.uploadPhoto(photo);
       return Right(data);
