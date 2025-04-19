@@ -21,21 +21,21 @@ void main() {
     test(
       'when call invoke in usecase it should call deleteCartItem from repo and when call deleteCartItem from repo i expect to return Right<DeleteCartResponse>',
       () async {
-        var result = CartResponse();
+        const result = CartResponse();
         when(
           repo.removeFromCart(productId: '1'),
-        ).thenAnswer((_) async => Right(result));
-        var actual = await useCase.invoke(cartItemId: '1');
+        ).thenAnswer((_) async => const Right(result));
+        final actual = await useCase.invoke(cartItemId: '1');
         verify(repo..removeFromCart(productId: '1')).called(1);
-        expect(actual, equals(Right(result)));
+        expect(actual, equals(const Right(result)));
       },
     );
   test('when call invoke in usecase it should call deleteCartItem from repo and when call deleteCartItem from repo i expect to return Left<Failure>', () async {
-    var result = ServerFailure(errorMessage: "error");
+    final result = ServerFailure(errorMessage: "error");
     when(
       repo.removeFromCart(productId: "1"),
     ).thenAnswer((_) async => Left(result));
-    var actual = await useCase.invoke(cartItemId: "1");
+    final actual = await useCase.invoke(cartItemId: "1");
     verify(repo.removeFromCart(productId: "1")).called(1);
     expect(actual, equals(Left(result)));
   });

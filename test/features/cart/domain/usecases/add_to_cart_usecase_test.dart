@@ -11,13 +11,13 @@ import 'add_to_cart_usecase_test.mocks.dart';
 @GenerateMocks([CartRepo])
 void main() {
   test('when call invoke in usecase it should call addToCart from repo ', () {
-    var repo = MockCartRepo();
+    final repo = MockCartRepo();
     final request = AddProductRequest(productId: '1', quantity: 2);
-    final response = CartResponse(message: 'Added successfully');
+    const response = CartResponse(message: 'Added successfully');
 
     when(
       repo.addToCart(addProductRequest: request),
-    ).thenAnswer((_) async => Right(response));
+    ).thenAnswer((_) async => const Right(response));
 
     // usecase.invoke(addProductRequest: addProductRequest);
   });

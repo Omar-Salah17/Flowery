@@ -35,9 +35,9 @@ class RememberMeRow extends StatelessWidget {
           },
           child: Text(
             LocaleKeys.forgetPassword.tr(),
-            style: TextStyle(
+            style: const TextStyle(
               decoration: TextDecoration.underline,
-              color: const Color.fromRGBO(12, 16, 21, 1),
+              color: Color.fromRGBO(12, 16, 21, 1),
               fontSize: 12,
               fontWeight: FontWeight.w400,
             ),

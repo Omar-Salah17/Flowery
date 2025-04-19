@@ -26,11 +26,11 @@ void main() {
     test(
       'when call getLoggedInUserData it should call getLoggedInUserData from remoteDataSource ',
       () async {
-        var result = UserData();
+        final result = UserData();
         when(
           remoteDataSourceContract.getLoggedInUserData(),
         ).thenAnswer((_) async => result);
-        var actual = await profileRepositoryContract.getLoggedInUserData();
+        final actual = await profileRepositoryContract.getLoggedInUserData();
         verify(remoteDataSourceContract.getLoggedInUserData()).called(1);
         // Check if the result is a Right<UserData>
         expect(actual.fold((l) => l, (r) => r), isA<UserData>());
@@ -40,9 +40,9 @@ void main() {
     test(
       'when call getLoggedInUserData it should return Left<Failure> when an error occurs',
       () async {
-        var error = ServerFailure(errorMessage: "error");
+        final error = ServerFailure(errorMessage: "error");
         when(remoteDataSourceContract.getLoggedInUserData()).thenThrow(error);
-        var actual = await profileRepositoryContract.getLoggedInUserData();
+        final actual = await profileRepositoryContract.getLoggedInUserData();
         verify(remoteDataSourceContract.getLoggedInUserData()).called(1);
         // Check if the result is a Left<Failure>
         expect(actual.fold((l) => l, (r) => r), isA<ServerFailure>());

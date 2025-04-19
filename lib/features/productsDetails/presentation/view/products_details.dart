@@ -6,9 +6,9 @@ import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_cubit.dart';
 import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_state.dart';
 import 'package:flowery/features/productsDetails/domain/useCases/get_product_details_use_case.dart';
+import 'package:flowery/features/productsDetails/presentation/view/widgets/product_details_body.dart';
 import 'package:flowery/features/productsDetails/presentation/viewModel/product_details_cubit/product_details_cubit.dart';
 import 'package:flowery/features/productsDetails/presentation/viewModel/product_details_cubit/product_details_states.dart';
-import 'package:flowery/features/productsDetails/presentation/view/widgets/product_details_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +17,7 @@ class ProductsDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as Product;
+    final args = ModalRoute.of(context)!.settings.arguments! as Product;
 
     return MultiBlocProvider(
       providers: [

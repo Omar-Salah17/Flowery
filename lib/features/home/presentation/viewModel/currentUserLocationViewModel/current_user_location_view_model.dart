@@ -1,8 +1,8 @@
+import 'package:flowery/features/home/data/models/plus_code_client.dart';
+import 'package:flowery/features/home/presentation/viewModel/currentUserLocationViewModel/location_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
-import '../../../data/models/plus_code_client.dart';
-import 'location_state.dart';
+import 'package:geolocator/geolocator.dart';
 
 class CurrentUserLocationViewModel extends Cubit<LocationState> {
   final PlusCodeClient _client;
@@ -13,7 +13,7 @@ class CurrentUserLocationViewModel extends Cubit<LocationState> {
     emit(LocationLoading());
 
     try {
-      bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      final bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
         emit(LocationError("Location services needed"));
         return;

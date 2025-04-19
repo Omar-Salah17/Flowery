@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'metadata.dart';
-import 'product.dart';
+import 'package:flowery/core/utils/models/products_model/metadata.dart';
+import 'package:flowery/core/utils/models/products_model/product.dart';
 
 class ProductsModel extends Equatable {
   final String? message;

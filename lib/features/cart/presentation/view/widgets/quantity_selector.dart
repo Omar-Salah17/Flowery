@@ -1,8 +1,8 @@
 import 'dart:developer';
+
+import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../view model/cubit/cart_cubit.dart';
 
 class QuantitySelector extends StatefulWidget {
   final int initialValue;
@@ -52,12 +52,12 @@ class _QuantitySelectorState extends State<QuantitySelector> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        IconButton(icon: Icon(Icons.remove), onPressed: _decrement),
+        IconButton(icon: const Icon(Icons.remove), onPressed: _decrement),
         Text(
           '$count',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
         ),
-        IconButton(icon: Icon(Icons.add), onPressed: _increment),
+        IconButton(icon: const Icon(Icons.add), onPressed: _increment),
       ],
     );
   }

@@ -3,12 +3,10 @@ import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/cart/data/models/cart_model/cart_item.dart';
 import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_cubit.dart';
-
+import 'package:flowery/features/cart/presentation/view/widgets/quantity_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'quantity_selector.dart';
 
 class CartItemWidget extends StatelessWidget {
 
@@ -97,13 +95,13 @@ class CartItemWidget extends StatelessWidget {
                     ],
                   ),
 
-                  Spacer(),
+                  const Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
                     children: [
                       Text(
-                        'EGP ${cartItem.product?.price.toString()}' ,
+                        'EGP ${cartItem.product?.price}' ,
                         style: AppTextStyles.instance.textStyle14.copyWith(
                           fontWeight: FontWeight.w600,
                           color: PalletsColors.blackBase,

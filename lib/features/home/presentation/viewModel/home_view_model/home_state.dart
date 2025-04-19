@@ -1,9 +1,8 @@
 import 'package:equatable/equatable.dart';
+import 'package:flowery/core/enums/request_enum.dart';
 import 'package:flowery/core/utils/models/products_model/product.dart';
+import 'package:flowery/features/categories/data/models/categories_model/category.dart';
 import 'package:flowery/features/occasion/data/models/occaions.dart';
-
-import '../../../../../core/enums/request_enum.dart';
-import '../../../../categories/data/models/categories_model/category.dart';
 
 class HomeState extends Equatable {
   final RequestState categoriesState;

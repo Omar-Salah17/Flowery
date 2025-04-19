@@ -2,14 +2,13 @@ import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/helper/spacing.dart';
 import 'package:flowery/core/utils/widgets/products_grid_view.dart';
 import 'package:flowery/features/home/presentation/widgets/tab_widget.dart';
+import 'package:flowery/features/occasion/domain/use_cases/get_all_occasions_use_case.dart';
+import 'package:flowery/features/occasion/domain/use_cases/get_product_by_occasion_use_case.dart';
 import 'package:flowery/features/occasion/presentation/view/widgets/appbar_title.dart';
+import 'package:flowery/features/occasion/presentation/view_model/cubits/occasion_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../occasion/presentation/view_model/cubits/occasion_cubit.dart';
-import '../../domain/use_cases/get_all_occasions_use_case.dart';
-import '../../domain/use_cases/get_product_by_occasion_use_case.dart';
 
 class OccasionScreen extends StatefulWidget {
   const OccasionScreen({super.key});
@@ -59,7 +58,7 @@ class _OccasionScreenState extends State<OccasionScreen>
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50.h),
-        child: AppbarTitle(),
+        child: const AppbarTitle(),
       ),
       body: BlocProvider(
         create: (_) => occasionCubit..getAllOccasions(),

@@ -27,12 +27,12 @@ class CartViewBody extends StatelessWidget {
             },
           ),
         ),
-        Spacer(),
+        const Spacer(),
         PriceRow(
           title: "Sub Total",
           value: "${cartResponse.cart!.totalPrice} EGP",
         ),
-        PriceRow(title: "Delivery Fee", value: "10 EGP"),
+        const PriceRow(title: "Delivery Fee", value: "10 EGP"),
         Divider(thickness: 1.sp),
         PriceRow(
           title: "Total",

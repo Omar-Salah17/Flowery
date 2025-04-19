@@ -97,14 +97,14 @@ class _ChangePasswordScreenBodyState extends State<ChangePasswordScreenBody> {
                     showErrorSnackBar(context, state.errorMessage);
                   }
                   if (state is ChangePasswordSuccess) {
-                    showSnackBar(context, state.data["message"]);
+                    showSnackBar(context, state.data["message"] as String);
                   }
                 },
                 builder: (context, state) {
                   if (state is ChangePasswordLoading) {
                     return const Center(child: CircularProgressIndicator());
                   } else {
-                    return Text('Update');
+                    return const Text('Update');
                   }
                 },
               ),

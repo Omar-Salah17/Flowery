@@ -9,7 +9,7 @@ class AppbarTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var text = Theme.of(context).textTheme;
+    final text = Theme.of(context).textTheme;
     return AppBar(
       scrolledUnderElevation: 0,
       elevation: 0,
@@ -22,7 +22,7 @@ class AppbarTitle extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
           ),
           horizontalSpace(10),
           Column(

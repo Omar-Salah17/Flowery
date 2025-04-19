@@ -1,13 +1,12 @@
+import 'package:flowery/core/utils/colors.dart';
+import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_cubit.dart';
 import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_state.dart';
 import 'package:flowery/features/cart/presentation/view/widgets/cart_app_bar.dart';
 import 'package:flowery/features/cart/presentation/view/widgets/cart_view_body.dart';
+import 'package:flowery/features/home/presentation/view/current_user_location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/utils/colors.dart';
-import '../../../home/presentation/view/current_user_location.dart';
-import '../view model/cubit/cart_cubit.dart';
 
 class CartView extends StatefulWidget {
   const CartView({super.key});
@@ -37,7 +36,7 @@ class _CartViewState extends State<CartView> {
               } else if (state is CartFailure) {
                 return Center(child: Text(state.errorMessage));
               } else {
-                return SizedBox();
+                return const SizedBox();
               }
             },
           ),

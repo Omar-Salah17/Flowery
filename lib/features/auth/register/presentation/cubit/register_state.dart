@@ -9,7 +9,7 @@ class RegisterStates extends Equatable {
     this.errorMessage = '',
     this.registerEntity,
   });
-  copyWith({
+  RegisterStates copyWith({
     RequestState? state,
     String? errorMessage,
     RegisterEntity? registerEntity,

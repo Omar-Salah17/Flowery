@@ -60,8 +60,8 @@ class BestSellerScreen extends StatelessWidget {
                     child: Center(child: Text(state.errorMessage)),
                   );
                 }
-                return SliverToBoxAdapter(
-                  child: const Center(child: CircularProgressIndicator()),
+                return const SliverToBoxAdapter(
+                  child: Center(child: CircularProgressIndicator()),
                 );
               },
             ),

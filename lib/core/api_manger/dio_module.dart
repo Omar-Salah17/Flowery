@@ -1,10 +1,8 @@
 import 'package:dio/dio.dart';
-
+import 'package:flowery/core/api_manger/api_service.dart';
 import 'package:flowery/core/utils/constants.dart';
 import 'package:flowery/core/utils/services/secure_sotrage_service.dart';
 import 'package:injectable/injectable.dart';
-
-import 'api_service.dart';
 
 @module
 abstract class DioModule {
@@ -13,10 +11,6 @@ abstract class DioModule {
     return LogInterceptor(
       requestBody: true,
       responseBody: true,
-      requestHeader: true,
-      responseHeader: true,
-      error: true,
-      request: true,
     );
   }
 
@@ -25,7 +19,7 @@ abstract class DioModule {
     LogInterceptor logInterceptor,
     SecureStorageService secureStorageService,
   ) {
-    var dio = Dio(
+    final dio = Dio(
       BaseOptions(
         connectTimeout: const Duration(seconds: 60),
         baseUrl: Constants.baseUrl,

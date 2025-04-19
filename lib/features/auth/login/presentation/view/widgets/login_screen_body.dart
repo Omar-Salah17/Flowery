@@ -142,7 +142,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                     ),
                   ),
                   SizedBox(height: 8.h),
-                  SignUpLink(),
+                  const SignUpLink(),
                 ],
               ),
             ),
@@ -157,7 +157,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
       Constants.userToken,
       state.data.token,
     );
-    String? token = await SecureStorageService().readSecureData(
+    final String? token = await SecureStorageService().readSecureData(
       Constants.userToken,
     );
     // print("user token $token");

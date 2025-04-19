@@ -15,7 +15,7 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginLoading());
     log("before invoke");
     final loginRequest = LoginRequest(email: email, password: password);
-    var result = await loginUseCase.invoke(loginRequest: loginRequest);
+    final result = await loginUseCase.invoke(loginRequest: loginRequest);
     log("after invoke");
     result.fold(
       (failure) {

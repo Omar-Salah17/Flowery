@@ -10,7 +10,7 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
   final GetProductDetailsUseCase getProductDetailsUseCase;
   Future<void> fetchProduct(String productId) async {
     emit(ProductDetailsLoading());
-    var result = await getProductDetailsUseCase.getProductDetails(productId);
+    final result = await getProductDetailsUseCase.getProductDetails(productId);
     result.fold(
       (failure) {
         emit(ProductDetailsError(message: failure.errorMessage));

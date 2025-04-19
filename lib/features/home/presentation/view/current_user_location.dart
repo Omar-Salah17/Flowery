@@ -1,10 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:flowery/features/home/data/models/plus_code_client.dart';
+import 'package:flowery/features/home/presentation/view/current_user_location_body.dart';
 import 'package:flowery/features/home/presentation/viewModel/currentUserLocationViewModel/current_user_location_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../data/models/plus_code_client.dart';
-import 'current_user_location_body.dart';
 
 class CurrentUserLocation extends StatelessWidget {
   const CurrentUserLocation({super.key});
@@ -23,7 +22,7 @@ class CurrentUserLocation extends StatelessWidget {
         cubit.fetchLocation();
         return cubit;
       },
-      child: CurrentUserLocationBody(),
+      child: const CurrentUserLocationBody(),
     );
   }
 }

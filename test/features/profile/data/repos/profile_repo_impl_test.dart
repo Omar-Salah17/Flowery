@@ -7,20 +7,23 @@ import 'profile_repo_impl_test.mocks.dart';
 
 @GenerateMocks([ProfileRemoteDataSource])
 void main() {
-  
+
   group(' Test ProfileRepoImpl', () {
+    // ignore: unused_local_variable
     late ProfileRepoImpl profileRepoImpl;
   late ProfileRemoteDataSource mockRemoteDataSource;
    setUpAll(() {
       mockRemoteDataSource = MockProfileRemoteDataSource();
       profileRepoImpl = ProfileRepoImpl(remoteDataSource: mockRemoteDataSource);
     });
-    Map<String, dynamic> testData = { "password": "Sam@1234",
+    // ignore: unused_local_variable
+    final Map<String, dynamic> testData = { "password": "Sam@1234",
             "newPassword": "Sam@12345",};
-     Map<String, dynamic> successResponse = {
+     // ignore: unused_local_variable
+     final Map<String, dynamic> successResponse = {
     "message": "success"
   };
-   
+
   });
-  test('Should return right with response ', () async {});
+  test('Should return right with response ', () {});
 }

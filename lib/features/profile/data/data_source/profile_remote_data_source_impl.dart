@@ -1,15 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
+import 'package:flowery/core/api_manger/api_manager.dart';
+import 'package:flowery/core/api_manger/api_service.dart';
 import 'package:flowery/core/utils/constants.dart';
 import 'package:flowery/core/utils/error_handler.dart';
 import 'package:flowery/features/profile/data/data_source/profile_remote_data_source.dart';
 import 'package:flowery/features/profile/data/model/user_response.dart';
-
 import 'package:injectable/injectable.dart';
-
-import '../../../../core/api_manger/api_manager.dart';
-import '../../../../core/api_manger/api_service.dart';
 
 @Injectable(as: ProfileRemoteDataSource)
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
@@ -18,7 +16,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
   ProfileRemoteDataSourceImpl({required this.apiService});
   @override
   Future<UserData> getLoggedInUserData() async {
-    var response = await apiService.getLoggedInUserData();
+    final response = await apiService.getLoggedInUserData();
     if (response.message == "success") {
       return response.user!;
     } else {
@@ -28,11 +26,11 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
 
   @override
   Future<Map<String, dynamic>> changePassword(Map<String, dynamic> data) async {
-    var response = await apiManager.patchRequest(
+    final response = await apiManager.patchRequest(
       Constants.changePasswordEndPoint,
       data,
     );
-    return response.data;
+    return response.data as Map<String, dynamic>;
   }
 
   @override

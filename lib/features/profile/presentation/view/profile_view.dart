@@ -17,7 +17,7 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => viewModel..getUserData(),
-      child: ProfileMainScreen(),
+      child: const ProfileMainScreen(),
     ); //Ma
   }
 }
