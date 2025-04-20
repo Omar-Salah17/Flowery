@@ -295,14 +295,14 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i531.ProfileRemoteDataSourceImpl(apiService: gh<_i525.ApiService>()),
     );
+    gh.factory<_i922.AdderssRemoteDataSource>(
+      () =>
+          _i497.AddressRemoteDataSourceImpl(apiService: gh<_i525.ApiService>()),
+    );
     gh.factory<_i877.GetProductDetailsContract>(
       () => _i232.GetProductDetailsImpl(
         remoteDataSource: gh<_i1048.ProductDetailsRemoteDataSource>(),
       ),
-    );
-    gh.factory<_i922.AdderssRemoteDataSource>(
-      () =>
-          _i497.AddressRemoteDataSourceImpl(apiService: gh<_i171.ApiService>()),
     );
     gh.factory<_i123.CartRepo>(
       () => _i806.CartRepoImpl(
@@ -368,14 +368,6 @@ extension GetItInjectableX on _i174.GetIt {
         profileRepositoryContract: gh<_i1007.ProfileRepo>(),
       ),
     );
-    gh.factory<_i1033.GetLoggedUserAddressUseCase>(
-      () => _i1033.GetLoggedUserAddressUseCase(
-        gh<_i315.AddressRepositoryContract>(),
-      ),
-    );
-    gh.factory<_i864.DeleteAddressUseCase>(
-      () => _i864.DeleteAddressUseCase(gh<_i315.AddressRepositoryContract>()),
-    );
     gh.factory<_i717.BestSellerCubit>(
       () => _i717.BestSellerCubit(gh<_i461.GetBestSellerUseCase>()),
     );
@@ -384,6 +376,14 @@ extension GetItInjectableX on _i174.GetIt {
         getCategories: gh<_i595.GetAllCategoriesUseCase>(),
         getBestSeller: gh<_i461.GetBestSellerUseCase>(),
         getOccasions: gh<_i34.GetAllOccasionsUseCase>(),
+      ),
+    );
+    gh.factory<_i864.DeleteAddressUseCase>(
+      () => _i864.DeleteAddressUseCase(gh<_i315.AddressRepositoryContract>()),
+    );
+    gh.factory<_i1033.GetLoggedUserAddressUseCase>(
+      () => _i1033.GetLoggedUserAddressUseCase(
+        gh<_i315.AddressRepositoryContract>(),
       ),
     );
     gh.factory<_i1069.CartCubit>(

@@ -6,6 +6,7 @@ import 'package:flowery/features/address/data/models/logged_user_address_model.d
 import 'package:flowery/features/address/domain/repos/repos/Address_repository_contract.dart';
 import 'package:flowery/features/address/domain/use_case/delete_address_use_case.dart';
 import 'package:flowery/features/address/domain/use_case/get_logged_user_address_use_case.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'address_state.dart';
@@ -15,7 +16,7 @@ class AddressCubit extends Cubit<AddressState> {
   GetLoggedUserAddressUseCase getLoggedUserAddressUseCase =
       GetLoggedUserAddressUseCase(getIt<AddressRepositoryContract>());
       DeleteAddressUseCase deleteAddressUseCase = DeleteAddressUseCase(getIt<AddressRepositoryContract>());
-      static AddressCubit get(context) => BlocProvider.of(context);
+    static AddressCubit get(BuildContext context) => BlocProvider.of(context);
   Future<void> getLoggedUserAddress() async {
     emit(AddressLoading());
     final result = await getLoggedUserAddressUseCase.invoke();
