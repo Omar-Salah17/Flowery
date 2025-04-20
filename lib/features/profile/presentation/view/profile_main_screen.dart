@@ -76,10 +76,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
             title: LocaleKeys.savedAddress.tr(),
             onTap: () {
               // Navigate to Saved Address
-              Navigator.pushNamed(
-                context,
-                RoutesName.saveAddressScreen,
-              );
+              Navigator.pushNamed(context, RoutesName.saveAddressScreen);
             },
           ),
           verticalSpace(16),

@@ -187,7 +187,7 @@ class _RegisterState extends State<Register> {
                           activeColor: PalletsColors.mainColorBase,
                         ),
                         Text(
-                         LocaleKeys.Female.tr(),
+                          LocaleKeys.Female.tr(),
                           style: text.bodyMedium!.copyWith(
                             color: PalletsColors.gray,
                             fontWeight: FontWeight.w500,

@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const local = 'local';
   static const appTitle = 'appTitle';
   static const home = 'home';
@@ -66,8 +66,10 @@ abstract class  LocaleKeys {
   static const emailVerificationTitle = 'emailVerificationTitle';
   static const emailVerificationInstruction = 'emailVerificationInstruction';
   static const resendCode = 'resendCode';
-  static const PleaseEnterYourEmailAssociatedToYourAccount = 'PleaseEnterYourEmailAssociatedToYourAccount';
-  static const PleaseEnterYourCodeThatSendToYourEmailAddress = 'PleaseEnterYourCodeThatSendToYourEmailAddress';
+  static const PleaseEnterYourEmailAssociatedToYourAccount =
+      'PleaseEnterYourEmailAssociatedToYourAccount';
+  static const PleaseEnterYourCodeThatSendToYourEmailAddress =
+      'PleaseEnterYourCodeThatSendToYourEmailAddress';
   static const DidnotReceiveCode = 'DidnotReceiveCode';
   static const LoggedInSuccessfully = 'LoggedInSuccessfully';
   static const resetPassword = 'resetPassword';
@@ -169,5 +171,4 @@ abstract class  LocaleKeys {
   static const newOffer = 'newOffer';
   static const confirmLogout = 'confirmLogout';
   static const remember = 'remember';
-
 }

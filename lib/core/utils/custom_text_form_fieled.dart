@@ -52,9 +52,11 @@ class CustomTextFormFieled extends StatelessWidget {
           borderSide: BorderSide(color: PalletsColors.gray),
         ),
         labelText: labelText,
-        labelStyle: ApplicationTheme.themeData.textTheme.bodySmall,
+        labelStyle: ApplicationTheme.themeData.textTheme.bodySmall?.copyWith(
+          color: PalletsColors.white90,
+        ),
         hintText: hintText,
-        hintStyle: ApplicationTheme.themeData.textTheme.bodyMedium?.copyWith(
+        hintStyle: ApplicationTheme.themeData.textTheme.bodyLarge?.copyWith(
           color: PalletsColors.white70,
         ),
       ),

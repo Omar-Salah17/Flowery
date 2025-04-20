@@ -10,16 +10,14 @@ class AddressItem extends StatelessWidget {
   Addresses address;
   AddressItem({required this.address, super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       decoration: BoxDecoration(
-        border: Border.all(color: PalletsColors.white70.withOpacity(0.2), ),
+        border: Border.all(color: PalletsColors.white70.withOpacity(0.2)),
         borderRadius: BorderRadius.circular(10.r),
-        
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,7 +26,10 @@ class AddressItem extends StatelessWidget {
             children: [
               SvgPicture.asset('assets/images/location.svg'),
               horizontalSpace(5.w),
-              Text(address.city??'', style: AppTextStyles.instance.textStyle16),
+              Text(
+                address.city ?? '',
+                style: AppTextStyles.instance.textStyle16,
+              ),
               Spacer(),
               Image.asset('assets/images/delete.png'),
               horizontalSpace(5.w),
@@ -36,11 +37,12 @@ class AddressItem extends StatelessWidget {
             ],
           ),
           verticalSpace(10.h),
-          Text(address.street??'',
-          style: AppTextStyles.instance.textStyle13.copyWith(
-            color: PalletsColors.gray,
+          Text(
+            address.street ?? '',
+            style: AppTextStyles.instance.textStyle13.copyWith(
+              color: PalletsColors.gray,
+            ),
           ),
-          )
         ],
       ),
     );

@@ -26,7 +26,7 @@ class ProductsGridViewBlocConsumer extends StatelessWidget {
               child: Center(
                 child: Text(
                   textAlign: TextAlign.center,
-                 LocaleKeys.noProductsInCategory.tr(),
+                  LocaleKeys.noProductsInCategory.tr(),
                   style: AppTextStyles.instance.textStyle16.copyWith(
                     fontWeight: FontWeight.w500,
                   ),

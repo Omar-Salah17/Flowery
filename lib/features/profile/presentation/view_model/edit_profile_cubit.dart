@@ -17,7 +17,6 @@ class EditProfileCubit extends Cubit<EditProfileState> {
 
   EditProfileCubit(this.editProfileUseCase, this.uploadPhotoUseCase)
     : super(const EditProfileState());
-    
 
   Future<void> uploadProfilePhoto(File? photo) async {
     try {

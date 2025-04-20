@@ -47,9 +47,7 @@ abstract class ApiService {
   Future<CartResponse> getUserCart();
 
   @DELETE(Constants.deleteSpecificCartItem)
-  Future<CartResponse> deleteCartItem(
-    @Path("cartItemId") String cartItemId,
-  );
+  Future<CartResponse> deleteCartItem(@Path("cartItemId") String cartItemId);
 
   @DELETE(Constants.clearCart)
   Future<CartResponse> clearCart();

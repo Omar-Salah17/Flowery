@@ -12,7 +12,6 @@ class CartAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        
         Text(
           "Cart",
           style: AppTextStyles.instance.textStyle20.copyWith(

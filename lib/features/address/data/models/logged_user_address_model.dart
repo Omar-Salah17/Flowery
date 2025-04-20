@@ -1,4 +1,3 @@
-
 import 'package:json_annotation/json_annotation.dart';
 part 'logged_user_address_model.g.dart';
 
@@ -11,9 +10,12 @@ class LoggedUserAddressModel {
 
   LoggedUserAddressModel({this.message, this.addresses});
 
-  factory LoggedUserAddressModel.fromJson(Map<String, dynamic> json) => _$LoggedUserAddressModelFromJson(json);
+  factory LoggedUserAddressModel.fromJson(Map<String, dynamic> json) =>
+      _$LoggedUserAddressModelFromJson(json);
 
-  static List<LoggedUserAddressModel> fromList(List<Map<String, dynamic>> list) {
+  static List<LoggedUserAddressModel> fromList(
+    List<Map<String, dynamic>> list,
+  ) {
     return list.map(LoggedUserAddressModel.fromJson).toList();
   }
 
@@ -37,9 +39,18 @@ class Addresses {
   @JsonKey(name: '_id')
   String? id;
 
-  Addresses({this.street, this.phone, this.city, this.lat, this.long, this.username, this.id});
+  Addresses({
+    this.street,
+    this.phone,
+    this.city,
+    this.lat,
+    this.long,
+    this.username,
+    this.id,
+  });
 
-  factory Addresses.fromJson(Map<String, dynamic> json) => _$AddressesFromJson(json);
+  factory Addresses.fromJson(Map<String, dynamic> json) =>
+      _$AddressesFromJson(json);
 
   static List<Addresses> fromList(List<Map<String, dynamic>> list) {
     return list.map(Addresses.fromJson).toList();

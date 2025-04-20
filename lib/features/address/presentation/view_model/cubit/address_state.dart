@@ -8,13 +8,16 @@ sealed class AddressState extends Equatable {
 }
 
 final class AddressInitial extends AddressState {}
+
 final class AddressLoading extends AddressState {}
+
 final class AddressSuccess extends AddressState {
   final List<Addresses>? addressList;
-  const AddressSuccess({ required this.addressList });
+  const AddressSuccess({required this.addressList});
   @override
   List<Object> get props => [addressList!];
 }
+
 final class AddressError extends AddressState {
   final String errorMessage;
   const AddressError(this.errorMessage);

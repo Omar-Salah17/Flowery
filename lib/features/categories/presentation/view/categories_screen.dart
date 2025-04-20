@@ -48,7 +48,7 @@ class CategoriesScreen extends StatelessWidget {
                 Icon(Icons.tune, size: 20.r, color: PalletsColors.whiteBase),
                 SizedBox(width: 12.w),
                 Text(
-                 LocaleKeys.filter.tr(),
+                  LocaleKeys.filter.tr(),
                   style: AppTextStyles.instance.textStyle14.copyWith(
                     color: PalletsColors.whiteBase,
                     fontWeight: FontWeight.w500,

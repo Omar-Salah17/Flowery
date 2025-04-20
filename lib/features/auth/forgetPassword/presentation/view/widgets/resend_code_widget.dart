@@ -53,7 +53,7 @@ class _ResendCodeState extends State<ResendCode> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-             LocaleKeys.DidnotReceiveCode.tr(),
+              LocaleKeys.DidnotReceiveCode.tr(),
               style: AppTextStyles.instance.textStyle16,
             ),
             GestureDetector(
@@ -67,7 +67,7 @@ class _ResendCodeState extends State<ResendCode> {
                       }
                       : null,
               child: Text(
-               LocaleKeys.resendCode.tr(),
+                LocaleKeys.resendCode.tr(),
                 style: TextStyle(
                   color: canResend ? PalletsColors.mainColorBase : Colors.grey,
                   fontSize: AppTextStyles.instance.textStyle16.fontSize,

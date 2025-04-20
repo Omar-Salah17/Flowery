@@ -61,7 +61,7 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
                   SizedBox(height: 16.h),
                   Text(
                     textAlign: TextAlign.center,
-                   LocaleKeys.PleaseEnterYourEmailAssociatedToYourAccount.tr(),
+                    LocaleKeys.PleaseEnterYourEmailAssociatedToYourAccount.tr(),
                     style: AppTextStyles.instance.textStyle14,
                   ),
                 ],

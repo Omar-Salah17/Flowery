@@ -8,7 +8,6 @@ import 'package:flowery/features/cart/domain/usecases/update_product_quantity_us
 import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_state.dart';
 import 'package:injectable/injectable.dart';
 
-
 @injectable
 class CartCubit extends Cubit<CartState> {
   CartCubit(
@@ -23,9 +22,9 @@ class CartCubit extends Cubit<CartState> {
   final GetUserCartUsecase getUserCartUsecase;
   final DeleteCartItemUsecase deleteCartItemUsecase;
   final ClearCartUsecase clearCartUsecase;
- 
+
   Future<void> addToCart(AddProductRequest addProductRequest) async {
-    var loadingProductId=addProductRequest.productId;
+    var loadingProductId = addProductRequest.productId;
     emit(CartLoading(productId: loadingProductId));
 
     final result = await addToCartUsecase.invoke(
@@ -33,10 +32,20 @@ class CartCubit extends Cubit<CartState> {
     );
     result.fold(
       (failure) {
-        if(failure.errorMessage=='Requested resource not found.'){
-        emit(CartFailure(errorMessage: 'Product Sold out', productId: loadingProductId));}
-        else{
-          emit(CartFailure(errorMessage: failure.errorMessage, productId: loadingProductId));
+        if (failure.errorMessage == 'Requested resource not found.') {
+          emit(
+            CartFailure(
+              errorMessage: 'Product Sold out',
+              productId: loadingProductId,
+            ),
+          );
+        } else {
+          emit(
+            CartFailure(
+              errorMessage: failure.errorMessage,
+              productId: loadingProductId,
+            ),
+          );
         }
       },
       (response) {
@@ -46,20 +55,18 @@ class CartCubit extends Cubit<CartState> {
   }
 
   void resetCartState() {
-    emit(CartInitial());}
+    emit(CartInitial());
+  }
 
   Future<void> getUserCart() async {
-
-
-  final result = await getUserCartUsecase.invoke();
-  result.fold(
-    (failure) => emit(CartFailure(errorMessage: failure.errorMessage)),
-    (response) => emit(CartSuccess(cartResponse: response)),
-  );
-}
+    final result = await getUserCartUsecase.invoke();
+    result.fold(
+      (failure) => emit(CartFailure(errorMessage: failure.errorMessage)),
+      (response) => emit(CartSuccess(cartResponse: response)),
+    );
+  }
 
   Future<void> clearCart() async {
-
     final result = await clearCartUsecase.invoke();
     result.fold(
       (failure) {
@@ -72,7 +79,6 @@ class CartCubit extends Cubit<CartState> {
   }
 
   Future<void> deleteCartItem(String cartItemId) async {
-
     final result = await deleteCartItemUsecase.invoke(cartItemId: cartItemId);
     result.fold(
       (failure) {
@@ -88,7 +94,6 @@ class CartCubit extends Cubit<CartState> {
     String cartItemId,
     int productQuantity,
   ) async {
-
     final result = await updateProductQuantityUseCase.call(
       cartItemId: cartItemId,
       productQuantity: productQuantity,

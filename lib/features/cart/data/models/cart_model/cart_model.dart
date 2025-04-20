@@ -28,21 +28,23 @@ class CartModel extends Equatable {
   factory CartModel.fromJson(Map<String, dynamic> json) => CartModel(
     id: json['_id'] as String?,
     user: json['user'] as String?,
-    cartItems: (json['cartItems'] as List<dynamic>?)
-        ?.map((e) => CartItem.fromJson(e as Map<String, dynamic>))
-        .toList(),
+    cartItems:
+        (json['cartItems'] as List<dynamic>?)
+            ?.map((e) => CartItem.fromJson(e as Map<String, dynamic>))
+            .toList(),
     discount: (json['discount'] as num?)?.toInt(),
     totalPrice: (json['totalPrice'] as num?)?.toInt(),
     totalPriceAfterDiscount: (json['totalPriceAfterDiscount'] as num?)?.toInt(),
-    createdAt: json['createdAt'] == null
-        ? null
-        : DateTime.parse(json['createdAt'] as String),
-    updatedAt: json['updatedAt'] == null
-        ? null
-        : DateTime.parse(json['updatedAt'] as String),
+    createdAt:
+        json['createdAt'] == null
+            ? null
+            : DateTime.parse(json['createdAt'] as String),
+    updatedAt:
+        json['updatedAt'] == null
+            ? null
+            : DateTime.parse(json['updatedAt'] as String),
     v: json['__v'] as int?,
   );
-
 
   Map<String, dynamic> toJson() => {
     '_id': id,

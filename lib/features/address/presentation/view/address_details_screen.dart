@@ -17,6 +17,4 @@ class AddressDetailsScreen extends StatelessWidget {
       body: AddressDetailsScreenBody(),
     );
   }
-
-  
 }

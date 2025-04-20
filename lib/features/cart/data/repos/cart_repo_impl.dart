@@ -13,7 +13,7 @@ import 'package:injectable/injectable.dart';
 class CartRepoImpl implements CartRepo {
   final CartRemoteDataSource cartRemoteDataSource;
 
-CartRepoImpl({required this.cartRemoteDataSource});
+  CartRepoImpl({required this.cartRemoteDataSource});
   @override
   Future<Either<Failure, CartResponse>> addToCart({
     required AddProductRequest addProductRequest,
@@ -25,13 +25,13 @@ CartRepoImpl({required this.cartRemoteDataSource});
       return right(data);
     } catch (e) {
       if (e is DioException) {
-        print( "Dioooooooooooo${e.toString()}");
+        print("Dioooooooooooo${e.toString()}");
         return left(ServerFailure.fromDioException(e));
-
       } else {
         log("error in CartRepoImpl addToCart method: ${e.toString()}");
+
         ///
-        print( "notDioooooooooooo${e.toString()}");
+        print("notDioooooooooooo${e.toString()}");
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
@@ -88,21 +88,22 @@ CartRepoImpl({required this.cartRemoteDataSource});
 
   @override
   Future<Either<Failure, CartResponse>> updateProductQuantity({
-  required int productQuantity,
+    required int productQuantity,
     required String productId,
   }) async {
     try {
       var data = await cartRemoteDataSource.updateProductQuantity(
         productId: productId,
         productQuantity: productQuantity,
-
       );
       return right(data);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log("error in CartRepoImpl updateProductQuantity method: ${e.toString()}");
+        log(
+          "error in CartRepoImpl updateProductQuantity method: ${e.toString()}",
+        );
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
