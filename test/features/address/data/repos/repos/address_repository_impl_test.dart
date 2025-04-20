@@ -1,0 +1,90 @@
+import 'package:dartz/dartz.dart';
+import 'package:flowery/core/utils/error_handler.dart';
+import 'package:flowery/features/address/data/models/address_model.dart';
+import 'package:flowery/features/address/data/models/logged_user_address_model.dart';
+import 'package:flowery/features/address/data/repos/repos/address_repository_impl.dart';
+import 'package:flowery/features/address/domain/repos/repos/Address_repository_contract.dart';
+import 'package:flowery/features/address/domain/repos/repos_data_sourse/adderss_data_source_contract.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+
+import 'address_repository_impl_test.mocks.dart';
+
+@GenerateMocks([AdderssRemoteDataSource])
+void main() {
+  late MockAdderssRemoteDataSource mockAdderssRemoteDataSource;
+  late AddressRepositoryContract addressRepository;
+  group('test AddressRepositoryImpl', () {
+    setUp(() {
+      // Initialize any necessary dependencies or mocks here
+      mockAdderssRemoteDataSource = MockAdderssRemoteDataSource();
+      addressRepository = AddressRepositoryImpl(
+        addressRemoteDataSource: mockAdderssRemoteDataSource,
+      );
+    });
+    test(
+      'when call getLoggedUserAddress it should call getLoggedUserAddress from adderssRemoteDataSource and when call getLoggedUserAddress from adderssRemoteDataSource i expect to return Right<List<Addresses>>',
+      () async {
+        var result = <Addresses>[];
+        when(
+          mockAdderssRemoteDataSource.getLoggedUserAddress(),
+        ).thenAnswer((_) async => result);
+        var actual = await addressRepository.getLoggedUserAddress();
+        verify(mockAdderssRemoteDataSource.getLoggedUserAddress()).called(1);
+        expect(actual, Right(result));
+      },
+    );
+    test(
+      'when call getLoggedUserAddress it should return Left<Failure> when an error occurs',
+      () async {
+        var error = ServerFailure(errorMessage: "error");
+        when(
+          mockAdderssRemoteDataSource.getLoggedUserAddress(),
+        ).thenThrow(error);
+        var actual = await addressRepository.getLoggedUserAddress();
+        verify(mockAdderssRemoteDataSource.getLoggedUserAddress()).called(1);
+        expect(actual.fold((l) => l, (r) => r), isA<ServerFailure>());
+      },
+    );
+  });
+  group('test deleteAddress', () {
+    setUp(() {
+      // Initialize any necessary dependencies or mocks here
+      mockAdderssRemoteDataSource = MockAdderssRemoteDataSource();
+      addressRepository = AddressRepositoryImpl(
+        addressRemoteDataSource: mockAdderssRemoteDataSource,
+      );
+    });
+    test(
+      'when call deleteAddress it should call deleteAddress from adderssRemoteDataSource and when call deleteAddress from adderssRemoteDataSource i expect to return Right<List<Addresses>>',
+      () async {
+        String addressId = "addressId";
+        var result = <Address>[];
+        when(
+          mockAdderssRemoteDataSource.deleteAddress(addressId: addressId),
+        ).thenAnswer((_) async => result);
+        var actual = await addressRepository.deleteAddress(addressId: addressId);
+        verify(
+          mockAdderssRemoteDataSource.deleteAddress(addressId: addressId),
+        ).called(1);
+        expect(actual, Right(result));
+      },
+    );
+    test(
+      'when call getLoggedUserAddress it should return Left<Failure> when an error occurs',
+      () async {
+        String addressId = "addressId";
+        var error = ServerFailure(errorMessage: "error");
+        when(
+          mockAdderssRemoteDataSource.getLoggedUserAddress(),
+        ).thenThrow(error);
+        var actual = await addressRepository.deleteAddress(addressId: addressId);
+        verify(
+          mockAdderssRemoteDataSource.deleteAddress(addressId: addressId),
+        ).called(1);
+        expect(actual.fold((l) => l, (r) => r), isA<ServerFailure>());
+      },
+    );
+  });
+}

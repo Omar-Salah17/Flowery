@@ -9,6 +9,6 @@ class DeleteAddressUseCase {
 
   DeleteAddressUseCase(this.addressRepository);
   Future<Either<Failure, List<Address>?>> invoke(String addressId) async {
-    return await addressRepository.deleteAddress(addressId);
+    return await addressRepository.deleteAddress(addressId: addressId);
   }
 }

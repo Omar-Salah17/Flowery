@@ -1,6 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flowery/core/di/di.dart';
-import 'package:flowery/core/provider/app_config_provider.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/address/presentation/cubit/address_cubit.dart';
@@ -15,7 +13,6 @@ class SaveAddressBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appConfigProvider = getIt<AppConfigProvider>();
     var addressCubit = AddressCubit();
     return Scaffold(
       appBar: AppBar(

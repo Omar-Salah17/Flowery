@@ -26,7 +26,7 @@ class AddressRepositoryImpl implements AddressRepositoryContract {
   }
   
 @override
-  Future<Either<Failure, List<Address>?>> deleteAddress(String addressId) async {
+  Future<Either<Failure, List<Address>?>> deleteAddress({required String addressId}) async {
     try {
       var response = await addressRemoteDataSource.deleteAddress(addressId: addressId);
       return right(response);

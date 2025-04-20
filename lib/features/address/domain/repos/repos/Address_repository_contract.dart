@@ -5,5 +5,5 @@ import 'package:flowery/features/address/data/models/logged_user_address_model.d
 
 abstract class AddressRepositoryContract {
 Future<Either<Failure, List<Addresses>?>> getLoggedUserAddress();
-Future<Either<Failure, List<Address>?>> deleteAddress(String addressId);
+Future<Either<Failure, List<Address>?>> deleteAddress( {required String addressId});
 }
