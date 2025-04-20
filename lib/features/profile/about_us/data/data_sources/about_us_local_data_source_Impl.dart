@@ -21,8 +21,6 @@ class AboutLocalDataSourceImpl implements AboutLocalDataSource {
       // Decode JSON
       final jsonMap = json.decode(jsonString) as Map<String, dynamic>;
       log("Decoded JSON: $jsonMap");
-
-      // Parse into model
       return AboutUsModel.fromJson(jsonMap);
     } on FormatException catch (e) {
       log("JSON Format Error: $e");
