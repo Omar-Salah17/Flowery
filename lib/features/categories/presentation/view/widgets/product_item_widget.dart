@@ -5,13 +5,12 @@ import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/features/cart/data/models/add_product_request.dart';
+import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_cubit.dart';
 import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_state.dart';
 import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../cart/presentation/view model/cubit/cart_cubit.dart';
 
 class ProductItemWidget extends StatelessWidget {
   const ProductItemWidget({super.key, required this.product});
@@ -44,13 +43,13 @@ class ProductItemWidget extends StatelessWidget {
                     fit: BoxFit.cover,
                     imageUrl: product.imgCover ?? "",
                     placeholder: (context, url) {
-                      return Center(
+                      return const Center(
                         child: CircularProgressIndicator(
                           color: PalletsColors.mainColorBase,
                         ),
                       );
                     },
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
                   ),
                 ),
               ),
@@ -114,7 +113,7 @@ class ProductItemWidget extends StatelessWidget {
                   if (isSuccess) {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
+                        const SnackBar(
                           backgroundColor: Colors.green,
                           content: Text('Added to cart successfully'),
                         ),
@@ -150,7 +149,7 @@ class ProductItemWidget extends StatelessWidget {
                             },
                     child:
                         isLoading
-                            ? SizedBox(
+                            ? const SizedBox(
                               height: 16,
                               width: 16,
                               child: CircularProgressIndicator(
@@ -160,8 +159,8 @@ class ProductItemWidget extends StatelessWidget {
                             : Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.shopping_cart_outlined, size: 18),
-                                SizedBox(width: 6),
+                                const Icon(Icons.shopping_cart_outlined, size: 18),
+                                const SizedBox(width: 6),
                                 Text(
                                   'Add to cart',
                                   style: AppTextStyles.instance.textStyle13
@@ -182,6 +181,6 @@ class ProductItemWidget extends StatelessWidget {
 
 double discountPercentage(int priceAfterDiscount, int originalPrice) {
   if (originalPrice <= 0 || priceAfterDiscount <= 0) return 0.0;
-  double discount = (priceAfterDiscount / originalPrice) * 100;
+  final double discount = (priceAfterDiscount / originalPrice) * 100;
   return discount;
 }

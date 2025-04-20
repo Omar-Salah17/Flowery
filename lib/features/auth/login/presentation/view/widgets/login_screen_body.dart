@@ -3,7 +3,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/constants.dart';
-
 import 'package:flowery/core/utils/custom_button.dart';
 import 'package:flowery/core/utils/custom_text_form_fieled.dart';
 import 'package:flowery/core/utils/services/secure_sotrage_service.dart';
@@ -143,7 +142,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                     ),
                   ),
                   SizedBox(height: 8.h),
-                  SignUpLink(),
+                  const SignUpLink(),
                 ],
               ),
             ),
@@ -158,7 +157,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
       Constants.userToken,
       state.data.token,
     );
-    String? token = await SecureStorageService().readSecureData(
+    final String? token = await SecureStorageService().readSecureData(
       Constants.userToken,
     );
     // print("user token $token");

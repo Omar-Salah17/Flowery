@@ -20,7 +20,7 @@ class CustomElevatedButton extends StatelessWidget {
           child: ElevatedButton(
             onPressed: onTap,
             style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
             ),
             child: Text(
               text,
@@ -35,7 +35,7 @@ class CustomElevatedButton extends StatelessWidget {
           child: OutlinedButton(
             onPressed: onTap,
             style: OutlinedButton.styleFrom(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
             ),
             child: Text(text, style: Theme.of(context).textTheme.bodyMedium),
           ),

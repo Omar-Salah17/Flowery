@@ -39,16 +39,16 @@ class CustomTextFormFieled extends StatelessWidget {
         contentPadding: EdgeInsets.all(16.r),
         suffix: suffix,
 
-        errorBorder: OutlineInputBorder(
+        errorBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: PalletsColors.error),
         ),
-        focusedErrorBorder: OutlineInputBorder(
+        focusedErrorBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: PalletsColors.error),
         ),
-        focusedBorder: OutlineInputBorder(
+        focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: PalletsColors.gray),
         ),
-        border: OutlineInputBorder(
+        border: const OutlineInputBorder(
           borderSide: BorderSide(color: PalletsColors.gray),
         ),
         labelText: labelText,

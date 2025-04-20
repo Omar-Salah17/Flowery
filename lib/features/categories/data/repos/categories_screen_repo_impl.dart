@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flowery/core/utils/error_handler.dart';
+import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/features/categories/data/data_source/categories_screen_remote_data_source.dart';
 import 'package:flowery/features/categories/data/models/categories_model/category.dart';
-import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/features/categories/domain/repos/categories_screen_repo.dart';
 import 'package:injectable/injectable.dart';
 
@@ -17,7 +17,7 @@ class CategoriesScreenRepoImpl implements CategoriesScreenRepo {
   @override
   Future<Either<Failure, List<Category>>> getAllCategories() async {
     try {
-      var data = await categoriesRemoteDataSource.getCategories();
+      final data = await categoriesRemoteDataSource.getCategories();
       // log("dataaaaa in GetAllCategoriesRepoImpl ${data.categories} ");
       return Right(data.categories ?? []);
     } catch (e) {
@@ -25,7 +25,7 @@ class CategoriesScreenRepoImpl implements CategoriesScreenRepo {
         return left(ServerFailure.fromDioException(e));
       } else {
         log(
-          'error in CategoriesScreenRepoImpl getCategories method: ${e.toString()}',
+          'error in CategoriesScreenRepoImpl getCategories method: $e',
         );
         return left(ServerFailure(errorMessage: e.toString()));
       }
@@ -47,7 +47,7 @@ class CategoriesScreenRepoImpl implements CategoriesScreenRepo {
         return left(ServerFailure.fromDioException(e));
       } else {
         log(
-          'error in CategoriesScreenRepoImpl getProductsByCategory method: ${e.toString()}',
+          'error in CategoriesScreenRepoImpl getProductsByCategory method: $e',
         );
         return left(ServerFailure(errorMessage: e.toString()));
       }

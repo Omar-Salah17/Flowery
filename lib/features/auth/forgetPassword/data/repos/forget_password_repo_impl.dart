@@ -17,7 +17,7 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
     required String email,
   }) async {
     try {
-      var data = await forgetPasswordRemoteDataSource.forgetPassword(
+      final data = await forgetPasswordRemoteDataSource.forgetPassword(
         email: email,
       );
       return Right(data);
@@ -25,7 +25,7 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log('error in forgetPasswordRepoImpl: ${e.toString()}');
+        log('error in forgetPasswordRepoImpl: $e');
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
@@ -36,7 +36,7 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
     required String resetCode,
   }) async {
     try {
-      var data = await forgetPasswordRemoteDataSource.verfiyCode(
+      final data = await forgetPasswordRemoteDataSource.verfiyCode(
         resetCode: resetCode,
       );
       return Right(data);
@@ -45,7 +45,7 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
         return left(ServerFailure.fromDioException(e));
       } else {
         log(
-          'error in forgetPasswordRepoImpl verify code method: ${e.toString()}',
+          'error in forgetPasswordRepoImpl verify code method: $e',
         );
         return left(ServerFailure(errorMessage: e.toString()));
       }
@@ -58,7 +58,7 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
     required String newPassword,
   }) async {
     try {
-      var data = await forgetPasswordRemoteDataSource.resetPassword(
+      final data = await forgetPasswordRemoteDataSource.resetPassword(
         email: email,
         newPassword: newPassword,
       );
@@ -68,7 +68,7 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
         return left(ServerFailure.fromDioException(e));
       } else {
         log(
-          'error in forgetPasswordRepoImplresetPassword method: ${e.toString()}',
+          'error in forgetPasswordRepoImplresetPassword method: $e',
         );
         return left(ServerFailure(errorMessage: e.toString()));
       }

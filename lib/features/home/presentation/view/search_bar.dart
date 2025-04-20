@@ -14,7 +14,7 @@ class CustomSearchBar extends StatelessWidget {
       height: 36.h,
       child: TextField(
         decoration: InputDecoration(
-          prefixIcon: Icon(Icons.search),
+          prefixIcon: const Icon(Icons.search),
           hintStyle: AppTextStyles.instance.textStyle14.copyWith(
             color: PalletsColors.white80,
           ),
@@ -22,10 +22,10 @@ class CustomSearchBar extends StatelessWidget {
           prefixIconColor: PalletsColors.white80,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: PalletsColors.white80),
+            borderSide: const BorderSide(color: PalletsColors.white80),
           ),
           filled: false,
-          contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         ),
         style: AppTextStyles.instance.textStyle14,
       ),

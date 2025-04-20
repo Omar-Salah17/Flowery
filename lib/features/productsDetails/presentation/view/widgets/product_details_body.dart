@@ -30,7 +30,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
         width: double.infinity,
         child: SizedBox.expand(
           child: Image.network(
-            widget.product.images![index],
+            widget.product.images![index] as String,
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
@@ -55,14 +55,12 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
               },
             ),
           ),
-          SizedBox(height: 9),
+          const SizedBox(height: 9),
           Center(
             child: SmoothPageIndicator(
               controller: controller,
               count: pages.length,
               effect: const WormEffect(
-                dotHeight: 16,
-                dotWidth: 16,
                 type: WormType.thinUnderground,
                 activeDotColor: PalletsColors.mainColorBase,
               ),
@@ -71,7 +69,6 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
           Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Row(
@@ -88,7 +85,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Text(
                       LocaleKeys.status.tr(),
                       style: AppTextStyles.instance.textStyle16,
@@ -146,7 +143,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                   LocaleKeys.whiteWrap.tr(),
                   style: AppTextStyles.instance.textStyle14,
                 ),
-                SizedBox(height: 7),
+                const SizedBox(height: 7),
                 ElevatedButton(
                     
                   onPressed: () {

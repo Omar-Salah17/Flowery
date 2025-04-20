@@ -32,10 +32,10 @@ class _EmailVerificationScreenBodyState
 
   @override
   void dispose() {
-    for (var item in controllers) {
+    for (final item in controllers) {
       item.dispose();
     }
-    for (var item in focusNodes) {
+    for (final item in focusNodes) {
       item.dispose();
     }
     super.dispose();
@@ -107,10 +107,10 @@ class _EmailVerificationScreenBodyState
                       decoration: InputDecoration(
                         counterText: "",
                         filled: true,
-                        fillColor: Color(0xffDFE7F7),
+                        fillColor: const Color(0xffDFE7F7),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.r),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.blueAccent,
                             width: 1.5,
                           ),

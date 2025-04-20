@@ -4,11 +4,10 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flowery/core/utils/error_handler.dart';
 import 'package:flowery/core/utils/models/products_model/product.dart';
+import 'package:flowery/features/occasion/data/models/occaions.dart';
 import 'package:flowery/features/occasion/domain/repos/occasion_remote_data_source_contract.dart';
 import 'package:flowery/features/occasion/domain/repos/occasion_repository_contract.dart';
 import 'package:injectable/injectable.dart';
-
-import '../models/occaions.dart';
 
 @Injectable(as: OccasionRepositoryContract)
 class OccasionRepositoryImpl implements OccasionRepositoryContract {
@@ -16,7 +15,7 @@ class OccasionRepositoryImpl implements OccasionRepositoryContract {
   OccasionRepositoryImpl({required this.occasionRemoteDataSourceContract});
   @override
   Future<Either<Failure, List<Occasions>>> getAllOccasions() async {
-    var response = await occasionRemoteDataSourceContract.getAllOccasions();
+    final response = await occasionRemoteDataSourceContract.getAllOccasions();
     try {
       return Right(response);
     } catch (e) {
@@ -32,7 +31,7 @@ class OccasionRepositoryImpl implements OccasionRepositoryContract {
   Future<Either<Failure, List<Product>>> getProductsByOccasion(
     String? occasionId,
   ) async {
-    var response = await occasionRemoteDataSourceContract.getProductsByOccasion(
+    final response = await occasionRemoteDataSourceContract.getProductsByOccasion(
       occasionId: occasionId,
     );
     try {
@@ -43,7 +42,7 @@ class OccasionRepositoryImpl implements OccasionRepositoryContract {
         return left(ServerFailure.fromDioException(e));
       } else {
         log(
-          'error in CategoriesScreenRepoImpl getProductsByCategory method: ${e.toString()}',
+          'error in CategoriesScreenRepoImpl getProductsByCategory method: $e',
         );
         return left(ServerFailure(errorMessage: e.toString()));
       }

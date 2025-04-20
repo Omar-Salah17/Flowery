@@ -17,7 +17,7 @@ class CartAppBar extends StatelessWidget {
           "Cart",
           style: AppTextStyles.instance.textStyle20.copyWith(
             fontWeight: FontWeight.w500,
-            color: Color.fromRGBO(12, 16, 21, 1),
+            color: const Color.fromRGBO(12, 16, 21, 1),
           ),
         ),
         SizedBox(width: 4.w),
@@ -25,7 +25,7 @@ class CartAppBar extends StatelessWidget {
           "(${cartItems.numOfCartItems} Items)",
           style: AppTextStyles.instance.textStyle20.copyWith(
             fontWeight: FontWeight.w500,
-            color: Color.fromRGBO(83, 83, 83, 1),
+            color: const Color.fromRGBO(83, 83, 83, 1),
           ),
         ),
       ],

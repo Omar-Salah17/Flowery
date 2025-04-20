@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:flowery/core/apiManger/apiService.dart';
-import 'package:flowery/core/apiManger/api_manager.dart';
+import 'package:flowery/core/api_manger/api_manager.dart';
+import 'package:flowery/core/api_manger/api_service.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/features/auth/login/data/dataSources/login_remote_data_source.dart';
 import 'package:flowery/features/auth/login/data/models/login_request.dart';
@@ -19,7 +19,7 @@ class LoginRemoteDataSourceImp implements LoginRemoteDataSource {
     log("before calling api manager");
     log(loginRequest.email); // Notice the updated name here
     log(loginRequest.password); // Notice the updated name here
-    var response = await apiServices.loginUser(loginRequest);
+    final response = await apiServices.loginUser(loginRequest);
     log("after calling api manager");
 
     return response;

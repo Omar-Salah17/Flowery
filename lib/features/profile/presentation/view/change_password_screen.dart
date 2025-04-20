@@ -20,12 +20,12 @@ class ChangePasswordScreen extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
           ),
           title: Text(LocaleKeys.resetPassword.tr()),
           titleSpacing: 0,
         ),
-        body: ChangePasswordScreenBody(),
+        body: const ChangePasswordScreenBody(),
       ),
     );
   }

@@ -96,7 +96,7 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
               child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
                 listener: (context, state) {
                   if (state is ForgetPasswordSuccess) {
-                    showSnackBar(context, state.data["info"]);
+                    showSnackBar(context, state.data["info"] as String);
                     Navigator.pushNamed(
                       context,
                       RoutesName.emailVerificationScreen,

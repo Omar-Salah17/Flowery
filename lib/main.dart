@@ -19,14 +19,14 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   runApp(
     EasyLocalization(
-      supportedLocales: [Locale('en'), Locale('ar')],
+      supportedLocales: const [Locale('en'), Locale('ar')],
       path:
           'assets/translations', // <-- change the path of the translation files
-      fallbackLocale: Locale("_languageCode"),
-      assetLoader: CodegenLoader(),
+      fallbackLocale: const Locale("_languageCode"),
+      assetLoader: const CodegenLoader(),
       child: ChangeNotifierProvider(
         create: (_) => getIt<AppConfigProvider>(),
-        child: Flowery(),
+        child: const Flowery(),
       ),
     ),
   );
@@ -44,7 +44,7 @@ class _FloweryState extends State<Flowery> {
 
   @override
   Widget build(BuildContext context) {
-    var cartCubit = getIt<CartCubit>();
+    final cartCubit = getIt<CartCubit>();
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,

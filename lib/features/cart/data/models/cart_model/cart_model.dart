@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'cart_item.dart';
+import 'package:flowery/features/cart/data/models/cart_model/cart_item.dart';
 
 class CartModel extends Equatable {
   final String? id;

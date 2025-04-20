@@ -20,7 +20,7 @@ class LoginRepoImp implements LoginRepo {
   }) async {
     try {
       log("before calling datasource");
-      var data = await loginRemoteDataSource.login(loginRequest: loginRequest);
+      final data = await loginRemoteDataSource.login(loginRequest: loginRequest);
       log("after calling datasource");
       return Right(data);
     } catch (e) {
@@ -28,7 +28,7 @@ class LoginRepoImp implements LoginRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log('error in forgetPasswordRepoImpl: ${e.toString()}');
+        log('error in forgetPasswordRepoImpl: $e');
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }

@@ -9,7 +9,7 @@ class AlreadyHaveAccountSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var text = Theme.of(context).textTheme;
+    final text = Theme.of(context).textTheme;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,

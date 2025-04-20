@@ -6,7 +6,7 @@ void showSnackBar(BuildContext context, String message) {
     SnackBar(
       content: Text(message),
       backgroundColor: PalletsColors.success,
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
     ),
   );
 }
@@ -16,7 +16,7 @@ void showErrorSnackBar(BuildContext context, String message) {
     SnackBar(
       content: Text(message),
       backgroundColor: PalletsColors.error,
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
     ),
   );
 }
