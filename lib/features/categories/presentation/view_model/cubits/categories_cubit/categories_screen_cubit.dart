@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flowery/features/categories/data/models/categories_model/category.dart';
 import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/features/categories/domain/use_case/get_all_categories_use_case.dart';
-import 'package:flowery/features/categories/domain/use_case/get_all_sorted_products.dart';
+import 'package:flowery/features/categories/domain/use_case/get_all_sorted_products_use_case.dart';
 import 'package:flowery/features/categories/domain/use_case/get_products_by_category_use_case.dart';
 
 part 'categories_screen_state.dart';

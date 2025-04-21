@@ -83,8 +83,8 @@ import '../../features/categories/domain/repos/categories_screen_repo.dart'
     as _i826;
 import '../../features/categories/domain/use_case/get_all_categories_use_case.dart'
     as _i595;
-import '../../features/categories/domain/use_case/get_all_sorted_products.dart'
-    as _i1;
+import '../../features/categories/domain/use_case/get_all_sorted_products_use_case.dart'
+    as _i440;
 import '../../features/categories/domain/use_case/get_products_by_category_use_case.dart'
     as _i86;
 import '../../features/home/presentation/viewModel/home_view_model/home_cubit.dart'
@@ -295,8 +295,8 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i1048.ProductDetailsRemoteDataSource>(),
       ),
     );
-    gh.factory<_i1.GetProductsByCategoryWithSortUseCase>(
-      () => _i1.GetProductsByCategoryWithSortUseCase(
+    gh.factory<_i440.GetProductsByCategoryWithSortUseCase>(
+      () => _i440.GetProductsByCategoryWithSortUseCase(
         repo: gh<_i826.CategoriesScreenRepo>(),
       ),
     );
