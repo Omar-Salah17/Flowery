@@ -4,6 +4,7 @@ import 'package:flowery/features/categories/presentation/view/categories_screen.
 import 'package:flowery/features/categories/presentation/view/widgets/filter_button.dart';
 import 'package:flowery/features/categories/presentation/view/widgets/radio_tile.dart';
 import 'package:flowery/features/categories/presentation/view/widgets/slider_container.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,7 +56,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Sort by",
+              LocaleKeys.sortBy,
               style: AppTextStyles.instance.textStyle20.copyWith(
                 color: PalletsColors.mainColor60,
                 fontWeight: FontWeight.w700,
@@ -63,7 +64,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             ),
             SizedBox(height: 16.h),
             PriceSortOptionTile(
-              label: "Lowest Price",
+              label: LocaleKeys.lowestPrice,
               value: PriceSortOptions.lowest,
               groupValue: selectedOptionLocal,
               onChanged: (value) {
@@ -77,7 +78,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             ),
             SizedBox(height: 16.h),
             PriceSortOptionTile(
-              label: "Highest Price",
+              label: LocaleKeys.highestPrice,
               value: PriceSortOptions.highest,
               groupValue: selectedOptionLocal,
               onChanged: (value) {
@@ -91,7 +92,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             ),
             SizedBox(height: 16.h),
             Text(
-              "Price",
+              LocaleKeys.price,
               style: AppTextStyles.instance.textStyle16.copyWith(
                 color: PalletsColors.mainColor60,
               ),
