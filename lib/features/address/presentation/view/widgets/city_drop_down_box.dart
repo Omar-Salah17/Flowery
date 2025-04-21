@@ -21,7 +21,10 @@ class CityDropDownBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<CityModel>(
-       icon: const Icon(Icons.keyboard_arrow_down_rounded, color: PalletsColors.white90),
+      icon: const Icon(
+        Icons.keyboard_arrow_down_rounded,
+        color: PalletsColors.white90,
+      ),
       value: selectedCity,
       onChanged: onChanged,
       isExpanded: true,

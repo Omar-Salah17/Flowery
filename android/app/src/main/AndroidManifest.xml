@@ -6,6 +6,8 @@
         android:label="flowery"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyAjrJX6MRO8DV5tNmFxQ9amIOyBPqhSC3U"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

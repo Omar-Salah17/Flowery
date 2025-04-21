@@ -24,14 +24,12 @@ class AreaModel {
     );
   }
 
- 
-   static List<AreaModel> parseAreas(Map<String, dynamic> jsonData) {
+  static List<AreaModel> parseAreas(Map<String, dynamic> jsonData) {
     final data = jsonData["data"] as List;
     return data.map((e) => AreaModel.fromJson(e)).toList();
   }
-   static Future<List<AreaModel>> getAreaFromAssets(
-    BuildContext context,
-  ) async {
+
+  static Future<List<AreaModel>> getAreaFromAssets(BuildContext context) async {
     final jsonString = await DefaultAssetBundle.of(
       context,
     ).loadString("assets/governorates/states.json");
@@ -39,5 +37,4 @@ class AreaModel {
     //this  jsonDecode(jsonString); Parses the JSON string and converts it into Dart objects
     return parseAreas(data[2]);
   }
-
 }

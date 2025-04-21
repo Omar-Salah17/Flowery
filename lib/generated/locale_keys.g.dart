@@ -95,7 +95,7 @@ abstract class LocaleKeys {
   static const old = 'old';
   static const discount = 'discount';
   static const myOrders = 'myOrders';
-  static const savedAddress = 'savedAddress';
+  static const savedAddress = 'Save address ';
   static const notification = 'notification';
   static const language = 'language';
   static const aboutUs = 'aboutUs';

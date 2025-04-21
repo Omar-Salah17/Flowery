@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flowery/core/utils/constants.dart';
 import 'package:flowery/core/utils/models/products_model/products_model.dart';
+import 'package:flowery/features/address/data/models/add_address_response/add_address_response.dart';
 import 'package:flowery/features/address/data/models/logged_user_address_model.dart';
+import 'package:flowery/features/address/data/models/user_address_data.dart';
 import 'package:flowery/features/auth/login/data/models/login_request.dart'
     show LoginRequest;
 import 'package:flowery/features/auth/login/data/models/login_respose.dart';
@@ -84,4 +86,6 @@ abstract class ApiService {
   Future<String> uploadPhoto(@Part(name: "photo") File image);
   @GET(Constants.loggedUserAdderss)
   Future<LoggedUserAddressModel> getLoggedUserAddress();
+  @PATCH(Constants.loggedUserAdderss)
+  Future<AddAddressResponse> addNewAddress(@Body() UserAddressData userAddress);
 }
