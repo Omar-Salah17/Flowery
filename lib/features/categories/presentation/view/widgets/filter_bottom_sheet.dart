@@ -99,7 +99,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             SizedBox(height: 18.h),
             SliderContainer(), // Replace with your actual slider logic if it uses the value
             SizedBox(height: 16.h),
-            FilterButton(),
+            FilterButton(selectedOption: selectedOptionLocal),
           ],
         ),
       ),

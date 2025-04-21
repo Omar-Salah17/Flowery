@@ -36,6 +36,7 @@ abstract class ApiService {
   @GET(Constants.productsEndPoint)
   Future<ProductsModel> getProductsByCategory({
     @Query("category") String? categoryId,
+    @Query("sort") String? sort,
   });
   @POST(Constants.loginEndPoint)
   Future<LoginResponse> loginUser(@Body() LoginRequest loginRequest);

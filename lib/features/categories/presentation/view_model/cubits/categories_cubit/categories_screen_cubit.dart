@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flowery/features/categories/data/models/categories_model/category.dart';
 import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/features/categories/domain/use_case/get_all_categories_use_case.dart';
+import 'package:flowery/features/categories/domain/use_case/get_all_sorted_products.dart';
 import 'package:flowery/features/categories/domain/use_case/get_products_by_category_use_case.dart';
 
 part 'categories_screen_state.dart';
@@ -11,9 +12,12 @@ class CategoriesScreenCubit extends Cubit<CategoriesScreenState> {
   CategoriesScreenCubit(
     this.getAllCategoriesUseCase,
     this.getProductsByCategoryUseCase,
+    this.getProductsByCategoryWithSortUseCase,
   ) : super(ProductsByCategoryInitial());
   final GetAllCategoriesUseCase getAllCategoriesUseCase;
   final GetProductsByCategoryUseCase getProductsByCategoryUseCase;
+  final GetProductsByCategoryWithSortUseCase
+  getProductsByCategoryWithSortUseCase;
   String selectedCategoryId = "all";
   List<Category> categories = [];
 
@@ -40,6 +44,26 @@ class CategoriesScreenCubit extends Cubit<CategoriesScreenState> {
     result.fold(
       (falilure) {
         emit(ProductsByCategoryFailure(errorMessage: falilure.errorMessage));
+      },
+      (products) {
+        emit(ProductsByCategorySuccess(products: products));
+      },
+    );
+  }
+
+  Future<void> getProductsByCategoryWithSort({
+    String? categoryId,
+    String? sort,
+  }) async {
+    selectedCategoryId = categoryId ?? "all";
+    emit(CategoriesLoading());
+    final result = await getProductsByCategoryWithSortUseCase.call(
+      categoryId: categoryId,
+      sort: sort,
+    );
+    result.fold(
+      (failure) {
+        emit(ProductsByCategoryFailure(errorMessage: failure.errorMessage));
       },
       (products) {
         emit(ProductsByCategorySuccess(products: products));
