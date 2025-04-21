@@ -6,7 +6,7 @@ import 'package:flowery/features/cart/domain/usecases/delete_cart_item_usecase.d
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'delete_cart_item_usecase_test.mocks.dart';
+import 'get_user_cart_usecase_test.mocks.dart';
 
 @GenerateMocks([CartRepo, ])
 void main() {
