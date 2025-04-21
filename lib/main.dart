@@ -54,14 +54,14 @@ class _FloweryState extends State<Flowery> {
         return BlocProvider(
           create: (context) => cartCubit,
           child: MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  localizationsDelegates: context.localizationDelegates,
-                  supportedLocales: context.supportedLocales,
-                  locale: context.locale,
-                  initialRoute: RoutesName.initial,
-                  onGenerateRoute: RouteGenerator.onGenerator,
-                  theme: ApplicationTheme.themeData,
-                ),
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            initialRoute: RoutesName.categories,
+            onGenerateRoute: RouteGenerator.onGenerator,
+            theme: ApplicationTheme.themeData,
+          ),
         );
       },
     );

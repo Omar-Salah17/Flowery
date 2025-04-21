@@ -153,12 +153,12 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
-    gh.singleton<_i89.ApiManager>(() => _i89.ApiManager());
-    gh.singleton<_i361.LogInterceptor>(() => dioModule.provideLogger());
     gh.singleton<_i291.AppConfigProvider>(() => _i291.AppConfigProvider());
     gh.singleton<_i665.SecureStorageService>(
       () => _i665.SecureStorageService(),
     );
+    gh.singleton<_i361.LogInterceptor>(() => dioModule.provideLogger());
+    gh.singleton<_i89.ApiManager>(() => _i89.ApiManager());
     gh.singleton<_i646.GuestManager>(() => _i646.GuestManager());
     gh.factory<_i129.ForgetPasswordRemoteDataSource>(
       () => _i177.ForgetPasswordRemoteDataSourceImpl(
@@ -307,26 +307,26 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i998.ProfileRemoteDataSource>(),
       ),
     );
-    gh.factory<_i99.EditProfileUseCase>(
-      () => _i99.EditProfileUseCase(gh<_i1007.ProfileRepo>()),
-    );
     gh.factory<_i763.UploadPhotoUseCase>(
       () => _i763.UploadPhotoUseCase(gh<_i1007.ProfileRepo>()),
+    );
+    gh.factory<_i99.EditProfileUseCase>(
+      () => _i99.EditProfileUseCase(gh<_i1007.ProfileRepo>()),
     );
     gh.factory<_i629.BestSellerRepo>(
       () => _i12.BestSellerRepoImpl(gh<_i312.BestSellerDataSource>()),
     );
-    gh.factory<_i240.ClearCartUsecase>(
-      () => _i240.ClearCartUsecase(gh<_i123.CartRepo>()),
-    );
-    gh.factory<_i320.DeleteCartItemUsecase>(
-      () => _i320.DeleteCartItemUsecase(gh<_i123.CartRepo>()),
+    gh.factory<_i412.UpdateProductQuantityUseCase>(
+      () => _i412.UpdateProductQuantityUseCase(gh<_i123.CartRepo>()),
     );
     gh.factory<_i691.GetUserCartUsecase>(
       () => _i691.GetUserCartUsecase(gh<_i123.CartRepo>()),
     );
-    gh.factory<_i412.UpdateProductQuantityUseCase>(
-      () => _i412.UpdateProductQuantityUseCase(gh<_i123.CartRepo>()),
+    gh.factory<_i320.DeleteCartItemUsecase>(
+      () => _i320.DeleteCartItemUsecase(gh<_i123.CartRepo>()),
+    );
+    gh.factory<_i240.ClearCartUsecase>(
+      () => _i240.ClearCartUsecase(gh<_i123.CartRepo>()),
     );
     gh.factory<_i659.AddToCartUsecase>(
       () => _i659.AddToCartUsecase(cartRepo: gh<_i123.CartRepo>()),
