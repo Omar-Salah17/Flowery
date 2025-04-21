@@ -34,3 +34,4 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) => UserEntity(
   createdAt: json['createdAt'] as String,
 );
 
+

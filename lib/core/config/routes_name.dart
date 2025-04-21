@@ -14,6 +14,7 @@ class RoutesName {
   static const String bestSeller = "BestSellerScreen";
   static const String productsDetails = "ProductsDetails";
   static const String changePasswordScreen = "changePasswordScreen";
-
   static const String editProfile = "EditProfile";
+  static const String checkOut = "CheckOut";
+  static const String webview = "WebViewScreen";
 }

@@ -1,3 +1,4 @@
+import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/custom_button.dart';
 import 'package:flowery/features/cart/data/models/cart_model/cart_response.dart';
@@ -43,7 +44,9 @@ class CartViewBody extends StatelessWidget {
           titleColor: PalletsColors.blackBase,
         ),
         SizedBox(height: 12.h),
-        CustomElevatedButton(text: "Checkout", isPink: true, onTap: () {}),
+        CustomElevatedButton(text: "Checkout", isPink: true, onTap: () {
+          Navigator.pushNamed(context, RoutesName.checkOut);
+        }),
         SizedBox(height: 10.h),
       ],
     );

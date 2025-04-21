@@ -9,6 +9,8 @@ import 'package:flowery/features/best_seller/presentation/view/best_seller_scree
 import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_cubit.dart';
 import 'package:flowery/features/cart/presentation/view/cart_view.dart';
 import 'package:flowery/features/categories/presentation/view/categories_screen.dart';
+import 'package:flowery/features/check_out/presentation/view/check_out_screen.dart';
+import 'package:flowery/features/check_out/presentation/view_model/check_out_cubit.dart';
 import 'package:flowery/features/home/presentation/view/home_view.dart';
 import 'package:flowery/features/layout/Presentation/layout.dart';
 import 'package:flowery/features/occasion/presentation/view/occasion_screen.dart';
@@ -22,7 +24,7 @@ import 'package:flowery/features/splash/view/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class RouteGenerator {
+abstract class RouteGenerator {
   static Route<dynamic>? onGenerator(RouteSettings settings) {
     switch (settings.name) {
       case RoutesName.initial:
@@ -105,10 +107,11 @@ class RouteGenerator {
 
       case RoutesName.productsDetails:
         return MaterialPageRoute(
-        builder:
-        (context) => BlocProvider(
-    create: (context) => getIt<CartCubit>(),
-    child: const ProductsDetails(),),
+          builder:
+              (context) => BlocProvider(
+                create: (context) => getIt<CartCubit>(),
+                child: const ProductsDetails(),
+              ),
           settings: settings,
         );
 
@@ -122,6 +125,17 @@ class RouteGenerator {
               ),
           settings: settings,
         );
+
+      case RoutesName.checkOut:
+        return MaterialPageRoute(
+          builder:
+              (context) => BlocProvider(
+                child: const CheckOutScreen(),
+                create: (context) => getIt<CheckOutCubit>(),
+              ),
+          settings: settings,
+        );
+
 
       default:
         return MaterialPageRoute(

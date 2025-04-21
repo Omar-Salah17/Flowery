@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/helper/spacing.dart';
@@ -26,10 +25,7 @@ class UserInfoScetion extends StatelessWidget {
           CircleAvatar(
             backgroundImage: NetworkImage(user.photo!),
             radius: 50.r,
-            child: CachedNetworkImage(
-              imageUrl: user.photo ?? '',
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-            ),
+
           ),
           verticalSpace(10.h),
           Row(

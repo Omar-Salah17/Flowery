@@ -85,6 +85,18 @@ import '../../features/categories/domain/use_case/get_all_categories_use_case.da
     as _i595;
 import '../../features/categories/domain/use_case/get_products_by_category_use_case.dart'
     as _i86;
+import '../../features/check_out/data/data_source/check_out_remote_data_source.dart'
+    as _i582;
+import '../../features/check_out/data/data_source/check_out_remote_data_source_impl.dart'
+    as _i427;
+import '../../features/check_out/data/repos/check_out_repo_impl.dart' as _i89;
+import '../../features/check_out/domain/repos/check_out_repo.dart' as _i895;
+import '../../features/check_out/domain/use_case/cash_check_out_use_case.dart'
+    as _i512;
+import '../../features/check_out/domain/use_case/credit_check_out_use_case.dart'
+    as _i825;
+import '../../features/check_out/presentation/view_model/check_out_cubit.dart'
+    as _i582;
 import '../../features/home/presentation/viewModel/home_view_model/home_cubit.dart'
     as _i109;
 import '../../features/occasion/data/repos/occasion_remote_data_source_impl.dart'
@@ -283,6 +295,9 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i531.ProfileRemoteDataSourceImpl(apiService: gh<_i525.ApiService>()),
     );
+    gh.factory<_i582.CheckOutRemoteDataSource>(
+      () => _i427.CheckOutRemoteDataSourceImpl(gh<_i525.ApiService>()),
+    );
     gh.factory<_i877.GetProductDetailsContract>(
       () => _i232.GetProductDetailsImpl(
         remoteDataSource: gh<_i1048.ProductDetailsRemoteDataSource>(),
@@ -297,6 +312,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i86.GetProductsByCategoryUseCase(
         getAllCategoriesRepo: gh<_i826.CategoriesScreenRepo>(),
       ),
+    );
+    gh.factory<_i895.CheckOutRepo>(
+      () => _i89.CheckOutRepoImpl(gh<_i582.CheckOutRemoteDataSource>()),
     );
     gh.factory<_i691.GetProductDetailsUseCase>(
       () =>
@@ -315,6 +333,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i629.BestSellerRepo>(
       () => _i12.BestSellerRepoImpl(gh<_i312.BestSellerDataSource>()),
+    );
+    gh.factory<_i512.CashCheckOutUseCase>(
+      () => _i512.CashCheckOutUseCase(gh<_i895.CheckOutRepo>()),
+    );
+    gh.factory<_i825.CreditCheckOutUseCase>(
+      () => _i825.CreditCheckOutUseCase(gh<_i895.CheckOutRepo>()),
     );
     gh.factory<_i240.ClearCartUsecase>(
       () => _i240.ClearCartUsecase(gh<_i123.CartRepo>()),
@@ -349,6 +373,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i717.BestSellerCubit>(
       () => _i717.BestSellerCubit(gh<_i461.GetBestSellerUseCase>()),
+    );
+    gh.factory<_i582.CheckOutCubit>(
+      () => _i582.CheckOutCubit(
+        gh<_i825.CreditCheckOutUseCase>(),
+        gh<_i512.CashCheckOutUseCase>(),
+      ),
     );
     gh.factory<_i109.HomeCubit>(
       () => _i109.HomeCubit(
