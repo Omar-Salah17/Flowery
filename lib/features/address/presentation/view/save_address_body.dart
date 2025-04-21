@@ -13,12 +13,12 @@ class SaveAddressBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var addressCubit = AddressCubit();
+    final addressCubit = AddressCubit();
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
             Navigator.pop(context);
           },

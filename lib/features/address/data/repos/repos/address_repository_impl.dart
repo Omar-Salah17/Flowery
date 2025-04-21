@@ -14,7 +14,7 @@ class AddressRepositoryImpl implements AddressRepositoryContract {
   @override
   Future<Either<Failure, List<Addresses>?>> getLoggedUserAddress() async {
     try {
-      var response = await addressRemoteDataSource.getLoggedUserAddress();
+      final response = await addressRemoteDataSource.getLoggedUserAddress();
       return right(response);
     } catch (e) {
       if (e is ServerFailure) {
@@ -28,7 +28,7 @@ class AddressRepositoryImpl implements AddressRepositoryContract {
 @override
   Future<Either<Failure, List<Address>?>> deleteAddress({required String addressId}) async {
     try {
-      var response = await addressRemoteDataSource.deleteAddress(addressId: addressId);
+      final response = await addressRemoteDataSource.deleteAddress(addressId: addressId);
       return right(response);
     } catch (e) {
       if (e is ServerFailure) {

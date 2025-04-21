@@ -1,7 +1,6 @@
 import 'package:flowery/core/helper/spacing.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
-import 'package:flowery/features/address/data/models/address_model.dart';
 import 'package:flowery/features/address/data/models/logged_user_address_model.dart';
 import 'package:flowery/features/address/presentation/cubit/address_cubit.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +31,7 @@ class AddressItem extends StatelessWidget {
               SvgPicture.asset('assets/images/location.svg'),
               horizontalSpace(5.w),
               Text(address.city??'', style: AppTextStyles.instance.textStyle16),
-              Spacer(),
+              const Spacer(),
               InkWell(
                 onTap: (){
                 context.read<AddressCubit>().deleteAddress(addressId: address.id!);

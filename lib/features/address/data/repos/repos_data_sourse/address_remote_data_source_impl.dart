@@ -11,13 +11,13 @@ class AddressRemoteDataSourceImpl implements AdderssRemoteDataSource {
   AddressRemoteDataSourceImpl({required this.apiService});
   @override
   Future<List<Addresses>?> getLoggedUserAddress() async {
-    var response = await apiService.getLoggedUserAddress();
+    final response = await apiService.getLoggedUserAddress();
     return response.addresses;
   }
   
   @override
   Future<List<Address>?> deleteAddress({required String addressId}) async {
-    var response = await apiService.deleteAddress(addressId);
+    final response = await apiService.deleteAddress(addressId);
     return response.address;
   }
 }

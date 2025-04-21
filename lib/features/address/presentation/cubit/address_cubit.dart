@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/features/address/data/models/address_model.dart';
@@ -29,7 +28,7 @@ class AddressCubit extends Cubit<AddressState> {
       },
     );
   }
-  fetchListAfterDelete() async {
+  Future<void> fetchListAfterDelete() async {
     final result = await getLoggedUserAddressUseCase.invoke();
     result.fold(
       (failure) {
