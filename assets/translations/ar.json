@@ -167,22 +167,5 @@
     "newOffer": "عرض جديد",
     "confirmLogout": "تأكيد تسجيل الخروج!!",
     "remember": "تذكر",
-    "Delivery address": "عنوان التوصيل",
-    "Payment method": "طريقة الدفع",
-    "Cash on delivery": "الدفع عند الاستلام",
-    "Credit card": "بطاقة ائتمان",
-    "It is a gift": "إنها هدية",
-    "Name": "الاسم",
-    "Enter the name": "أدخل الاسم",
-    "Phone number": "رقم الهاتف",
-    "Enter the phone number": "أدخل رقم الهاتف",
-    "Add new": "إضافة جديد",
-    "Sub Total": "المجموع الفرعي",
-    "Delivery Fee": "رسوم التوصيل",
-    "Total": "الإجمالي",
-    "Checkout": "إتمام الشراء",
-    "arrive by": "الوصول بحلول {date}, {time}",
-    "back": "عودة",
-    "DeliveryTime": "وقت التسليم",
-    "Schedule": "جدولة"
+    "deliveryTime": "وقت التوصيل"
 }

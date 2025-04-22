@@ -47,14 +47,14 @@ class CheckOutAppBar extends StatelessWidget {
           Row(
             children: [
               Text(
-                LocaleKeys.DeliveryTime.tr(),  // Using LocaleKeys for "Delivery Time"
+                LocaleKeys.deliveryFee.tr(),  // Using LocaleKeys for "Delivery Time"
                 style: AppTextStyles.instance.textStyle18.copyWith(
                   fontWeight: FontWeight.w500,
                 ),
               ),
               const Spacer(),
               Text(
-                LocaleKeys.Schedule.tr(),  // Using LocaleKeys for "Schedule"
+                LocaleKeys.schedule.tr(),  // Using LocaleKeys for "Schedule"
                 style: AppTextStyles.instance.textStyle18.copyWith(
                   color: PalletsColors.mainColorBase,
                   fontWeight: FontWeight.w600,
@@ -74,7 +74,7 @@ class CheckOutAppBar extends StatelessWidget {
               ),
               const SizedBox(width: 3),
               Text(
-                LocaleKeys.arr.tr(args: ['03 Sep 2024', '11:00 AM']),  // Using LocaleKeys with parameters
+                LocaleKeys.estimatedArrival.tr(args: ['03 Sep 2024', '11:00 AM']),  // Using LocaleKeys with parameters
                 style: AppTextStyles.instance.textStyle14.copyWith(
                   color: PalletsColors.success,
                   fontWeight: FontWeight.w500,
