@@ -1,28 +1,23 @@
-
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-
 import 'package:flowery/core/utils/error_handler.dart';
 import 'package:flowery/features/address/data/data_source/address_remote_data_source_impl.dart';
-
 import 'package:flowery/features/address/data/models/add_address_response/add_address_response.dart';
-
 import 'package:flowery/features/address/data/models/logged_user_address_model.dart';
-
 import 'package:flowery/features/address/data/models/user_address_data.dart';
+import 'package:flowery/features/address/domain/repos/address_repo.dart';
+import 'package:injectable/injectable.dart';
 
-import '../../domain/repos/address_repository_contract.dart';
-
-class AddressRepositoryImpl implements AddressRepositoryContract{
-
+@Injectable(as: AddressRepo)
+class AddressRepoImpl implements AddressRepo {
   final AddressRemoteDataSource addressRemoteDataSource;
 
-  AddressRepositoryImpl({required this.addressRemoteDataSource});
+  AddressRepoImpl({required this.addressRemoteDataSource});
   @override
-  Future<Either<Failure, AddAddressResponse>> addAddress(UserAddressData address) async{
-     try {
+  Future<Either<Failure, AddAddressResponse>> addAddress(UserAddressData address)async {
+    try {
   final data = await addressRemoteDataSource.addNewAddress(address);
   return right(data);
 }  catch (e) {
@@ -39,7 +34,7 @@ class AddressRepositoryImpl implements AddressRepositoryContract{
 
   @override
   Future<Either<Failure, List<Addresses>?>> getLoggedUserAddress()async {
-    try {
+   try {
       var response = await addressRemoteDataSource.getLoggedUserAddress();
       return right(response);
     } catch (e) {
@@ -50,4 +45,5 @@ class AddressRepositoryImpl implements AddressRepositoryContract{
       }
     }
   }
+  
 }

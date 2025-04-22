@@ -12,6 +12,7 @@ class CustomTextFormFieled extends StatelessWidget {
   final String? Function(String?)? validator;
   final Widget? suffix;
   final bool? readOnly;
+ final Function(String)? onChanged;
 
   const CustomTextFormFieled({
     super.key,
@@ -21,12 +22,13 @@ class CustomTextFormFieled extends StatelessWidget {
     required this.shouldObscureText,
     this.validator,
     this.suffix,
-    this.readOnly,
+    this.readOnly, this.onChanged,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged:onChanged ,
       readOnly: readOnly ?? false,
       validator: validator,
       controller: textEditingController,

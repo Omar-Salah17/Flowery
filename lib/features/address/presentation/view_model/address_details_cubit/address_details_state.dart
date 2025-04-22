@@ -22,3 +22,4 @@ final class AddressDetailsError extends AddressDetailsState {
 
  const AddressDetailsError({required this.errorMessage});
 }
+final class AddressDetailsLocationUpdated extends AddressDetailsState{}
