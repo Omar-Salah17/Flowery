@@ -1,11 +1,11 @@
-import 'package:flowery/features/profile/about_us/data/Models/AboutApp.dart';
+import 'package:flowery/features/profile/about_us/data/Models/about_app.dart';
 import 'package:flowery/features/profile/about_us/data/Models/Content.dart';
 import 'package:flowery/features/profile/about_us/data/Models/Style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flowery/features/profile/about_us/presentation/viewmodel/about_us_state.dart';
 import 'package:flowery/features/profile/about_us/presentation/viewmodel/about_us_viewModel.dart';
-import 'package:flowery/features/profile/about_us/data/Models/About_us_model.dart';
+import 'package:flowery/features/profile/about_us/data/Models/about_us_model.dart';
 
 class AboutUsScreenBody extends StatelessWidget {
   const AboutUsScreenBody({super.key});

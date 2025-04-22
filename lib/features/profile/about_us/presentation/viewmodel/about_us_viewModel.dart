@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flowery/features/profile/about_us/data/Models/AboutApp.dart';
+import 'package:flowery/features/profile/about_us/data/Models/about_app.dart';
 import 'package:flowery/features/profile/about_us/domain/use_cases/about_us_use_case.dart';
 import 'package:flowery/features/profile/about_us/presentation/viewmodel/about_us_state.dart';
 import 'package:flowery/generated/locale_keys.g.dart';

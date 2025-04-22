@@ -1,5 +1,5 @@
 
-import 'package:flowery/features/profile/about_us/data/Models/About_us_model.dart';
+import 'package:flowery/features/profile/about_us/data/Models/about_us_model.dart';
 
 sealed class AboutUsState{}
 

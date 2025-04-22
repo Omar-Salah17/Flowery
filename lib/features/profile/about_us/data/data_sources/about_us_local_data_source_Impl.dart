@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:flowery/features/profile/about_us/data/Models/About_us_model.dart';
+import 'package:flowery/features/profile/about_us/data/Models/about_us_model.dart';
 import 'package:flowery/features/profile/about_us/data/data_sources/about_us_local_data_source.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
