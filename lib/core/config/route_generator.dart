@@ -1,5 +1,6 @@
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/di/di.dart';
+import 'package:flowery/features/address/presentation/cubit/address_cubit.dart';
 import 'package:flowery/features/address/presentation/view/save_address_view.dart';
 import 'package:flowery/features/auth/forgetPassword/presentation/view/email_verification_screen.dart';
 import 'package:flowery/features/auth/forgetPassword/presentation/view/forget_password_screen.dart';
@@ -7,6 +8,7 @@ import 'package:flowery/features/auth/forgetPassword/presentation/view/reset_pas
 import 'package:flowery/features/auth/login/presentation/view/screens/login.dart';
 import 'package:flowery/features/auth/register/presentation/view/screens/register_screen.dart';
 import 'package:flowery/features/best_seller/presentation/view/best_seller_screen.dart';
+import 'package:flowery/features/cart/data/models/cart_model/cart_response.dart';
 import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_cubit.dart';
 import 'package:flowery/features/cart/presentation/view/cart_view.dart';
 import 'package:flowery/features/categories/presentation/view/categories_screen.dart';
@@ -135,11 +137,17 @@ abstract class RouteGenerator {
 
       case RoutesName.checkOut:
         return MaterialPageRoute(
-          builder:
-              (context) => BlocProvider(
-                child: const CheckOutScreen(),
-                create: (context) => getIt<CheckOutCubit>(),
-              ),
+          builder: (context) {
+            final cartResponse = settings.arguments as CartResponse;
+
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider(create: (context) => getIt<CheckOutCubit>()),
+                BlocProvider(create: (context) => getIt<AddressCubit>()),
+              ],
+              child: CheckOutScreen(cart: cartResponse), // ✅ pass it here
+            );
+          },
           settings: settings,
         );
 

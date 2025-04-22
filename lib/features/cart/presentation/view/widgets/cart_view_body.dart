@@ -1,6 +1,7 @@
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/custom_button.dart';
+import 'package:flowery/core/utils/helper_functions/snack_bar.dart';
 import 'package:flowery/features/cart/data/models/cart_model/cart_response.dart';
 import 'package:flowery/features/cart/presentation/view/widgets/cart_item_widget.dart';
 import 'package:flowery/features/cart/presentation/view/widgets/price_row.dart';
@@ -45,7 +46,13 @@ class CartViewBody extends StatelessWidget {
         ),
         SizedBox(height: 12.h),
         CustomElevatedButton(text: "Checkout", isPink: true, onTap: () {
-          Navigator.pushNamed(context, RoutesName.checkOut);
+          print('cartResponse ===${cartResponse.cart!.totalPrice}');
+          if(cartResponse.cart!.cartItems!.isNotEmpty)
+            {
+          Navigator.pushNamed(context, RoutesName.checkOut,arguments: cartResponse);}
+          else{
+            showErrorSnackBar(context, 'Cart is empty', );
+          }
         }),
         SizedBox(height: 10.h),
       ],
