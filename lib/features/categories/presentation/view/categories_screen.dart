@@ -24,7 +24,7 @@ class CategoriesScreen extends StatelessWidget {
               CategoriesScreenCubit(
                   getIt.get<GetAllCategoriesUseCase>(),
                   getIt.get<GetProductsByCategoryUseCase>(),
-                  getIt.get<SearchUseCase>(),
+                  getIt<SearchUseCase>(),
                 )
                 ..getAllCategories()
                 ..getProductsByCategory(),

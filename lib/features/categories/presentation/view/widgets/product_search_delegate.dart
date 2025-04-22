@@ -1,10 +1,19 @@
 import 'package:flowery/core/di/di.dart';
+import 'package:flowery/core/utils/widgets/products_grid_view.dart';
+import 'package:flowery/features/categories/domain/use_case/get_all_categories_use_case.dart';
+import 'package:flowery/features/categories/domain/use_case/get_products_by_category_use_case.dart';
+import 'package:flowery/features/categories/domain/use_case/search_use_case.dart';
+import 'package:flowery/features/categories/presentation/view/widgets/product_item_widget.dart';
 import 'package:flowery/features/categories/presentation/view_model/cubits/categories_cubit/categories_screen_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductSearchDelegate extends SearchDelegate {
-  final CategoriesScreenCubit cubit = getIt<CategoriesScreenCubit>();
+  final CategoriesScreenCubit cubit = CategoriesScreenCubit(
+    getIt.get<GetAllCategoriesUseCase>(),
+    getIt.get<GetProductsByCategoryUseCase>(),
+    getIt<SearchUseCase>(),
+  );
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -30,7 +39,6 @@ class ProductSearchDelegate extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     cubit.search(keyword: query);
-
     return BlocProvider.value(
       value: cubit,
       child: BlocBuilder<CategoriesScreenCubit, CategoriesScreenState>(
@@ -41,15 +49,10 @@ class ProductSearchDelegate extends SearchDelegate {
             if (state.products.isEmpty) {
               return const Center(child: Text('No results found'));
             }
-            return ListView.builder(
-              itemCount: state.products.length,
-              itemBuilder: (context, index) {
-                final product = state.products[index];
-                return ListTile(
-                  title: Text(product.category ?? 'No Name'),
-                  subtitle: Text('${product.price} EGP'),
-                );
-              },
+            return  CustomScrollView(
+              slivers: [
+                ProductsGridView(productsList: state.products),
+              ],
             );
           } else if (state is ProductsByCategoryFailure) {
             return Center(child: Text(state.errorMessage));
