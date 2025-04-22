@@ -14,11 +14,13 @@ import 'package:flowery/features/home/presentation/view/home_view.dart';
 import 'package:flowery/features/layout/Presentation/layout.dart';
 import 'package:flowery/features/occasion/presentation/view/occasion_screen.dart';
 import 'package:flowery/features/productsDetails/presentation/view/products_details.dart';
+import 'package:flowery/features/profile/about_us/presentation/view/about_us_screen.dart';
 import 'package:flowery/features/profile/data/model/user_response.dart';
 import 'package:flowery/features/profile/presentation/view/change_password_screen.dart';
 import 'package:flowery/features/profile/presentation/view/edit_profile_view.dart';
 import 'package:flowery/features/profile/presentation/view/profile_view.dart';
 import 'package:flowery/features/profile/presentation/view_model/edit_profile_cubit.dart';
+import 'package:flowery/features/profile/terms_and_conditions/presentation/view/terms_and_conditions_screen.dart';
 import 'package:flowery/features/splash/view/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,7 +33,6 @@ class RouteGenerator {
           builder: (context) => const Splash(),
           settings: settings,
         );
-
       case RoutesName.login:
         return MaterialPageRoute(
           builder: (context) => const Login(),
@@ -129,7 +130,16 @@ class RouteGenerator {
               ),
           settings: settings,
         );
-
+      case RoutesName.aboutUsScreen:
+        return MaterialPageRoute(
+          builder: (context) => const AboutUsScreen(),
+          settings: settings,
+        );
+      case RoutesName.termsAndConditionsScreen:
+        return MaterialPageRoute(
+          builder: (context) => const TermsAndConditionsScreen(),
+          settings: settings,
+        );
       default:
         return MaterialPageRoute(
           builder: (context) => const Splash(),

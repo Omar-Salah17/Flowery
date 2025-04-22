@@ -120,10 +120,16 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
           SettingsTile(
             title: LocaleKeys.aboutUs.tr(),
             onTap: () {
-              // Navigate to About Us
+                Navigator.pushNamed(context, RoutesName.aboutUsScreen);
             },
           ),
-          SettingsTile(title: LocaleKeys.termsConditions.tr(), onTap: () {}),
+          SettingsTile(
+              title: LocaleKeys.termsConditions.tr(),
+              onTap: () {
+                Navigator.pushNamed(context, RoutesName.termsAndConditionsScreen);
+              }
+          )
+          ,
           verticalSpace(10),
           Divider(color: PalletsColors.white70, height: .5.h),
           verticalSpace(10),
