@@ -4,6 +4,7 @@ import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/cart/presentation/view/cart_view.dart';
 import 'package:flowery/features/categories/domain/use_case/get_all_categories_use_case.dart';
 import 'package:flowery/features/categories/domain/use_case/get_products_by_category_use_case.dart';
+import 'package:flowery/features/categories/domain/use_case/search_use_case.dart';
 import 'package:flowery/features/categories/presentation/view/categories_screen.dart';
 import 'package:flowery/features/categories/presentation/view_model/cubits/categories_cubit/categories_screen_cubit.dart';
 import 'package:flowery/features/home/presentation/view/home_view.dart';
@@ -37,14 +38,14 @@ class LayoutState extends State<Layout> {
 
   @override
   Widget build(BuildContext context) {
-    return 
-        BlocProvider(
-          create:
-              (context) => CategoriesScreenCubit(
-                getIt.get<GetAllCategoriesUseCase>(),
-                getIt.get<GetProductsByCategoryUseCase>(),
-              )..getAllCategories(),
-      
+    return BlocProvider(
+      create:
+          (context) => CategoriesScreenCubit(
+            getIt.get<GetAllCategoriesUseCase>(),
+            getIt.get<GetProductsByCategoryUseCase>(),
+            getIt.get<SearchUseCase>(),
+          )..getAllCategories(),
+
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,

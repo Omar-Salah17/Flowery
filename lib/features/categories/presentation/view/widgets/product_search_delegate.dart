@@ -1,0 +1,68 @@
+import 'package:flowery/core/di/di.dart';
+import 'package:flowery/features/categories/presentation/view_model/cubits/categories_cubit/categories_screen_cubit.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class ProductSearchDelegate extends SearchDelegate {
+  final CategoriesScreenCubit cubit = getIt<CategoriesScreenCubit>();
+
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: const Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+          showSuggestions(context);
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.arrow_back),
+      onPressed: () => close(context, null),
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    cubit.search(keyword: query);
+
+    return BlocProvider.value(
+      value: cubit,
+      child: BlocBuilder<CategoriesScreenCubit, CategoriesScreenState>(
+        builder: (context, state) {
+          if (state is CategoriesLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is ProductsByCategorySuccess) {
+            if (state.products.isEmpty) {
+              return const Center(child: Text('No results found'));
+            }
+            return ListView.builder(
+              itemCount: state.products.length,
+              itemBuilder: (context, index) {
+                final product = state.products[index];
+                return ListTile(
+                  title: Text(product.category ?? 'No Name'),
+                  subtitle: Text('${product.price} EGP'),
+                );
+              },
+            );
+          } else if (state is ProductsByCategoryFailure) {
+            return Center(child: Text(state.errorMessage));
+          } else {
+            return const Center(child: Text('Start typing to search...'));
+          }
+        },
+      ),
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return const Center(child: Text('Search For Any Product You Want'));
+  }
+}

@@ -17,9 +17,12 @@ class CategoriesScreenRemoteDataSourceImpl
   }
 
   @override
-  Future<ProductsModel> getProductsByCategory({String? categoryId}) async {
+  Future<ProductsModel> getProductsByCategory({String? categoryId,
+    String? keyword,
+  }) async {
     final response = await apiService.getProductsByCategory(
       categoryId: categoryId,
+       keyword: keyword
     );
     return response;
   }

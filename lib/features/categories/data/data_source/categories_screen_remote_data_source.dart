@@ -3,5 +3,7 @@ import 'package:flowery/features/categories/data/models/categories_model/categor
 
 abstract class CategoriesScreenRemoteDataSource {
   Future<CategoriesModel> getCategories();
-  Future<ProductsModel> getProductsByCategory({String? categoryId});
+  Future<ProductsModel> getProductsByCategory({String? categoryId,
+    String? keyword,
+  });
 }
