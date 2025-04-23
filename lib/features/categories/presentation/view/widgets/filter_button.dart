@@ -18,8 +18,10 @@ class FilterButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         final cubit = context.read<CategoriesScreenCubit>();
+        final selectedId= cubit.selectedCategoryId;
         cubit.getProductsByCategoryWithSort(
           sort: selectedOption == PriceSortOptions.lowest ? 'price' : '-price',
+          categoryId: selectedId,
         );
         Navigator.pop(context); // close the bottom sheet after applying
       },

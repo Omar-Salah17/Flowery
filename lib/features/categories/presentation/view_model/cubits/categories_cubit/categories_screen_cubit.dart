@@ -63,8 +63,8 @@ class CategoriesScreenCubit extends Cubit<CategoriesScreenState> {
   }) async {
     selectedCategoryId = categoryId ?? "all";
     emit(CategoriesLoading());
-    final result = await getProductsByCategoryWithSortUseCase.call(
-      categoryId: categoryId,
+    if(categoryId=='all')
+ {   final result = await getProductsByCategoryWithSortUseCase.call(
       sort: sort,
     );
     result.fold(
@@ -75,7 +75,20 @@ class CategoriesScreenCubit extends Cubit<CategoriesScreenState> {
         emit(ProductsByCategorySuccess(products: products));
       },
     );
-  }
+  }else{final result = await getProductsByCategoryWithSortUseCase.call(
+      sort: sort,
+      categoryId: categoryId,
+    );
+    result.fold(
+          (failure) {
+        emit(ProductsByCategoryFailure(errorMessage: failure.errorMessage));
+      },
+          (products) {
+        emit(ProductsByCategorySuccess(products: products));
+      },
+    );
+
+    }}
   Future<void> search({String? categoryId, String? keyword}) async {
     selectedCategoryId = categoryId ?? "all";
     emit(CategoriesLoading());
