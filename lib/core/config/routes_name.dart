@@ -18,4 +18,6 @@ class RoutesName {
   static const String termsAndConditionsScreen = "Terms&Conditions";
   static const String editProfile = "EditProfile";
   static const String saveAddressScreen = "SaveAddressScreen";
+  static const String checkOut = "CheckOut";
+  static const String webview = "WebViewScreen";
 }

@@ -33,7 +33,6 @@ class _CategoriesTitleListViewState extends State<CategoriesTitleListView> {
           children: [
             GestureDetector(
               onTap: () {
-                selectedCat;
                 context.read<CategoriesScreenCubit>().getProductsByCategory();
               },
               child: Column(

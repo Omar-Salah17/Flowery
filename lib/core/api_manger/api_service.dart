@@ -15,6 +15,9 @@ import 'package:flowery/features/cart/data/models/add_product_request.dart';
 
 import 'package:flowery/features/cart/data/models/cart_model/cart_response.dart';
 import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart';
+import 'package:flowery/features/check_out/data/models/cash_order_response.dart';
+import 'package:flowery/features/check_out/data/models/check_out_session_response.dart';
+import 'package:flowery/features/check_out/data/models/shipping_address_model.dart';
 import 'package:flowery/features/occasion/data/models/occaions.dart';
 import 'package:flowery/features/productsDetails/data/models/product_details_model/product_details_model.dart';
 import 'package:flowery/features/profile/data/model/user_response.dart';
@@ -92,4 +95,16 @@ abstract class ApiService {
   Future<AddressModel> deleteAddress(
     @Path("addressId") String addressId,
   );
+
+  @POST(Constants.checkoutEndPoint)
+  Future<CheckoutSessionResponse>creditCheckOut(
+      @Body() ShippingAddressModel shippingAddressModel,
+      @Query("url") String url
+      );
+  @POST(Constants.cashCheckoutEndPoint)
+  Future<CashOrderResponse>cashCheckOut(
+      @Body() ShippingAddressModel shippingAddressModel,
+      );
+
+
 }

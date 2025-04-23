@@ -27,4 +27,6 @@ class Constants {
 
   static const String loggedUserAdderss='addresses';
   static const String deleteAddressEndPoint='addresses/{addressId}';
+  static const String checkoutEndPoint = "orders/checkout";
+  static const String cashCheckoutEndPoint = "orders";
 }

@@ -40,7 +40,7 @@ class ServerFailure extends Failure {
       case 400:
       case 401:
       case 403:
-        if (jsonData["message"] != null &&
+        if (jsonData["message"]  != null &&
             jsonData["message"].toString().contains(
               "fails to match the required pattern",
             )) {

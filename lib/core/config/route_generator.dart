@@ -7,9 +7,12 @@ import 'package:flowery/features/auth/forgetPassword/presentation/view/reset_pas
 import 'package:flowery/features/auth/login/presentation/view/screens/login.dart';
 import 'package:flowery/features/auth/register/presentation/view/screens/register_screen.dart';
 import 'package:flowery/features/best_seller/presentation/view/best_seller_screen.dart';
+import 'package:flowery/features/cart/data/models/cart_model/cart_response.dart';
 import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_cubit.dart';
 import 'package:flowery/features/cart/presentation/view/cart_view.dart';
 import 'package:flowery/features/categories/presentation/view/categories_screen.dart';
+import 'package:flowery/features/check_out/presentation/view/check_out_screen.dart';
+import 'package:flowery/features/check_out/presentation/view_model/check_out_cubit.dart';
 import 'package:flowery/features/home/presentation/view/home_view.dart';
 import 'package:flowery/features/layout/Presentation/layout.dart';
 import 'package:flowery/features/occasion/presentation/view/occasion_screen.dart';
@@ -33,6 +36,7 @@ class RouteGenerator {
           builder: (context) => const Splash(),
           settings: settings,
         );
+
       case RoutesName.login:
         return MaterialPageRoute(
           builder: (context) => const Login(),
@@ -137,6 +141,24 @@ class RouteGenerator {
           builder: (context) => const TermsAndConditionsScreen(),
           settings: settings,
         );
+
+      case RoutesName.checkOut:
+        return MaterialPageRoute(
+          builder: (context) {
+            final cartResponse = settings.arguments as CartResponse;
+
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider(create: (context) => getIt<CheckOutCubit>()),
+                BlocProvider(create: (context) => getIt<AddressCubit>()),
+              ],
+              child: CheckOutScreen(cart: cartResponse), // ✅ pass it here
+            );
+          },
+          settings: settings,
+        );
+
+
       default:
         return MaterialPageRoute(
           builder: (context) => const Splash(),
