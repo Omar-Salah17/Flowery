@@ -1,28 +1,37 @@
 import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flowery/features/address/data/models/add_address_response/add_address_response.dart';
+import 'package:flowery/features/address/data/models/logged_user_address_model.dart';
 import 'package:flowery/features/address/data/models/user_address_data.dart';
 import 'package:flowery/features/address/domain/use_case/add_address_use_case.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 part 'address_details_state.dart';
 
 class AddressDetailsCubit extends Cubit<AddressDetailsState> {
-  AddressDetailsCubit(this.addAddressUseCase) : super(AddressDetailsInitial());
+  AddressDetailsCubit(this.addAddressUseCase, this.addressModel)
+    : super(AddressDetailsInitial());
+  Addresses? addressModel;
 
   final AddAddressUseCase addAddressUseCase;
 
-  final TextEditingController addressController = TextEditingController();
-  final TextEditingController phoneNumberController = TextEditingController();
-  final TextEditingController recipientNameController = TextEditingController();
+  late final TextEditingController address;
+  late final TextEditingController phoneNumber;
+  late final TextEditingController recipientNameController;
 
   double? lat;
   double? long;
   GoogleMapController? mapController;
   Set<Marker> markers = {};
+  void initControllers() {
+    address = TextEditingController(text: addressModel?.street?? "");
+    phoneNumber = TextEditingController(text: addressModel?.phone?? "");
+    recipientNameController = TextEditingController(text: addressModel?.username?? "");
+  }
 
   Future<void> addAddress(UserAddressData addressData) async {
     emit(AddressDetailsLoading());
@@ -69,7 +78,7 @@ class AddressDetailsCubit extends Cubit<AddressDetailsState> {
 
       if (placemarks.isNotEmpty) {
         final placemark = placemarks.first;
-        addressController.text = [
+        address.text = [
           placemark.street,
           placemark.subLocality,
           placemark.locality,
@@ -85,8 +94,8 @@ class AddressDetailsCubit extends Cubit<AddressDetailsState> {
 
   @override
   Future<void> close() {
-    addressController.dispose();
-    phoneNumberController.dispose();
+    address.dispose();
+    phoneNumber.dispose();
     recipientNameController.dispose();
     return super.close();
   }

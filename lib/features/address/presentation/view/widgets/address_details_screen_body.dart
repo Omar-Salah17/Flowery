@@ -2,8 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/custom_text_form_fieled.dart';
 import 'package:flowery/core/utils/helper_functions/snack_bar.dart';
+import 'package:flowery/features/address/data/models/add_address_response/address.dart';
 import 'package:flowery/features/address/data/models/area_model.dart';
 import 'package:flowery/features/address/data/models/governorate_model.dart';
+import 'package:flowery/features/address/data/models/logged_user_address_model.dart';
 import 'package:flowery/features/address/data/models/user_address_data.dart';
 import 'package:flowery/features/address/presentation/view/widgets/area_drop_down_box.dart';
 import 'package:flowery/features/address/presentation/view/widgets/city_drop_down_box.dart';
@@ -15,8 +17,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class AddressDetailsScreenBody extends StatefulWidget {
-  const AddressDetailsScreenBody({super.key});
-
+  const AddressDetailsScreenBody({super.key, required this.address});
+  final Addresses address;
   @override
   State<AddressDetailsScreenBody> createState() =>
       _AddressDetailsScreenBodyState();
@@ -98,18 +100,18 @@ class _AddressDetailsScreenBodyState extends State<AddressDetailsScreenBody> {
             ),
 
             CustomTextFormFieled(
-              textEditingController: cubit.addressController,
+              textEditingController: cubit.address,
               labelText: LocaleKeys.address.tr(),
               hintText: LocaleKeys.enterAddress.tr(),
               shouldObscureText: false,
               onChanged: (_) async {
                 final fullAddress =
-                    "${cubit.addressController.text}, ${selectedArea?.nameEn}, ${selectedCity?.nameEn}";
+                    "${cubit.address.text}, ${selectedArea?.nameEn}, ${selectedCity?.nameEn}";
                 await cubit.updateMapFromAddress(fullAddress);
               },
             ),
             CustomTextFormFieled(
-              textEditingController: cubit.phoneNumberController,
+              textEditingController: cubit.phoneNumber,
               labelText: LocaleKeys.phoneNumber.tr(),
               hintText: LocaleKeys.enterPhoneNumber.tr(),
               shouldObscureText: false,
@@ -129,7 +131,7 @@ class _AddressDetailsScreenBodyState extends State<AddressDetailsScreenBody> {
                     onChanged: (CityModel? value) async {
                       selectedCity = value;
                       final fullAddress =
-                          "${cubit.addressController.text}, ${selectedArea?.nameEn}, ${selectedCity?.nameEn}";
+                          "${cubit.address.text}, ${selectedArea?.nameEn}, ${selectedCity?.nameEn}";
                       await cubit.updateMapFromAddress(fullAddress);
                       setState(() {});
                     },
@@ -143,7 +145,7 @@ class _AddressDetailsScreenBodyState extends State<AddressDetailsScreenBody> {
                     onChanged: (AreaModel? value) async {
                       selectedArea = value;
                       final fullAddress =
-                          "${cubit.addressController.text}, ${selectedArea?.nameEn}, ${selectedCity?.nameEn}";
+                          "${cubit.address.text}, ${selectedArea?.nameEn}, ${selectedCity?.nameEn}";
                       await cubit.updateMapFromAddress(fullAddress);
                       setState(() {});
                     },
@@ -159,8 +161,8 @@ class _AddressDetailsScreenBodyState extends State<AddressDetailsScreenBody> {
               onPressed: () {
                 cubit.addAddress(
                   UserAddressData(
-                    street: cubit.addressController.text.trim(),
-                    phone: cubit.phoneNumberController.text.trim(),
+                    street: cubit.address.text.trim(),
+                    phone: cubit.phoneNumber.text.trim(),
                     username: cubit.recipientNameController.text.trim(),
                     city: selectedCity?.nameEn ?? '',
                     lat: cubit.lat.toString(),

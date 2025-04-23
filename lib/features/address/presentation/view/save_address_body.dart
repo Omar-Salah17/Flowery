@@ -5,7 +5,7 @@ import 'package:flowery/core/provider/app_config_provider.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/address/presentation/view_model/address_cubit/address_cubit.dart';
-import 'package:flowery/features/address/presentation/widgets/address_item.dart';
+import 'package:flowery/features/address/presentation/view/widgets/address_item.dart';
 import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +16,7 @@ class SaveAddressBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appConfigProvider = getIt<AppConfigProvider>();
+
     var addressCubit = AddressCubit();
     return Scaffold(
       appBar: AppBar(
@@ -75,10 +75,10 @@ class SaveAddressBody extends StatelessWidget {
                               ),
                             ),
                             onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                RoutesName.addressDetailsScreen,
-                              );
+                               Navigator.pushNamed(context,
+                    RoutesName.addressDetailsScreen,
+                    
+                  );
                             },
                             child: Text('Add New Address'),
                           ),

@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/helper/spacing.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
@@ -33,7 +36,17 @@ class AddressItem extends StatelessWidget {
               Spacer(),
               Image.asset('assets/images/delete.png'),
               horizontalSpace(5.w),
-              SvgPicture.asset('assets/images/edit.svg'),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    RoutesName.addressDetailsScreen,
+                    arguments: address,
+                  );
+                 
+                },
+                child: SvgPicture.asset('assets/images/edit.svg'),
+              ),
             ],
           ),
           verticalSpace(10.h),
