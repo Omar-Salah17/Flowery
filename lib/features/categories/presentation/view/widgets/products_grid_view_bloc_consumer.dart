@@ -37,7 +37,7 @@ class ProductsGridViewBlocConsumer extends StatelessWidget {
             return ProductsGridView(productsList: state.products);
           }
         } else {
-          return const SliverFillRemaining(
+          return SliverFillRemaining(
             child: Center(
               child: CircularProgressIndicator(
                 color: PalletsColors.mainColorBase,

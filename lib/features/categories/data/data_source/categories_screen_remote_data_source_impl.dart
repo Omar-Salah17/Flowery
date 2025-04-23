@@ -1,4 +1,3 @@
-
 import 'package:flowery/features/categories/data/data_source/categories_screen_remote_data_source.dart';
 import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart';
 import 'package:flowery/core/utils/models/products_model/products_model.dart';
@@ -14,19 +13,20 @@ class CategoriesScreenRemoteDataSourceImpl
   CategoriesScreenRemoteDataSourceImpl({required this.apiService});
   @override
   Future<CategoriesModel> getCategories() async {
-    final response = await apiService.getCategories();
+    var response = await apiService.getCategories();
     return response;
   }
 
   @override
-  Future<ProductsModel> getProductsByCategory({String? categoryId,
-    String? keyword,
+  Future<ProductsModel> getProductsByCategory({
+    String? categoryId,
     String? sort,
+    String? keyword,
   }) async {
-    final response = await apiService.getProductsByCategory(
+    var response = await apiService.getProductsByCategory(
       categoryId: categoryId,
-       keyword: keyword,
       sort: sort,
+      keyword: keyword,
     );
     return response;
   }

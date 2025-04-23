@@ -1,5 +1,3 @@
-
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/categories/presentation/view/categories_screen.dart';
@@ -58,7 +56,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              LocaleKeys.sortBy.tr(),
+              LocaleKeys.sortBy,
               style: AppTextStyles.instance.textStyle20.copyWith(
                 color: PalletsColors.mainColor60,
                 fontWeight: FontWeight.w700,
@@ -66,7 +64,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             ),
             SizedBox(height: 16.h),
             PriceSortOptionTile(
-              label: LocaleKeys.lowestPrice.tr(),
+              label: LocaleKeys.lowestPrice,
               value: PriceSortOptions.lowest,
               groupValue: selectedOptionLocal,
               onChanged: (value) {
@@ -80,7 +78,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             ),
             SizedBox(height: 16.h),
             PriceSortOptionTile(
-              label: LocaleKeys.highestPrice.tr(),
+              label: LocaleKeys.highestPrice,
               value: PriceSortOptions.highest,
               groupValue: selectedOptionLocal,
               onChanged: (value) {
@@ -94,7 +92,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             ),
             SizedBox(height: 16.h),
             Text(
-              LocaleKeys.price.tr(),
+              LocaleKeys.price,
               style: AppTextStyles.instance.textStyle16.copyWith(
                 color: PalletsColors.mainColor60,
               ),

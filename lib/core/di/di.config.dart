@@ -101,6 +101,8 @@ import '../../features/categories/domain/use_case/get_products_by_category_use_c
     as _i86;
 import '../../features/categories/domain/use_case/search_use_case.dart'
     as _i579;
+import '../../features/categories/presentation/view_model/cubits/categories_cubit/categories_screen_cubit.dart'
+    as _i874;
 import '../../features/home/presentation/viewModel/home_view_model/home_cubit.dart'
     as _i109;
 import '../../features/occasion/data/repos/occasion_remote_data_source_impl.dart'
@@ -353,9 +355,6 @@ extension GetItInjectableX on _i174.GetIt {
         repo: gh<_i826.CategoriesScreenRepo>(),
       ),
     );
-    gh.factory<_i579.SearchUseCase>(
-      () => _i579.SearchUseCase(repo: gh<_i826.CategoriesScreenRepo>()),
-    );
     gh.factory<_i123.CartRepo>(
       () => _i806.CartRepoImpl(
         cartRemoteDataSource: gh<_i569.CartRemoteDataSource>(),
@@ -364,6 +363,19 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i86.GetProductsByCategoryUseCase>(
       () => _i86.GetProductsByCategoryUseCase(
         getAllCategoriesRepo: gh<_i826.CategoriesScreenRepo>(),
+      ),
+    );
+    gh.factory<_i579.SearchUseCase>(
+      () => _i579.SearchUseCase(
+        getAllCategoriesRepo: gh<_i826.CategoriesScreenRepo>(),
+      ),
+    );
+    gh.factory<_i874.CategoriesScreenCubit>(
+      () => _i874.CategoriesScreenCubit(
+        gh<_i595.GetAllCategoriesUseCase>(),
+        gh<_i86.GetProductsByCategoryUseCase>(),
+        gh<_i440.GetProductsByCategoryWithSortUseCase>(),
+        gh<_i579.SearchUseCase>(),
       ),
     );
     gh.factory<_i691.GetProductDetailsUseCase>(
