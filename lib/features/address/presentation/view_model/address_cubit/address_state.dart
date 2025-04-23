@@ -8,21 +8,13 @@ sealed class AddressState extends Equatable {
 }
 
 final class AddressInitial extends AddressState {}
-
 final class AddressLoading extends AddressState {}
-
 final class AddressSuccess extends AddressState {
-<<<<<<< HEAD:lib/features/address/presentation/cubit/address_state.dart
   final List<Addresses> ? addressList;
   const AddressSuccess({this.addressList});
-=======
-  final List<Addresses>? addressList;
-  const AddressSuccess({required this.addressList});
->>>>>>> origin/feature/address:lib/features/address/presentation/view_model/address_cubit/address_state.dart
   @override
   List<Object> get props => [addressList?? []];
 }
-
 final class AddressError extends AddressState {
   final String errorMessage;
   const AddressError(this.errorMessage);

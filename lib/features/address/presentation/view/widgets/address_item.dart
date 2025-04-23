@@ -1,11 +1,9 @@
-import 'dart:developer';
-
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/helper/spacing.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/address/data/models/logged_user_address_model.dart';
-
+import 'package:flowery/features/address/presentation/view_model/address_cubit/address_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,31 +29,23 @@ class AddressItem extends StatelessWidget {
             children: [
               SvgPicture.asset('assets/images/location.svg'),
               horizontalSpace(5.w),
-<<<<<<< HEAD:lib/features/address/presentation/widgets/address_item.dart
-              Text(address.city??'', style: AppTextStyles.instance.textStyle16),
-              const Spacer(),
-              InkWell(
-                onTap: (){
-                context.read<AddressCubit>().deleteAddress(addressId: address.id!);
-                },
-                child: Image.asset('assets/images/delete.png')),
-=======
               Text(
                 address.city ?? '',
                 style: AppTextStyles.instance.textStyle16,
               ),
-              Spacer(),
-              Image.asset('assets/images/delete.png'),
->>>>>>> origin/feature/address:lib/features/address/presentation/view/widgets/address_item.dart
+              const Spacer(),
+              InkWell(
+                onTap: () {
+                  context.read<AddressCubit>().deleteAddress(
+                    addressId: address.id!,
+                  );
+                },
+                child: Image.asset('assets/images/delete.png'),
+              ),
               horizontalSpace(5.w),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    RoutesName.addressDetailsScreen,
-                    arguments: address,
-                  );
-                 
+                  Navigator.pushNamed(context, RoutesName.addressDetailsScreen);
                 },
                 child: SvgPicture.asset('assets/images/edit.svg'),
               ),
