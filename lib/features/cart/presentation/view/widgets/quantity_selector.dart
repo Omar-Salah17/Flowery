@@ -35,9 +35,10 @@ class _QuantitySelectorState extends State<QuantitySelector> {
   }
 
   void _decrement() {
-    if (count > 0) {
+    if (count > 1) {
       setState(() {
         count--;
+
       });
       context.read<CartCubit>().updateProductQuantity(widget.id, count);
     }

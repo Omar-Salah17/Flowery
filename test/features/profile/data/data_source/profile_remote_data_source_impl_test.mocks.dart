@@ -11,8 +11,10 @@ import 'dart:io' as _i19;
 import 'package:flowery/core/api_manger/api_service.dart' as _i13;
 import 'package:flowery/core/utils/models/products_model/products_model.dart'
     as _i4;
-import 'package:flowery/features/address/data/models/address_model.dart'
+import 'package:flowery/features/address/data/models/add_address_response/add_address_response.dart'
     as _i12;
+import 'package:flowery/features/address/data/models/address_model.dart'
+    as _i13;
 import 'package:flowery/features/address/data/models/logged_user_address_model.dart'
     as _i11;
 import 'package:flowery/features/address/data/models/user_address_data.dart'
@@ -113,8 +115,14 @@ class _FakeLoggedUserAddressModel_9 extends _i1.SmartFake
     : super(parent, parentInvocation);
 }
 
-class _FakeAddressModel_10 extends _i1.SmartFake implements _i12.AddressModel {
-  _FakeAddressModel_10(Object parent, Invocation parentInvocation)
+class _FakeAddAddressResponse_10 extends _i1.SmartFake
+    implements _i12.AddAddressResponse {
+  _FakeAddAddressResponse_10(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeAddressModel_11 extends _i1.SmartFake implements _i13.AddressModel {
+  _FakeAddressModel_11(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 

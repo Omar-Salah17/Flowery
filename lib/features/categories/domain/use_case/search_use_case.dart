@@ -6,14 +6,13 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class SearchUseCase {
-  final CategoriesScreenRepo repo;
+  final CategoriesScreenRepo getAllCategoriesRepo;
+  SearchUseCase({required this.getAllCategoriesRepo});
 
-  SearchUseCase({required this.repo});
-
-  Future<Either<Failure, List<Product>>> call({
-    String? categoryId,
-    String? keyword
-  }) async {
-    return await repo.getProductsByCategory(categoryId: categoryId, keyword: keyword);
+  Future<Either<Failure, List<Product>>> call({String? categoryId, String? keyword}) async {
+    return await getAllCategoriesRepo.getProductsByCategory(
+      categoryId: categoryId,
+      keyword: keyword
+    );
   }
 }

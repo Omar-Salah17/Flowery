@@ -8,11 +8,14 @@ import 'package:flowery/features/address/domain/use_case/delete_address_use_case
 import 'package:flowery/features/address/domain/use_case/get_logged_user_address_use_case.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
 part 'address_state.dart';
 
+@injectable
 class AddressCubit extends Cubit<AddressState> {
   AddressCubit() : super(AddressInitial());
+
   GetLoggedUserAddressUseCase getLoggedUserAddressUseCase =
       GetLoggedUserAddressUseCase(getIt<AddressRepo>());
       DeleteAddressUseCase deleteAddressUseCase = DeleteAddressUseCase(getIt<AddressRepo>());
