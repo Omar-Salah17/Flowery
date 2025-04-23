@@ -108,9 +108,9 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                     final address = state.addressList![index];
                                     String addressName = '';
                                     if (index == 0) {
-                                      addressName = 'Home';
+                                      addressName = LocaleKeys.home.tr();
                                     } else if (index == 1) {
-                                      addressName = 'Office';
+                                      addressName =  LocaleKeys.office.tr();;
                                     } else {
                                       addressName = address.city ?? "";
                                     }
@@ -246,7 +246,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   PriceRow(title: LocaleKeys.subTotal.tr(), value:widget.cart.cart!.totalPrice.toString()),
-                  PriceRow(title: LocaleKeys.deliveryFee.tr(), value: "10 EGP"),
+                  PriceRow(title: LocaleKeys.deliveryFee.tr(), value: "10 ${LocaleKeys.egp.tr()}"),
                   const Divider(thickness: 1),
                   PriceRow(
                     title: LocaleKeys.total.tr(),
