@@ -8,11 +8,7 @@ class QuantitySelector extends StatefulWidget {
   final int initialValue;
   final String id;
 
-  const QuantitySelector({
-    super.key,
-    this.initialValue = 1,
-    required this.id,
-  });
+  const QuantitySelector({super.key, this.initialValue = 1, required this.id});
 
   @override
   State<QuantitySelector> createState() => _QuantitySelectorState();
@@ -35,7 +31,7 @@ class _QuantitySelectorState extends State<QuantitySelector> {
     });
     log("id");
     log(widget.id);
-      context.read<CartCubit>().updateProductQuantity(widget.id, count);
+    context.read<CartCubit>().updateProductQuantity(widget.id, count);
   }
 
   void _decrement() {

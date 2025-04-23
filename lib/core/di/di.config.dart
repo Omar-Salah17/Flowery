@@ -396,9 +396,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i412.UpdateProductQuantityUseCase>(
       () => _i412.UpdateProductQuantityUseCase(gh<_i123.CartRepo>()),
     );
-    gh.factory<_i315.AddressRepositoryContract>(
-      () => _i769.AddressRepositoryImpl(
-        addressRemoteDataSource: gh<_i922.AdderssRemoteDataSource>(),
+    gh.factory<_i1032.AddressRepo>(
+      () => _i715.AddressRepoImpl(
+        addressRemoteDataSource: gh<_i669.AddressRemoteDataSource>(),
       ),
     );
     gh.factory<_i659.AddToCartUsecase>(

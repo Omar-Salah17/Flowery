@@ -27,7 +27,7 @@ class ViewAllWidget extends StatelessWidget {
           GestureDetector(
             onTap: onTap,
             child: Text(
-             LocaleKeys.viewAll.tr(),
+              LocaleKeys.viewAll.tr(),
               style: AppTextStyles.instance.textStyle12.copyWith(
                 fontWeight: FontWeight.w500,
                 color: PalletsColors.mainColorBase,

@@ -34,8 +34,8 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
   @override
   void initState() {
     super.initState();
-    emailController = TextEditingController(text: 'mariaamk1@gmail.com');
-    passwordController = TextEditingController(text: 'Ahmed@123');
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
   }
 
   @override
@@ -111,12 +111,11 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                       text: LocaleKeys.login.tr(),
                       onTap: () async {
                         if (formKey.currentState!.validate()) {
-                        
                           await context.read<LoginCubit>().login(
                             email: emailController.text.trim(),
                             password: passwordController.text.trim(),
                           );
-                          
+
                           autoValidateMode = AutovalidateMode.disabled;
                         } else {
                           setState(() {

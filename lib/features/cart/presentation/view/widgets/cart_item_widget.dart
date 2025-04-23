@@ -9,12 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CartItemWidget extends StatelessWidget {
-
   final CartItem cartItem;
-  const CartItemWidget({
-    super.key,
-    required this.cartItem,
-  });
+  const CartItemWidget({super.key, required this.cartItem});
 
   @override
   @override
@@ -39,12 +35,13 @@ class CartItemWidget extends StatelessWidget {
                 width: 80.w,
                 fit: BoxFit.cover,
                 imageUrl: cartItem.product?.imgCover ?? '',
-                progressIndicatorBuilder: (context, url, progress) => Center(
-                  child: CircularProgressIndicator(
-                    value: progress.progress,
-                    color: PalletsColors.mainColorBase,
-                  ),
-                ),
+                progressIndicatorBuilder:
+                    (context, url, progress) => Center(
+                      child: CircularProgressIndicator(
+                        value: progress.progress,
+                        color: PalletsColors.mainColorBase,
+                      ),
+                    ),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
@@ -63,26 +60,28 @@ class CartItemWidget extends StatelessWidget {
                               cartItem.product?.title ?? "No Title",
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: AppTextStyles.instance.textStyle16.copyWith(
-                                color: PalletsColors.blackBase,
-                                fontWeight: FontWeight.w500,
-                              ),
+                              style: AppTextStyles.instance.textStyle16
+                                  .copyWith(
+                                    color: PalletsColors.blackBase,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                             ),
                             SizedBox(height: 4.h),
                             Text(
                               cartItem.product?.description ?? "No desc",
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: AppTextStyles.instance.textStyle13.copyWith(
-                                color: PalletsColors.white90,
-                              ),
+                              style: AppTextStyles.instance.textStyle13
+                                  .copyWith(color: PalletsColors.white90),
                             ),
                           ],
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          context.read<CartCubit>().deleteCartItem(cartItem.product!.id!);
+                          context.read<CartCubit>().deleteCartItem(
+                            cartItem.product!.id!,
+                          );
                         },
                         child: Padding(
                           padding: EdgeInsets.only(left: 8.w),
@@ -116,12 +115,10 @@ class CartItemWidget extends StatelessWidget {
                   ),
                 ],
               ),
-            )
-
+            ),
           ],
         ),
       ),
     );
   }
-
 }

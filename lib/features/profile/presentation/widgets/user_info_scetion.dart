@@ -16,7 +16,6 @@ import 'package:flutter_svg/svg.dart';
 class UserInfoScetion extends StatelessWidget {
   final UserData user;
   const UserInfoScetion({super.key, required this.user});
-  
 
   @override
   Widget build(BuildContext context) {

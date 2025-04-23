@@ -39,7 +39,7 @@ class _CategoriesTitleListViewState extends State<CategoriesTitleListView> {
               child: Column(
                 children: [
                   Text(
-                   LocaleKeys.all.tr(),
+                    LocaleKeys.all.tr(),
                     style: AppTextStyles.instance.textStyle16.copyWith(
                       color:
                           selectedCat == LocaleKeys.all.tr()

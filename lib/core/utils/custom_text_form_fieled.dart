@@ -12,6 +12,7 @@ class CustomTextFormFieled extends StatelessWidget {
   final String? Function(String?)? validator;
   final Widget? suffix;
   final bool? readOnly;
+ final Function(String)? onChanged;
 
   const CustomTextFormFieled({
     super.key,
@@ -21,12 +22,13 @@ class CustomTextFormFieled extends StatelessWidget {
     required this.shouldObscureText,
     this.validator,
     this.suffix,
-    this.readOnly,
+    this.readOnly, this.onChanged,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged:onChanged ,
       readOnly: readOnly ?? false,
       validator: validator,
       controller: textEditingController,
@@ -52,9 +54,11 @@ class CustomTextFormFieled extends StatelessWidget {
           borderSide: BorderSide(color: PalletsColors.gray),
         ),
         labelText: labelText,
-        labelStyle: ApplicationTheme.themeData.textTheme.bodySmall,
+        labelStyle: ApplicationTheme.themeData.textTheme.bodySmall?.copyWith(
+          color: PalletsColors.white90,
+        ),
         hintText: hintText,
-        hintStyle: ApplicationTheme.themeData.textTheme.bodyMedium?.copyWith(
+        hintStyle: ApplicationTheme.themeData.textTheme.bodyLarge?.copyWith(
           color: PalletsColors.white70,
         ),
       ),

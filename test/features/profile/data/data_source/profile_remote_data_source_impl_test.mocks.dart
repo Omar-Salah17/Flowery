@@ -5,6 +5,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i14;
 import 'dart:io' as _i19;
+import 'dart:async' as _i14;
+import 'dart:io' as _i19;
 
 import 'package:flowery/core/api_manger/api_service.dart' as _i13;
 import 'package:flowery/core/utils/models/products_model/products_model.dart'
@@ -13,17 +15,22 @@ import 'package:flowery/features/address/data/models/address_model.dart'
     as _i12;
 import 'package:flowery/features/address/data/models/logged_user_address_model.dart'
     as _i11;
+import 'package:flowery/features/address/data/models/user_address_data.dart'
+    as _i20;
 import 'package:flowery/features/auth/login/data/models/login_request.dart'
+    as _i16;
     as _i16;
 import 'package:flowery/features/auth/login/data/models/login_respose.dart'
     as _i5;
 import 'package:flowery/features/auth/register/data/models/register_request.dart'
+    as _i15;
     as _i15;
 import 'package:flowery/features/auth/register/data/models/register_response.dart'
     as _i2;
 import 'package:flowery/features/best_seller/data/models/best_seller_model.dart'
     as _i8;
 import 'package:flowery/features/cart/data/models/add_product_request.dart'
+    as _i17;
     as _i17;
 import 'package:flowery/features/cart/data/models/cart_model/cart_response.dart'
     as _i6;
@@ -34,6 +41,7 @@ import 'package:flowery/features/productsDetails/data/models/product_details_mod
     as _i9;
 import 'package:flowery/features/profile/data/model/user_response.dart' as _i10;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/src/dummies.dart' as _i18;
 import 'package:mockito/src/dummies.dart' as _i18;
 
 // ignore_for_file: type=lint
@@ -114,6 +122,7 @@ class _FakeAddressModel_10 extends _i1.SmartFake implements _i12.AddressModel {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockApiService extends _i1.Mock implements _i13.ApiService {
+class MockApiService extends _i1.Mock implements _i13.ApiService {
   MockApiService() {
     _i1.throwOnMissingStub(this);
   }
@@ -121,9 +130,12 @@ class MockApiService extends _i1.Mock implements _i13.ApiService {
   @override
   _i14.Future<_i2.RegisterResponse> registerUser(
     _i15.RegisterRequest? registerRequest,
+  _i14.Future<_i2.RegisterResponse> registerUser(
+    _i15.RegisterRequest? registerRequest,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#registerUser, [registerRequest]),
+            returnValue: _i14.Future<_i2.RegisterResponse>.value(
             returnValue: _i14.Future<_i2.RegisterResponse>.value(
               _FakeRegisterResponse_0(
                 this,
@@ -132,11 +144,14 @@ class MockApiService extends _i1.Mock implements _i13.ApiService {
             ),
           )
           as _i14.Future<_i2.RegisterResponse>);
+          as _i14.Future<_i2.RegisterResponse>);
 
   @override
   _i14.Future<_i3.CategoriesModel> getCategories() =>
+  _i14.Future<_i3.CategoriesModel> getCategories() =>
       (super.noSuchMethod(
             Invocation.method(#getCategories, []),
+            returnValue: _i14.Future<_i3.CategoriesModel>.value(
             returnValue: _i14.Future<_i3.CategoriesModel>.value(
               _FakeCategoriesModel_1(
                 this,
@@ -144,6 +159,7 @@ class MockApiService extends _i1.Mock implements _i13.ApiService {
               ),
             ),
           )
+          as _i14.Future<_i3.CategoriesModel>);
           as _i14.Future<_i3.CategoriesModel>);
 
   @override
@@ -159,6 +175,7 @@ class MockApiService extends _i1.Mock implements _i13.ApiService {
               #keyword: keyword,
             }),
             returnValue: _i14.Future<_i4.ProductsModel>.value(
+            returnValue: _i14.Future<_i4.ProductsModel>.value(
               _FakeProductsModel_2(
                 this,
                 Invocation.method(#getProductsByCategory, [], {
@@ -170,11 +187,14 @@ class MockApiService extends _i1.Mock implements _i13.ApiService {
             ),
           )
           as _i14.Future<_i4.ProductsModel>);
+          as _i14.Future<_i4.ProductsModel>);
 
   @override
   _i14.Future<_i5.LoginResponse> loginUser(_i16.LoginRequest? loginRequest) =>
+  _i14.Future<_i5.LoginResponse> loginUser(_i16.LoginRequest? loginRequest) =>
       (super.noSuchMethod(
             Invocation.method(#loginUser, [loginRequest]),
+            returnValue: _i14.Future<_i5.LoginResponse>.value(
             returnValue: _i14.Future<_i5.LoginResponse>.value(
               _FakeLoginResponse_3(
                 this,
@@ -183,13 +203,17 @@ class MockApiService extends _i1.Mock implements _i13.ApiService {
             ),
           )
           as _i14.Future<_i5.LoginResponse>);
+          as _i14.Future<_i5.LoginResponse>);
 
   @override
+  _i14.Future<_i6.CartResponse> addToCart(
+    _i17.AddProductRequest? addProductRequest,
   _i14.Future<_i6.CartResponse> addToCart(
     _i17.AddProductRequest? addProductRequest,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#addToCart, [addProductRequest]),
+            returnValue: _i14.Future<_i6.CartResponse>.value(
             returnValue: _i14.Future<_i6.CartResponse>.value(
               _FakeCartResponse_4(
                 this,
@@ -198,21 +222,27 @@ class MockApiService extends _i1.Mock implements _i13.ApiService {
             ),
           )
           as _i14.Future<_i6.CartResponse>);
+          as _i14.Future<_i6.CartResponse>);
 
   @override
   _i14.Future<_i6.CartResponse> getUserCart() =>
+  _i14.Future<_i6.CartResponse> getUserCart() =>
       (super.noSuchMethod(
             Invocation.method(#getUserCart, []),
+            returnValue: _i14.Future<_i6.CartResponse>.value(
             returnValue: _i14.Future<_i6.CartResponse>.value(
               _FakeCartResponse_4(this, Invocation.method(#getUserCart, [])),
             ),
           )
           as _i14.Future<_i6.CartResponse>);
+          as _i14.Future<_i6.CartResponse>);
 
   @override
   _i14.Future<_i6.CartResponse> deleteCartItem(String? cartItemId) =>
+  _i14.Future<_i6.CartResponse> deleteCartItem(String? cartItemId) =>
       (super.noSuchMethod(
             Invocation.method(#deleteCartItem, [cartItemId]),
+            returnValue: _i14.Future<_i6.CartResponse>.value(
             returnValue: _i14.Future<_i6.CartResponse>.value(
               _FakeCartResponse_4(
                 this,
@@ -221,18 +251,23 @@ class MockApiService extends _i1.Mock implements _i13.ApiService {
             ),
           )
           as _i14.Future<_i6.CartResponse>);
+          as _i14.Future<_i6.CartResponse>);
 
   @override
   _i14.Future<_i6.CartResponse> clearCart() =>
+  _i14.Future<_i6.CartResponse> clearCart() =>
       (super.noSuchMethod(
             Invocation.method(#clearCart, []),
+            returnValue: _i14.Future<_i6.CartResponse>.value(
             returnValue: _i14.Future<_i6.CartResponse>.value(
               _FakeCartResponse_4(this, Invocation.method(#clearCart, [])),
             ),
           )
           as _i14.Future<_i6.CartResponse>);
+          as _i14.Future<_i6.CartResponse>);
 
   @override
+  _i14.Future<_i6.CartResponse> updateCartProductQuantity(
   _i14.Future<_i6.CartResponse> updateCartProductQuantity(
     String? cartItemId,
     Map<String, dynamic>? productQuantity,
@@ -242,6 +277,7 @@ class MockApiService extends _i1.Mock implements _i13.ApiService {
               cartItemId,
               productQuantity,
             ]),
+            returnValue: _i14.Future<_i6.CartResponse>.value(
             returnValue: _i14.Future<_i6.CartResponse>.value(
               _FakeCartResponse_4(
                 this,
@@ -253,18 +289,23 @@ class MockApiService extends _i1.Mock implements _i13.ApiService {
             ),
           )
           as _i14.Future<_i6.CartResponse>);
+          as _i14.Future<_i6.CartResponse>);
 
   @override
   _i14.Future<_i7.AllOccaions> getAllOccasions() =>
+  _i14.Future<_i7.AllOccaions> getAllOccasions() =>
       (super.noSuchMethod(
             Invocation.method(#getAllOccasions, []),
+            returnValue: _i14.Future<_i7.AllOccaions>.value(
             returnValue: _i14.Future<_i7.AllOccaions>.value(
               _FakeAllOccaions_5(this, Invocation.method(#getAllOccasions, [])),
             ),
           )
           as _i14.Future<_i7.AllOccaions>);
+          as _i14.Future<_i7.AllOccaions>);
 
   @override
+  _i14.Future<_i4.ProductsModel> getAllProductByOccasion({
   _i14.Future<_i4.ProductsModel> getAllProductByOccasion({
     String? occasionId,
   }) =>
@@ -272,6 +313,7 @@ class MockApiService extends _i1.Mock implements _i13.ApiService {
             Invocation.method(#getAllProductByOccasion, [], {
               #occasionId: occasionId,
             }),
+            returnValue: _i14.Future<_i4.ProductsModel>.value(
             returnValue: _i14.Future<_i4.ProductsModel>.value(
               _FakeProductsModel_2(
                 this,
@@ -282,11 +324,14 @@ class MockApiService extends _i1.Mock implements _i13.ApiService {
             ),
           )
           as _i14.Future<_i4.ProductsModel>);
+          as _i14.Future<_i4.ProductsModel>);
 
   @override
   _i14.Future<_i8.BestSellerModel> getBestSellerProduct() =>
+  _i14.Future<_i8.BestSellerModel> getBestSellerProduct() =>
       (super.noSuchMethod(
             Invocation.method(#getBestSellerProduct, []),
+            returnValue: _i14.Future<_i8.BestSellerModel>.value(
             returnValue: _i14.Future<_i8.BestSellerModel>.value(
               _FakeBestSellerModel_6(
                 this,
@@ -295,21 +340,28 @@ class MockApiService extends _i1.Mock implements _i13.ApiService {
             ),
           )
           as _i14.Future<_i8.BestSellerModel>);
+          as _i14.Future<_i8.BestSellerModel>);
 
   @override
+  _i14.Future<String> logout() =>
   _i14.Future<String> logout() =>
       (super.noSuchMethod(
             Invocation.method(#logout, []),
             returnValue: _i14.Future<String>.value(
               _i18.dummyValue<String>(this, Invocation.method(#logout, [])),
+            returnValue: _i14.Future<String>.value(
+              _i18.dummyValue<String>(this, Invocation.method(#logout, [])),
             ),
           )
+          as _i14.Future<String>);
           as _i14.Future<String>);
 
   @override
   _i14.Future<_i9.ProductDetailsModel> getProductDetails(String? id) =>
+  _i14.Future<_i9.ProductDetailsModel> getProductDetails(String? id) =>
       (super.noSuchMethod(
             Invocation.method(#getProductDetails, [id]),
+            returnValue: _i14.Future<_i9.ProductDetailsModel>.value(
             returnValue: _i14.Future<_i9.ProductDetailsModel>.value(
               _FakeProductDetailsModel_7(
                 this,
@@ -318,11 +370,14 @@ class MockApiService extends _i1.Mock implements _i13.ApiService {
             ),
           )
           as _i14.Future<_i9.ProductDetailsModel>);
+          as _i14.Future<_i9.ProductDetailsModel>);
 
   @override
   _i14.Future<_i10.UserResponse> editProfile(_i10.UpdatedUserModel? user) =>
+  _i14.Future<_i10.UserResponse> editProfile(_i10.UpdatedUserModel? user) =>
       (super.noSuchMethod(
             Invocation.method(#editProfile, [user]),
+            returnValue: _i14.Future<_i10.UserResponse>.value(
             returnValue: _i14.Future<_i10.UserResponse>.value(
               _FakeUserResponse_8(
                 this,
@@ -331,11 +386,14 @@ class MockApiService extends _i1.Mock implements _i13.ApiService {
             ),
           )
           as _i14.Future<_i10.UserResponse>);
+          as _i14.Future<_i10.UserResponse>);
 
   @override
   _i14.Future<_i10.UserResponse> getLoggedInUserData() =>
+  _i14.Future<_i10.UserResponse> getLoggedInUserData() =>
       (super.noSuchMethod(
             Invocation.method(#getLoggedInUserData, []),
+            returnValue: _i14.Future<_i10.UserResponse>.value(
             returnValue: _i14.Future<_i10.UserResponse>.value(
               _FakeUserResponse_8(
                 this,
@@ -344,11 +402,15 @@ class MockApiService extends _i1.Mock implements _i13.ApiService {
             ),
           )
           as _i14.Future<_i10.UserResponse>);
+          as _i14.Future<_i10.UserResponse>);
 
   @override
   _i14.Future<String> uploadPhoto(_i19.File? image) =>
+  _i14.Future<String> uploadPhoto(_i19.File? image) =>
       (super.noSuchMethod(
             Invocation.method(#uploadPhoto, [image]),
+            returnValue: _i14.Future<String>.value(
+              _i18.dummyValue<String>(
             returnValue: _i14.Future<String>.value(
               _i18.dummyValue<String>(
                 this,
@@ -357,11 +419,14 @@ class MockApiService extends _i1.Mock implements _i13.ApiService {
             ),
           )
           as _i14.Future<String>);
+          as _i14.Future<String>);
 
   @override
   _i14.Future<_i11.LoggedUserAddressModel> getLoggedUserAddress() =>
+  _i14.Future<_i11.LoggedUserAddressModel> getLoggedUserAddress() =>
       (super.noSuchMethod(
             Invocation.method(#getLoggedUserAddress, []),
+            returnValue: _i14.Future<_i11.LoggedUserAddressModel>.value(
             returnValue: _i14.Future<_i11.LoggedUserAddressModel>.value(
               _FakeLoggedUserAddressModel_9(
                 this,

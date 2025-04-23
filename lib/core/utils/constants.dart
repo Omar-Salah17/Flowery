@@ -25,6 +25,6 @@ class Constants {
   static const String editProfileEndPoint = "auth/editProfile";
   static const String uploadPhotoEndPoint = "auth/upload-photo";
 
-  static const String loggedUserAdderss='addresses';
+  static const String loggedUserAdderss = 'addresses';
   static const String deleteAddressEndPoint='addresses/{addressId}';
 }

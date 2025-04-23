@@ -1,4 +1,5 @@
 import 'package:flowery/core/config/routes_name.dart';
+import 'package:flowery/features/address/presentation/view/address_details_screen.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/features/address/presentation/view/save_address_view.dart';
 import 'package:flowery/features/auth/forgetPassword/presentation/view/email_verification_screen.dart';
@@ -130,6 +131,11 @@ class RouteGenerator {
       case RoutesName.aboutUsScreen:
         return MaterialPageRoute(
           builder: (context) => const AboutUsScreen(),
+          settings: settings,
+        );
+        case RoutesName.addressDetailsScreen:
+        return MaterialPageRoute(
+          builder: (context) => AddressDetailsScreen(),
           settings: settings,
         );
       case RoutesName.termsAndConditionsScreen:
