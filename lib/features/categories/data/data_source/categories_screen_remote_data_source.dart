@@ -5,5 +5,6 @@ abstract class CategoriesScreenRemoteDataSource {
   Future<CategoriesModel> getCategories();
   Future<ProductsModel> getProductsByCategory({String? categoryId,
     String? keyword,
+    String? sort,
   });
 }

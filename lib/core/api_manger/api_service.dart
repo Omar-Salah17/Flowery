@@ -12,6 +12,7 @@ import 'package:flowery/features/auth/register/data/models/register_request.dart
 import 'package:flowery/features/auth/register/data/models/register_response.dart';
 import 'package:flowery/features/best_seller/data/models/best_seller_model.dart';
 import 'package:flowery/features/cart/data/models/add_product_request.dart';
+
 import 'package:flowery/features/cart/data/models/cart_model/cart_response.dart';
 import 'package:flowery/features/categories/data/models/categories_model/categories_model.dart';
 import 'package:flowery/features/occasion/data/models/occaions.dart';
@@ -19,7 +20,9 @@ import 'package:flowery/features/productsDetails/data/models/product_details_mod
 import 'package:flowery/features/profile/data/model/user_response.dart';
 import 'package:retrofit/retrofit.dart';
 
-part 'api_service.g.dart';
+import '../../features/occasion/data/models/occaions.dart';
+
+part 'apiService.g.dart';
 
 @RestApi(baseUrl: Constants.baseUrl)
 abstract class ApiService {
@@ -35,6 +38,7 @@ abstract class ApiService {
   @GET(Constants.productsEndPoint)
   Future<ProductsModel> getProductsByCategory({
     @Query("category") String? categoryId,
+    @Query("sort") String? sort,
     @Query("keyword") String? keyword,
   });
   @POST(Constants.loginEndPoint)
