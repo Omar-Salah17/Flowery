@@ -59,14 +59,14 @@ class MockCategoriesScreenRepo extends _i1.Mock
   @override
   _i4.Future<_i2.Either<_i5.Failure, List<_i7.Product>>> getProductsByCategory({
     String? categoryId,
-    String? sort,
     String? keyword,
+    String? sort,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#getProductsByCategory, [], {
               #categoryId: categoryId,
-              #sort: sort,
               #keyword: keyword,
+              #sort: sort,
             }),
             returnValue:
                 _i4.Future<_i2.Either<_i5.Failure, List<_i7.Product>>>.value(
@@ -74,8 +74,8 @@ class MockCategoriesScreenRepo extends _i1.Mock
                     this,
                     Invocation.method(#getProductsByCategory, [], {
                       #categoryId: categoryId,
-                      #sort: sort,
                       #keyword: keyword,
+                      #sort: sort,
                     }),
                   ),
                 ),

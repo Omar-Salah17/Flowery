@@ -63,22 +63,22 @@ class MockCategoriesScreenRemoteDataSource extends _i1.Mock
   @override
   _i5.Future<_i3.ProductsModel> getProductsByCategory({
     String? categoryId,
-    String? sort,
     String? keyword,
+    String? sort,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#getProductsByCategory, [], {
               #categoryId: categoryId,
-              #sort: sort,
               #keyword: keyword,
+              #sort: sort,
             }),
             returnValue: _i5.Future<_i3.ProductsModel>.value(
               _FakeProductsModel_1(
                 this,
                 Invocation.method(#getProductsByCategory, [], {
                   #categoryId: categoryId,
-                  #sort: sort,
                   #keyword: keyword,
+                  #sort: sort,
                 }),
               ),
             ),
