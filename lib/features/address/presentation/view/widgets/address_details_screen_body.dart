@@ -17,7 +17,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../view_model/address_cubit/address_cubit.dart';
 
 class AddressDetailsScreenBody extends StatefulWidget {
    AddressDetailsScreenBody({super.key, required this.address});
@@ -206,17 +205,37 @@ class _AddressDetailsScreenBodyState extends State<AddressDetailsScreenBody> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: PalletsColors.black30,
                   ),
-                  onPressed: () {
-                    cubit.addAddress(
-                      UserAddressData(
-                        street: cubit.address.text.trim(),
-                        phone: cubit.phoneNumber.text.trim(),
-                        username: cubit.recipientNameController.text.trim(),
-                        city: selectedCity?.nameEn ?? '',
-                        lat: cubit.lat.toString(),
-                        long: cubit.long.toString(),
-                      ),
-                    );
+                  onPressed: () async { log('${cubit.id}==================');
+                   if(cubit.id == null)
+                    {
+                      log('addddddddd');
+                      cubit.addAddress(
+                          UserAddressData(
+                            street: cubit.address.text.trim(),
+                            phone: cubit.phoneNumber.text.trim(),
+                            username: cubit.recipientNameController.text.trim(),
+                            city: selectedCity?.nameEn ?? '',
+                            lat: cubit.lat.toString(),
+                            long: cubit.long.toString(),
+                          )
+                      );
+                    } else{
+                     log("Updateee");
+                     await cubit.updateAddressUseCase(
+                         UserAddressData(
+                           street: cubit.address.text.trim(),
+                           phone: cubit.phoneNumber.text.trim(),
+                           username: cubit.recipientNameController.text.trim(),
+                           city: selectedCity?.nameEn ?? '',
+                           lat: cubit.lat.toString(),
+                           long: cubit.long.toString(),
+                         ), cubit.id
+
+                     );
+                    Navigator.pop(context);
+                    showSnackBar(context, 'success');
+                   }
+
                   },
                   child:
                       state is AddAddressLoading

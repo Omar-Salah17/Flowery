@@ -1,9 +1,9 @@
 import 'package:flowery/core/api_manger/api_service.dart';
+import 'package:flowery/features/address/data/data_source/address_remote_data_source.dart';
+import 'package:flowery/features/address/data/data_source/address_remote_data_source_impl.dart';
 
 import 'package:flowery/features/address/data/models/address_model.dart';
 import 'package:flowery/features/address/data/models/logged_user_address_model.dart';
-import 'package:flowery/features/address/data/repos/repos_data_sourse/address_remote_data_source_impl.dart';
-import 'package:flowery/features/address/domain/repos/repos_data_sourse/adderss_data_source_contract.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -13,7 +13,7 @@ import '../../../../profile/data/data_source/profile_remote_data_source_impl_tes
 @GenerateMocks([ApiService])
 void main() {
   late ApiService apiServices;
-  late AdderssRemoteDataSource addressRemoteDataSource;
+  late AddressRemoteDataSource addressRemoteDataSource;
   setUp(() {
     apiServices = MockApiService();
     addressRemoteDataSource = AddressRemoteDataSourceImpl(

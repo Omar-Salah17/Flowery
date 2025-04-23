@@ -6,12 +6,13 @@ import 'package:flowery/features/address/domain/repos/address_repo.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class AddAddressUseCase {
+class UpdateAddressUseCase {
   final AddressRepo addressRepository;
 
-  AddAddressUseCase({required this.addressRepository});
+  UpdateAddressUseCase({required this.addressRepository});
   Future<Either<Failure, AddAddressResponse>> call(
-    UserAddressData addressData,) async {
-    return await addressRepository.addAddress(addressData);
+      UserAddressData addressData,
+      String? id) async {
+    return await addressRepository.updateAddress(addressData, id );
   }
 }

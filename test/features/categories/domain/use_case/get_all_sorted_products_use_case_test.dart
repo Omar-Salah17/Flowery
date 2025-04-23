@@ -1,5 +1,3 @@
-import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
-
 import 'package:dartz/dartz.dart';
 import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/features/categories/domain/repos/categories_screen_repo.dart';
@@ -23,7 +21,7 @@ void main() {
 
     test(
       "Should return product list when using descending order (-price)",
-      () async {
+          () async {
         final List<Product> expectedProducts = [];
         const sort = '-price';
 
@@ -39,9 +37,10 @@ void main() {
         expect(actual, equals(Right(expectedProducts)));
       },
     );
+
     test(
-      "should retrun product list when using ascending order (price)",
-      () async {
+      "Should return product list when using ascending order (price)",
+          () async {
         final List<Product> expectedProducts = [];
         const sort = 'price';
 
@@ -50,9 +49,10 @@ void main() {
         ).thenAnswer((_) async => Right(expectedProducts));
 
         final actual = await useCase.call(sort: sort);
+
         verify(
-          mockRepo.getProductsByCategory(categoryId: null, sort: sort).call(1),
-        );
+          mockRepo.getProductsByCategory(categoryId: null, sort: sort),
+        ).called(1);
         expect(actual, equals(Right(expectedProducts)));
       },
     );
