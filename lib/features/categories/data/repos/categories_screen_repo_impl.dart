@@ -35,12 +35,15 @@ class CategoriesScreenRepoImpl implements CategoriesScreenRepo {
   @override
   Future<Either<Failure, List<Product>>> getProductsByCategory({
     String? categoryId,
+    String? keyword,
     String? sort,
   }) async {
     try {
       final data = await categoriesRemoteDataSource.getProductsByCategory(
         categoryId: categoryId,
+        keyword: keyword,
         sort: sort,
+
       );
       // log("dataaaaa in CategoriesScreenRepoImpl ${data.products} ");
       return Right(data.products ?? []);

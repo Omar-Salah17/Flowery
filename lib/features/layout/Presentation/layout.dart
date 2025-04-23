@@ -48,8 +48,8 @@ class LayoutState extends State<Layout> {
               (context) => CategoriesScreenCubit(
                 getIt.get<GetAllCategoriesUseCase>(),
                 getIt.get<GetProductsByCategoryUseCase>(),
-                getIt.get<SearchUseCase>(),
                 getIt.get<GetProductsByCategoryWithSortUseCase>(),
+                getIt.get<SearchUseCase>(),
               )..getAllCategories(),
       
       child: Scaffold(

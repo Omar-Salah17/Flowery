@@ -41,8 +41,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               CategoriesScreenCubit(
                   getIt.get<GetAllCategoriesUseCase>(),
                   getIt.get<GetProductsByCategoryUseCase>(),
+                getIt.get<GetProductsByCategoryWithSortUseCase>(),
                   getIt<SearchUseCase>(),
-                  getIt.get<GetProductsByCategoryWithSortUseCase>(),
+
                 )
                 ..getAllCategories()
                 ..getProductsByCategory(),

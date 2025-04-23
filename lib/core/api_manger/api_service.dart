@@ -22,7 +22,7 @@ import 'package:retrofit/retrofit.dart';
 
 import '../../features/occasion/data/models/occaions.dart';
 
-part 'apiService.g.dart';
+part 'api_service.g.dart';
 
 @RestApi(baseUrl: Constants.baseUrl)
 abstract class ApiService {
