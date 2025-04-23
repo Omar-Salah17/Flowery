@@ -13,9 +13,7 @@ import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../cart/presentation/view/cart_view.dart';
-import '../../categories/presentation/view/categories_screen.dart';
-import '../../home/presentation/view/home_view.dart';
-import '../../profile/presentation/view/profile_view.dart';
+
 
 class Layout extends StatefulWidget {
   const Layout({super.key});

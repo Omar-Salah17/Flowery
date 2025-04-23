@@ -20,8 +20,6 @@ import 'package:flowery/features/productsDetails/data/models/product_details_mod
 import 'package:flowery/features/profile/data/model/user_response.dart';
 import 'package:retrofit/retrofit.dart';
 
-import '../../features/occasion/data/models/occaions.dart';
-
 part 'api_service.g.dart';
 
 @RestApi(baseUrl: Constants.baseUrl)

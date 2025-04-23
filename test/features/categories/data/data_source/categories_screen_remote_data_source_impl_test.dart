@@ -1,5 +1,5 @@
-import 'package:dartz/dartz.dart';
-import 'package:flowery/core/apiManger/apiService.dart';
+
+import 'package:flowery/core/api_manger/api_service.dart';
 import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/core/utils/models/products_model/products_model.dart';
 import 'package:flowery/features/categories/data/data_source/categories_screen_remote_data_source.dart';

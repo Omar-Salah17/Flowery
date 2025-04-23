@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/di/di.dart';
@@ -10,9 +9,6 @@ import 'package:flowery/features/categories/domain/use_case/get_products_by_cate
 import 'package:flowery/features/categories/domain/use_case/search_use_case.dart';
 import 'package:flowery/features/categories/presentation/view/widgets/categories_screen_body.dart';
 import 'package:flowery/features/categories/presentation/view/widgets/filter_bottom_sheet.dart';
-import 'package:flowery/features/categories/presentation/view/widgets/filter_button.dart';
-import 'package:flowery/features/categories/presentation/view/widgets/radio_tile.dart';
-import 'package:flowery/features/categories/presentation/view/widgets/slider_container.dart';
 import 'package:flowery/features/categories/presentation/view/widgets/categories_view_app_bar.dart';
 import 'package:flowery/features/categories/presentation/view_model/cubits/categories_cubit/categories_screen_cubit.dart';
 import 'package:flowery/generated/locale_keys.g.dart';
