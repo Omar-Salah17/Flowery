@@ -7,5 +7,6 @@ abstract class CategoriesScreenRepo {
   Future<Either<Failure, List<Category>>> getAllCategories();
   Future<Either<Failure, List<Product>>> getProductsByCategory({
     String? categoryId,
+    String? keyword,
   });
 }

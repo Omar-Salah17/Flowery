@@ -147,16 +147,21 @@ class MockApiService extends _i1.Mock implements _i13.ApiService {
           as _i14.Future<_i3.CategoriesModel>);
 
   @override
-  _i14.Future<_i4.ProductsModel> getProductsByCategory({String? categoryId}) =>
+  _i14.Future<_i4.ProductsModel> getProductsByCategory({
+    String? categoryId,
+    String? keyword,
+  }) =>
       (super.noSuchMethod(
             Invocation.method(#getProductsByCategory, [], {
               #categoryId: categoryId,
+              #keyword: keyword,
             }),
             returnValue: _i14.Future<_i4.ProductsModel>.value(
               _FakeProductsModel_2(
                 this,
                 Invocation.method(#getProductsByCategory, [], {
                   #categoryId: categoryId,
+                  #keyword: keyword,
                 }),
               ),
             ),

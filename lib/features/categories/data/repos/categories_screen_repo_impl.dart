@@ -24,9 +24,7 @@ class CategoriesScreenRepoImpl implements CategoriesScreenRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log(
-          'error in CategoriesScreenRepoImpl getCategories method: $e',
-        );
+        log('error in CategoriesScreenRepoImpl getCategories method: $e');
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
@@ -35,10 +33,12 @@ class CategoriesScreenRepoImpl implements CategoriesScreenRepo {
   @override
   Future<Either<Failure, List<Product>>> getProductsByCategory({
     String? categoryId,
+    String? keyword,
   }) async {
     try {
       final data = await categoriesRemoteDataSource.getProductsByCategory(
         categoryId: categoryId,
+        keyword: keyword,
       );
       // log("dataaaaa in CategoriesScreenRepoImpl ${data.products} ");
       return Right(data.products ?? []);

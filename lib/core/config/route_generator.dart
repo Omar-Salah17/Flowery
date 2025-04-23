@@ -82,12 +82,8 @@ class RouteGenerator {
           builder: (context) => ProfileView(),
           settings: settings,
         );
-        case RoutesName.saveAddressScreen:
-        return MaterialPageRoute(
-          builder: (context) => SaveAddressView(),
-    
-        );
-
+      case RoutesName.saveAddressScreen:
+        return MaterialPageRoute(builder: (context) => const SaveAddressView());
 
       case RoutesName.cart:
         return MaterialPageRoute(
@@ -113,10 +109,11 @@ class RouteGenerator {
 
       case RoutesName.productsDetails:
         return MaterialPageRoute(
-        builder:
-        (context) => BlocProvider(
-    create: (context) => getIt<CartCubit>(),
-    child: const ProductsDetails(),),
+          builder:
+              (context) => BlocProvider(
+                create: (context) => getIt<CartCubit>(),
+                child: const ProductsDetails(),
+              ),
           settings: settings,
         );
 

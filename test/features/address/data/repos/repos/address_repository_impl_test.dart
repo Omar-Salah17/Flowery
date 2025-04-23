@@ -26,11 +26,11 @@ void main() {
     test(
       'when call getLoggedUserAddress it should call getLoggedUserAddress from adderssRemoteDataSource and when call getLoggedUserAddress from adderssRemoteDataSource i expect to return Right<List<Addresses>>',
       () async {
-        var result = <Addresses>[];
+        final result = <Addresses>[];
         when(
           mockAdderssRemoteDataSource.getLoggedUserAddress(),
         ).thenAnswer((_) async => result);
-        var actual = await addressRepository.getLoggedUserAddress();
+        final actual = await addressRepository.getLoggedUserAddress();
         verify(mockAdderssRemoteDataSource.getLoggedUserAddress()).called(1);
         expect(actual, Right(result));
       },
@@ -38,11 +38,11 @@ void main() {
     test(
       'when call getLoggedUserAddress it should return Left<Failure> when an error occurs',
       () async {
-        var error = ServerFailure(errorMessage: "error");
+        final error = ServerFailure(errorMessage: "error");
         when(
           mockAdderssRemoteDataSource.getLoggedUserAddress(),
         ).thenThrow(error);
-        var actual = await addressRepository.getLoggedUserAddress();
+        final actual = await addressRepository.getLoggedUserAddress();
         verify(mockAdderssRemoteDataSource.getLoggedUserAddress()).called(1);
         expect(actual.fold((l) => l, (r) => r), isA<ServerFailure>());
       },
@@ -59,12 +59,14 @@ void main() {
     test(
       'when call deleteAddress it should call deleteAddress from adderssRemoteDataSource and when call deleteAddress from adderssRemoteDataSource i expect to return Right<List<Addresses>>',
       () async {
-        String addressId = "addressId";
-        var result = <Address>[];
+        const String addressId = "addressId";
+        final result = <Address>[];
         when(
           mockAdderssRemoteDataSource.deleteAddress(addressId: addressId),
         ).thenAnswer((_) async => result);
-        var actual = await addressRepository.deleteAddress(addressId: addressId);
+        final actual = await addressRepository.deleteAddress(
+          addressId: addressId,
+        );
         verify(
           mockAdderssRemoteDataSource.deleteAddress(addressId: addressId),
         ).called(1);
@@ -74,12 +76,14 @@ void main() {
     test(
       'when call getLoggedUserAddress it should return Left<Failure> when an error occurs',
       () async {
-        String addressId = "addressId";
-        var error = ServerFailure(errorMessage: "error");
+        const String addressId = "addressId";
+        final error = ServerFailure(errorMessage: "error");
         when(
           mockAdderssRemoteDataSource.getLoggedUserAddress(),
         ).thenThrow(error);
-        var actual = await addressRepository.deleteAddress(addressId: addressId);
+        final actual = await addressRepository.deleteAddress(
+          addressId: addressId,
+        );
         verify(
           mockAdderssRemoteDataSource.deleteAddress(addressId: addressId),
         ).called(1);
