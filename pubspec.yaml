@@ -60,6 +60,7 @@ flutter:
   assets:
     - assets/images/
     - assets/translations/
+    - assets/jsonFiles/
 
   fonts:
     - family: Inter

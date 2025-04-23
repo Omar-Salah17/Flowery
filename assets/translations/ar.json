@@ -54,7 +54,7 @@
     "signupButton": "تسجيل",
     "alreadyHaveAccount": "لديك حساب بالفعل؟",
     "ThisEmailIsNotValid": "هذا البريد الإلكتروني غير صالح",
-    "InvalidPassword": "كلمة المرور غير صالحة",
+    "Invalidpassword": "كلمة المرور غير صالحة",
     "forgetPasswordTitle": "نسيت كلمة المرور",
     "forgetPasswordInstruction": "يرجى إدخال بريدك الإلكتروني المرتبط بحسابك",
     "invalidEmail": "البريد الإلكتروني غير صالح",
@@ -167,5 +167,9 @@
     "newOffer": "عرض جديد",
     "confirmLogout": "تأكيد تسجيل الخروج!!",
     "remember": "تذكر",
-    "deliveryTime": "وقت التوصيل"
+    "deliveryTime": "وقت التوصيل",
+    "about_Us_Introduction_Title": "المقدمة",
+    "about_Us_Closing_Title": "الخاتمة"
+
+
 }

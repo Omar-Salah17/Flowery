@@ -1,6 +1,5 @@
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/di/di.dart';
-import 'package:flowery/features/address/presentation/cubit/address_cubit.dart';
 import 'package:flowery/features/address/presentation/view/save_address_view.dart';
 import 'package:flowery/features/auth/forgetPassword/presentation/view/email_verification_screen.dart';
 import 'package:flowery/features/auth/forgetPassword/presentation/view/forget_password_screen.dart';
@@ -18,16 +17,18 @@ import 'package:flowery/features/home/presentation/view/home_view.dart';
 import 'package:flowery/features/layout/Presentation/layout.dart';
 import 'package:flowery/features/occasion/presentation/view/occasion_screen.dart';
 import 'package:flowery/features/productsDetails/presentation/view/products_details.dart';
+import 'package:flowery/features/profile/about_us/presentation/view/about_us_screen.dart';
 import 'package:flowery/features/profile/data/model/user_response.dart';
 import 'package:flowery/features/profile/presentation/view/change_password_screen.dart';
 import 'package:flowery/features/profile/presentation/view/edit_profile_view.dart';
 import 'package:flowery/features/profile/presentation/view/profile_view.dart';
 import 'package:flowery/features/profile/presentation/view_model/edit_profile_cubit.dart';
+import 'package:flowery/features/profile/terms_and_conditions/presentation/view/terms_and_conditions_screen.dart';
 import 'package:flowery/features/splash/view/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-abstract class RouteGenerator {
+class RouteGenerator {
   static Route<dynamic>? onGenerator(RouteSettings settings) {
     switch (settings.name) {
       case RoutesName.initial:
@@ -85,12 +86,8 @@ abstract class RouteGenerator {
           builder: (context) => ProfileView(),
           settings: settings,
         );
-        case RoutesName.saveAddressScreen:
-        return MaterialPageRoute(
-          builder: (context) => SaveAddressView(),
-    
-        );
-
+      case RoutesName.saveAddressScreen:
+        return MaterialPageRoute(builder: (context) => const SaveAddressView());
 
       case RoutesName.cart:
         return MaterialPageRoute(
@@ -132,6 +129,16 @@ abstract class RouteGenerator {
                 create: (context) => getIt<EditProfileCubit>(),
                 child: EditProfileView(user: userData),
               ),
+          settings: settings,
+        );
+      case RoutesName.aboutUsScreen:
+        return MaterialPageRoute(
+          builder: (context) => const AboutUsScreen(),
+          settings: settings,
+        );
+      case RoutesName.termsAndConditionsScreen:
+        return MaterialPageRoute(
+          builder: (context) => const TermsAndConditionsScreen(),
           settings: settings,
         );
 

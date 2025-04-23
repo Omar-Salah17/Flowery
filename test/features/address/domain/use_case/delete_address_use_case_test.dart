@@ -8,6 +8,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'get_logged_user_address_use_case_test.mocks.dart';
+
 @GenerateMocks([AddressRepositoryContract])
 void main() {
   group('get delete user address use case', () {
@@ -15,30 +16,33 @@ void main() {
     late DeleteAddressUseCase deleteAddressUseCase;
     setUp(() {
       mockAdderssRemoteDataSource = MockAddressRepositoryContract();
-      deleteAddressUseCase =DeleteAddressUseCase(mockAdderssRemoteDataSource);
+      deleteAddressUseCase = DeleteAddressUseCase(mockAdderssRemoteDataSource);
     });
     test(
       'when call deleteAddressUseCase it should call deleteAddress from adderssRemoteDataSource and when call deleteAddress from adderssRemoteDataSource i expect to return Right<List<Address>>',
       () async {
-        var result = <Address>[];
-        String addressId = "addressId";
-        when(mockAdderssRemoteDataSource.deleteAddress(addressId: addressId)).thenAnswer((_) async => Right(result));
-        var response = await deleteAddressUseCase.invoke(addressId);
+        final result = <Address>[];
+        const String addressId = "addressId";
+        when(
+          mockAdderssRemoteDataSource.deleteAddress(addressId: addressId),
+        ).thenAnswer((_) async => Right(result));
+        final response = await deleteAddressUseCase.invoke(addressId);
         verify(mockAdderssRemoteDataSource.deleteAddress(addressId: addressId));
         expect(response, Right(result));
-    
       },
     );
     test(
       'when call deleteAddressUseCase it should call deleteAddress from adderssRemoteDataSource and when call deleteAddress from adderssRemoteDataSource i expect to return Left<Failure>',
       () async {
-        String addressId = "addressId";
-        var failure = ServerFailure(errorMessage: 'error');
-        when(mockAdderssRemoteDataSource.deleteAddress(addressId: addressId)).thenAnswer((_) async => Left(failure));
-        var response = await deleteAddressUseCase.invoke(addressId);
+        const String addressId = "addressId";
+        final failure = ServerFailure(errorMessage: 'error');
+        when(
+          mockAdderssRemoteDataSource.deleteAddress(addressId: addressId),
+        ).thenAnswer((_) async => Left(failure));
+        final response = await deleteAddressUseCase.invoke(addressId);
         verify(mockAdderssRemoteDataSource.deleteAddress(addressId: addressId));
         expect(response, Left(failure));
       },
     );
-  }); 
+  });
 }

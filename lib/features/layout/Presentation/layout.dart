@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/colors.dart';
-import 'package:flowery/features/cart/presentation/view/cart_view.dart';
 import 'package:flowery/features/categories/domain/use_case/get_all_categories_use_case.dart';
+import 'package:flowery/features/categories/domain/use_case/get_all_sorted_products_use_case.dart';
 import 'package:flowery/features/categories/domain/use_case/get_products_by_category_use_case.dart';
 import 'package:flowery/features/categories/presentation/view/categories_screen.dart';
 import 'package:flowery/features/categories/presentation/view_model/cubits/categories_cubit/categories_screen_cubit.dart';
@@ -11,6 +11,9 @@ import 'package:flowery/features/profile/presentation/view/profile_view.dart';
 import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../cart/presentation/view/cart_view.dart';
+import '../../categories/domain/use_case/search_use_case.dart';
+
 
 class Layout extends StatefulWidget {
   const Layout({super.key});
@@ -43,6 +46,8 @@ class LayoutState extends State<Layout> {
               (context) => CategoriesScreenCubit(
                 getIt.get<GetAllCategoriesUseCase>(),
                 getIt.get<GetProductsByCategoryUseCase>(),
+                getIt.get<GetProductsByCategoryWithSortUseCase>(),
+                getIt.get<SearchUseCase>(),
               )..getAllCategories(),
       
       child: Scaffold(

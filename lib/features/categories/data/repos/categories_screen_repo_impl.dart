@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flowery/core/utils/error_handler.dart';
-import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/features/categories/data/data_source/categories_screen_remote_data_source.dart';
 import 'package:flowery/features/categories/data/models/categories_model/category.dart';
+import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/features/categories/domain/repos/categories_screen_repo.dart';
 import 'package:injectable/injectable.dart';
 
@@ -17,7 +17,7 @@ class CategoriesScreenRepoImpl implements CategoriesScreenRepo {
   @override
   Future<Either<Failure, List<Category>>> getAllCategories() async {
     try {
-      final data = await categoriesRemoteDataSource.getCategories();
+      var data = await categoriesRemoteDataSource.getCategories();
       // log("dataaaaa in GetAllCategoriesRepoImpl ${data.categories} ");
       return Right(data.categories ?? []);
     } catch (e) {
@@ -25,7 +25,7 @@ class CategoriesScreenRepoImpl implements CategoriesScreenRepo {
         return left(ServerFailure.fromDioException(e));
       } else {
         log(
-          'error in CategoriesScreenRepoImpl getCategories method: $e',
+          'error in CategoriesScreenRepoImpl getCategories method: ${e.toString()}',
         );
         return left(ServerFailure(errorMessage: e.toString()));
       }
@@ -35,10 +35,14 @@ class CategoriesScreenRepoImpl implements CategoriesScreenRepo {
   @override
   Future<Either<Failure, List<Product>>> getProductsByCategory({
     String? categoryId,
+    String? sort,
+    String? keyword,
   }) async {
     try {
       final data = await categoriesRemoteDataSource.getProductsByCategory(
         categoryId: categoryId,
+        sort: sort,
+        keyword: keyword
       );
       // log("dataaaaa in CategoriesScreenRepoImpl ${data.products} ");
       return Right(data.products ?? []);
@@ -47,7 +51,7 @@ class CategoriesScreenRepoImpl implements CategoriesScreenRepo {
         return left(ServerFailure.fromDioException(e));
       } else {
         log(
-          'error in CategoriesScreenRepoImpl getProductsByCategory method: $e',
+          'error in CategoriesScreenRepoImpl getProductsByCategory method: ${e.toString()}',
         );
         return left(ServerFailure(errorMessage: e.toString()));
       }
