@@ -25,10 +25,10 @@ void main() {
 
       () async {
         //object of UserData
-        var result = UserData();
+        final result = UserData();
         when(repo.getLoggedInUserData()).thenAnswer((_) async => Right(result));
 
-        var actual = await getUserDataUseCase.invoke();
+        final actual = await getUserDataUseCase.invoke();
         verify(repo.getLoggedInUserData()).called(1);
         expect(actual, equals(Right(result)));
         //here im checking if the getLoggedInUserData from profileRepositoryContract was called for one time
@@ -38,9 +38,9 @@ void main() {
       "when call invoke from GetUserDataUseCase it should call getLoggedInUserData from profileRepositoryContract and when call getLoggedInUserData from profileRepositoryContract i expect to return Left<Failure> ",
       () async {
         //object of Failure
-        var result = ServerFailure(errorMessage: "error");
+        final result = ServerFailure(errorMessage: "error");
         when(repo.getLoggedInUserData()).thenAnswer((_) async => Left(result));
-        var actual = await getUserDataUseCase.invoke();
+        final actual = await getUserDataUseCase.invoke();
 
         verify(repo.getLoggedInUserData()).called(1);
         expect(actual, equals(Left(result)));

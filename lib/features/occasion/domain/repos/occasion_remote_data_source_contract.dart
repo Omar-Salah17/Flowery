@@ -1,5 +1,5 @@
-import '../../../../core/utils/models/products_model/products_model.dart';
-import '../../data/models/occaions.dart';
+import 'package:flowery/core/utils/models/products_model/products_model.dart';
+import 'package:flowery/features/occasion/data/models/occaions.dart';
 
 abstract class OccasionRemoteDataSourceContract {
   Future<List<Occasions>> getAllOccasions();

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileView extends StatelessWidget {
-  var viewModel = ProfileCubit(
+  final viewModel = ProfileCubit(
     getIt<GetUserDataUseCase>(),
     getIt<LogoutUseCase>(),
   );
@@ -17,7 +17,7 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => viewModel..getUserData(),
-      child: ProfileMainScreen(),
+      child: const ProfileMainScreen(),
     ); //Ma
   }
 }

@@ -26,7 +26,7 @@ class MainProfileAppBar extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.0.w),
           child: Badge(
-            label: Text('3'),
+            label: const Text('3'),
             child: SvgPicture.asset('assets/images/notification.svg'),
           ),
         ),

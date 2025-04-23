@@ -1,12 +1,11 @@
-import 'package:flowery/core/config/routes_name.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/helper/spacing.dart';
 import 'package:flowery/core/provider/app_config_provider.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/profile/presentation/view/cubit/profile_cubit.dart';
-
 import 'package:flowery/features/profile/presentation/widgets/main_profile_appbar.dart';
 import 'package:flowery/features/profile/presentation/widgets/settings_tile.dart';
 import 'package:flowery/features/profile/presentation/widgets/user_info_scetion.dart';
@@ -33,7 +32,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
         preferredSize: Size.fromHeight(50.h),
         child: Padding(
           padding: EdgeInsets.only(top: 8.0.h),
-          child: MainProfileAppBar(),
+          child: const MainProfileAppBar(),
         ),
       ),
       body: Column(
@@ -42,7 +41,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
           BlocBuilder<ProfileCubit, ProfileState>(
             builder: (context, state) {
               if (state is ProfileLoading) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(
                     color: PalletsColors.mainColorBase,
                   ),
@@ -76,6 +75,10 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
             title: LocaleKeys.savedAddress.tr(),
             onTap: () {
               // Navigate to Saved Address
+              Navigator.pushNamed(
+                context,
+                RoutesName.saveAddressScreen,
+              );
             },
           ),
           verticalSpace(16),
@@ -117,10 +120,16 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
           SettingsTile(
             title: LocaleKeys.aboutUs.tr(),
             onTap: () {
-              // Navigate to About Us
+                Navigator.pushNamed(context, RoutesName.aboutUsScreen);
             },
           ),
-          SettingsTile(title: LocaleKeys.termsConditions.tr(), onTap: () {}),
+          SettingsTile(
+              title: LocaleKeys.termsConditions.tr(),
+              onTap: () {
+                Navigator.pushNamed(context, RoutesName.termsAndConditionsScreen);
+              }
+          )
+          ,
           verticalSpace(10),
           Divider(color: PalletsColors.white70, height: .5.h),
           verticalSpace(10),
@@ -132,7 +141,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
               );
               Navigator.pushNamed(context, RoutesName.login);
             },
-            icon: Icon(Icons.logout),
+            icon: const Icon(Icons.logout),
           ),
         ],
       ),
@@ -142,7 +151,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
   void _showLanguageBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       builder: (_) {

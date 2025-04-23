@@ -1,15 +1,15 @@
 part of 'register_cubit.dart';
 
 class RegisterStates extends Equatable {
-  RequestState state;
-  String errorMessage;
-  RegisterEntity? registerEntity;
-  RegisterStates({
+  final RequestState state;
+  final String errorMessage;
+  final RegisterEntity? registerEntity;
+  const RegisterStates({
     this.state = RequestState.initial,
     this.errorMessage = '',
     this.registerEntity,
   });
-  copyWith({
+  RegisterStates copyWith({
     RequestState? state,
     String? errorMessage,
     RegisterEntity? registerEntity,

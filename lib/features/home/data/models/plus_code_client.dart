@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flowery/features/home/data/models/plus_code_response.dart';
 import 'package:retrofit/retrofit.dart';
-import 'plus_code_response.dart';
 
 part 'plus_code_client.g.dart';
 

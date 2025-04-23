@@ -1,4 +1,4 @@
-import 'package:flowery/core/apiManger/apiService.dart';
+import 'package:flowery/core/api_manger/api_service.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/features/auth/register/data/models/register_request.dart';
 import 'package:flowery/features/auth/register/data/models/register_response.dart';
@@ -13,7 +13,7 @@ class RegisterDataSourceImpl implements RegisterRepositoryDataSourceContract {
   Future<RegisterResponse> register({
     required RegisterRequest registerRequest,
   }) async {
-    var response = await apiServices.registerUser(registerRequest);
+    final response = await apiServices.registerUser(registerRequest);
     return response;
   }
 }

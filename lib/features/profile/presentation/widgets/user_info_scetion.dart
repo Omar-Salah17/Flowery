@@ -1,19 +1,17 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flowery/core/config/routes_name.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flowery/core/config/routes_name.dart';
+import 'package:flowery/core/helper/spacing.dart';
+import 'package:flowery/core/utils/app_text_styles.dart';
+import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/profile/data/model/user_response.dart';
+import 'package:flowery/features/profile/presentation/view/cubit/profile_cubit.dart';
 import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
-import 'package:flowery/core/helper/spacing.dart';
-import 'package:flowery/core/utils/app_text_styles.dart';
-import 'package:flowery/core/utils/colors.dart';
-
-import '../view/cubit/profile_cubit.dart';
 
 class UserInfoScetion extends StatelessWidget {
   final UserData user;

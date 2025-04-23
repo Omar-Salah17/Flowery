@@ -17,7 +17,7 @@ jobs:
       - name: Validate branch name
         id: validate_branch
         run: |
-          BRANCH_NAME=$(echo ${{ github.head_ref }} | tr '[:upper:]' '[:lower:]')
+          BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD | tr '[:upper:]' '[:lower:]')
           echo "Branch name: $BRANCH_NAME"
 
           # Define allowed branch name patterns

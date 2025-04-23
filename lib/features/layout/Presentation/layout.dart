@@ -4,7 +4,11 @@ import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/categories/domain/use_case/get_all_categories_use_case.dart';
 import 'package:flowery/features/categories/domain/use_case/get_all_sorted_products_use_case.dart';
 import 'package:flowery/features/categories/domain/use_case/get_products_by_category_use_case.dart';
+import 'package:flowery/features/categories/domain/use_case/search_use_case.dart';
+import 'package:flowery/features/categories/presentation/view/categories_screen.dart';
 import 'package:flowery/features/categories/presentation/view_model/cubits/categories_cubit/categories_screen_cubit.dart';
+import 'package:flowery/features/home/presentation/view/home_view.dart';
+import 'package:flowery/features/profile/presentation/view/profile_view.dart';
 import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,16 +21,16 @@ class Layout extends StatefulWidget {
   const Layout({super.key});
 
   @override
-  _LayoutState createState() => _LayoutState();
+  LayoutState createState() => LayoutState();
 }
 
-class _LayoutState extends State<Layout> {
+class LayoutState extends State<Layout> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
-    HomeView(),
-    CategoriesScreen(),
-    CartView(),
+    const HomeView(),
+    const CategoriesScreen(),
+    const CartView(),
     ProfileView(),
   ];
 
@@ -38,14 +42,16 @@ class _LayoutState extends State<Layout> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create:
-          (context) => CategoriesScreenCubit(
-            getIt.get<GetAllCategoriesUseCase>(),
-            getIt.get<GetProductsByCategoryUseCase>(),
-            getIt.get<GetProductsByCategoryWithSortUseCase>(),
-          )..getAllCategories(),
-
+    return 
+        BlocProvider(
+          create:
+              (context) => CategoriesScreenCubit(
+                getIt.get<GetAllCategoriesUseCase>(),
+                getIt.get<GetProductsByCategoryUseCase>(),
+                getIt.get<SearchUseCase>(),
+                getIt.get<GetProductsByCategoryWithSortUseCase>(),
+              )..getAllCategories(),
+      
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
@@ -55,19 +61,19 @@ class _LayoutState extends State<Layout> {
           unselectedItemColor: PalletsColors.gray,
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
+              icon: const Icon(Icons.home_outlined),
               label: LocaleKeys.home.tr(),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.category_outlined),
+              icon: const Icon(Icons.category_outlined),
               label: LocaleKeys.categories.tr(),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart_outlined),
+              icon: const Icon(Icons.shopping_cart_outlined),
               label: LocaleKeys.cart.tr(),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline),
+              icon: const Icon(Icons.person_outline),
               label: LocaleKeys.profile.tr(),
             ),
           ],

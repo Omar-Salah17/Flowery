@@ -1,7 +1,8 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flowery/core/utils/error_handler.dart';
-import 'dart:io';
 
 class RequestHandler {
   static Future<Either<Failure, T>> handle<T>(
@@ -41,7 +42,7 @@ class RequestHandler {
       case DioExceptionType.badResponse:
         if (e.response != null) {
           final statusCode = e.response!.statusCode;
-          final errorMessage = e.response!.data.toString();
+
 
           switch (statusCode) {
             case 400:

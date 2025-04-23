@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
+import 'package:flowery/features/categories/presentation/view/widgets/product_search_delegate.dart';
 import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,34 +15,28 @@ class CategoriesScreenAppBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(
-            // height: 48.h,
-            width: 271.w,
-            child: TextField(
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.only(
-                  top: 15.5.h,
-                  bottom: 15.5.h,
-                  left: 19.w,
-                ),
-                hintText: LocaleKeys.search.tr(),
-                hintStyle: TextStyle(
-                  fontSize: AppTextStyles.instance.textStyle14.fontSize,
-                  color: PalletsColors.white70,
-                  fontWeight: FontWeight.w500,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.r),
-                  borderSide: BorderSide(color: PalletsColors.white70),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.r),
-                  borderSide: BorderSide(color: PalletsColors.white70),
-                ),
-                prefixIcon: Icon(
-                  Icons.search,
-                  color: PalletsColors.white70,
-                  size: 24.r,
+          InkWell(
+            onTap: () {
+              showSearch(context: context, delegate: ProductSearchDelegate());
+            },
+            child: SizedBox(
+              width: 271.w,
+              height: 48.h,
+              child: IgnorePointer(
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: LocaleKeys.search.tr(),
+                    prefixIcon: const Icon(
+                      Icons.search,
+                      color: PalletsColors.white70,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.r),
+                      borderSide: const BorderSide(
+                        color: PalletsColors.white70,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),

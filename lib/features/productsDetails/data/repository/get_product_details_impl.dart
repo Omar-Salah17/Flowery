@@ -16,14 +16,14 @@ class GetProductDetailsImpl implements GetProductDetailsContract {
   @override
   Future<Either<Failure, Product>> getProductDetails(String producrId) async {
     try {
-      var data = await remoteDataSource.getProductDetails(producrId);
+      final data = await remoteDataSource.getProductDetails(producrId);
       log("data in GetProductDetailsImpl $data");
-      return Right(data.product ?? Product());
+      return Right(data.product ?? const Product());
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log('error in GetProductDetailsImpl: ${e.toString()}');
+        log('error in GetProductDetailsImpl: $e');
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }

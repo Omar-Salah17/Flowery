@@ -49,7 +49,7 @@ class Product extends Equatable {
     slug: json['slug'] as String?,
     description: json['description'] as String?,
     imgCover: json['imgCover'] as String?,
-    images:List<String>.from(json['images'] ?? []),
+    images:List<String>.from(json['images'] as List<dynamic>),
     price: json['price'] as int?,
     priceAfterDiscount: json['priceAfterDiscount'] as int?,
     quantity: json['quantity'] as int?,

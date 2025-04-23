@@ -19,12 +19,12 @@ class ForgetPasswordScreen extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {},
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
           ),
           title: Text(LocaleKeys.password.tr()),
           titleSpacing: 0,
         ),
-        body: ForgetPasswordScreenBody(),
+        body: const ForgetPasswordScreenBody(),
       ),
     );
   }

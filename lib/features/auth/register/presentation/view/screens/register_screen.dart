@@ -27,15 +27,15 @@ class _RegisterState extends State<Register> {
   final formKey = GlobalKey<FormState>();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   String? gender;
-  var cubit = RegisterCubit(getIt<RegisterUseCase>());
+  RegisterCubit cubit = RegisterCubit(getIt<RegisterUseCase>());
   @override
   Widget build(BuildContext context) {
-    var text = Theme.of(context).textTheme;
+    final text = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         title: Row(
           children: [
-            Icon(Icons.arrow_back_ios),
+            const Icon(Icons.arrow_back_ios),
             horizontalSpace(10),
             Text(LocaleKeys.signup.tr(), style: text.titleMedium),
           ],
@@ -214,7 +214,7 @@ class _RegisterState extends State<Register> {
                       ],
                     ),
                   ),
-                  CreateAccountSection(),
+                  const CreateAccountSection(),
                   Padding(
                     padding: EdgeInsets.only(
                       left: 16.w,
@@ -235,7 +235,7 @@ class _RegisterState extends State<Register> {
                       child: Text(LocaleKeys.signup.tr()),
                     ),
                   ),
-                  AlreadyHaveAccountSection(),
+                  const AlreadyHaveAccountSection(),
                 ],
               ),
             );

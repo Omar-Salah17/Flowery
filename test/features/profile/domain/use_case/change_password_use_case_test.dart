@@ -16,12 +16,12 @@ void main() {
     mockProfileRepo = MockProfileRepo();
     useCase = ChangePasswordUseCase(profileRepo: mockProfileRepo);
   });
-  String oldPass = "oldPassword";
-  String newPass = "newPassword";
-  Map<String, dynamic> successResponse = {
+  const String oldPass = "oldPassword";
+  const String newPass = "newPassword";
+  final Map<String, dynamic> successResponse = {
     "message": "Password changed successfully"
   };
-  Failure failureResponse = ServerFailure(
+  final Failure failureResponse = ServerFailure(
     errorMessage: "Password change failed"
   );
  
@@ -37,7 +37,7 @@ void main() {
           }),
         ).thenAnswer((_) async => Right(successResponse));
         //act
-        var actual = await useCase.call(
+        final actual = await useCase.call(
           oldPassword: oldPass,
           newPassword: newPass,
         );
@@ -61,7 +61,7 @@ void main() {
         }),
       ).thenAnswer((_) async => Left(failureResponse));
       //act
-      var actual = await useCase.call(
+      final actual = await useCase.call(
         oldPassword: oldPass,
         newPassword: newPass,
       );

@@ -33,11 +33,7 @@ class ServerFailure extends Failure {
         return ServerFailure(
           errorMessage: 'UnExcepted error , Please try again',
         );
-      default:
-        return ServerFailure(
-          errorMessage: 'Oops there is an error , Please try later',
-        );
-    }
+      }
   }
   factory ServerFailure.fromResponse(int statusCode, dynamic jsonData) {
     switch (statusCode) {
@@ -57,12 +53,11 @@ class ServerFailure extends Failure {
             ) ??
             false) {
           return ServerFailure(
-            errorMessage: jsonData["error"] ?? "Unknown error",
+              errorMessage:jsonData["message"]?.toString() ?? jsonData["error"]?.toString() ?? "Unknown error",
           );
         }
         return ServerFailure(
-          errorMessage:
-              jsonData["message"] ?? jsonData["error"] ?? "Unknown error",
+          errorMessage: jsonData["message"]?.toString() ?? jsonData["error"]?.toString() ?? "Unknown error",
         );
 
       case 404:
@@ -70,13 +65,13 @@ class ServerFailure extends Failure {
             jsonData["message"].toString().contains(
               'There is no account with this email address',
             )) {
-          return ServerFailure(errorMessage: jsonData["message"]);
+          return ServerFailure(errorMessage: jsonData["message"]?.toString() ?? jsonData["error"]?.toString() ?? "Unknown error",);
         } else if (jsonData["error"]?.toString().contains(
               "There is no account with this email address",
             ) ??
             false) {
           return ServerFailure(
-            errorMessage: jsonData["error"] ?? "Unknown error",
+            errorMessage: jsonData["message"]?.toString() ?? jsonData["error"]?.toString() ?? "Unknown error",
           );
         } else {
           return ServerFailure(errorMessage: 'Requested resource not found.');

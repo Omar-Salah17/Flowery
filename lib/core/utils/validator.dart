@@ -1,7 +1,7 @@
 class Validator {
   static String? validateEmail(String? val) {
     final RegExp emailRegex = RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+      r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
     );
     if (val == null || val.trim().isEmpty) {
       return 'Enter your email address.';
@@ -35,7 +35,7 @@ class Validator {
   }
 
   static String? validatePassword(String? val) {
-    RegExp passwordRegex = RegExp(r'^(?=.*[A-Z])(?=.*[0-9]).{8,}$');
+    final RegExp passwordRegex = RegExp(r'^(?=.*[A-Z])(?=.*[0-9]).{8,}$');
     if (val == null || val.isEmpty) {
       return 'This field is required';
     } else if (!passwordRegex.hasMatch(val)) {

@@ -166,5 +166,8 @@
     "completed": "Completed",
     "newOffer": "New offer",
     "confirmLogout": "Confirm logout!!",
-    "remember": "Remember"
+    "remember": "Remember",
+    "about_Us_Introduction_Title": "Introduction",
+    "about_Us_Closing_Title": "Closing"
+
 }

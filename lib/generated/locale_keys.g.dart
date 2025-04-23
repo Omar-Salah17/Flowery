@@ -58,9 +58,9 @@ abstract class  LocaleKeys {
   static const signupButton = 'signupButton';
   static const alreadyHaveAccount = 'alreadyHaveAccount';
   static const ThisEmailIsNotValid = 'ThisEmailIsNotValid';
-  static const InvalidPassword = 'InvalidPassword';
-  static const forget_password_title = 'forget_password_title';
-  static const forget_password_instruction = 'forget_password_instruction';
+  static const Invalidpassword = 'Invalidpassword';
+  static const forgetPasswordTitle = 'forgetPasswordTitle';
+  static const forgetPasswordInstruction = 'forgetPasswordInstruction';
   static const invalidEmail = 'invalidEmail';
   static const confirmButton = 'confirmButton';
   static const emailVerificationTitle = 'emailVerificationTitle';
@@ -169,5 +169,7 @@ abstract class  LocaleKeys {
   static const newOffer = 'newOffer';
   static const confirmLogout = 'confirmLogout';
   static const remember = 'remember';
+  static const about_Us_Introduction_Title = 'about_Us_Introduction_Title';
+  static const about_Us_Closing_Title = 'about_Us_Closing_Title';
 
 }

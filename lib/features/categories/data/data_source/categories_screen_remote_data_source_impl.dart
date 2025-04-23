@@ -12,17 +12,18 @@ class CategoriesScreenRemoteDataSourceImpl
   CategoriesScreenRemoteDataSourceImpl({required this.apiService});
   @override
   Future<CategoriesModel> getCategories() async {
-    var response = await apiService.getCategories();
+    final response = await apiService.getCategories();
     return response;
   }
 
   @override
-  Future<ProductsModel> getProductsByCategory({
-    String? categoryId,
+  Future<ProductsModel> getProductsByCategory({String? categoryId,
+    String? keyword,
     String? sort,
   }) async {
-    var response = await apiService.getProductsByCategory(
+    final response = await apiService.getProductsByCategory(
       categoryId: categoryId,
+       keyword: keyword,
       sort: sort,
     );
     return response;

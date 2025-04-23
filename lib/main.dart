@@ -4,6 +4,8 @@ import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/provider/app_config_provider.dart';
 import 'package:flowery/core/utils/application_theme.dart';
+import 'package:flowery/core/di/di.dart';
+import 'package:flowery/core/config/route_generator.dart';
 import 'package:flowery/core/utils/simple_bloc_observer.dart';
 import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_cubit.dart';
 import 'package:flowery/generated/codegen_loader.g.dart';
@@ -19,14 +21,14 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   runApp(
     EasyLocalization(
-      supportedLocales: [Locale('en'), Locale('ar')],
+      supportedLocales: const [Locale('en'), Locale('ar')],
       path:
           'assets/translations', // <-- change the path of the translation files
-      fallbackLocale: Locale("_languageCode"),
-      assetLoader: CodegenLoader(),
+      fallbackLocale: const Locale("_languageCode"),
+      assetLoader: const CodegenLoader(),
       child: ChangeNotifierProvider(
         create: (_) => getIt<AppConfigProvider>(),
-        child: Flowery(),
+        child: const Flowery(),
       ),
     ),
   );
@@ -44,7 +46,7 @@ class _FloweryState extends State<Flowery> {
 
   @override
   Widget build(BuildContext context) {
-    var cartCubit = getIt<CartCubit>();
+    final cartCubit = getIt<CartCubit>();
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
@@ -58,7 +60,7 @@ class _FloweryState extends State<Flowery> {
                   localizationsDelegates: context.localizationDelegates,
                   supportedLocales: context.supportedLocales,
                   locale: context.locale,
-                  initialRoute: RoutesName.initial,
+                  initialRoute: RoutesName.login,
                   onGenerateRoute: RouteGenerator.onGenerator,
                   theme: ApplicationTheme.themeData,
                 ),

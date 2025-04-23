@@ -15,7 +15,7 @@ class GenderSection extends StatefulWidget {
 class _GenderSectionState extends State<GenderSection> {
   @override
   Widget build(BuildContext context) {
-    var text = Theme.of(context).textTheme;
+    final text = Theme.of(context).textTheme;
     String? gender;
     return Row(
       children: [
