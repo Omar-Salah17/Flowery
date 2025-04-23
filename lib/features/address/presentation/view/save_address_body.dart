@@ -1,7 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
-import 'package:flowery/core/di/di.dart';
-import 'package:flowery/core/provider/app_config_provider.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/address/presentation/view_model/address_cubit/address_cubit.dart';
@@ -76,9 +74,7 @@ class SaveAddressBody extends StatelessWidget {
                             ),
                             onPressed: () {
                                Navigator.pushNamed(context,
-                    RoutesName.addressDetailsScreen,
-                    
-                  );
+                    RoutesName.addressDetailsScreen);
                             },
                             child: Text('Add New Address'),
                           ),

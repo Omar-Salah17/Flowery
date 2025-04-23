@@ -9,17 +9,22 @@ sealed class AddressDetailsState extends Equatable {
 
 final class AddressDetailsInitial extends AddressDetailsState {}
 
-final class AddressDetailsLoading extends AddressDetailsState {}
+final class AddAddressLoading extends AddressDetailsState {}
 
-final class AddressDetailsSuccess extends AddressDetailsState {
+final class AddAddressSucces extends AddressDetailsState {
   final AddAddressResponse addAddressResponse;
 
- const AddressDetailsSuccess({required this.addAddressResponse});
+  const AddAddressSucces({required this.addAddressResponse});
 }
 
-final class AddressDetailsError extends AddressDetailsState {
+final class AddAddressFailure extends AddressDetailsState {
   final String errorMessage;
 
- const AddressDetailsError({required this.errorMessage});
+  const AddAddressFailure({required this.errorMessage});
 }
-final class AddressDetailsLocationUpdated extends AddressDetailsState{}
+
+final class AddressDetailsLocationUpdated extends AddressDetailsState {
+  final String? city, area;
+
+  const AddressDetailsLocationUpdated({this.city, this.area});
+}

@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flowery/features/address/data/models/add_address_response/add_address_response.dart';
@@ -7,15 +6,15 @@ import 'package:flowery/features/address/data/models/logged_user_address_model.d
 import 'package:flowery/features/address/data/models/user_address_data.dart';
 import 'package:flowery/features/address/domain/use_case/add_address_use_case.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geocoding/geocoding.dart';
 
 part 'address_details_state.dart';
 
 class AddressDetailsCubit extends Cubit<AddressDetailsState> {
-  AddressDetailsCubit(this.addAddressUseCase, this.addressModel)
+  AddressDetailsCubit(this.addAddressUseCase,)
     : super(AddressDetailsInitial());
-  Addresses? addressModel;
+  
 
   final AddAddressUseCase addAddressUseCase;
 
@@ -28,18 +27,19 @@ class AddressDetailsCubit extends Cubit<AddressDetailsState> {
   GoogleMapController? mapController;
   Set<Marker> markers = {};
   void initControllers() {
-    address = TextEditingController(text: addressModel?.street?? "");
-    phoneNumber = TextEditingController(text: addressModel?.phone?? "");
-    recipientNameController = TextEditingController(text: addressModel?.username?? "");
+    address = TextEditingController();
+    phoneNumber = TextEditingController();
+    recipientNameController = TextEditingController(
+      
+    );
   }
 
   Future<void> addAddress(UserAddressData addressData) async {
-    emit(AddressDetailsLoading());
+    emit(AddAddressLoading());
     final result = await addAddressUseCase.call(addressData);
     result.fold(
-      (failure) =>
-          emit(AddressDetailsError(errorMessage: failure.errorMessage)),
-      (address) => emit(AddressDetailsSuccess(addAddressResponse: address)),
+      (failure) => emit(AddAddressFailure(errorMessage: failure.errorMessage)),
+      (address) => emit(AddAddressSucces(addAddressResponse: address)),
     );
   }
 
@@ -65,7 +65,7 @@ class AddressDetailsCubit extends Cubit<AddressDetailsState> {
       }
     } catch (e) {
       log("Geocoding failed: $e");
-      emit(AddressDetailsError(errorMessage: "Invalid address input"));
+      emit(AddAddressFailure(errorMessage: "Invalid address input"));
     }
   }
 
@@ -84,11 +84,16 @@ class AddressDetailsCubit extends Cubit<AddressDetailsState> {
           placemark.locality,
         ].where((part) => part != null && part.isNotEmpty).join(', ');
 
-        emit(AddressDetailsLocationUpdated());
+        emit(
+          AddressDetailsLocationUpdated(
+            city: placemark.locality,
+            area: placemark.subLocality,
+          ),
+        );
       }
     } catch (e) {
       log("Error updating from LatLng: $e");
-      emit(AddressDetailsError(errorMessage: "Failed to get location info"));
+      emit(AddAddressFailure(errorMessage: "Failed to get location info"));
     }
   }
 

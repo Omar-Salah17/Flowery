@@ -13,22 +13,15 @@ class AddressDetailsScreen extends StatelessWidget {
   const AddressDetailsScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)?.settings.arguments;
-
-  if (args == null || args is! Addresses) {
-    debugPrint('❌ Arguments missing or invalid');
-    return const Scaffold(
-      body: Center(child: Text("Invalid or missing address data")),
-    );
-  }
+    
     return BlocProvider(
-      create: (context) => AddressDetailsCubit(getIt.get<AddAddressUseCase>(), args)..initControllers(),
+      create: (context) => AddressDetailsCubit(getIt.get<AddAddressUseCase>())..initControllers(),
       child: Scaffold(
         appBar: buildAppBar(
           title: LocaleKeys.address.tr(),
           onPressed: () => Navigator.pop(context),
         ),
-        body: AddressDetailsScreenBody(address: args,),
+        body: AddressDetailsScreenBody(),
       ),
     );
   }
