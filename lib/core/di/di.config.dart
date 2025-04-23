@@ -125,6 +125,16 @@ import '../../features/productsDetails/domain/repository/get_product_details_con
     as _i877;
 import '../../features/productsDetails/domain/useCases/get_product_details_use_case.dart'
     as _i691;
+import '../../features/profile/about_us/data/data_sources/about_us_local_data_source.dart'
+    as _i655;
+import '../../features/profile/about_us/data/data_sources/about_us_local_data_source_Impl.dart'
+    as _i999;
+import '../../features/profile/about_us/data/repositories/about_us_repo_impl.dart'
+    as _i442;
+import '../../features/profile/about_us/domain/repositories/about_us_repo.dart'
+    as _i786;
+import '../../features/profile/about_us/domain/use_cases/about_us_use_case.dart'
+    as _i770;
 import '../../features/profile/data/data_source/profile_remote_data_source.dart'
     as _i998;
 import '../../features/profile/data/data_source/profile_remote_data_source_impl.dart'
@@ -153,6 +163,16 @@ import '../../features/profile/presentation/view/cubit/profile_cubit.dart'
     as _i851;
 import '../../features/profile/presentation/view_model/edit_profile_cubit.dart'
     as _i589;
+import '../../features/profile/terms_and_conditions/data/data_sources/terms_and_conditions_local_datasource.dart'
+    as _i17;
+import '../../features/profile/terms_and_conditions/data/data_sources/terms_and_conditions_local_datasource_impl.dart'
+    as _i642;
+import '../../features/profile/terms_and_conditions/data/repositories/terms_and_conditions_repo_impl.dart'
+    as _i72;
+import '../../features/profile/terms_and_conditions/domain/repositories/terms_and_conditions_repo.dart'
+    as _i843;
+import '../../features/profile/terms_and_conditions/domain/use_cases/terms_and_conditions_usecase.dart'
+    as _i494;
 import '../api_manger/api_manager.dart' as _i89;
 import '../api_manger/api_service.dart' as _i525;
 import '../api_manger/dio_module.dart' as _i508;
@@ -220,12 +240,18 @@ extension GetItInjectableX on _i174.GetIt {
         forgetPasswordRepo: gh<_i497.ForgetPasswordRepo>(),
       ),
     );
+    gh.factory<_i655.AboutLocalDataSource>(
+      () => _i999.AboutLocalDataSourceImpl(),
+    );
     gh.factory<_i632.LoginRepo>(
       () => _i21.LoginRepoImp(
         loginRemoteDataSource: gh<_i577.LoginRemoteDataSource>(),
       ),
     );
     gh.factory<_i621.LogoutDataSource>(() => _i934.LogoutDataSourceImpl());
+    gh.factory<_i17.TermsAndConditionsLocalDataSource>(
+      () => _i642.TermsAndConditionsLocalDataSourceImpl(),
+    );
     gh.singleton<_i361.Dio>(
       () => dioModule.provideDio(
         gh<_i361.LogInterceptor>(),
@@ -243,8 +269,19 @@ extension GetItInjectableX on _i174.GetIt {
         occasionRepositoryContract: gh<_i234.OccasionRepositoryContract>(),
       ),
     );
+    gh.factory<_i843.TermsAndConditionsRepo>(
+      () => _i72.TermsAndConditionsRepoImpl(
+        gh<_i17.TermsAndConditionsLocalDataSource>(),
+      ),
+    );
+    gh.factory<_i786.AboutRepository>(
+      () => _i442.AboutRepoImpl(gh<_i655.AboutLocalDataSource>()),
+    );
     gh.factory<_i872.LogoutRepo>(
       () => _i107.LogoutRepoImpl(gh<_i621.LogoutDataSource>()),
+    );
+    gh.factory<_i770.AboutUsUseCase>(
+      () => _i770.AboutUsUseCase(gh<_i786.AboutRepository>()),
     );
     gh.singleton<_i525.ApiService>(
       () => dioModule.provideApiService(gh<_i361.Dio>()),
@@ -270,6 +307,9 @@ extension GetItInjectableX on _i174.GetIt {
         getAllOccasionsUseCase: gh<_i34.GetAllOccasionsUseCase>(),
         getProductByOccasionUsecase: gh<_i193.GetProductByOccasionUseCase>(),
       ),
+    );
+    gh.factory<_i494.TermsAndConditionsUseCase>(
+      () => _i494.TermsAndConditionsUseCase(gh<_i843.TermsAndConditionsRepo>()),
     );
     gh.factory<_i826.CategoriesScreenRepo>(
       () => _i750.CategoriesScreenRepoImpl(
