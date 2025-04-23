@@ -12,6 +12,7 @@ import 'package:geocoding/geocoding.dart';
 part 'address_details_state.dart';
 
 class AddressDetailsCubit extends Cubit<AddressDetailsState> {
+  Addresses? addresses;
   AddressDetailsCubit(this.addAddressUseCase,)
     : super(AddressDetailsInitial());
   
@@ -22,6 +23,7 @@ class AddressDetailsCubit extends Cubit<AddressDetailsState> {
   late final TextEditingController phoneNumber;
   late final TextEditingController recipientNameController;
 
+  String? id;
   double? lat;
   double? long;
   GoogleMapController? mapController;

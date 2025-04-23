@@ -17,7 +17,8 @@ import 'package:flowery/features/check_out/presentation/view_model/check_out_sta
 import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../address/presentation/cubit/address_cubit.dart';
+import '../../../address/data/models/logged_user_address_model.dart';
+import '../../../address/presentation/view_model/address_cubit/address_cubit.dart';
 import '../../../cart/presentation/view model/cubit/cart_state.dart';
 
 enum PaymentMethod { cashOnDelivery, creditCard }
@@ -118,10 +119,10 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                       title: addressName,
                                       subtitle: address.street ?? '',
                                       onEdit: () {
-                                        /// change this after merge ti edit address screen
                                         Navigator.pushNamed(
                                           context,
-                                          RoutesName.saveAddressScreen,
+                                          RoutesName.addressDetailsScreen,
+                                          arguments: address,
                                         );
                                       },
                                       isSelected:
@@ -146,7 +147,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                             BorderSide(color: PalletsColors.white70),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {Navigator.pushNamed(context,  RoutesName.addressDetailsScreen,arguments: Addresses());},
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
+import 'package:flowery/features/address/data/models/logged_user_address_model.dart';
 import 'package:flowery/features/address/presentation/view/widgets/address_item.dart';
 import 'package:flowery/features/address/presentation/view_model/address_cubit/address_cubit.dart';
 
@@ -88,7 +90,8 @@ class SaveAddressBody extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20.r),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () async{await Navigator.pushNamed(context, RoutesName.addressDetailsScreen,arguments: Addresses());
+                addressCubit.getLoggedUserAddress();},
               child: Text(LocaleKeys.addNewAddress.tr()),
             ),
           ),

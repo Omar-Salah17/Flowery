@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/custom_text_form_fieled.dart';
@@ -15,8 +17,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../view_model/address_cubit/address_cubit.dart';
+
 class AddressDetailsScreenBody extends StatefulWidget {
-  const AddressDetailsScreenBody({super.key});
+   AddressDetailsScreenBody({super.key, required this.address});
+  final Addresses address;
+
 
   @override
   State<AddressDetailsScreenBody> createState() =>
@@ -30,11 +36,13 @@ class _AddressDetailsScreenBodyState extends State<AddressDetailsScreenBody> {
   List<AreaModel> areasList = [];
   bool isLoading = false;
 
+
   @override
   void initState() {
     super.initState();
     loadData();
-  }
+
+    }
 
   Future<void> loadData() async {
     setState(() => isLoading = true);
@@ -47,7 +55,19 @@ class _AddressDetailsScreenBodyState extends State<AddressDetailsScreenBody> {
 
   @override
   Widget build(BuildContext context) {
+
     final cubit = context.read<AddressDetailsCubit>();
+
+    log('widgit.address:${widget.address.id}');
+    if(widget.address.id != null){
+
+      cubit.id=widget.address.id;
+      cubit.address.text = widget.address.street ?? '';
+      cubit.phoneNumber.text = widget.address.phone ?? '';
+      cubit.recipientNameController.text = widget.address.username ?? '';
+
+    }
+
 
     if (isLoading) {
       return const Center(child: CircularProgressIndicator(color: PalletsColors.mainColorBase,));

@@ -13,7 +13,8 @@ class AddressDetailsScreen extends StatelessWidget {
   const AddressDetailsScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    
+    final address = ModalRoute.of(context)!.settings.arguments as Addresses;
+
     return BlocProvider(
       create: (context) => AddressDetailsCubit(getIt.get<AddAddressUseCase>())..initControllers(),
       child: Scaffold(
@@ -21,7 +22,7 @@ class AddressDetailsScreen extends StatelessWidget {
           title: LocaleKeys.address.tr(),
           onPressed: () => Navigator.pop(context),
         ),
-        body: AddressDetailsScreenBody(),
+        body: AddressDetailsScreenBody(address: address,),
       ),
     );
   }
