@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';

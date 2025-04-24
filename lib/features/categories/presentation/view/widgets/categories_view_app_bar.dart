@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/categories/presentation/view/widgets/product_search_delegate.dart';
 import 'package:flowery/generated/locale_keys.g.dart';

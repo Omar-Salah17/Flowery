@@ -43,7 +43,7 @@ class PriceSortOptionTile extends StatelessWidget {
             Text(label, style: AppTextStyles.instance.textStyle16),
             RadioTheme(
               data: RadioThemeData(
-                fillColor: MaterialStateProperty.resolveWith<Color>(
+                fillColor: WidgetStateProperty.resolveWith<Color>(
                   (states) => PalletsColors.mainColorBase,
                 ),
               ),

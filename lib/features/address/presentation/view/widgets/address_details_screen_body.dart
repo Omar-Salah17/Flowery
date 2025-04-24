@@ -4,7 +4,6 @@ import 'package:flowery/core/utils/custom_text_form_fieled.dart';
 import 'package:flowery/core/utils/helper_functions/snack_bar.dart';
 import 'package:flowery/features/address/data/models/area_model.dart';
 import 'package:flowery/features/address/data/models/governorate_model.dart';
-import 'package:flowery/features/address/data/models/logged_user_address_model.dart';
 import 'package:flowery/features/address/data/models/user_address_data.dart';
 import 'package:flowery/features/address/presentation/view/widgets/area_drop_down_box.dart';
 import 'package:flowery/features/address/presentation/view/widgets/city_drop_down_box.dart';
