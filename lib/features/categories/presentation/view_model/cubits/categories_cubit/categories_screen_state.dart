@@ -13,7 +13,8 @@ final class CategoriesLoading extends CategoriesScreenState {}
 
 final class CategoriesSuccess extends CategoriesScreenState {
   final List<Category> categories;
-
+  @override
+  List<Object> get props => [categories];
   const CategoriesSuccess({required this.categories});
 }
 
@@ -29,7 +30,8 @@ final class ProductsByCategoryLoading extends CategoriesScreenState {}
 
 final class ProductsByCategorySuccess extends CategoriesScreenState {
   final List<Product> products;
-
+  @override
+  List<Object> get props => [products];
   const ProductsByCategorySuccess({required this.products});
 }
 

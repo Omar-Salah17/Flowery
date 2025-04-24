@@ -348,13 +348,13 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i1048.ProductDetailsRemoteDataSource>(),
       ),
     );
-    gh.factory<_i579.SearchUseCase>(
-      () => _i579.SearchUseCase(repo: gh<_i826.CategoriesScreenRepo>()),
-    );
     gh.factory<_i440.GetProductsByCategoryWithSortUseCase>(
       () => _i440.GetProductsByCategoryWithSortUseCase(
         repo: gh<_i826.CategoriesScreenRepo>(),
       ),
+    );
+    gh.factory<_i579.SearchUseCase>(
+      () => _i579.SearchUseCase(repo: gh<_i826.CategoriesScreenRepo>()),
     );
     gh.factory<_i123.CartRepo>(
       () => _i806.CartRepoImpl(
