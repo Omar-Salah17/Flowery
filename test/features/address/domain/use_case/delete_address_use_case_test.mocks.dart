@@ -7,11 +7,14 @@ import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:flowery/core/utils/error_handler.dart' as _i5;
-import 'package:flowery/features/address/data/models/address_model.dart' as _i7;
+import 'package:flowery/features/address/data/models/add_address_response/add_address_response.dart'
+    as _i7;
+import 'package:flowery/features/address/data/models/address_model.dart' as _i9;
 import 'package:flowery/features/address/data/models/logged_user_address_model.dart'
     as _i6;
-import 'package:flowery/features/address/domain/repos/repos/Address_repository_contract.dart'
-    as _i3;
+import 'package:flowery/features/address/data/models/user_address_data.dart'
+    as _i8;
+import 'package:flowery/features/address/domain/repos/address_repo.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -33,12 +36,11 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
     : super(parent, parentInvocation);
 }
 
-/// A class which mocks [AddressRepositoryContract].
+/// A class which mocks [AddressRepo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAddressRepositoryContract extends _i1.Mock
-    implements _i3.AddressRepositoryContract {
-  MockAddressRepositoryContract() {
+class MockAddressRepo extends _i1.Mock implements _i3.AddressRepo {
+  MockAddressRepo() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -58,14 +60,49 @@ class MockAddressRepositoryContract extends _i1.Mock
           as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Addresses>?>>);
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, List<_i7.Address>?>> deleteAddress({
+  _i4.Future<_i2.Either<_i5.Failure, _i7.AddAddressResponse>> addAddress(
+    _i8.UserAddressData? address,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#addAddress, [address]),
+            returnValue: _i4.Future<
+              _i2.Either<_i5.Failure, _i7.AddAddressResponse>
+            >.value(
+              _FakeEither_0<_i5.Failure, _i7.AddAddressResponse>(
+                this,
+                Invocation.method(#addAddress, [address]),
+              ),
+            ),
+          )
+          as _i4.Future<_i2.Either<_i5.Failure, _i7.AddAddressResponse>>);
+
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, _i7.AddAddressResponse>> updateAddress(
+    _i8.UserAddressData? address,
+    String? id,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#updateAddress, [address, id]),
+            returnValue: _i4.Future<
+              _i2.Either<_i5.Failure, _i7.AddAddressResponse>
+            >.value(
+              _FakeEither_0<_i5.Failure, _i7.AddAddressResponse>(
+                this,
+                Invocation.method(#updateAddress, [address, id]),
+              ),
+            ),
+          )
+          as _i4.Future<_i2.Either<_i5.Failure, _i7.AddAddressResponse>>);
+
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, List<_i9.Address>?>> deleteAddress({
     required String? addressId,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#deleteAddress, [], {#addressId: addressId}),
             returnValue:
-                _i4.Future<_i2.Either<_i5.Failure, List<_i7.Address>?>>.value(
-                  _FakeEither_0<_i5.Failure, List<_i7.Address>?>(
+                _i4.Future<_i2.Either<_i5.Failure, List<_i9.Address>?>>.value(
+                  _FakeEither_0<_i5.Failure, List<_i9.Address>?>(
                     this,
                     Invocation.method(#deleteAddress, [], {
                       #addressId: addressId,
@@ -73,5 +110,5 @@ class MockAddressRepositoryContract extends _i1.Mock
                   ),
                 ),
           )
-          as _i4.Future<_i2.Either<_i5.Failure, List<_i7.Address>?>>);
+          as _i4.Future<_i2.Either<_i5.Failure, List<_i9.Address>?>>);
 }

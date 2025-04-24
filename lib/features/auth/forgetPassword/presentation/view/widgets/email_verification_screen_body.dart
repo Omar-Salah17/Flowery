@@ -70,7 +70,7 @@ class _EmailVerificationScreenBodyState
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                   LocaleKeys.emailVerificationTitle.tr(),
+                    LocaleKeys.emailVerificationTitle.tr(),
                     style: AppTextStyles.instance.textStyle18.copyWith(
                       fontWeight: FontWeight.w500,
                     ),
@@ -78,7 +78,8 @@ class _EmailVerificationScreenBodyState
                   SizedBox(height: 16.h),
                   Text(
                     textAlign: TextAlign.center,
-                    LocaleKeys.PleaseEnterYourCodeThatSendToYourEmailAddress.tr(),
+                    LocaleKeys
+                        .PleaseEnterYourCodeThatSendToYourEmailAddress.tr(),
                     style: AppTextStyles.instance.textStyle14,
                   ),
                 ],

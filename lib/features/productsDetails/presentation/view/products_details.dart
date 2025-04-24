@@ -21,16 +21,14 @@ class ProductsDetails extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
-
-    BlocProvider<CartCubit>(
-        create: (context) => getIt<CartCubit>()),
+        BlocProvider<CartCubit>(create: (context) => getIt<CartCubit>()),
         BlocProvider(
-          create: (_) => ProductDetailsCubit(getIt.get<GetProductDetailsUseCase>())
-            ..fetchProduct(args.id!),
+          create:
+              (_) =>
+                  ProductDetailsCubit(getIt.get<GetProductDetailsUseCase>())
+                    ..fetchProduct(args.id!),
         ),
-        BlocProvider.value(
-          value: getIt<CartCubit>(),
-        ),
+        BlocProvider.value(value: getIt<CartCubit>()),
       ],
       child: Scaffold(
         appBar: AppBar(

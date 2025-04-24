@@ -3,13 +3,17 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i4;
 
-import 'package:flowery/features/address/data/models/address_model.dart' as _i5;
-import 'package:flowery/features/address/data/models/logged_user_address_model.dart'
-    as _i4;
-import 'package:flowery/features/address/domain/repos/repos_data_sourse/adderss_data_source_contract.dart'
+import 'package:flowery/features/address/data/data_source/address_remote_data_source.dart'
+    as _i3;
+import 'package:flowery/features/address/data/models/add_address_response/add_address_response.dart'
     as _i2;
+import 'package:flowery/features/address/data/models/address_model.dart' as _i7;
+import 'package:flowery/features/address/data/models/logged_user_address_model.dart'
+    as _i5;
+import 'package:flowery/features/address/data/models/user_address_data.dart'
+    as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -26,28 +30,65 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [AdderssRemoteDataSource].
+class _FakeAddAddressResponse_0 extends _i1.SmartFake
+    implements _i2.AddAddressResponse {
+  _FakeAddAddressResponse_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+/// A class which mocks [AddressRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAdderssRemoteDataSource extends _i1.Mock
-    implements _i2.AdderssRemoteDataSource {
-  MockAdderssRemoteDataSource() {
+class MockAddressRemoteDataSource extends _i1.Mock
+    implements _i3.AddressRemoteDataSource {
+  MockAddressRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<List<_i4.Addresses>?> getLoggedUserAddress() =>
+  _i4.Future<List<_i5.Addresses>?> getLoggedUserAddress() =>
       (super.noSuchMethod(
             Invocation.method(#getLoggedUserAddress, []),
-            returnValue: _i3.Future<List<_i4.Addresses>?>.value(),
+            returnValue: _i4.Future<List<_i5.Addresses>?>.value(),
           )
-          as _i3.Future<List<_i4.Addresses>?>);
+          as _i4.Future<List<_i5.Addresses>?>);
 
   @override
-  _i3.Future<List<_i5.Address>?> deleteAddress({required String? addressId}) =>
+  _i4.Future<_i2.AddAddressResponse> addNewAddress(
+    _i6.UserAddressData? userAddressData,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#addNewAddress, [userAddressData]),
+            returnValue: _i4.Future<_i2.AddAddressResponse>.value(
+              _FakeAddAddressResponse_0(
+                this,
+                Invocation.method(#addNewAddress, [userAddressData]),
+              ),
+            ),
+          )
+          as _i4.Future<_i2.AddAddressResponse>);
+
+  @override
+  _i4.Future<_i2.AddAddressResponse> updateAddress(
+    _i6.UserAddressData? userAddressData,
+    String? id,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#updateAddress, [userAddressData, id]),
+            returnValue: _i4.Future<_i2.AddAddressResponse>.value(
+              _FakeAddAddressResponse_0(
+                this,
+                Invocation.method(#updateAddress, [userAddressData, id]),
+              ),
+            ),
+          )
+          as _i4.Future<_i2.AddAddressResponse>);
+
+  @override
+  _i4.Future<List<_i7.Address>?> deleteAddress({required String? addressId}) =>
       (super.noSuchMethod(
             Invocation.method(#deleteAddress, [], {#addressId: addressId}),
-            returnValue: _i3.Future<List<_i5.Address>?>.value(),
+            returnValue: _i4.Future<List<_i7.Address>?>.value(),
           )
-          as _i3.Future<List<_i5.Address>?>);
+          as _i4.Future<List<_i7.Address>?>);
 }

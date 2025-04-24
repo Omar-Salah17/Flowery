@@ -16,6 +16,9 @@ class RoutesName {
   static const String changePasswordScreen = "changePasswordScreen";
   static const String aboutUsScreen = "aboutUsScreen";
   static const String termsAndConditionsScreen = "Terms&Conditions";
+  static const String addressDetailsScreen = "addressDetailsScreen";
   static const String editProfile = "EditProfile";
   static const String saveAddressScreen = "SaveAddressScreen";
+  static const String checkOut = "CheckOut";
+  static const String webview = "WebViewScreen";
 }

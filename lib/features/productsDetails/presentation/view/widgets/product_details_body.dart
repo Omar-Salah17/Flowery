@@ -145,19 +145,16 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                 ),
                 const SizedBox(height: 7),
                 ElevatedButton(
-                    
                   onPressed: () {
-                      context.read<CartCubit>().addToCart(
-                        AddProductRequest(
-                          productId: widget.product.id,
-                          quantity: 1,
-                        ),
-                      );
-                    },
-                   
-                  child: Text(LocaleKeys.addToCart.tr(),
-                  ),
+                    context.read<CartCubit>().addToCart(
+                      AddProductRequest(
+                        productId: widget.product.id,
+                        quantity: 1,
+                      ),
+                    );
+                  },
 
+                  child: Text(LocaleKeys.addToCart.tr()),
                 ),
               ],
             ),

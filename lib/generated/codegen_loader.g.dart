@@ -183,6 +183,7 @@ class CodegenLoader extends AssetLoader{
   "newOffer": "عرض جديد",
   "confirmLogout": "تأكيد تسجيل الخروج!!",
   "remember": "تذكر",
+  "deliveryTime": "وقت التوصيل",
   "about_Us_Introduction_Title": "المقدمة",
   "about_Us_Closing_Title": "الخاتمة"
 };
@@ -356,7 +357,8 @@ static const Map<String,dynamic> _en = {
   "confirmLogout": "Confirm logout!!",
   "remember": "Remember",
   "about_Us_Introduction_Title": "Introduction",
-  "about_Us_Closing_Title": "Closing"
+  "about_Us_Closing_Title": "Closing",
+  "deliveryTime": "Delivery time"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }

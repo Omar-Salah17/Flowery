@@ -56,7 +56,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           title: Text(LocaleKeys.password.tr()),
           titleSpacing: 0,
         ),
-        body: ResetPasswordScreenBody(email: email ?? LocaleKeys.emailNotFound.tr()),
+        body: ResetPasswordScreenBody(
+          email: email ?? LocaleKeys.emailNotFound.tr(),
+        ),
       ),
     );
   }

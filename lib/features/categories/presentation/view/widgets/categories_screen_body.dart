@@ -32,7 +32,7 @@ class CategoriesScreenBody extends StatelessWidget {
                 ),
               ),
             ),
-             ProductsGridViewBlocConsumer(),
+            ProductsGridViewBlocConsumer(),
             SliverToBoxAdapter(child: SizedBox(height: 10.h)),
           ],
         );

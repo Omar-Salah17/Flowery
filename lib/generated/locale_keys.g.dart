@@ -169,6 +169,7 @@ abstract class  LocaleKeys {
   static const newOffer = 'newOffer';
   static const confirmLogout = 'confirmLogout';
   static const remember = 'remember';
+  static const deliveryTime = 'deliveryTime';
   static const about_Us_Introduction_Title = 'about_Us_Introduction_Title';
   static const about_Us_Closing_Title = 'about_Us_Closing_Title';
 

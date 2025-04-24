@@ -71,7 +71,9 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
           title: Text(LocaleKeys.password.tr()),
           titleSpacing: 0,
         ),
-        body: EmailVerificationScreenBody(email: email ?? LocaleKeys.emailNotFound.tr()),
+        body: EmailVerificationScreenBody(
+          email: email ?? LocaleKeys.emailNotFound.tr(),
+        ),
       ),
     );
   }

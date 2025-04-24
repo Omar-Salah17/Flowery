@@ -16,6 +16,7 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
   await EasyLocalization.ensureInitialized();
   configureDependencies();
   Bloc.observer = SimpleBlocObserver();
@@ -56,14 +57,14 @@ class _FloweryState extends State<Flowery> {
         return BlocProvider(
           create: (context) => cartCubit,
           child: MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  localizationsDelegates: context.localizationDelegates,
-                  supportedLocales: context.supportedLocales,
-                  locale: context.locale,
-                  initialRoute: RoutesName.login,
-                  onGenerateRoute: RouteGenerator.onGenerator,
-                  theme: ApplicationTheme.themeData,
-                ),
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            initialRoute: RoutesName.initial,
+            onGenerateRoute: RouteGenerator.onGenerator,
+            theme: ApplicationTheme.themeData,
+          ),
         );
       },
     );

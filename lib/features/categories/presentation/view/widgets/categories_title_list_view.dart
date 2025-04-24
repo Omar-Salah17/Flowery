@@ -33,13 +33,12 @@ class _CategoriesTitleListViewState extends State<CategoriesTitleListView> {
           children: [
             GestureDetector(
               onTap: () {
-                selectedCat;
                 context.read<CategoriesScreenCubit>().getProductsByCategory();
               },
               child: Column(
                 children: [
                   Text(
-                   LocaleKeys.all.tr(),
+                    LocaleKeys.all.tr(),
                     style: AppTextStyles.instance.textStyle16.copyWith(
                       color:
                           selectedCat == LocaleKeys.all.tr()

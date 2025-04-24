@@ -1,8 +1,9 @@
+import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/helper/spacing.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/address/data/models/logged_user_address_model.dart';
-import 'package:flowery/features/address/presentation/cubit/address_cubit.dart';
+import 'package:flowery/features/address/presentation/view_model/address_cubit/address_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,16 +13,14 @@ class AddressItem extends StatelessWidget {
   Addresses address;
   AddressItem({required this.address, super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       decoration: BoxDecoration(
-        border: Border.all(color: PalletsColors.white70.withOpacity(0.2), ),
+        border: Border.all(color: PalletsColors.white70.withOpacity(0.2)),
         borderRadius: BorderRadius.circular(10.r),
-        
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,23 +29,36 @@ class AddressItem extends StatelessWidget {
             children: [
               SvgPicture.asset('assets/images/location.svg'),
               horizontalSpace(5.w),
-              Text(address.city??'', style: AppTextStyles.instance.textStyle16),
+              Text(
+                address.city ?? '',
+                style: AppTextStyles.instance.textStyle16,
+              ),
               const Spacer(),
               InkWell(
-                onTap: (){
-                context.read<AddressCubit>().deleteAddress(addressId: address.id!);
+                onTap: () {
+                  context.read<AddressCubit>().deleteAddress(
+                    addressId: address.id!,
+                  );
                 },
-                child: Image.asset('assets/images/delete.png')),
+                child: Image.asset('assets/images/delete.png'),
+              ),
               horizontalSpace(5.w),
-              SvgPicture.asset('assets/images/edit.svg'),
+              GestureDetector(
+                onTap: () async {
+                 await Navigator.pushNamed(context, RoutesName.addressDetailsScreen,arguments: address);
+                  context.read<AddressCubit>().getLoggedUserAddress();
+                },
+                child: SvgPicture.asset('assets/images/edit.svg'),
+              ),
             ],
           ),
           verticalSpace(10.h),
-          Text(address.street??'',
-          style: AppTextStyles.instance.textStyle13.copyWith(
-            color: PalletsColors.gray,
+          Text(
+            address.street ?? '',
+            style: AppTextStyles.instance.textStyle13.copyWith(
+              color: PalletsColors.gray,
+            ),
           ),
-          )
         ],
       ),
     );
