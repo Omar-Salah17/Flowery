@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const local = 'local';
   static const appTitle = 'appTitle';
   static const home = 'home';
@@ -51,8 +51,8 @@ abstract class LocaleKeys {
   static const enterPassword = 'enterPassword';
   static const confirmPassword = 'confirmPassword';
   static const gender = 'gender';
-  static const phoneNumber = 'Phone number';
-  static const enterPhoneNumber = 'Enter the phone number';
+  static const phoneNumber = 'phoneNumber';
+  static const enterPhoneNumber = 'enterPhoneNumber';
   static const agreeTerms = 'agreeTerms';
   static const termsConditions = 'termsConditions';
   static const signupButton = 'signupButton';
@@ -66,10 +66,8 @@ abstract class LocaleKeys {
   static const emailVerificationTitle = 'emailVerificationTitle';
   static const emailVerificationInstruction = 'emailVerificationInstruction';
   static const resendCode = 'resendCode';
-  static const PleaseEnterYourEmailAssociatedToYourAccount =
-      'PleaseEnterYourEmailAssociatedToYourAccount';
-  static const PleaseEnterYourCodeThatSendToYourEmailAddress =
-      'PleaseEnterYourCodeThatSendToYourEmailAddress';
+  static const PleaseEnterYourEmailAssociatedToYourAccount = 'PleaseEnterYourEmailAssociatedToYourAccount';
+  static const PleaseEnterYourCodeThatSendToYourEmailAddress = 'PleaseEnterYourCodeThatSendToYourEmailAddress';
   static const DidnotReceiveCode = 'DidnotReceiveCode';
   static const LoggedInSuccessfully = 'LoggedInSuccessfully';
   static const resetPassword = 'resetPassword';
@@ -95,7 +93,7 @@ abstract class LocaleKeys {
   static const old = 'old';
   static const discount = 'discount';
   static const myOrders = 'myOrders';
-  static const savedAddress = 'Save address ';
+  static const savedAddress = 'savedAddress';
   static const notification = 'notification';
   static const language = 'language';
   static const aboutUs = 'aboutUs';
@@ -128,7 +126,7 @@ abstract class LocaleKeys {
   static const profileUpdatedSuccessfully = 'profileUpdatedSuccessfully';
   static const updateFailed = 'updateFailed';
   static const updateProfile = 'updateProfile';
-  static const address = 'Address';
+  static const address = 'address';
   static const itIsAGift = 'itIsAGift';
   static const name = 'name';
   static const enterName = 'enterName';
@@ -158,19 +156,21 @@ abstract class LocaleKeys {
   static const receivedOrder = 'receivedOrder';
   static const delivered = 'delivered';
   static const addNewAddress = 'addNewAddress';
-  static const enterAddress = 'Enter the address';
-  static const recipientName = 'Recipient name';
-  static const enterRecipientName = 'Enter the recipient name';
-  static const city = 'City';
-  static const cairo = 'Cairo';
-  static const area = 'Area';
-  static const october = 'October';
+  static const enterAddress = 'enterAddress';
+  static const recipientName = 'recipientName';
+  static const enterRecipientName = 'enterRecipientName';
+  static const city = 'city';
+  static const cairo = 'cairo';
+  static const area = 'area';
+  static const october = 'october';
   static const saveAddress = 'saveAddress';
   static const active = 'active';
   static const completed = 'completed';
   static const newOffer = 'newOffer';
   static const confirmLogout = 'confirmLogout';
   static const remember = 'remember';
+  static const deliveryTime = 'deliveryTime';
   static const about_Us_Introduction_Title = 'about_Us_Introduction_Title';
   static const about_Us_Closing_Title = 'about_Us_Closing_Title';
+
 }

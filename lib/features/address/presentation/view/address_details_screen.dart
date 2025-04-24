@@ -8,19 +8,22 @@ import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../domain/use_case/update_address_use_case.dart';
+
 class AddressDetailsScreen extends StatelessWidget {
   const AddressDetailsScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    
+    final address = ModalRoute.of(context)!.settings.arguments as Addresses;
+
     return BlocProvider(
-      create: (context) => AddressDetailsCubit(getIt.get<AddAddressUseCase>())..initControllers(),
+      create: (context) => AddressDetailsCubit(getIt.get<AddAddressUseCase>(),getIt.get<UpdateAddressUseCase>())..initControllers(),
       child: Scaffold(
         appBar: buildAppBar(
           title: LocaleKeys.address.tr(),
           onPressed: () => Navigator.pop(context),
         ),
-        body: AddressDetailsScreenBody(),
+        body: AddressDetailsScreenBody(address: address,),
       ),
     );
   }

@@ -1,25 +1,25 @@
 import 'package:dartz/dartz.dart';
 import 'package:flowery/core/utils/error_handler.dart';
+import 'package:flowery/features/address/data/data_source/address_remote_data_source.dart';
 import 'package:flowery/features/address/data/models/address_model.dart';
 import 'package:flowery/features/address/data/models/logged_user_address_model.dart';
-import 'package:flowery/features/address/data/repos/repos/address_repository_impl.dart';
-import 'package:flowery/features/address/domain/repos/repos/Address_repository_contract.dart';
-import 'package:flowery/features/address/domain/repos/repos_data_sourse/adderss_data_source_contract.dart';
+import 'package:flowery/features/address/data/repos/address_repo_impl.dart';
+import 'package:flowery/features/address/domain/repos/address_repo.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'address_repository_impl_test.mocks.dart';
 
-@GenerateMocks([AdderssRemoteDataSource])
+@GenerateMocks([AddressRemoteDataSource])
 void main() {
-  late MockAdderssRemoteDataSource mockAdderssRemoteDataSource;
-  late AddressRepositoryContract addressRepository;
+  late MockAddressRemoteDataSource mockAdderssRemoteDataSource;
+  late AddressRepo addressRepository;
   group('test AddressRepositoryImpl', () {
     setUp(() {
       // Initialize any necessary dependencies or mocks here
-      mockAdderssRemoteDataSource = MockAdderssRemoteDataSource();
-      addressRepository = AddressRepositoryImpl(
+      mockAdderssRemoteDataSource = MockAddressRemoteDataSource();
+      addressRepository = AddressRepoImpl(
         addressRemoteDataSource: mockAdderssRemoteDataSource,
       );
     });
@@ -51,8 +51,8 @@ void main() {
   group('test deleteAddress', () {
     setUp(() {
       // Initialize any necessary dependencies or mocks here
-      mockAdderssRemoteDataSource = MockAdderssRemoteDataSource();
-      addressRepository = AddressRepositoryImpl(
+      mockAdderssRemoteDataSource = MockAddressRemoteDataSource();
+      addressRepository = AddressRepoImpl(
         addressRemoteDataSource: mockAdderssRemoteDataSource,
       );
     });

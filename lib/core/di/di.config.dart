@@ -25,6 +25,8 @@ import '../../features/address/domain/use_case/delete_address_use_case.dart'
     as _i864;
 import '../../features/address/domain/use_case/get_logged_user_address_use_case.dart'
     as _i1033;
+import '../../features/address/domain/use_case/update_address_use_case.dart'
+    as _i321;
 import '../../features/address/presentation/view_model/address_cubit/address_cubit.dart'
     as _i911;
 import '../../features/auth/forgetPassword/data/dataSource/forget_password_remot_data_source.dart'
@@ -308,6 +310,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i440.LogoutUseCase>(
       () => _i440.LogoutUseCase(gh<_i872.LogoutRepo>()),
     );
+    gh.factory<_i747.AddressRemoteDataSource>(
+      () =>
+          _i669.AddressRemoteDataSourceImpl(apiService: gh<_i525.ApiService>()),
+    );
     gh.factory<_i334.LoginUsecase>(
       () => _i334.LoginUsecase(repo: gh<_i632.LoginRepo>()),
     );
@@ -349,6 +355,11 @@ extension GetItInjectableX on _i174.GetIt {
         apiServices: gh<_i525.ApiService>(),
       ),
     );
+    gh.factory<_i1032.AddressRepo>(
+      () => _i715.AddressRepoImpl(
+        addressRemoteDataSource: gh<_i747.AddressRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i569.CartRemoteDataSource>(
       () => _i373.CartRemoteDataSourcseImpl(apiService: gh<_i525.ApiService>()),
     );
@@ -356,9 +367,11 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i531.ProfileRemoteDataSourceImpl(apiService: gh<_i525.ApiService>()),
     );
-    gh.factory<_i669.AddressRemoteDataSource>(
-      () =>
-          _i747.AddressRemoteDataSourceImpl(apiService: gh<_i525.ApiService>()),
+    gh.factory<_i864.DeleteAddressUseCase>(
+      () => _i864.DeleteAddressUseCase(gh<_i1032.AddressRepo>()),
+    );
+    gh.factory<_i1033.GetLoggedUserAddressUseCase>(
+      () => _i1033.GetLoggedUserAddressUseCase(gh<_i1032.AddressRepo>()),
     );
     gh.factory<_i582.CheckOutRemoteDataSource>(
       () => _i427.CheckOutRemoteDataSourceImpl(gh<_i525.ApiService>()),
@@ -386,6 +399,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i579.SearchUseCase>(
       () => _i579.SearchUseCase(
         getAllCategoriesRepo: gh<_i826.CategoriesScreenRepo>(),
+      ),
+    );
+    gh.factory<_i950.AddAddressUseCase>(
+      () =>
+          _i950.AddAddressUseCase(addressRepository: gh<_i1032.AddressRepo>()),
+    );
+    gh.factory<_i321.UpdateAddressUseCase>(
+      () => _i321.UpdateAddressUseCase(
+        addressRepository: gh<_i1032.AddressRepo>(),
       ),
     );
     gh.factory<_i895.CheckOutRepo>(
@@ -435,11 +457,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i412.UpdateProductQuantityUseCase>(
       () => _i412.UpdateProductQuantityUseCase(gh<_i123.CartRepo>()),
     );
-    gh.factory<_i1032.AddressRepo>(
-      () => _i715.AddressRepoImpl(
-        addressRemoteDataSource: gh<_i669.AddressRemoteDataSource>(),
-      ),
-    );
     gh.factory<_i659.AddToCartUsecase>(
       () => _i659.AddToCartUsecase(cartRepo: gh<_i123.CartRepo>()),
     );
@@ -447,12 +464,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i461.GetBestSellerUseCase(
         bestSellerRepo: gh<_i629.BestSellerRepo>(),
       ),
-    );
-    gh.factory<_i864.DeleteAddressUseCase>(
-      () => _i864.DeleteAddressUseCase(gh<_i1032.AddressRepo>()),
-    );
-    gh.factory<_i1033.GetLoggedUserAddressUseCase>(
-      () => _i1033.GetLoggedUserAddressUseCase(gh<_i1032.AddressRepo>()),
     );
     gh.factory<_i589.EditProfileCubit>(
       () => _i589.EditProfileCubit(
@@ -473,10 +484,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i825.CreditCheckOutUseCase>(),
         gh<_i512.CashCheckOutUseCase>(),
       ),
-    );
-    gh.factory<_i950.AddAddressUseCase>(
-      () =>
-          _i950.AddAddressUseCase(addressRepository: gh<_i1032.AddressRepo>()),
     );
     gh.factory<_i109.HomeCubit>(
       () => _i109.HomeCubit(

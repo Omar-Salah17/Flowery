@@ -89,24 +89,31 @@ abstract class ApiService {
   @MultiPart()
   @PUT(Constants.uploadPhotoEndPoint)
   Future<String> uploadPhoto(@Part(name: "photo") File image);
+
   @GET(Constants.loggedUserAdderss)
   Future<LoggedUserAddressModel> getLoggedUserAddress();
-  @PATCH(Constants.loggedUserAdderss)
-  Future<AddAddressResponse> addNewAddress(@Body() UserAddressData userAddress);
-  @DELETE(Constants.deleteAddressEndPoint)
-  Future<AddressModel> deleteAddress(
-    @Path("addressId") String addressId,
+
+  @PATCH('${Constants.loggedUserAdderss}/{addressId}')
+  Future<AddAddressResponse> updateAddress(
+    @Body() UserAddressData userAddress,
+    @Path("addressId") String? id,
   );
 
+  @PATCH('${Constants.loggedUserAdderss}')
+  Future<AddAddressResponse> addNewAddress(
+      @Body() UserAddressData userAddress,
+      );
+
+  @DELETE(Constants.deleteAddressEndPoint)
+  Future<AddressModel> deleteAddress(@Path("addressId") String addressId);
+
   @POST(Constants.checkoutEndPoint)
-  Future<CheckoutSessionResponse>creditCheckOut(
-      @Body() ShippingAddressModel shippingAddressModel,
-      @Query("url") String url
-      );
+  Future<CheckoutSessionResponse> creditCheckOut(
+    @Body() ShippingAddressModel shippingAddressModel,
+    @Query("url") String url,
+  );
   @POST(Constants.cashCheckoutEndPoint)
-  Future<CashOrderResponse>cashCheckOut(
-      @Body() ShippingAddressModel shippingAddressModel,
-      );
-
-
+  Future<CashOrderResponse> cashCheckOut(
+    @Body() ShippingAddressModel shippingAddressModel,
+  );
 }

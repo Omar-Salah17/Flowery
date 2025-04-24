@@ -400,6 +400,22 @@ class MockApiService extends _i1.Mock implements _i16.ApiService {
           as _i17.Future<_i11.LoggedUserAddressModel>);
 
   @override
+  _i17.Future<_i12.AddAddressResponse> updateAddress(
+    _i23.UserAddressData? userAddress,
+    String? id,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#updateAddress, [userAddress, id]),
+            returnValue: _i17.Future<_i12.AddAddressResponse>.value(
+              _FakeAddAddressResponse_10(
+                this,
+                Invocation.method(#updateAddress, [userAddress, id]),
+              ),
+            ),
+          )
+          as _i17.Future<_i12.AddAddressResponse>);
+
+  @override
   _i17.Future<_i12.AddAddressResponse> addNewAddress(
     _i23.UserAddressData? userAddress,
   ) =>

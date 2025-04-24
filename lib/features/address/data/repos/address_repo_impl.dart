@@ -2,14 +2,14 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flowery/core/utils/error_handler.dart';
-import 'package:flowery/features/address/data/data_source/address_remote_data_source_impl.dart';
-import 'package:flowery/features/address/data/models/add_address_response/add_address_response.dart';
+import 'package:flowery/core/utils/error_handler.dart';import 'package:flowery/features/address/data/models/add_address_response/add_address_response.dart';
 import 'package:flowery/features/address/data/models/address_model.dart';
 import 'package:flowery/features/address/data/models/logged_user_address_model.dart';
 import 'package:flowery/features/address/data/models/user_address_data.dart';
 import 'package:flowery/features/address/domain/repos/address_repo.dart';
 import 'package:injectable/injectable.dart';
+
+import '../data_source/address_remote_data_source.dart';
 
 @Injectable(as: AddressRepo)
 class AddressRepoImpl implements AddressRepo {
@@ -17,7 +17,7 @@ class AddressRepoImpl implements AddressRepo {
 
   AddressRepoImpl({required this.addressRemoteDataSource});
   @override
-  Future<Either<Failure, AddAddressResponse>> addAddress(UserAddressData address)async {
+  Future<Either<Failure, AddAddressResponse>> addAddress(UserAddressData address,)async {
     try {
   final data = await addressRemoteDataSource.addNewAddress(address);
   return right(data);
@@ -31,6 +31,22 @@ class AddressRepoImpl implements AddressRepo {
         return left(ServerFailure(errorMessage: e.toString()));
       }
 }
+  }
+@override
+  Future<Either<Failure, AddAddressResponse>> updateAddress(UserAddressData address,String? id)async {
+    try {
+      final data = await addressRemoteDataSource.updateAddress(address,id);
+      return right(data);
+    }  catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      } else {
+        log(
+          'error in AddressRepositoryImpl addAddress method: ${e.toString()}',
+        );
+        return left(ServerFailure(errorMessage: e.toString()));
+      }
+    }
   }
 
   @override

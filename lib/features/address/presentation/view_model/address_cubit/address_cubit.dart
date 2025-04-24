@@ -20,6 +20,8 @@ class AddressCubit extends Cubit<AddressState> {
       GetLoggedUserAddressUseCase(getIt<AddressRepo>());
       DeleteAddressUseCase deleteAddressUseCase = DeleteAddressUseCase(getIt<AddressRepo>());
     static AddressCubit get(BuildContext context) => BlocProvider.of(context);
+
+
   Future<void> getLoggedUserAddress() async {
     emit(AddressLoading());
     final result = await getLoggedUserAddressUseCase.invoke();
