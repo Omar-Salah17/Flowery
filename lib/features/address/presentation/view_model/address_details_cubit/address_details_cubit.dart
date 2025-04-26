@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flowery/features/address/data/models/add_address_response/add_address_response.dart';
+import 'package:flowery/features/address/data/models/logged_user_address_model.dart';
 import 'package:flowery/features/address/data/models/user_address_data.dart';
 import 'package:flowery/features/address/domain/use_case/add_address_use_case.dart';
 import 'package:flutter/material.dart';

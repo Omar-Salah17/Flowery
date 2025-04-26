@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/utils/helper_functions/build_app_bar_function.dart';
+import 'package:flowery/features/address/data/models/logged_user_address_model.dart';
 import 'package:flowery/features/address/domain/use_case/add_address_use_case.dart';
 import 'package:flowery/features/address/presentation/view/widgets/address_details_screen_body.dart';
 import 'package:flowery/features/address/presentation/view_model/address_details_cubit/address_details_cubit.dart';
