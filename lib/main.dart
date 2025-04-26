@@ -11,18 +11,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() async {
+   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   WidgetsFlutterBinding.ensureInitialized();
-  
-  await EasyLocalization.ensureInitialized();
+   await EasyLocalization.ensureInitialized();
   configureDependencies();
   Bloc.observer = SimpleBlocObserver();
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
       path:
-          'assets/translations', // <-- change the path of the translation files
+          'assets/translations', 
       fallbackLocale: const Locale("_languageCode"),
       assetLoader: const CodegenLoader(),
       child: ChangeNotifierProvider(
