@@ -386,9 +386,6 @@ extension GetItInjectableX on _i174.GetIt {
         repo: gh<_i826.CategoriesScreenRepo>(),
       ),
     );
-    gh.factory<_i579.SearchUseCase>(
-      () => _i579.SearchUseCase(repo: gh<_i826.CategoriesScreenRepo>()),
-    );
     gh.factory<_i123.CartRepo>(
       () => _i806.CartRepoImpl(
         cartRemoteDataSource: gh<_i569.CartRemoteDataSource>(),
