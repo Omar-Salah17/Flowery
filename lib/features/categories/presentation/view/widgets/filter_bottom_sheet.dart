@@ -6,7 +6,6 @@ import 'package:flowery/features/categories/presentation/view/widgets/filter_but
 import 'package:flowery/features/categories/presentation/view/widgets/radio_tile.dart';
 import 'package:flowery/features/categories/presentation/view/widgets/slider_container.dart';
 import 'package:flowery/generated/locale_keys.g.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

@@ -1,12 +1,8 @@
 
-import 'dart:ui';
 
 import 'package:bloc/bloc.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flowery/features/profile/terms_and_conditions/data/Models/terms_and_conditions.dart';
 import 'package:flowery/features/profile/terms_and_conditions/domain/use_cases/terms_and_conditions_usecase.dart';
 import 'package:flowery/features/profile/terms_and_conditions/presentation/viewModel/terms_and_conditions_state.dart';
-import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 
 class TermsAndConditionsViewModel extends Cubit<TermsAndConditionsState>{

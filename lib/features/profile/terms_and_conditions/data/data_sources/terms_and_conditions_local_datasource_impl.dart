@@ -1,7 +1,6 @@
 
 import 'dart:convert';
 import 'dart:developer';
-import 'package:flowery/features/profile/about_us/data/Models/about_us_model.dart';
 import 'package:flowery/features/profile/terms_and_conditions/data/Models/terms_and_conditions_model.dart';
 import 'package:flowery/features/profile/terms_and_conditions/data/data_sources/terms_and_conditions_local_datasource.dart';
 import 'package:flutter/services.dart';
