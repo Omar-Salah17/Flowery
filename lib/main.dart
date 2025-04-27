@@ -21,7 +21,8 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await setupFlutterNotifications();
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
-
+  String? token = await FirebaseMessaging.instance.getToken();
+  print("Firebase Messaging Token: $token");
   await EasyLocalization.ensureInitialized();
   configureDependencies();
   Bloc.observer = SimpleBlocObserver();

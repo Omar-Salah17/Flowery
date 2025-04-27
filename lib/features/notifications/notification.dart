@@ -16,6 +16,7 @@ late AndroidNotificationChannel channel;
 
 bool isFlutterLocalNotificationsInitialized = false;
 
+
 Future<void> setupFlutterNotifications() async {
   if (isFlutterLocalNotificationsInitialized) {
     return;

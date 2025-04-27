@@ -5,8 +5,10 @@ import 'package:flowery/core/helper/spacing.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/profile/data/model/user_response.dart';
+import 'package:flowery/features/profile/presentation/view/cubit/profile_cubit.dart';
 import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -44,7 +46,7 @@ class UserInfoScetion extends StatelessWidget {
                     arguments: user,
                   );
 
-                  // context.read<ProfileCubit>().getUserData();
+                  context.read<ProfileCubit>().getUserData();
                 },
                 child: SvgPicture.asset('assets/images/pen.svg'),
               ),
