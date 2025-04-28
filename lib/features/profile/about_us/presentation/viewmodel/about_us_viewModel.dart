@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/features/profile/about_us/data/Models/about_app.dart';
@@ -18,18 +16,27 @@ class AboutUsViewModel extends Cubit<AboutUsState> {
     try {
       var result = await aboutUsUseCase.call();
       result.fold(
-            (failure) {
-          emit(AboutUsFailureState(failure.errorMessage)); // Emit failure state if there's an error
+        (failure) {
+          emit(
+            AboutUsFailureState(failure.errorMessage),
+          ); // Emit failure state if there's an error
         },
-            (model) {
-          emit(AboutUsSuccessState(model)); // Emit success state when data is fetched
+        (model) {
+          emit(
+            AboutUsSuccessState(model),
+          ); // Emit success state when data is fetched
         },
       );
     } catch (e) {
-      emit(AboutUsFailureState("An unexpected error occurred: $e")); // Handle any unexpected errors
-      print("Error fetching About Us content: $e"); // Log the error for debugging
+      emit(
+        AboutUsFailureState("An unexpected error occurred: $e"),
+      ); // Handle any unexpected errors
+      print(
+        "Error fetching About Us content: $e",
+      ); // Log the error for debugging
     }
   }
+
   FontWeight getFontWeight(String? weight) {
     if (weight == 'bold') {
       return FontWeight.bold;
@@ -55,7 +62,11 @@ class AboutUsViewModel extends Cubit<AboutUsState> {
     }
   }
 
-  String getLocalizedTitle(AboutApp aboutapp, bool isEnglish,BuildContext context) {
+  String getLocalizedTitle(
+    AboutApp aboutapp,
+    bool isEnglish,
+    BuildContext context,
+  ) {
     // For sections with title object
     if (aboutapp.title != null) {
       return isEnglish ? aboutapp.title!.en ?? '' : aboutapp.title!.ar ?? '';
