@@ -4,6 +4,29 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flowery/firebase_options.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+class NotificationService {
+  static final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+
+  static Future<void> initialize() async {
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    NotificationSettings settings = await _firebaseMessaging.requestPermission(
+      alert: true,
+      badge: true,
+      provisional: false,
+      sound: true,
+    );
+    await setupFlutterNotifications();
+    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      showFlutterNotification(message);
+    });
+  }
+
+  static Future<String?> getToken() async {
+    return await _firebaseMessaging.getToken();
+  }
+  
+}
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await setupFlutterNotifications();
@@ -13,10 +36,7 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 }
 
 late AndroidNotificationChannel channel;
-
 bool isFlutterLocalNotificationsInitialized = false;
-
-
 Future<void> setupFlutterNotifications() async {
   if (isFlutterLocalNotificationsInitialized) {
     return;
@@ -53,7 +73,7 @@ void showFlutterNotification(RemoteMessage message) {
           channel.id,
           channel.name,
           channelDescription: channel.description,
-          icon: 'assets/images/Image.png',
+          icon:'@drawable/flowery_icon',
         ),
       ),
     );

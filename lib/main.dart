@@ -18,9 +18,8 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await setupFlutterNotifications();
-  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+  await NotificationService.initialize();
+
   String? token = await FirebaseMessaging.instance.getToken();
   print("Firebase Messaging Token: $token");
   await EasyLocalization.ensureInitialized();
@@ -49,11 +48,7 @@ class Flowery extends StatefulWidget {
 
 class _FloweryState extends State<Flowery> {
   late AppConfigProvider appConfigProvider;
-@override
-  void initState() {
-   FirebaseMessaging.onMessage.listen(showFlutterNotification);
-    super.initState();
-  }
+
   @override
   Widget build(BuildContext context) {
     final cartCubit = getIt<CartCubit>();
