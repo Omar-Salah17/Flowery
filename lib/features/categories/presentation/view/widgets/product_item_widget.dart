@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
+import 'package:flowery/core/utils/helper_functions/snack_bar.dart';
 import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/features/cart/data/models/add_product_request.dart';
 import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_state.dart';
@@ -113,12 +114,7 @@ class ProductItemWidget extends StatelessWidget {
                   // عرض SnackBar لحالة النجاح
                   if (isSuccess) {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          backgroundColor: Colors.green,
-                          content: Text('Added to cart successfully'),
-                        ),
-                      );
+                      showSnackBar(context, 'Added to cart successfully');
                       context.read<CartCubit>().resetCartState();
                     });
                   }
@@ -126,17 +122,13 @@ class ProductItemWidget extends StatelessWidget {
                   // عرض SnackBar لحالة الفشل
                   if (isFailure) {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          backgroundColor: Colors.red,
-                          content: Text(state.errorMessage),
-                        ),
-                      );
+                      showErrorSnackBar(context, state.errorMessage);
                       context.read<CartCubit>().resetCartState();
                     });
                   }
 
                   return ElevatedButton(
+                    
                     onPressed:
                         isLoading
                             ? null
