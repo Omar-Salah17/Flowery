@@ -56,7 +56,7 @@ class ApiManager {
     String endpoint,
     Map<String, dynamic> data,
   ) async {
-    await setToken();
+     await setToken();
     final response = await dio.patch(endpoint, data: data);
     return response;
   }

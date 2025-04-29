@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/firebase_options.dart';
-import 'package:flowery/main.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class NotificationService {

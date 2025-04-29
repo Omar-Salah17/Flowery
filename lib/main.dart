@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/route_generator.dart';
 import 'package:flowery/core/config/routes_name.dart';
@@ -33,6 +32,7 @@ void main() async {
     ),
   );
 }
+
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 class Flowery extends StatefulWidget {
