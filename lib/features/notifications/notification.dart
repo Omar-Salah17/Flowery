@@ -63,7 +63,7 @@ Future<void> setupFlutterNotifications() async {
 }
 handleMessage(RemoteMessage? message, ) {
   if (message == null)return;
-  navigatorKey.currentState?.pushNamed( RoutesName.messageScreen, arguments: message);
+  // navigatorKey.currentState?.pushNamed( RoutesName.messageScreen, arguments: message);
 }
 void showFlutterNotification(RemoteMessage message) {
   RemoteNotification? notification = message.notification;

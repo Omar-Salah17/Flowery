@@ -167,12 +167,12 @@ class RouteGenerator {
           },
           settings: settings,
         );
-      case RoutesName.messageScreen:
-        final message = settings.arguments as RemoteMessage;
-        return MaterialPageRoute(
-          builder: (context) => MessageScreen(message: message,),
+      // case RoutesName.messageScreen:
+      //   final message = settings.arguments as RemoteMessage;
+      //   return MaterialPageRoute(
+      //     builder: (context) => MessageScreen(message: message,),
           
-        );
+      //   );
 
       default:
         return MaterialPageRoute(
