@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flowery/core/config/route_generator.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/di/di.dart';
@@ -19,6 +22,16 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+   // Pass all uncaught "fatal" errors from the framework to Crashlytics
+   FlutterError.onError = (errorDetails) {
+     FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+   };
+   // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+   PlatformDispatcher.instance.onError = (error, stack) {
+     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+     return true;
+   };
   WidgetsFlutterBinding.ensureInitialized();
    await EasyLocalization.ensureInitialized();
   configureDependencies();
@@ -64,7 +77,7 @@ class _FloweryState extends State<Flowery> {
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
-            initialRoute: RoutesName.initial,
+            initialRoute: RoutesName.login,
             onGenerateRoute: RouteGenerator.onGenerator,
             theme: ApplicationTheme.themeData,
           ),
