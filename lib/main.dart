@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flowery/core/config/route_generator.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/di/di.dart';
@@ -9,6 +9,7 @@ import 'package:flowery/core/provider/app_config_provider.dart';
 import 'package:flowery/core/utils/application_theme.dart';
 import 'package:flowery/core/utils/simple_bloc_observer.dart';
 import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_cubit.dart';
+import 'package:flowery/features/notifications/notification.dart';
 import 'package:flowery/generated/codegen_loader.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,29 +19,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 void main() async {
-   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-   // Pass all uncaught "fatal" errors from the framework to Crashlytics
-   FlutterError.onError = (errorDetails) {
-     FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
-   };
-   // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
-   PlatformDispatcher.instance.onError = (error, stack) {
-     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-     return true;
-   };
   WidgetsFlutterBinding.ensureInitialized();
-   await EasyLocalization.ensureInitialized();
+  await NotificationService.initialize();
+  String? token = await FirebaseMessaging.instance.getToken();
+  print("Firebase Messaging Token: $token");
+  await EasyLocalization.ensureInitialized();
   configureDependencies();
   Bloc.observer = SimpleBlocObserver();
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
-      path:
-          'assets/translations', 
+      path: 'assets/translations',
       fallbackLocale: const Locale("_languageCode"),
       assetLoader: const CodegenLoader(),
       child: ChangeNotifierProvider(
@@ -50,6 +39,7 @@ void main() async {
     ),
   );
 }
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 class Flowery extends StatefulWidget {
   const Flowery({super.key});
@@ -73,6 +63,7 @@ class _FloweryState extends State<Flowery> {
         return BlocProvider(
           create: (context) => cartCubit,
           child: MaterialApp(
+            navigatorKey: navigatorKey,
             debugShowCheckedModeBanner: false,
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
