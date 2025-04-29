@@ -72,6 +72,8 @@ class CategoriesScreenCubit extends Cubit<CategoriesScreenState> {
         emit(ProductsByCategoryFailure(errorMessage: failure.errorMessage));
       },
       (products) {
+        print("Emitting sorted products: ${products.length}");
+
         emit(ProductsByCategorySuccess(products: products));
       },
     );

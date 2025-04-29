@@ -17,6 +17,7 @@ class Constants {
   static const String getLoggedCart = "cart";
   static const String deleteSpecificCartItem = "cart/{cartItemId}";
 
+
   static const String clearCart = "cart";
   static const String updatCartProductQuantity = "cart/{cartItemId}";
   static const String changePasswordEndPoint = "auth/change-password";
@@ -29,4 +30,5 @@ class Constants {
   static const String deleteAddressEndPoint='addresses/{addressId}';
   static const String checkoutEndPoint = "orders/checkout";
   static const String cashCheckoutEndPoint = "orders";
+  static const String notificationListEndPoint = "notifications?sort=-createdAt";
 }

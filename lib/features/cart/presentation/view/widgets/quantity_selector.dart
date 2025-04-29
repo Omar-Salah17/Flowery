@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
@@ -21,16 +20,14 @@ class _QuantitySelectorState extends State<QuantitySelector> {
   void initState() {
     super.initState();
     count = widget.initialValue;
-    log("initial value");
-    log(count.toString());
+   
   }
 
   void _increment() {
     setState(() {
       count++;
     });
-    log("id");
-    log(widget.id);
+    
     context.read<CartCubit>().updateProductQuantity(widget.id, count);
   }
 

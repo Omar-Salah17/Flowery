@@ -121,6 +121,16 @@ import '../../features/check_out/presentation/view_model/check_out_cubit.dart'
     as _i582;
 import '../../features/home/presentation/viewModel/home_view_model/home_cubit.dart'
     as _i109;
+import '../../features/notification_list/data/data_source/notification_data_source.dart'
+    as _i651;
+import '../../features/notification_list/data/repos/notification_repo_impl.dart'
+    as _i425;
+import '../../features/notification_list/domain/repos/notification_repo.dart'
+    as _i915;
+import '../../features/notification_list/domain/use_case/get_notification_use_case.dart'
+    as _i226;
+import '../../features/notification_list/presentation/view_model/notification_list_screen_cubit.dart'
+    as _i297;
 import '../../features/occasion/data/repos/occasion_remote_data_source_impl.dart'
     as _i61;
 import '../../features/occasion/data/repos/occasion_repository_impl.dart'
@@ -381,6 +391,9 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i1048.ProductDetailsRemoteDataSource>(),
       ),
     );
+    gh.factory<_i651.NotificationRemoteDataSource>(
+      () => _i651.NotificationRemoteDataSourceImpl(gh<_i525.ApiService>()),
+    );
     gh.factory<_i440.GetProductsByCategoryWithSortUseCase>(
       () => _i440.GetProductsByCategoryWithSortUseCase(
         repo: gh<_i826.CategoriesScreenRepo>(),
@@ -460,6 +473,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i659.AddToCartUsecase>(
       () => _i659.AddToCartUsecase(cartRepo: gh<_i123.CartRepo>()),
     );
+    gh.factory<_i915.NotificationRepo>(
+      () => _i425.NotificationRepoImpl(
+        notificationRemoteDataSource: gh<_i651.NotificationRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i461.GetBestSellerUseCase>(
       () => _i461.GetBestSellerUseCase(
         bestSellerRepo: gh<_i629.BestSellerRepo>(),
@@ -485,6 +503,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i512.CashCheckOutUseCase>(),
       ),
     );
+    gh.factory<_i226.GetNotificationsUseCase>(
+      () => _i226.GetNotificationsUseCase(gh<_i915.NotificationRepo>()),
+    );
     gh.factory<_i109.HomeCubit>(
       () => _i109.HomeCubit(
         getCategories: gh<_i595.GetAllCategoriesUseCase>(),
@@ -503,6 +524,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i342.ChangePasswordUseCase>(
       () => _i342.ChangePasswordUseCase(profileRepo: gh<_i1007.ProfileRepo>()),
+    );
+    gh.factory<_i297.NotificationCubit>(
+      () => _i297.NotificationCubit(gh<_i226.GetNotificationsUseCase>()),
     );
     gh.factory<_i851.ProfileCubit>(
       () => _i851.ProfileCubit(
