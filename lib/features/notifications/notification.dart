@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/firebase_options.dart';
+import 'package:flowery/main.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class NotificationService {
@@ -14,18 +16,17 @@ class NotificationService {
       badge: true,
       provisional: false,
       sound: true,
-    );
+    ); 
     await setupFlutterNotifications();
     FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       showFlutterNotification(message);
     });
-  }
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      handleMessage(message);
+    });
 
-  static Future<String?> getToken() async {
-    return await _firebaseMessaging.getToken();
   }
-  
 }
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -59,6 +60,10 @@ Future<void> setupFlutterNotifications() async {
     sound: true,
   );
   isFlutterLocalNotificationsInitialized = true;
+}
+handleMessage(RemoteMessage? message, ) {
+  if (message == null)return;
+  navigatorKey.currentState?.pushNamed( RoutesName.messageScreen, arguments: message);
 }
 void showFlutterNotification(RemoteMessage message) {
   RemoteNotification? notification = message.notification;

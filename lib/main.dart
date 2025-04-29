@@ -19,7 +19,6 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await NotificationService.initialize();
-
   String? token = await FirebaseMessaging.instance.getToken();
   print("Firebase Messaging Token: $token");
   await EasyLocalization.ensureInitialized();
@@ -38,6 +37,7 @@ void main() async {
     ),
   );
 }
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 class Flowery extends StatefulWidget {
   const Flowery({super.key});
@@ -61,6 +61,7 @@ class _FloweryState extends State<Flowery> {
         return BlocProvider(
           create: (context) => cartCubit,
           child: MaterialApp(
+            navigatorKey: navigatorKey,
             debugShowCheckedModeBanner: false,
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
