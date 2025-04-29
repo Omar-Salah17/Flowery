@@ -6,6 +6,8 @@ import 'package:flowery/features/profile/presentation/view/profile_main_screen.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../notification_list/presentation/view_model/notification_list_screen_cubit.dart';
+
 class ProfileView extends StatelessWidget {
   final viewModel = ProfileCubit(
     getIt<GetUserDataUseCase>(),
@@ -15,9 +17,15 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => viewModel..getUserData(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider( create: (context) => viewModel..getUserData(),
+          ),
+          BlocProvider(
+          create: (_) => getIt<NotificationCubit>()..fetchNotifications(),)
+      ],
       child: const ProfileMainScreen(),
+
     ); //Ma
   }
 }

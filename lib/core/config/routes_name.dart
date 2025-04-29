@@ -21,5 +21,5 @@ class RoutesName {
   static const String saveAddressScreen = "SaveAddressScreen";
   static const String checkOut = "CheckOut";
   static const String webview = "WebViewScreen";
-  static const  String messageScreen = "MessageScreen";
+  static const String notificationListScreen = "NotificationListScreen";
 }
