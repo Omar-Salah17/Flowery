@@ -1,7 +1,5 @@
 import 'dart:ui';
-
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flowery/core/config/route_generator.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/di/di.dart';
@@ -15,14 +13,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await NotificationService.initialize();
-  String? token = await FirebaseMessaging.instance.getToken();
-  print("Firebase Messaging Token: $token");
   await EasyLocalization.ensureInitialized();
   configureDependencies();
   Bloc.observer = SimpleBlocObserver();
