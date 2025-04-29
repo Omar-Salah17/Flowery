@@ -43,7 +43,6 @@ class RequestHandler {
         if (e.response != null) {
           final statusCode = e.response!.statusCode;
 
-
           switch (statusCode) {
             case 400:
               return ServerFailure(

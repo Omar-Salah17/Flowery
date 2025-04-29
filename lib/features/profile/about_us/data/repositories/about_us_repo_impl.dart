@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
@@ -10,15 +9,15 @@ import 'package:flowery/features/profile/about_us/domain/repositories/about_us_r
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: AboutRepository)
-class AboutRepoImpl implements AboutRepository{
+class AboutRepoImpl implements AboutRepository {
   AboutLocalDataSource aboutLocalDataSource;
   AboutRepoImpl(this.aboutLocalDataSource);
   @override
-  Future<Either<Failure, AboutUsModel>> getAboutUsContent() async{
-    try{
+  Future<Either<Failure, AboutUsModel>> getAboutUsContent() async {
+    try {
       var response = await aboutLocalDataSource.getLocalAboutUsContent();
       return right(response);
-    }catch (e) {
+    } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {

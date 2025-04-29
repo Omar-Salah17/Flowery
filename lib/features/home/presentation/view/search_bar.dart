@@ -14,7 +14,7 @@ class CustomSearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-     showSearch(context: context, delegate: ProductSearchDelegate());
+        showSearch(context: context, delegate: ProductSearchDelegate());
       },
       child: SizedBox(
         height: 36.h,
@@ -32,7 +32,10 @@ class CustomSearchBar extends StatelessWidget {
                 borderSide: const BorderSide(color: PalletsColors.white80),
               ),
               filled: false,
-              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 8,
+              ),
             ),
             style: AppTextStyles.instance.textStyle14,
           ),

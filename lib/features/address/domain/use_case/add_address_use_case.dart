@@ -11,7 +11,8 @@ class AddAddressUseCase {
 
   AddAddressUseCase({required this.addressRepository});
   Future<Either<Failure, AddAddressResponse>> call(
-    UserAddressData addressData,) async {
+    UserAddressData addressData,
+  ) async {
     return await addressRepository.addAddress(addressData);
   }
 }

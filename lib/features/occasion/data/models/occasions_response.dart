@@ -8,7 +8,9 @@ class OcaasionsResponse {
   OcaasionsResponse.fromJson(Map<String, dynamic> json) {
     message = json['message'] as String?;
     metadata =
-        json['metadata'] != null ? Metadata.fromJson(json['metadata'] as Map<String, dynamic>) : null;
+        json['metadata'] != null
+            ? Metadata.fromJson(json['metadata'] as Map<String, dynamic>)
+            : null;
     if (json['occasions'] != null) {
       occasions = <Occasions>[];
       json['occasions'].forEach((v) {

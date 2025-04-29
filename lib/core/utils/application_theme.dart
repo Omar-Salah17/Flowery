@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 abstract class ApplicationTheme {
-
   static ThemeData themeData = ThemeData(
     appBarTheme: AppBarTheme(
       titleTextStyle: TextStyle(

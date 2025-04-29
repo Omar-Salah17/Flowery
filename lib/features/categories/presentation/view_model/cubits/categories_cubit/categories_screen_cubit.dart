@@ -17,7 +17,7 @@ class CategoriesScreenCubit extends Cubit<CategoriesScreenState> {
     this.getAllCategoriesUseCase,
     this.getProductsByCategoryUseCase,
     this.getProductsByCategoryWithSortUseCase,
-      this.searchUseCase,
+    this.searchUseCase,
   ) : super(ProductsByCategoryInitial());
   final GetAllCategoriesUseCase getAllCategoriesUseCase;
   final GetProductsByCategoryUseCase getProductsByCategoryUseCase;
@@ -63,32 +63,34 @@ class CategoriesScreenCubit extends Cubit<CategoriesScreenState> {
   }) async {
     selectedCategoryId = categoryId ?? "all";
     emit(CategoriesLoading());
-    if(categoryId=='all')
- {   final result = await getProductsByCategoryWithSortUseCase.call(
-      sort: sort,
-    );
-    result.fold(
-      (failure) {
-        emit(ProductsByCategoryFailure(errorMessage: failure.errorMessage));
-      },
-      (products) {
-        emit(ProductsByCategorySuccess(products: products));
-      },
-    );
-  }else{final result = await getProductsByCategoryWithSortUseCase.call(
-      sort: sort,
-      categoryId: categoryId,
-    );
-    result.fold(
-          (failure) {
-        emit(ProductsByCategoryFailure(errorMessage: failure.errorMessage));
-      },
-          (products) {
-        emit(ProductsByCategorySuccess(products: products));
-      },
-    );
+    if (categoryId == 'all') {
+      final result = await getProductsByCategoryWithSortUseCase.call(
+        sort: sort,
+      );
+      result.fold(
+        (failure) {
+          emit(ProductsByCategoryFailure(errorMessage: failure.errorMessage));
+        },
+        (products) {
+          emit(ProductsByCategorySuccess(products: products));
+        },
+      );
+    } else {
+      final result = await getProductsByCategoryWithSortUseCase.call(
+        sort: sort,
+        categoryId: categoryId,
+      );
+      result.fold(
+        (failure) {
+          emit(ProductsByCategoryFailure(errorMessage: failure.errorMessage));
+        },
+        (products) {
+          emit(ProductsByCategorySuccess(products: products));
+        },
+      );
+    }
+  }
 
-    }}
   Future<void> search({String? categoryId, String? keyword}) async {
     selectedCategoryId = categoryId ?? "all";
     emit(CategoriesLoading());
@@ -97,10 +99,10 @@ class CategoriesScreenCubit extends Cubit<CategoriesScreenState> {
       keyword: keyword,
     );
     result.fold(
-          (failure) {
+      (failure) {
         emit(ProductsByCategoryFailure(errorMessage: failure.errorMessage));
       },
-          (products) {
+      (products) {
         emit(ProductsByCategorySuccess(products: products));
       },
     );

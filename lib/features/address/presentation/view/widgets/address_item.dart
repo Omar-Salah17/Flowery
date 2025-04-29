@@ -45,7 +45,11 @@ class AddressItem extends StatelessWidget {
               horizontalSpace(5.w),
               GestureDetector(
                 onTap: () async {
-                 await Navigator.pushNamed(context, RoutesName.addressDetailsScreen,arguments: address);
+                  await Navigator.pushNamed(
+                    context,
+                    RoutesName.addressDetailsScreen,
+                    arguments: address,
+                  );
                   context.read<AddressCubit>().getLoggedUserAddress();
                 },
                 child: SvgPicture.asset('assets/images/edit.svg'),

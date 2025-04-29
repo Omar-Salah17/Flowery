@@ -5,10 +5,10 @@ import 'package:flowery/features/profile/terms_and_conditions/domain/repositorie
 import 'package:injectable/injectable.dart';
 
 @injectable
-class TermsAndConditionsUseCase{
+class TermsAndConditionsUseCase {
   TermsAndConditionsRepo termsAndConditionsRepo;
   TermsAndConditionsUseCase(this.termsAndConditionsRepo);
-  Future<Either<Failure,TermsAndConditionsModel>> call()async{
+  Future<Either<Failure, TermsAndConditionsModel>> call() async {
     return await termsAndConditionsRepo.getTermsAndConditions();
   }
 }

@@ -14,9 +14,10 @@ class Style {
       fontSize: json['fontSize'] as num?,
       fontWeight: json['fontWeight'] as String?,
       color: json['color'] as String?,
-      textAlign: json['textAlign'] != null
-          ? TextAlign.fromJson(json['textAlign'])
-          : null,
+      textAlign:
+          json['textAlign'] != null
+              ? TextAlign.fromJson(json['textAlign'])
+              : null,
       backgroundColor: json['backgroundColor'] as String?,
     );
   }

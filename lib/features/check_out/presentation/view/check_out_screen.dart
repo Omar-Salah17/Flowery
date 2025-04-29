@@ -24,7 +24,7 @@ import '../../../cart/presentation/view model/cubit/cart_state.dart';
 enum PaymentMethod { cashOnDelivery, creditCard }
 
 class CheckOutScreen extends StatefulWidget {
-   CheckOutScreen({super.key,required this.cart});
+  CheckOutScreen({super.key, required this.cart});
 
   final CartResponse cart;
 
@@ -37,8 +37,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   bool isSwitched = false;
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  int selectedAddressIndex =0;
-
+  int selectedAddressIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +57,6 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 Container(height: 24, color: const Color(0xFFEAEAEA)),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -77,8 +75,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                           child: BlocBuilder<AddressCubit, AddressState>(
                             buildWhen:
                                 (previous, current) =>
-                            previous != current &&
-                                current is AddressSuccess,
+                                    previous != current &&
+                                    current is AddressSuccess,
                             builder: (context, state) {
                               if (state is AddressLoading) {
                                 return const Center(
@@ -97,44 +95,50 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                               } else if (state is AddressSuccess) {
                                 return state.addressList!.isEmpty
                                     ? Center(
-                                  child: Text(
-                                    'List is empty',
-                                    style: AppTextStyles.instance.textStyle16
-                                        .copyWith(color: PalletsColors.gray),
-                                  ),
-                                )
+                                      child: Text(
+                                        'List is empty',
+                                        style: AppTextStyles
+                                            .instance
+                                            .textStyle16
+                                            .copyWith(
+                                              color: PalletsColors.gray,
+                                            ),
+                                      ),
+                                    )
                                     : ListView.builder(
-                                  itemCount: state.addressList!.length,
-                                  itemBuilder: (context, index) {
-                                    final address = state.addressList![index];
-                                    String addressName = '';
-                                    if (index == 0) {
-                                      addressName = LocaleKeys.home.tr();
-                                    } else if (index == 1) {
-                                      addressName =  LocaleKeys.office.tr();;
-                                    } else {
-                                      addressName = address.city ?? "";
-                                    }
-                                    return AddressCard(
-                                      title: addressName,
-                                      subtitle: address.street ?? '',
-                                      onEdit: () {
-                                        Navigator.pushNamed(
-                                          context,
-                                          RoutesName.addressDetailsScreen,
-                                          arguments: address,
+                                      itemCount: state.addressList!.length,
+                                      itemBuilder: (context, index) {
+                                        final address =
+                                            state.addressList![index];
+                                        String addressName = '';
+                                        if (index == 0) {
+                                          addressName = LocaleKeys.home.tr();
+                                        } else if (index == 1) {
+                                          addressName = LocaleKeys.office.tr();
+                                          ;
+                                        } else {
+                                          addressName = address.city ?? "";
+                                        }
+                                        return AddressCard(
+                                          title: addressName,
+                                          subtitle: address.street ?? '',
+                                          onEdit: () {
+                                            Navigator.pushNamed(
+                                              context,
+                                              RoutesName.addressDetailsScreen,
+                                              arguments: address,
+                                            );
+                                          },
+                                          isSelected:
+                                              selectedAddressIndex == index,
+                                          onSelect: () {
+                                            setState(() {
+                                              selectedAddressIndex = index;
+                                            });
+                                          },
                                         );
                                       },
-                                      isSelected:
-                                      selectedAddressIndex == index,
-                                      onSelect: () {
-                                        setState(() {
-                                          selectedAddressIndex = index;
-                                        });
-                                      },
                                     );
-                                  },
-                                );
                               }
                               return Container();
                             },
@@ -147,22 +151,28 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                             BorderSide(color: PalletsColors.white70),
                           ),
                         ),
-                        onPressed: () {Navigator.pushNamed(context,  RoutesName.addressDetailsScreen,arguments: Addresses());},
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            RoutesName.addressDetailsScreen,
+                            arguments: Addresses(),
+                          );
+                        },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               '+ ',
-                              style: AppTextStyles.instance.textStyle30.copyWith(
-                                color: PalletsColors.mainColorBase,
-                              ),
+                              style: AppTextStyles.instance.textStyle30
+                                  .copyWith(color: PalletsColors.mainColorBase),
                             ),
                             Text(
                               LocaleKeys.addNew.tr(),
-                              style: AppTextStyles.instance.textStyle18.copyWith(
-                                color: PalletsColors.mainColorBase,
-                                fontWeight: FontWeight.w500,
-                              ),
+                              style: AppTextStyles.instance.textStyle18
+                                  .copyWith(
+                                    color: PalletsColors.mainColorBase,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                             ),
                           ],
                         ),
@@ -246,12 +256,18 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  PriceRow(title: LocaleKeys.subTotal.tr(), value:widget.cart.cart!.totalPrice.toString()),
-                  PriceRow(title: LocaleKeys.deliveryFee.tr(), value: "10 ${LocaleKeys.egp.tr()}"),
+                  PriceRow(
+                    title: LocaleKeys.subTotal.tr(),
+                    value: widget.cart.cart!.totalPrice.toString(),
+                  ),
+                  PriceRow(
+                    title: LocaleKeys.deliveryFee.tr(),
+                    value: "10 ${LocaleKeys.egp.tr()}",
+                  ),
                   const Divider(thickness: 1),
                   PriceRow(
                     title: LocaleKeys.total.tr(),
-                    value: "${widget.cart.cart!.totalPrice!+10}",
+                    value: "${widget.cart.cart!.totalPrice! + 10}",
                     titleFontWeight: FontWeight.w500,
                     valueFontWeight: FontWeight.w500,
                     valueColor: PalletsColors.blackBase,
@@ -281,40 +297,51 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
 
                         if (url != null && url.isNotEmpty) {
                           // Launch the payment URL
-                           await Navigator.push(
+                          await Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => PaymentWebViewScreen(url: url),
+                              builder:
+                                  (context) => PaymentWebViewScreen(url: url),
                             ),
                           );
-                           showDialog(
-                             context: context,
-                             barrierDismissible: false,
-                             builder: (_) => const Center(child: CircularProgressIndicator()),
-                           );
-                           await context.read<CartCubit>().getUserCart();
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder:
+                                (_) => const Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                          );
+                          await context.read<CartCubit>().getUserCart();
                           final cartState = context.read<CartCubit>().state;
 
                           if (cartState is CartSuccess &&
-                              cartState.cartResponse.cart?.cartItems?.isEmpty == true) {
+                              cartState.cartResponse.cart?.cartItems?.isEmpty ==
+                                  true) {
                             print('cartResponse.cart?.cartItems?');
-                            Navigator.pushReplacementNamed(context, RoutesName.layout);
+                            Navigator.pushReplacementNamed(
+                              context,
+                              RoutesName.layout,
+                            );
                             showSnackBar(context, 'Payment Successful');
-                          }else
-                            {Navigator.pop(context);
-                            showErrorSnackBar(context, ' Payment Failed');}
+                          } else {
+                            Navigator.pop(context);
+                            showErrorSnackBar(context, ' Payment Failed');
+                          }
                         }
 
                         print("Credit Checkout URL: $url");
-                      }
-                      else if (state is CashCheckOutSuccess) {
+                      } else if (state is CashCheckOutSuccess) {
                         // Show success message
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('Order placed successfully!'),
                           ),
                         );
-                        Navigator.pushReplacementNamed(context, RoutesName.layout);
+                        Navigator.pushReplacementNamed(
+                          context,
+                          RoutesName.layout,
+                        );
                       } else if (state is CheckOutFailure) {
                         ScaffoldMessenger.of(
                           context,
@@ -325,46 +352,52 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       return CustomElevatedButton(
                         text: LocaleKeys.placeOrder.tr(),
                         isPink: true,
-                          onTap: () {
-                            final cubit = context.read<CheckOutCubit>();
-                            final addressState = addressCubit.state;
+                        onTap: () {
+                          final cubit = context.read<CheckOutCubit>();
+                          final addressState = addressCubit.state;
 
-                            // ✅ Check if cart is empty
-                            if (widget.cart.cart?.cartItems == null || widget.cart.cart!.cartItems!.isEmpty) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text("Your cart is empty!")),
-                              );
-                              return;
-                            }
-
-                            // ✅ Check if there's at least one address selected
-                            if (addressState is AddressSuccess &&
-                                addressState.addressList != null &&
-                                addressState.addressList!.isNotEmpty) {
-                              final selectedAddress = addressState.addressList![selectedAddressIndex];
-
-                              final shippingAddress = ShippingAddressModel(
-                                city: selectedAddress.city,
-                                phone: selectedAddress.phone,
-                                street: selectedAddress.street,
-                                lat: selectedAddress.lat,
-                                long: selectedAddress.long,
-                              );
-                              if (_selectedMethod == PaymentMethod.cashOnDelivery) {
-                                cubit.cashCheckout(shippingAddress);
-                              } else  {
-                                 cubit.creditCheckout(shippingAddress);
-                              ;
-
-
-                              }
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text("Please select a delivery address.")),
-                              );
-                            }
+                          // ✅ Check if cart is empty
+                          if (widget.cart.cart?.cartItems == null ||
+                              widget.cart.cart!.cartItems!.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Your cart is empty!"),
+                              ),
+                            );
+                            return;
                           }
 
+                          // ✅ Check if there's at least one address selected
+                          if (addressState is AddressSuccess &&
+                              addressState.addressList != null &&
+                              addressState.addressList!.isNotEmpty) {
+                            final selectedAddress =
+                                addressState.addressList![selectedAddressIndex];
+
+                            final shippingAddress = ShippingAddressModel(
+                              city: selectedAddress.city,
+                              phone: selectedAddress.phone,
+                              street: selectedAddress.street,
+                              lat: selectedAddress.lat,
+                              long: selectedAddress.long,
+                            );
+                            if (_selectedMethod ==
+                                PaymentMethod.cashOnDelivery) {
+                              cubit.cashCheckout(shippingAddress);
+                            } else {
+                              cubit.creditCheckout(shippingAddress);
+                              ;
+                            }
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  "Please select a delivery address.",
+                                ),
+                              ),
+                            );
+                          }
+                        },
                       );
                     },
                   ),
@@ -445,6 +478,4 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
       ),
     );
   }
-
-
 }

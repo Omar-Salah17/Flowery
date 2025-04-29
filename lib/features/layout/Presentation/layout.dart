@@ -14,7 +14,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../cart/presentation/view/cart_view.dart';
 import '../../categories/domain/use_case/search_use_case.dart';
 
-
 class Layout extends StatefulWidget {
   const Layout({super.key});
 
@@ -40,16 +39,15 @@ class LayoutState extends State<Layout> {
 
   @override
   Widget build(BuildContext context) {
-    return 
-        BlocProvider(
-          create:
-              (context) => CategoriesScreenCubit(
-                getIt.get<GetAllCategoriesUseCase>(),
-                getIt.get<GetProductsByCategoryUseCase>(),
-                getIt.get<GetProductsByCategoryWithSortUseCase>(),
-                getIt.get<SearchUseCase>(),
-              )..getAllCategories(),
-      
+    return BlocProvider(
+      create:
+          (context) => CategoriesScreenCubit(
+            getIt.get<GetAllCategoriesUseCase>(),
+            getIt.get<GetProductsByCategoryUseCase>(),
+            getIt.get<GetProductsByCategoryWithSortUseCase>(),
+            getIt.get<SearchUseCase>(),
+          )..getAllCategories(),
+
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,

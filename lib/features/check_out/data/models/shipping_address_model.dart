@@ -25,13 +25,13 @@ class ShippingAddressModel {
 
   Map<String, dynamic> toJson() {
     return {
-    "shippingAddress": {
-      'street': street,
-      'phone': phone,
-      'city': city,
-      'lat': lat,
-      'long': long,
-    }
+      "shippingAddress": {
+        'street': street,
+        'phone': phone,
+        'city': city,
+        'lat': lat,
+        'long': long,
+      },
     };
   }
 }

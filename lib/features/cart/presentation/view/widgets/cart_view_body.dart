@@ -18,7 +18,7 @@ class CartViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List cartItems = cartResponse.cart!.cartItems??[];
+    List cartItems = cartResponse.cart!.cartItems ?? [];
     return Column(
       children: [
         SizedBox(
@@ -28,9 +28,7 @@ class CartViewBody extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.symmetric(vertical: 12.h),
-                child: CartItemWidget(
-                  cartItem: cartItems[index],
-                ),
+                child: CartItemWidget(cartItem: cartItems[index]),
               );
             },
           ),
@@ -40,26 +38,37 @@ class CartViewBody extends StatelessWidget {
           title: LocaleKeys.subTotal.tr(),
           value: "${cartResponse.cart!.totalPrice} ${LocaleKeys.egp.tr()}",
         ),
-         PriceRow(title: LocaleKeys.deliveryFee.tr(), value: "10 ${LocaleKeys.egp.tr()}"),
+        PriceRow(
+          title: LocaleKeys.deliveryFee.tr(),
+          value: "10 ${LocaleKeys.egp.tr()}",
+        ),
         Divider(thickness: 1.sp),
         PriceRow(
           title: LocaleKeys.total.tr(),
-          value: "${cartResponse.cart!.totalPrice! + 10} ${LocaleKeys.egp.tr()}",
+          value:
+              "${cartResponse.cart!.totalPrice! + 10} ${LocaleKeys.egp.tr()}",
           titleFontWeight: FontWeight.w500,
           valueFontWeight: FontWeight.w500,
           valueColor: PalletsColors.blackBase,
           titleColor: PalletsColors.blackBase,
         ),
         SizedBox(height: 12.h),
-        CustomElevatedButton(text: LocaleKeys.checkout.tr(), isPink: true, onTap: () {
-          log('cartResponse ===${cartResponse.cart!.totalPrice}');
-          if(cartResponse.cart!.cartItems!.isNotEmpty)
-            {
-          Navigator.pushNamed(context, RoutesName.checkOut,arguments: cartResponse);}
-          else{
-            showErrorSnackBar(context, 'Cart is empty', );
-          }
-        }),
+        CustomElevatedButton(
+          text: LocaleKeys.checkout.tr(),
+          isPink: true,
+          onTap: () {
+            log('cartResponse ===${cartResponse.cart!.totalPrice}');
+            if (cartResponse.cart!.cartItems!.isNotEmpty) {
+              Navigator.pushNamed(
+                context,
+                RoutesName.checkOut,
+                arguments: cartResponse,
+              );
+            } else {
+              showErrorSnackBar(context, 'Cart is empty');
+            }
+          },
+        ),
         SizedBox(height: 10.h),
       ],
     );

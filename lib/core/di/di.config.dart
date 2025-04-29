@@ -121,6 +121,15 @@ import '../../features/check_out/presentation/view_model/check_out_cubit.dart'
     as _i582;
 import '../../features/home/presentation/viewModel/home_view_model/home_cubit.dart'
     as _i109;
+import '../../features/my_orders/data/remote/my_orders_remote_data_source.dart'
+    as _i923;
+import '../../features/my_orders/data/remote/my_orders_remote_data_source_impl.dart'
+    as _i401;
+import '../../features/my_orders/data/repository/my_orders_impl.dart' as _i162;
+import '../../features/my_orders/domain/repository/my_orders_contract.dart'
+    as _i309;
+import '../../features/my_orders/domain/useCases/get_my_orders_use_case.dart'
+    as _i65;
 import '../../features/occasion/data/repos/occasion_remote_data_source_impl.dart'
     as _i61;
 import '../../features/occasion/data/repos/occasion_repository_impl.dart'
@@ -208,12 +217,12 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
     gh.factory<_i911.AddressCubit>(() => _i911.AddressCubit());
-    gh.singleton<_i89.ApiManager>(() => _i89.ApiManager());
-    gh.singleton<_i361.LogInterceptor>(() => dioModule.provideLogger());
     gh.singleton<_i291.AppConfigProvider>(() => _i291.AppConfigProvider());
     gh.singleton<_i665.SecureStorageService>(
       () => _i665.SecureStorageService(),
     );
+    gh.singleton<_i361.LogInterceptor>(() => dioModule.provideLogger());
+    gh.singleton<_i89.ApiManager>(() => _i89.ApiManager());
     gh.singleton<_i646.GuestManager>(() => _i646.GuestManager());
     gh.factory<_i129.ForgetPasswordRemoteDataSource>(
       () => _i177.ForgetPasswordRemoteDataSourceImpl(
@@ -363,6 +372,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i569.CartRemoteDataSource>(
       () => _i373.CartRemoteDataSourcseImpl(apiService: gh<_i525.ApiService>()),
     );
+    gh.factory<_i923.MyOrdersRemoteDataSource>(
+      () => _i401.MyOrdersRemoteDataSourceImpl(
+        apiService: gh<_i525.ApiService>(),
+      ),
+    );
     gh.factory<_i998.ProfileRemoteDataSource>(
       () =>
           _i531.ProfileRemoteDataSourceImpl(apiService: gh<_i525.ApiService>()),
@@ -401,13 +415,18 @@ extension GetItInjectableX on _i174.GetIt {
         getAllCategoriesRepo: gh<_i826.CategoriesScreenRepo>(),
       ),
     );
+    gh.factory<_i321.UpdateAddressUseCase>(
+      () => _i321.UpdateAddressUseCase(
+        addressRepository: gh<_i1032.AddressRepo>(),
+      ),
+    );
     gh.factory<_i950.AddAddressUseCase>(
       () =>
           _i950.AddAddressUseCase(addressRepository: gh<_i1032.AddressRepo>()),
     );
-    gh.factory<_i321.UpdateAddressUseCase>(
-      () => _i321.UpdateAddressUseCase(
-        addressRepository: gh<_i1032.AddressRepo>(),
+    gh.factory<_i309.MyOrdersContract>(
+      () => _i162.MyOrdersImpl(
+        myOrdersRemoteDataSource: gh<_i923.MyOrdersRemoteDataSource>(),
       ),
     );
     gh.factory<_i895.CheckOutRepo>(
@@ -430,32 +449,32 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i998.ProfileRemoteDataSource>(),
       ),
     );
-    gh.factory<_i99.EditProfileUseCase>(
-      () => _i99.EditProfileUseCase(gh<_i1007.ProfileRepo>()),
-    );
     gh.factory<_i763.UploadPhotoUseCase>(
       () => _i763.UploadPhotoUseCase(gh<_i1007.ProfileRepo>()),
+    );
+    gh.factory<_i99.EditProfileUseCase>(
+      () => _i99.EditProfileUseCase(gh<_i1007.ProfileRepo>()),
     );
     gh.factory<_i629.BestSellerRepo>(
       () => _i12.BestSellerRepoImpl(gh<_i312.BestSellerDataSource>()),
     );
-    gh.factory<_i512.CashCheckOutUseCase>(
-      () => _i512.CashCheckOutUseCase(gh<_i895.CheckOutRepo>()),
-    );
     gh.factory<_i825.CreditCheckOutUseCase>(
       () => _i825.CreditCheckOutUseCase(gh<_i895.CheckOutRepo>()),
     );
-    gh.factory<_i240.ClearCartUsecase>(
-      () => _i240.ClearCartUsecase(gh<_i123.CartRepo>()),
+    gh.factory<_i512.CashCheckOutUseCase>(
+      () => _i512.CashCheckOutUseCase(gh<_i895.CheckOutRepo>()),
     );
-    gh.factory<_i320.DeleteCartItemUsecase>(
-      () => _i320.DeleteCartItemUsecase(gh<_i123.CartRepo>()),
+    gh.factory<_i412.UpdateProductQuantityUseCase>(
+      () => _i412.UpdateProductQuantityUseCase(gh<_i123.CartRepo>()),
     );
     gh.factory<_i691.GetUserCartUsecase>(
       () => _i691.GetUserCartUsecase(gh<_i123.CartRepo>()),
     );
-    gh.factory<_i412.UpdateProductQuantityUseCase>(
-      () => _i412.UpdateProductQuantityUseCase(gh<_i123.CartRepo>()),
+    gh.factory<_i320.DeleteCartItemUsecase>(
+      () => _i320.DeleteCartItemUsecase(gh<_i123.CartRepo>()),
+    );
+    gh.factory<_i240.ClearCartUsecase>(
+      () => _i240.ClearCartUsecase(gh<_i123.CartRepo>()),
     );
     gh.factory<_i659.AddToCartUsecase>(
       () => _i659.AddToCartUsecase(cartRepo: gh<_i123.CartRepo>()),
@@ -484,6 +503,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i825.CreditCheckOutUseCase>(),
         gh<_i512.CashCheckOutUseCase>(),
       ),
+    );
+    gh.factory<_i65.GetMyOrdersUseCase>(
+      () => _i65.GetMyOrdersUseCase(gh<_i309.MyOrdersContract>()),
     );
     gh.factory<_i109.HomeCubit>(
       () => _i109.HomeCubit(

@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 
-
 part 'check_out_session_response.g.dart';
 
 @JsonSerializable()
@@ -8,13 +7,11 @@ class CheckoutSessionResponse {
   final String message;
   @JsonKey(name: 'session')
   final CheckoutSession checkoutSession;
-CheckoutSessionResponse(this.checkoutSession , this.message);
+  CheckoutSessionResponse(this.checkoutSession, this.message);
   factory CheckoutSessionResponse.fromJson(Map<String, dynamic> json) =>
       _$CheckoutSessionResponseFromJson(json);
   Map<String, dynamic> toJson() => _$CheckoutSessionResponseToJson(this);
 }
-
-
 
 @JsonSerializable(explicitToJson: true)
 class CheckoutSession {
@@ -37,21 +34,21 @@ class CheckoutSession {
 
   CheckoutSession({
     this.object,
-     this.id,
-     this.amountSubtotal,
-     this.amountTotal,
-     this.currency,
+    this.id,
+    this.amountSubtotal,
+    this.amountTotal,
+    this.currency,
     this.customer,
     this.customerEmail,
     this.customerDetails,
     this.adaptivePricing,
     this.paymentMethodOptions,
     this.paymentMethodTypes,
-     this.paymentStatus,
-     this.status,
+    this.paymentStatus,
+    this.status,
     this.url,
-     this.created,
-     this.expiresAt,
+    this.created,
+    this.expiresAt,
   });
 
   factory CheckoutSession.fromJson(Map<String, dynamic> json) =>
@@ -60,21 +57,17 @@ class CheckoutSession {
   Map<String, dynamic> toJson() => _$CheckoutSessionToJson(this);
 }
 
-
 @JsonSerializable()
 class AdaptivePricingModel {
   final bool enabled;
 
-  AdaptivePricingModel({
-    required this.enabled,
-  });
+  AdaptivePricingModel({required this.enabled});
 
   factory AdaptivePricingModel.fromJson(Map<String, dynamic> json) =>
       _$AdaptivePricingModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$AdaptivePricingModelToJson(this);
 }
-
 
 @JsonSerializable()
 class PaymentMethodOptionsModel {
@@ -106,15 +99,10 @@ class CustomerDetailsModel {
   final String? name;
   final String? phone;
 
-  CustomerDetailsModel({
-    this.email,
-    this.name,
-    this.phone,
-  });
+  CustomerDetailsModel({this.email, this.name, this.phone});
 
   factory CustomerDetailsModel.fromJson(Map<String, dynamic> json) =>
       _$CustomerDetailsModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$CustomerDetailsModelToJson(this);
 }
-

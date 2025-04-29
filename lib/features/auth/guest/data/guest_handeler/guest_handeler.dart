@@ -6,8 +6,7 @@ class GuestManager {
 
   bool get isGuest => _isGuest;
 
-  void setGuestMode(bool value) =>
-    _isGuest = value;
+  void setGuestMode(bool value) => _isGuest = value;
 
   void reset() {
     _isGuest = false;

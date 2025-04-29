@@ -18,9 +18,10 @@ class AddressCubit extends Cubit<AddressState> {
 
   GetLoggedUserAddressUseCase getLoggedUserAddressUseCase =
       GetLoggedUserAddressUseCase(getIt<AddressRepo>());
-      DeleteAddressUseCase deleteAddressUseCase = DeleteAddressUseCase(getIt<AddressRepo>());
-    static AddressCubit get(BuildContext context) => BlocProvider.of(context);
-
+  DeleteAddressUseCase deleteAddressUseCase = DeleteAddressUseCase(
+    getIt<AddressRepo>(),
+  );
+  static AddressCubit get(BuildContext context) => BlocProvider.of(context);
 
   Future<void> getLoggedUserAddress() async {
     emit(AddressLoading());
@@ -34,6 +35,7 @@ class AddressCubit extends Cubit<AddressState> {
       },
     );
   }
+
   Future<void> fetchListAfterDelete() async {
     final result = await getLoggedUserAddressUseCase.invoke();
     result.fold(
@@ -45,6 +47,7 @@ class AddressCubit extends Cubit<AddressState> {
       },
     );
   }
+
   Future<void> deleteAddress({required String addressId}) async {
     // emit(AddressLoading());
     final result = await deleteAddressUseCase.invoke(addressId);
@@ -53,10 +56,9 @@ class AddressCubit extends Cubit<AddressState> {
         emit(AddressError(failure.errorMessage));
       },
       (response) {
-        emit(AddressDeleteSuccess( addressList: response,));
+        emit(AddressDeleteSuccess(addressList: response));
         fetchListAfterDelete();
       },
     );
   }
-
 }

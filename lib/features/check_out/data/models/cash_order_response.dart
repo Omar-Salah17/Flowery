@@ -8,16 +8,14 @@ class CashOrderResponse {
   final String? message;
   final OrderModel? order;
 
-  CashOrderResponse({
-    required this.message,
-    required this.order,
-  });
+  CashOrderResponse({required this.message, required this.order});
 
   factory CashOrderResponse.fromJson(Map<String, dynamic> json) =>
       _$CashOrderResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$CashOrderResponseToJson(this);
 }
+
 @JsonSerializable()
 class OrderItemModel {
   final String? id;
@@ -25,18 +23,14 @@ class OrderItemModel {
   final int? price;
   final int? quantity;
 
-  OrderItemModel({
-    this.id,
-    this.product,
-    this.price,
-    this.quantity,
-  });
+  OrderItemModel({this.id, this.product, this.price, this.quantity});
 
   factory OrderItemModel.fromJson(Map<String, dynamic> json) =>
       _$OrderItemModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$OrderItemModelToJson(this);
 }
+
 @JsonSerializable()
 class OrderModel {
   final String? id;
@@ -52,17 +46,17 @@ class OrderModel {
   final DateTime? updatedAt;
 
   OrderModel({
-     this.id,
-     this.user,
-     this.orderItems,
-     this.totalPrice,
-     this.paymentType,
-     this.isPaid,
-     this.isDelivered,
-     this.state,
-     this.orderNumber,
-     this.createdAt,
-     this.updatedAt,
+    this.id,
+    this.user,
+    this.orderItems,
+    this.totalPrice,
+    this.paymentType,
+    this.isPaid,
+    this.isDelivered,
+    this.state,
+    this.orderNumber,
+    this.createdAt,
+    this.updatedAt,
   });
 
   factory OrderModel.fromJson(Map<String, dynamic> json) =>

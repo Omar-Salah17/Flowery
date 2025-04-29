@@ -102,7 +102,7 @@ class CartItemWidget extends StatelessWidget {
 
                     children: [
                       Text(
-                        '${LocaleKeys.egp.tr()} ${cartItem.product?.price}' ,
+                        '${LocaleKeys.egp.tr()} ${cartItem.product?.price}',
                         style: AppTextStyles.instance.textStyle14.copyWith(
                           fontWeight: FontWeight.w600,
                           color: PalletsColors.blackBase,

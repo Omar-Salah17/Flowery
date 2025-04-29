@@ -9,10 +9,13 @@ class SearchUseCase {
   final CategoriesScreenRepo getAllCategoriesRepo;
   SearchUseCase({required this.getAllCategoriesRepo});
 
-  Future<Either<Failure, List<Product>>> call({String? categoryId, String? keyword}) async {
+  Future<Either<Failure, List<Product>>> call({
+    String? categoryId,
+    String? keyword,
+  }) async {
     return await getAllCategoriesRepo.getProductsByCategory(
       categoryId: categoryId,
-      keyword: keyword
+      keyword: keyword,
     );
   }
 }

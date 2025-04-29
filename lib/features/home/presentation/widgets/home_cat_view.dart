@@ -16,13 +16,14 @@ class HomeCatView extends StatelessWidget {
       height: 120.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: categories.length ,
+        itemCount: categories.length,
         itemBuilder: (context, index) {
           final category = categories[index];
           return Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8).r,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8).r,
                 child: GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, RoutesName.categories);

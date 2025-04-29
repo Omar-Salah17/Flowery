@@ -47,7 +47,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     );
   }
 
-  Future<void> showLogoutConfirmationDialog(BuildContext context)  {
+  Future<void> showLogoutConfirmationDialog(BuildContext context) {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // User must tap button to close dialog

@@ -42,7 +42,7 @@ class CategoriesScreenRepoImpl implements CategoriesScreenRepo {
       final data = await categoriesRemoteDataSource.getProductsByCategory(
         categoryId: categoryId,
         sort: sort,
-        keyword: keyword
+        keyword: keyword,
       );
       // log("dataaaaa in CategoriesScreenRepoImpl ${data.products} ");
       return Right(data.products ?? []);

@@ -44,9 +44,7 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log(
-          'error in forgetPasswordRepoImpl verify code method: $e',
-        );
+        log('error in forgetPasswordRepoImpl verify code method: $e');
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
@@ -67,9 +65,7 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log(
-          'error in forgetPasswordRepoImplresetPassword method: $e',
-        );
+        log('error in forgetPasswordRepoImplresetPassword method: $e');
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }

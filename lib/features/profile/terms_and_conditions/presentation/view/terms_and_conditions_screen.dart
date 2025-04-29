@@ -11,11 +11,11 @@ class TermsAndConditionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TermsAndConditionsViewModel(getIt.get<TermsAndConditionsUseCase>())..getTermsAndConditions(),
-      child: Scaffold(
-        body: TermsAndConditionsScreenbody(),
-      ),
-
+      create:
+          (context) => TermsAndConditionsViewModel(
+            getIt.get<TermsAndConditionsUseCase>(),
+          )..getTermsAndConditions(),
+      child: Scaffold(body: TermsAndConditionsScreenbody()),
     );
   }
 }

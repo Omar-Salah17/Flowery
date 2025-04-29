@@ -1,7 +1,6 @@
 import 'package:flowery/features/profile/about_us/data/Models/Content.dart';
 import 'package:flowery/features/profile/about_us/data/Models/Style.dart';
 
-
 class TermsAndConditions {
   TermsAndConditions({
     this.section,
@@ -14,12 +13,14 @@ class TermsAndConditions {
   factory TermsAndConditions.fromJson(dynamic json) {
     return TermsAndConditions(
       section: json['section'] as String?,
-      content: json['content'] != null ? Content.fromJson(json['content']) : null,
+      content:
+          json['content'] != null ? Content.fromJson(json['content']) : null,
       style: json['style'] != null ? Style.fromJson(json['style']) : null,
       title: json['title'] != null ? Content.fromJson(json['title']) : null,
-      contentStyle: json['style']?['content'] != null
-          ? Style.fromJson(json['style']['content'])
-          : null,
+      contentStyle:
+          json['style']?['content'] != null
+              ? Style.fromJson(json['style']['content'])
+              : null,
     );
   }
 

@@ -1,4 +1,3 @@
-
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/features/profile/about_us/domain/use_cases/about_us_use_case.dart';
 import 'package:flowery/features/profile/about_us/presentation/view/about_us_screenbody.dart';
@@ -12,10 +11,11 @@ class AboutUsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AboutUsViewModel(getIt.get<AboutUsUseCase>())..getAboutUsContent(),
-      child: Scaffold(
-        body:AboutUsScreenBody() ,
-      ),
+      create:
+          (context) =>
+              AboutUsViewModel(getIt.get<AboutUsUseCase>())
+                ..getAboutUsContent(),
+      child: Scaffold(body: AboutUsScreenBody()),
     );
   }
 }

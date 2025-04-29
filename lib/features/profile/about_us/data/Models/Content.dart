@@ -1,10 +1,5 @@
 class Content {
-  Content({
-    this.en,
-    this.ar,
-    this.enList,
-    this.arList,
-  });
+  Content({this.en, this.ar, this.enList, this.arList});
 
   factory Content.fromJson(dynamic json) {
     // Handle case where content is a List
@@ -16,10 +11,7 @@ class Content {
     }
     // Handle case where content is a String
     else {
-      return Content(
-        en: json['en']?.toString(),
-        ar: json['ar']?.toString(),
-      );
+      return Content(en: json['en']?.toString(), ar: json['ar']?.toString());
     }
   }
 

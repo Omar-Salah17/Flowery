@@ -39,6 +39,8 @@ import 'package:flowery/features/check_out/data/models/check_out_session_respons
     as _i14;
 import 'package:flowery/features/check_out/data/models/shipping_address_model.dart'
     as _i24;
+import 'package:flowery/features/my_orders/data/models/orders/order_item.dart'
+    as _i25;
 import 'package:flowery/features/occasion/data/models/occaions.dart' as _i7;
 import 'package:flowery/features/productsDetails/data/models/product_details_model/product_details_model.dart'
     as _i9;
@@ -473,4 +475,14 @@ class MockApiService extends _i1.Mock implements _i16.ApiService {
             ),
           )
           as _i17.Future<_i15.CashOrderResponse>);
+
+  @override
+  _i17.Future<List<_i25.OrderItem>> getMyOrders() =>
+      (super.noSuchMethod(
+            Invocation.method(#getMyOrders, []),
+            returnValue: _i17.Future<List<_i25.OrderItem>>.value(
+              <_i25.OrderItem>[],
+            ),
+          )
+          as _i17.Future<List<_i25.OrderItem>>);
 }

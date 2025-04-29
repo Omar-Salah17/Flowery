@@ -40,9 +40,7 @@ class ProfileRepoImpl implements ProfileRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        log(
-          'error in ProfileRepoImpl in getLoggedInUserData method: $e',
-        );
+        log('error in ProfileRepoImpl in getLoggedInUserData method: $e');
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }

@@ -9,16 +9,18 @@ import 'package:flowery/features/profile/terms_and_conditions/domain/repositorie
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: TermsAndConditionsRepo)
-class TermsAndConditionsRepoImpl implements TermsAndConditionsRepo{
+class TermsAndConditionsRepoImpl implements TermsAndConditionsRepo {
   TermsAndConditionsLocalDataSource termsAndConditionsLocalDataSource;
 
   TermsAndConditionsRepoImpl(this.termsAndConditionsLocalDataSource);
   @override
-  Future<Either<Failure, TermsAndConditionsModel>> getTermsAndConditions() async{
-    try{
-      var response = await termsAndConditionsLocalDataSource.getTermsAndConditions();
+  Future<Either<Failure, TermsAndConditionsModel>>
+  getTermsAndConditions() async {
+    try {
+      var response =
+          await termsAndConditionsLocalDataSource.getTermsAndConditions();
       return right(response);
-    }catch (e) {
+    } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
@@ -27,5 +29,4 @@ class TermsAndConditionsRepoImpl implements TermsAndConditionsRepo{
       }
     }
   }
-  }
-
+}

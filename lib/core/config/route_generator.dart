@@ -16,6 +16,7 @@ import 'package:flowery/features/check_out/presentation/view/check_out_screen.da
 import 'package:flowery/features/check_out/presentation/view_model/check_out_cubit.dart';
 import 'package:flowery/features/home/presentation/view/home_view.dart';
 import 'package:flowery/features/layout/Presentation/layout.dart';
+import 'package:flowery/features/my_orders/presentation/view/my_orders_view.dart';
 import 'package:flowery/features/occasion/presentation/view/occasion_screen.dart';
 import 'package:flowery/features/productsDetails/presentation/view/products_details.dart';
 import 'package:flowery/features/profile/about_us/presentation/view/about_us_screen.dart';
@@ -139,7 +140,7 @@ class RouteGenerator {
           builder: (context) => const AboutUsScreen(),
           settings: settings,
         );
-        case RoutesName.addressDetailsScreen:
+      case RoutesName.addressDetailsScreen:
         return MaterialPageRoute(
           builder: (context) => AddressDetailsScreen(),
           settings: settings,
@@ -166,6 +167,11 @@ class RouteGenerator {
           settings: settings,
         );
 
+      case RoutesName.MyOrdersView:
+        return MaterialPageRoute(
+          builder: (context) => const MyOrdersView(),
+          settings: settings,
+        );
 
       default:
         return MaterialPageRoute(

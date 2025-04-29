@@ -38,5 +38,4 @@ class CheckOutFailure extends CheckOutState {
 
   @override
   List<Object?> get props => [error];
-
 }

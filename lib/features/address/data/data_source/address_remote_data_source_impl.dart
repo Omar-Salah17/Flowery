@@ -13,16 +13,22 @@ class AddressRemoteDataSourceImpl implements AddressRemoteDataSource {
 
   AddressRemoteDataSourceImpl({required this.apiService});
   @override
-  Future<AddAddressResponse> addNewAddress(UserAddressData userAddressData )async {
-    final response = await apiService.addNewAddress(userAddressData,);
+  Future<AddAddressResponse> addNewAddress(
+    UserAddressData userAddressData,
+  ) async {
+    final response = await apiService.addNewAddress(userAddressData);
     return response;
   }
 
   @override
-  Future<AddAddressResponse> updateAddress(UserAddressData userAddressData,String? id) async {
-    final response = await apiService.updateAddress(userAddressData,id);
+  Future<AddAddressResponse> updateAddress(
+    UserAddressData userAddressData,
+    String? id,
+  ) async {
+    final response = await apiService.updateAddress(userAddressData, id);
     return response;
   }
+
   @override
   Future<List<Addresses>?> getLoggedUserAddress() async {
     var response = await apiService.getLoggedUserAddress();
