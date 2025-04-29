@@ -67,7 +67,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
             iconPath: 'assets/images/list.svg',
             title: LocaleKeys.myOrders.tr(),
             onTap: () {
-              // Navigate to My Orders
+              Navigator.pushNamed(context, RoutesName.MyOrdersView);
             },
           ),
           SettingsTile(
