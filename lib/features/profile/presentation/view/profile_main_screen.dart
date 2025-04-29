@@ -132,8 +132,8 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
           verticalSpace(10),
           SettingsTile(
             title: LocaleKeys.logout.tr(),
-            onTap: () {
-              context.read<ProfileCubit>().showLogoutConfirmationDialog(
+            onTap: ()async {
+            await  context.read<ProfileCubit>().showLogoutConfirmationDialog(
                 context,
               );
               Navigator.pushNamed(context, RoutesName.login);
