@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/route_generator.dart';
 import 'package:flowery/core/config/routes_name.dart';
@@ -6,28 +7,23 @@ import 'package:flowery/core/provider/app_config_provider.dart';
 import 'package:flowery/core/utils/application_theme.dart';
 import 'package:flowery/core/utils/simple_bloc_observer.dart';
 import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_cubit.dart';
+import 'package:flowery/features/notifications/notification.dart';
 import 'package:flowery/generated/codegen_loader.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
 void main() async {
-   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
   WidgetsFlutterBinding.ensureInitialized();
-   await EasyLocalization.ensureInitialized();
+  await NotificationService.initialize();
+  await EasyLocalization.ensureInitialized();
   configureDependencies();
   Bloc.observer = SimpleBlocObserver();
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
-      path:
-          'assets/translations', 
+      path: 'assets/translations',
       fallbackLocale: const Locale("_languageCode"),
       assetLoader: const CodegenLoader(),
       child: ChangeNotifierProvider(
@@ -37,6 +33,7 @@ void main() async {
     ),
   );
 }
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 class Flowery extends StatefulWidget {
   const Flowery({super.key});
@@ -60,11 +57,12 @@ class _FloweryState extends State<Flowery> {
         return BlocProvider(
           create: (context) => cartCubit,
           child: MaterialApp(
+            navigatorKey: navigatorKey,
             debugShowCheckedModeBanner: false,
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
-            initialRoute: RoutesName.initial,
+            initialRoute: RoutesName.login,
             onGenerateRoute: RouteGenerator.onGenerator,
             theme: ApplicationTheme.themeData,
           ),

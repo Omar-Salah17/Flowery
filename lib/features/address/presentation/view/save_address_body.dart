@@ -36,7 +36,7 @@ class SaveAddressBody extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.3,
+            height: MediaQuery.of(context).size.height * 0.45,
             child: BlocProvider(
               create: (context) => addressCubit..getLoggedUserAddress(),
               child: BlocBuilder<AddressCubit, AddressState>(

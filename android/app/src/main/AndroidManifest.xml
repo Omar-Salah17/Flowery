@@ -5,7 +5,7 @@ package="com.example.flowery">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Add this line -->
     <application
-        android:label="flowery"
+        android:label="Flowery"
         android:name="${applicationName}"
         android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/ic_launcher">
