@@ -1,4 +1,3 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/features/address/presentation/view/address_details_screen.dart';
 import 'package:flowery/core/di/di.dart';
@@ -17,7 +16,7 @@ import 'package:flowery/features/check_out/presentation/view/check_out_screen.da
 import 'package:flowery/features/check_out/presentation/view_model/check_out_cubit.dart';
 import 'package:flowery/features/home/presentation/view/home_view.dart';
 import 'package:flowery/features/layout/Presentation/layout.dart';
-import 'package:flowery/features/notifications/message_screen.dart';
+import 'package:flowery/features/notification_list/presentation/view/notification_list_screen.dart';
 import 'package:flowery/features/occasion/presentation/view/occasion_screen.dart';
 import 'package:flowery/features/productsDetails/presentation/view/products_details.dart';
 import 'package:flowery/features/profile/about_us/presentation/view/about_us_screen.dart';
@@ -167,12 +166,11 @@ class RouteGenerator {
           },
           settings: settings,
         );
-      // case RoutesName.messageScreen:
-      //   final message = settings.arguments as RemoteMessage;
-      //   return MaterialPageRoute(
-      //     builder: (context) => MessageScreen(message: message,),
-          
-      //   );
+      case RoutesName.notificationListScreen:
+        
+        return MaterialPageRoute(
+          builder: (context) => NotificationListScreen(),
+          );
 
       default:
         return MaterialPageRoute(

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/notification_list/data/models/notification_response.dart';
@@ -18,7 +19,7 @@ class NotificationListScreen extends StatelessWidget {
       create: (_) => getIt<NotificationCubit>()..fetchNotifications(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('${LocaleKeys.notification}'),
+          title:  Text('${LocaleKeys.notification.tr()}'),
         ),
         body: BlocBuilder<NotificationCubit, NotificationState>(
           builder: (context, state) {

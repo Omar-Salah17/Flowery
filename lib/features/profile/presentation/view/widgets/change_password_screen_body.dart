@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/custom_text_form_fieled.dart';
 import 'package:flowery/core/utils/helper_functions/snack_bar.dart';
@@ -98,11 +99,14 @@ class _ChangePasswordScreenBodyState extends State<ChangePasswordScreenBody> {
                   }
                   if (state is ChangePasswordSuccess) {
                     showSnackBar(context, state.data["message"] as String);
+                    Navigator.pushNamed(context, RoutesName.login);
                   }
                 },
                 builder: (context, state) {
                   if (state is ChangePasswordLoading) {
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(
+                      child: CircularProgressIndicator(color: Colors.white),
+                    );
                   } else {
                     return const Text('Update');
                   }
