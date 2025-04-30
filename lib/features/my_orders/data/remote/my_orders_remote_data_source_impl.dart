@@ -1,5 +1,6 @@
 import 'package:flowery/core/api_manger/api_service.dart';
 import 'package:flowery/features/my_orders/data/models/orders/order_item.dart';
+import 'package:flowery/features/my_orders/data/models/orders/orders.dart';
 import 'package:flowery/features/my_orders/data/remote/my_orders_remote_data_source.dart';
 import 'package:injectable/injectable.dart';
 
@@ -9,7 +10,7 @@ class MyOrdersRemoteDataSourceImpl implements MyOrdersRemoteDataSource {
   MyOrdersRemoteDataSourceImpl({required this.apiService});
 
   @override
-  Future<List<OrderItem>> getMyOrders() {
+  Future<List<Orders>> getMyOrders() async {
     final response = apiService.getMyOrders();
     return response;
   }
