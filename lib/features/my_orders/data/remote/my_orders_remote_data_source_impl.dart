@@ -9,8 +9,8 @@ class MyOrdersRemoteDataSourceImpl implements MyOrdersRemoteDataSource {
   MyOrdersRemoteDataSourceImpl({required this.apiService});
 
   @override
-  Future<List<OrderItem>> getMyOrders() {
-    final response = apiService.getMyOrders();
+  Future<List<OrderItem>> getMyOrders() async {
+    final response = await apiService.getMyOrders();
     return response;
   }
 }
