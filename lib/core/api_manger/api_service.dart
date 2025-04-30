@@ -118,5 +118,5 @@ abstract class ApiService {
   );
 
   @GET(Constants.myOrdersEndPoint)
-  Future<Orders> getMyOrders();
+  Future<List<Orders>> getMyOrders();
 }

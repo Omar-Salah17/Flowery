@@ -17,7 +17,6 @@ class Product {
   final int? quantity;
   final String? category;
   final String? occasion;
-  final String? state;
   final DateTime? createdAt;
   final DateTime? updatedAt;
   @JsonKey(name: '__v')
@@ -39,7 +38,6 @@ class Product {
     this.quantity,
     this.category,
     this.occasion,
-    this.state,
     this.createdAt,
     this.updatedAt,
     this.v,
@@ -51,7 +49,7 @@ class Product {
 
   @override
   String toString() {
-    return 'Product(id: $id, title: $title, slug: $slug, description: $description, imgCover: $imgCover, images: $images, price: $price, priceAfterDiscount: $priceAfterDiscount, quantity: $quantity, category: $category, occasion: $occasion, state: $state, createdAt: $createdAt, updatedAt: $updatedAt, v: $v, discount: $discount, sold: $sold, rateAvg: $rateAvg, rateCount: $rateCount, )';
+    return 'Product(id: $id, title: $title, slug: $slug, description: $description, imgCover: $imgCover, images: $images, price: $price, priceAfterDiscount: $priceAfterDiscount, quantity: $quantity, category: $category, occasion: $occasion,  createdAt: $createdAt, updatedAt: $updatedAt, v: $v, discount: $discount, sold: $sold, rateAvg: $rateAvg, rateCount: $rateCount, )';
   }
 
   factory Product.fromJson(Map<String, dynamic> json) {
@@ -93,7 +91,6 @@ class Product {
       quantity: quantity ?? this.quantity,
       category: category ?? this.category,
       occasion: occasion ?? this.occasion,
-      state: state ?? this.state,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       v: v ?? this.v,
@@ -125,7 +122,6 @@ class Product {
       quantity.hashCode ^
       category.hashCode ^
       occasion.hashCode ^
-      state.hashCode ^
       createdAt.hashCode ^
       updatedAt.hashCode ^
       v.hashCode ^
