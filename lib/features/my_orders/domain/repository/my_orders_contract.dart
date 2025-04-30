@@ -3,5 +3,5 @@ import 'package:flowery/core/utils/error_handler.dart';
 import 'package:flowery/features/my_orders/data/models/orders/order_item.dart';
 
 abstract class MyOrdersContract {
-  Future<Either<Failure, List<OrderItem>>> getMyOrders();
+  Future<Either<Failure, List<Order>>> getMyOrders();
 }
