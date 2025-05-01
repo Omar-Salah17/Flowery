@@ -25,8 +25,10 @@ class MyOrdersView extends StatelessWidget {
           ),
         ),
         body: SizedBox.expand(
-          child: TabBarView(
-            children: [OrdersTab(active: true), OrdersTab(active: false)],
+          child: BlocProvider(create: (context) => getIt<MyOrdersCubit>()..featchMyOrders(),
+            child: TabBarView(
+              children: [OrdersTab(active: true), OrdersTab(active: false)],
+            ),
           ),
         ),
       ),

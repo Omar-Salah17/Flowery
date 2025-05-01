@@ -9,22 +9,6 @@ class OrdersTab extends StatelessWidget {
 
   OrdersTab({required this.active, super.key});
 
-  //       final orders =
-  //           state.orders
-  //               ?.where(
-  //                 (order) =>
-  //                     active
-  //                         ? !(order.orders?.first.isDelivered ?? false)
-  //                         : (order.orders?.first.isDelivered ?? false),
-  //               )
-  //               .toList();
-
-  //       if (orders == null || orders.isEmpty) {
-  //         return Center(
-  //           child: Text(active ? 'No active orders' : 'No completed orders'),
-  //         );
-  //       }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MyOrdersCubit, MyOrdersState>(
@@ -34,14 +18,14 @@ class OrdersTab extends StatelessWidget {
         } else if (state is MyOrdersSuccess) {
           final orders =
               active
-                  ? state.orders
-                      .where((o) => o.orders?.first.isDelivered == false)
+                  ? state.orders.orders
+                      ?.where((o) => o.isDelivered == false)
                       .toList()
-                  : state.orders
-                      .where((o) => o.orders?.first.isDelivered == true)
+                  : state.orders.orders
+                      ?.where((o) => o.isDelivered == true)
                       .toList();
 
-          if (orders.isEmpty) {
+          if (orders == null || orders.isEmpty) {
             return Center(
               child: Text(active ? 'No active orders' : 'No completed orders'),
             );
@@ -51,7 +35,7 @@ class OrdersTab extends StatelessWidget {
             itemCount: orders.length,
             itemBuilder: (context, index) {
               final order = orders[index];
-              final orderItem = order.orders?[index].orderItems?.firstOrNull;
+              final orderItem = order.orderItems?.firstOrNull;
               final product = orderItem?.product;
 
               return Card(
@@ -93,12 +77,12 @@ class OrdersTab extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 4),
-                            Text("EGP ${order.orders?[index].totalPrice ?? 0}"),
+                            Text("EGP ${order.totalPrice ?? 0}"),
                             const SizedBox(height: 4),
                             Text(
                               active
-                                  ? "Order #${order.orders?[index].orderNumber ?? ''}"
-                                  : "Delivered on ${order.orders?[index].updatedAt?.toLocal().toString().split(' ').first ?? 'N/A'}",
+                                  ? "Order #${order.orderNumber ?? ''}"
+                                  : "Delivered on ${order.updatedAt!.toLocal().toString().split(' ').first ?? 'N/A'}",
                             ),
                             const SizedBox(height: 8),
                             Align(

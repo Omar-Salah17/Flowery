@@ -10,7 +10,7 @@ class GetMyOrdersUseCase {
   MyOrdersContract myOrdersContract;
   GetMyOrdersUseCase(this.myOrdersContract);
 
-  Future<Either<Failure, List<Orders>>> getMyOrders() async {
+  Future<Either<Failure,OrdersResponse>> getMyOrders() async {
     return await myOrdersContract.getMyOrders();
   }
 }
