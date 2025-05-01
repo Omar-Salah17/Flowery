@@ -7,6 +7,7 @@ class PalletsColors {
   static const Color error = Color(0xFFCC1010);
   static const Color success = Color(0xFF0CB359);
   static const Color lightPink = Color(0xFFF9ECF0);
+ 
 
   static const Color white10 = Color(0xFFFEFEFE);
   static const Color white20 = Color(0xFFFDFDFD);

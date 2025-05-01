@@ -5,7 +5,7 @@ import 'package:flowery/features/address/presentation/view/save_address_view.dar
 import 'package:flowery/features/auth/forgetPassword/presentation/view/email_verification_screen.dart';
 import 'package:flowery/features/auth/forgetPassword/presentation/view/forget_password_screen.dart';
 import 'package:flowery/features/auth/forgetPassword/presentation/view/reset_password_screen.dart';
-import 'package:flowery/features/auth/login/presentation/view/screens/login.dart';
+import 'package:flowery/features/auth/login/presentation/view/screens/login_screen.dart';
 import 'package:flowery/features/auth/register/presentation/view/screens/register_screen.dart';
 import 'package:flowery/features/best_seller/presentation/view/best_seller_screen.dart';
 import 'package:flowery/features/cart/data/models/cart_model/cart_response.dart';
@@ -43,7 +43,7 @@ class RouteGenerator {
 
       case RoutesName.login:
         return MaterialPageRoute(
-          builder: (context) => const Login(),
+          builder: (context) => const LoginScreen(),
           settings: settings,
         );
       case RoutesName.bestSeller:
@@ -140,7 +140,7 @@ class RouteGenerator {
           builder: (context) => const AboutUsScreen(),
           settings: settings,
         );
-        case RoutesName.addressDetailsScreen:
+      case RoutesName.addressDetailsScreen:
         return MaterialPageRoute(
           builder: (context) => AddressDetailsScreen(),
           settings: settings,
@@ -167,10 +167,9 @@ class RouteGenerator {
           settings: settings,
         );
       case RoutesName.notificationListScreen:
-        
         return MaterialPageRoute(
           builder: (context) => NotificationListScreen(),
-          );
+        );
 
       default:
         return MaterialPageRoute(

@@ -2,9 +2,11 @@ import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/di/di.dart';
+import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/constants.dart';
 import 'package:flowery/core/utils/custom_button.dart';
 import 'package:flowery/core/utils/custom_text_form_fieled.dart';
+import 'package:flowery/core/utils/helper_functions/snack_bar.dart';
 import 'package:flowery/core/utils/services/secure_sotrage_service.dart';
 import 'package:flowery/core/utils/validator.dart';
 import 'package:flowery/features/auth/login/domain/use_cases/login_usecase.dart';
@@ -47,106 +49,123 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LoginCubit(getIt.get<LoginUsecase>()),
-      child: BlocConsumer<LoginCubit, LoginState>(
-        listener: (context, state) {
-          if (state is LoginSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                backgroundColor: Colors.green,
-                content: Text(LocaleKeys.LoggedInSuccessfully.tr()),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 12.w),
+      child: Form(
+        key: formKey,
+        autovalidateMode: autoValidateMode,
+        child: Column(
+          children: [
+            SizedBox(height: 36.h),
+            CustomTextFormFieled(
+              hintText: LocaleKeys.enterYourEmail.tr(),
+              labelText: LocaleKeys.email.tr(),
+              textEditingController: emailController,
+              validator: (value) => Validator.validateEmail(value),
+              shouldObscureText: false,
+            ),
+            SizedBox(height: 16.h),
+            CustomTextFormFieled(
+              hintText: LocaleKeys.enterYourPassword.tr(),
+              labelText: LocaleKeys.password.tr(),
+              textEditingController: passwordController,
+              validator: (value) => Validator.validatePassword(value),
+              shouldObscureText: true,
+            ),
+            SizedBox(height: 4.h),
+            RememberMeRow(
+              rememberMe: rememberMe,
+              onRememberMeChanged: (val) {
+                setState(() {
+                  rememberMe = val ?? rememberMe;
+                });
+              },
+            ),
+            SizedBox(height: 40.h),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                child: BlocConsumer<LoginCubit, LoginState>(
+                  listener: (context, state) {
+                    if (state is LoginSuccess) {
+                      showSnackBar(
+                        context,
+                        LocaleKeys.LoggedInSuccessfully.tr(),
+                      );
+    
+                      _saveUserToken(state);
+    
+                      Navigator.pushReplacementNamed(
+                        context,
+                        RoutesName.layout,
+                      );
+                    } else if (state is LoginFailure) {
+                      showErrorSnackBar(context, state.errorMessage);
+                    }
+                  },
+                  builder: (context, state) {
+                    return Center(
+                      child: state is LoginLoading
+                          ? SizedBox(
+                            height: 24.h,
+                            width: 24.w,
+                            child: CircularProgressIndicator(
+                              color: PalletsColors.white10,
+                            ),
+                          )
+                          : Text(LocaleKeys.login.tr()),
+                    );
+                  },
+                ),
+                onPressed: () async {
+                  if (formKey.currentState!.validate()) {
+                    await context.read<LoginCubit>().login(
+                      email: emailController.text.trim(),
+                      password: passwordController.text.trim(),
+                    );
+    
+                    autoValidateMode = AutovalidateMode.disabled;
+                  } else {
+                    setState(() {
+                      autoValidateMode = AutovalidateMode.always;
+                    });
+                  }
+                },
               ),
-            );
-
-            _saveUserToken(state);
-
-            Navigator.pushReplacementNamed(context, RoutesName.layout);
-          } else if (state is LoginFailure) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                backgroundColor: Colors.red,
-                content: Text(state.errorMessage),
-              ),
-            );
-          }
-        },
-        builder: (context, state) {
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12.w),
-            child: Form(
-              key: formKey,
-              autovalidateMode: autoValidateMode,
-              child: Column(
-                children: [
-                  SizedBox(height: 36.h),
-                  CustomTextFormFieled(
-                    hintText: LocaleKeys.enterYourEmail.tr(),
-                    labelText: LocaleKeys.email.tr(),
-                    textEditingController: emailController,
-                    validator: (value) => Validator.validateEmail(value),
-                    shouldObscureText: false,
-                  ),
-                  SizedBox(height: 16.h),
-                  CustomTextFormFieled(
-                    hintText: LocaleKeys.enterYourPassword.tr(),
-                    labelText: LocaleKeys.password.tr(),
-                    textEditingController: passwordController,
-                    validator: (value) => Validator.validatePassword(value),
-                    shouldObscureText: true,
-                  ),
-                  SizedBox(height: 4.h),
-                  RememberMeRow(
-                    rememberMe: rememberMe,
-                    onRememberMeChanged: (val) {
-                      setState(() {
-                        rememberMe = val ?? rememberMe;
-                      });
-                    },
-                  ),
-                  SizedBox(height: 40.h),
-                  SizedBox(
-                    width: double.infinity,
-                    child: CustomElevatedButton(
-                      text: LocaleKeys.login.tr(),
-                      onTap: () async {
-                        if (formKey.currentState!.validate()) {
-                          await context.read<LoginCubit>().login(
-                            email: emailController.text.trim(),
-                            password: passwordController.text.trim(),
-                          );
-
-                          autoValidateMode = AutovalidateMode.disabled;
-                        } else {
-                          setState(() {
-                            autoValidateMode = AutovalidateMode.always;
-                          });
-                        }
-                      },
-                      isPink: true,
-                    ),
-                  ),
-                  SizedBox(height: 12.h),
-                  SizedBox(
-                    width: double.infinity,
-                    child: CustomElevatedButton(
-                      text: LocaleKeys.continueAsGuest.tr(),
-                      onTap: () {
-                        Navigator.pushReplacementNamed(
-                          context,
-                          RoutesName.layout,
-                        );
-                      },
-                      isPink: false,
-                    ),
-                  ),
-                  SizedBox(height: 8.h),
-                  const SignUpLink(),
-                ],
+              // child: CustomElevatedButton(
+              //   text: LocaleKeys.login.tr(),
+              //   onTap: () async {
+              //     if (formKey.currentState!.validate()) {
+              //       await context.read<LoginCubit>().login(
+              //         email: emailController.text.trim(),
+              //         password: passwordController.text.trim(),
+              //       );
+    
+              //       autoValidateMode = AutovalidateMode.disabled;
+              //     } else {
+              //       setState(() {
+              //         autoValidateMode = AutovalidateMode.always;
+              //       });
+              //     }
+              //   },
+              //   isPink: true,
+              // ),
+            ),
+            SizedBox(height: 12.h),
+            SizedBox(
+              width: double.infinity,
+              child: CustomElevatedButton(
+                text: LocaleKeys.continueAsGuest.tr(),
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, RoutesName.layout);
+                },
+                isPink: false,
               ),
             ),
-          );
-        },
+            SizedBox(height: 8.h),
+            const SignUpLink(),
+          ],
+        ),
       ),
     );
   }
