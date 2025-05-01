@@ -12,23 +12,20 @@ class MyOrdersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create:
-          (_) =>
-              MyOrdersCubit(getIt.get<GetMyOrdersUseCase>())..featchMyOrders(),
-      child: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text("My orders"),
-            bottom: TabBar(
-              tabs: [Tab(text: "Active"), Tab(text: "Completed")],
-              labelStyle: AppTextStyles.instance.textStyle16,
-              labelColor: PalletsColors.mainColorBase,
-              indicatorColor: PalletsColors.mainColorBase,
-            ),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("My orders"),
+          bottom: TabBar(
+            tabs: [Tab(text: "Active"), Tab(text: "Completed")],
+            labelStyle: AppTextStyles.instance.textStyle16,
+            labelColor: PalletsColors.mainColorBase,
+            indicatorColor: PalletsColors.mainColorBase,
           ),
-          body: TabBarView(
+        ),
+        body: SizedBox.expand(
+          child: TabBarView(
             children: [OrdersTab(active: true), OrdersTab(active: false)],
           ),
         ),
