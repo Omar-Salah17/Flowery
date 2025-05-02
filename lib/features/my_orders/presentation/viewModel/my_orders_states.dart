@@ -8,7 +8,7 @@ class MyOrdersInitial extends MyOrdersState {}
 class MyOrdersLoading extends MyOrdersState {}
 
 class MyOrdersSuccess extends MyOrdersState {
-  final List<Orders> orders;
+  final OrdersResponse orders;
   MyOrdersSuccess({required this.orders});
 }
 

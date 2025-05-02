@@ -15,7 +15,7 @@ class MyOrdersImpl implements MyOrdersContract {
   MyOrdersImpl({required this.myOrdersRemoteDataSource});
 
   @override
-  Future<Either<Failure, List<Orders>>> getMyOrders() async {
+  Future<Either<Failure, OrdersResponse>> getMyOrders() async {
     try {
       final data = await myOrdersRemoteDataSource.getMyOrders();
       log("data in MyOrdersImpl $data");
