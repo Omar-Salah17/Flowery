@@ -524,11 +524,11 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i512.CashCheckOutUseCase>(),
       ),
     );
-    gh.factory<_i65.GetMyOrdersUseCase>(
-      () => _i65.GetMyOrdersUseCase(gh<_i309.MyOrdersContract>()),
-    );
     gh.factory<_i226.GetNotificationsUseCase>(
       () => _i226.GetNotificationsUseCase(gh<_i915.NotificationRepo>()),
+    );
+    gh.factory<_i65.GetMyOrdersUseCase>(
+      () => _i65.GetMyOrdersUseCase(gh<_i309.MyOrdersContract>()),
     );
     gh.factory<_i109.HomeCubit>(
       () => _i109.HomeCubit(
@@ -549,11 +549,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i342.ChangePasswordUseCase>(
       () => _i342.ChangePasswordUseCase(profileRepo: gh<_i1007.ProfileRepo>()),
     );
-    gh.factory<_i75.MyOrdersCubit>(
-      () => _i75.MyOrdersCubit(gh<_i65.GetMyOrdersUseCase>()),
-    );
     gh.factory<_i297.NotificationCubit>(
       () => _i297.NotificationCubit(gh<_i226.GetNotificationsUseCase>()),
+    );
+    gh.factory<_i75.MyOrdersCubit>(
+      () => _i75.MyOrdersCubit(gh<_i65.GetMyOrdersUseCase>()),
     );
     gh.factory<_i851.ProfileCubit>(
       () => _i851.ProfileCubit(
