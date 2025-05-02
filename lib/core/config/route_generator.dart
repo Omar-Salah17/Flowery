@@ -168,15 +168,15 @@ class RouteGenerator {
           settings: settings,
         );
       case RoutesName.notificationListScreen:
-        
+        return MaterialPageRoute(
+          builder: (context) => NotificationListScreen(),
+          );
       case RoutesName.MyOrdersView:
         return MaterialPageRoute(
           builder: (context) => const MyOrdersView(),
           settings: settings,
         );
-        return MaterialPageRoute(
-          builder: (context) => NotificationListScreen(),
-          );
+        
 
       default:
         return MaterialPageRoute(
