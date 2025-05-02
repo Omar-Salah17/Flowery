@@ -24,6 +24,7 @@ class _CartViewState extends State<CartView> {
 
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -42,7 +43,7 @@ class _CartViewState extends State<CartView> {
           ),
         ),
       ),
-      body: Padding(
+      body:   Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(
           children: [

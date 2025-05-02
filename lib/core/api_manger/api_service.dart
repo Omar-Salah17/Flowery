@@ -27,6 +27,8 @@ import 'package:flowery/features/productsDetails/data/models/product_details_mod
 import 'package:flowery/features/profile/data/model/user_response.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../features/notification_list/data/models/notification_response.dart';
+
 part 'api_service.g.dart';
 
 @RestApi(baseUrl: Constants.baseUrl)
@@ -116,6 +118,10 @@ abstract class ApiService {
   Future<CashOrderResponse> cashCheckOut(
     @Body() ShippingAddressModel shippingAddressModel,
   );
+
+  @GET(Constants.notificationListEndPoint)
+  Future<NotificationResponse> getNotifications(
+      );
 
   @GET(Constants.myOrdersEndPoint)
   Future<OrdersResponse> getMyOrders();

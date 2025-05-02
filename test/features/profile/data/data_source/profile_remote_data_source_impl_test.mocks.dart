@@ -39,7 +39,7 @@ import 'package:flowery/features/check_out/data/models/check_out_session_respons
     as _i14;
 import 'package:flowery/features/check_out/data/models/shipping_address_model.dart'
     as _i25;
-import 'package:flowery/features/my_orders/data/models/orders/orders.dart'
+import 'package:flowery/features/notification_list/data/models/notification_response.dart'
     as _i16;
 import 'package:flowery/features/occasion/data/models/occaions.dart' as _i7;
 import 'package:flowery/features/productsDetails/data/models/product_details_model/product_details_model.dart'
@@ -140,9 +140,9 @@ class _FakeCashOrderResponse_13 extends _i1.SmartFake
     : super(parent, parentInvocation);
 }
 
-class _FakeOrdersResponse_14 extends _i1.SmartFake
-    implements _i16.OrdersResponse {
-  _FakeOrdersResponse_14(Object parent, Invocation parentInvocation)
+class _FakeNotificationResponse_14 extends _i1.SmartFake
+    implements _i16.NotificationResponse {
+  _FakeNotificationResponse_14(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
@@ -483,12 +483,15 @@ class MockApiService extends _i1.Mock implements _i17.ApiService {
           as _i18.Future<_i15.CashOrderResponse>);
 
   @override
-  _i18.Future<_i16.OrdersResponse> getMyOrders() =>
+  _i18.Future<_i16.NotificationResponse> getNotifications() =>
       (super.noSuchMethod(
-            Invocation.method(#getMyOrders, []),
-            returnValue: _i18.Future<_i16.OrdersResponse>.value(
-              _FakeOrdersResponse_14(this, Invocation.method(#getMyOrders, [])),
+            Invocation.method(#getNotifications, []),
+            returnValue: _i18.Future<_i16.NotificationResponse>.value(
+              _FakeNotificationResponse_14(
+                this,
+                Invocation.method(#getNotifications, []),
+              ),
             ),
           )
-          as _i18.Future<_i16.OrdersResponse>);
+          as _i18.Future<_i16.NotificationResponse>);
 }

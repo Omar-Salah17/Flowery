@@ -17,6 +17,7 @@ import 'package:flowery/features/check_out/presentation/view_model/check_out_cub
 import 'package:flowery/features/home/presentation/view/home_view.dart';
 import 'package:flowery/features/layout/Presentation/layout.dart';
 import 'package:flowery/features/my_orders/presentation/view/my_orders_view.dart';
+import 'package:flowery/features/notification_list/presentation/view/notification_list_screen.dart';
 import 'package:flowery/features/occasion/presentation/view/occasion_screen.dart';
 import 'package:flowery/features/productsDetails/presentation/view/products_details.dart';
 import 'package:flowery/features/profile/about_us/presentation/view/about_us_screen.dart';
@@ -166,12 +167,16 @@ class RouteGenerator {
           },
           settings: settings,
         );
-
+      case RoutesName.notificationListScreen:
+        
       case RoutesName.MyOrdersView:
         return MaterialPageRoute(
           builder: (context) => const MyOrdersView(),
           settings: settings,
         );
+        return MaterialPageRoute(
+          builder: (context) => NotificationListScreen(),
+          );
 
       default:
         return MaterialPageRoute(
