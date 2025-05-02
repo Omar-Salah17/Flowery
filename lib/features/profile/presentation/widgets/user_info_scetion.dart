@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/helper/spacing.dart';
@@ -22,7 +22,7 @@ class UserInfoScetion extends StatelessWidget {
       child: Column(
         children: [
           CircleAvatar(
-            backgroundImage: NetworkImage(user.photo!),
+            backgroundImage: CachedNetworkImageProvider(user.photo??'assets/images/Image.png'),
             radius: 50.r,
           ),
           verticalSpace(10.h),
@@ -44,6 +44,7 @@ class UserInfoScetion extends StatelessWidget {
                     RoutesName.editProfile,
                     arguments: user,
                   );
+
                   context.read<ProfileCubit>().getUserData();
                 },
                 child: SvgPicture.asset('assets/images/pen.svg'),

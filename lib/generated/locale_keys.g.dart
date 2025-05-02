@@ -174,4 +174,8 @@ abstract class LocaleKeys {
   static const deliveryTime = 'deliveryTime';
   static const about_Us_Introduction_Title = 'about_Us_Introduction_Title';
   static const about_Us_Closing_Title = 'about_Us_Closing_Title';
+  static const start_shopping_now = " start shopping now";
+  static const cart_is_empty = "Your cart is empty";
+
+
 }
