@@ -130,6 +130,8 @@ import '../../features/my_orders/domain/repository/my_orders_contract.dart'
     as _i309;
 import '../../features/my_orders/domain/useCases/get_my_orders_use_case.dart'
     as _i65;
+import '../../features/my_orders/presentation/viewModel/my_orders_cubit.dart'
+    as _i75;
 import '../../features/occasion/data/repos/occasion_remote_data_source_impl.dart'
     as _i61;
 import '../../features/occasion/data/repos/occasion_repository_impl.dart'
@@ -525,6 +527,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i342.ChangePasswordUseCase>(
       () => _i342.ChangePasswordUseCase(profileRepo: gh<_i1007.ProfileRepo>()),
+    );
+    gh.factory<_i75.MyOrdersCubit>(
+      () => _i75.MyOrdersCubit(gh<_i65.GetMyOrdersUseCase>()),
     );
     gh.factory<_i851.ProfileCubit>(
       () => _i851.ProfileCubit(
