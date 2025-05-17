@@ -141,7 +141,7 @@ class RouteGenerator {
           builder: (context) => const AboutUsScreen(),
           settings: settings,
         );
-      case RoutesName.addressDetailsScreen:
+      
       case RoutesName.addressDetailsScreen:
         return MaterialPageRoute(
           builder: (context) => AddressDetailsScreen(),
