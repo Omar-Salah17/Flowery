@@ -20,7 +20,7 @@ class OccasionCubit extends Cubit<OccasionState> {
   List<Occasions> occasions = [];
   List<Product> products = [];
   late TabController tabController;
- Future<void> getAllOccasions() async {
+  Future<void> getAllOccasions() async {
     emit(OccasionLoading());
     final result = await getAllOccasionsUseCase.invoke();
     result.fold((l) => emit(OccasionError(l.errorMessage)), (response) {
@@ -28,6 +28,7 @@ class OccasionCubit extends Cubit<OccasionState> {
       emit(OccasionSuccess(response));
     });
   }
+
   Future<void> getProductByOccasion({required String occasionId}) async {
     emit(OccasionLoading());
     final result = await getProductByOccasionUsecase.invoke(

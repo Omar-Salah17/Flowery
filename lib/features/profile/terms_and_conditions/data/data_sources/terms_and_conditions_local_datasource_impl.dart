@@ -1,18 +1,19 @@
-
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flowery/features/profile/terms_and_conditions/data/Models/terms_and_conditions_model.dart';
 import 'package:flowery/features/profile/terms_and_conditions/data/data_sources/terms_and_conditions_local_datasource.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
+
 @Injectable(as: TermsAndConditionsLocalDataSource)
-class TermsAndConditionsLocalDataSourceImpl extends TermsAndConditionsLocalDataSource{
+class TermsAndConditionsLocalDataSourceImpl
+    extends TermsAndConditionsLocalDataSource {
   @override
   Future<TermsAndConditionsModel> getTermsAndConditions() async {
     try {
       // Load JSON file
       final jsonString = await rootBundle.loadString(
-          'assets/jsonFiles/Flowery Terms and Conditions JSON with Arabic and English.json'
+        'assets/jsonFiles/Flowery Terms and Conditions JSON with Arabic and English.json',
       );
 
       // Log raw JSON (optional for debugging)
@@ -29,4 +30,4 @@ class TermsAndConditionsLocalDataSourceImpl extends TermsAndConditionsLocalDataS
       throw const FormatException("Invalid JSON format in about us content");
     }
   }
-  }
+}

@@ -11,8 +11,9 @@ class UpdateAddressUseCase {
 
   UpdateAddressUseCase({required this.addressRepository});
   Future<Either<Failure, AddAddressResponse>> call(
-      UserAddressData addressData,
-      String? id) async {
-    return await addressRepository.updateAddress(addressData, id );
+    UserAddressData addressData,
+    String? id,
+  ) async {
+    return await addressRepository.updateAddress(addressData, id);
   }
 }

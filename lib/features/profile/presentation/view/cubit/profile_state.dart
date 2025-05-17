@@ -39,6 +39,6 @@ class LogoutFailureState extends ProfileState {
 }
 
 class LogoutSuccessState extends ProfileState {
- final  String message;
+  final String message;
   const LogoutSuccessState(this.message);
 }

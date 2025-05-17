@@ -59,7 +59,7 @@ class User {
       phone: json['phone'] as String,
       photo: json['photo'] as String,
       role: json['role'] as String,
-      wishlist: List<dynamic>.from(json['wishlist'] as List<dynamic>) ,
+      wishlist: List<dynamic>.from(json['wishlist'] as List<dynamic>),
       addresses: List<dynamic>.from(json['addresses'] as List<dynamic>),
       createdAt: json['createdAt'] as String,
     );

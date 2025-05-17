@@ -67,7 +67,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
             iconPath: 'assets/images/list.svg',
             title: LocaleKeys.myOrders.tr(),
             onTap: () {
-              // Navigate to My Orders
+              Navigator.pushNamed(context, RoutesName.MyOrdersView);
             },
           ),
           SettingsTile(
@@ -117,16 +117,15 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
           SettingsTile(
             title: LocaleKeys.aboutUs.tr(),
             onTap: () {
-                Navigator.pushNamed(context, RoutesName.aboutUsScreen);
+              Navigator.pushNamed(context, RoutesName.aboutUsScreen);
             },
           ),
           SettingsTile(
-              title: LocaleKeys.termsConditions.tr(),
-              onTap: () {
-                Navigator.pushNamed(context, RoutesName.termsAndConditionsScreen);
-              }
-          )
-          ,
+            title: LocaleKeys.termsConditions.tr(),
+            onTap: () {
+              Navigator.pushNamed(context, RoutesName.termsAndConditionsScreen);
+            },
+          ),
           verticalSpace(10),
           Divider(color: PalletsColors.white70, height: .5.h),
           verticalSpace(10),

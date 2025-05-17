@@ -5,14 +5,11 @@ import 'package:flowery/features/profile/about_us/domain/repositories/about_us_r
 import 'package:injectable/injectable.dart';
 
 @injectable
-class AboutUsUseCase{
+class AboutUsUseCase {
   AboutRepository aboutRepository;
   AboutUsUseCase(this.aboutRepository);
 
-
-  Future<Either<Failure,AboutUsModel>> call()async{
+  Future<Either<Failure, AboutUsModel>> call() async {
     return await aboutRepository.getAboutUsContent();
   }
-
-
 }

@@ -2,9 +2,7 @@
 /// ar : "center"
 
 class TextAlign {
-  TextAlign({
-      this.en, 
-      this.ar,});
+  TextAlign({this.en, this.ar});
 
   TextAlign.fromJson(dynamic json) {
     en = json['en'] as String?;
@@ -19,5 +17,4 @@ class TextAlign {
     map['ar'] = ar;
     return map;
   }
-
 }

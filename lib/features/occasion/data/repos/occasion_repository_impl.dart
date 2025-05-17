@@ -31,9 +31,8 @@ class OccasionRepositoryImpl implements OccasionRepositoryContract {
   Future<Either<Failure, List<Product>>> getProductsByOccasion(
     String? occasionId,
   ) async {
-    final response = await occasionRemoteDataSourceContract.getProductsByOccasion(
-      occasionId: occasionId,
-    );
+    final response = await occasionRemoteDataSourceContract
+        .getProductsByOccasion(occasionId: occasionId);
     try {
       // log("dataaaaa in CategoriesScreenRepoImpl ${data.products} ");
       return Right(response.products ?? []);

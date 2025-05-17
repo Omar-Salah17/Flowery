@@ -1,13 +1,11 @@
-import 'package:easy_localization/easy_localization.dart';  // Ensure this import is added
+import 'package:easy_localization/easy_localization.dart'; // Ensure this import is added
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 
 class CheckOutAppBar extends StatelessWidget {
-  const CheckOutAppBar({
-    super.key,
-  });
+  const CheckOutAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +24,8 @@ class CheckOutAppBar extends StatelessWidget {
                 child: const Icon(Icons.arrow_back_ios_new),
               ),
               Text(
-                LocaleKeys.checkout.tr(),  // Using LocaleKeys for the "Checkout" text
+                LocaleKeys.checkout
+                    .tr(), // Using LocaleKeys for the "Checkout" text
                 style: AppTextStyles.instance.textStyle20,
               ),
             ],
@@ -47,14 +46,15 @@ class CheckOutAppBar extends StatelessWidget {
           Row(
             children: [
               Text(
-                LocaleKeys.deliveryFee.tr(),  // Using LocaleKeys for "Delivery Time"
+                LocaleKeys.deliveryFee
+                    .tr(), // Using LocaleKeys for "Delivery Time"
                 style: AppTextStyles.instance.textStyle18.copyWith(
                   fontWeight: FontWeight.w500,
                 ),
               ),
               const Spacer(),
               Text(
-                LocaleKeys.schedule.tr(),  // Using LocaleKeys for "Schedule"
+                LocaleKeys.schedule.tr(), // Using LocaleKeys for "Schedule"
                 style: AppTextStyles.instance.textStyle18.copyWith(
                   color: PalletsColors.mainColorBase,
                   fontWeight: FontWeight.w600,
@@ -65,16 +65,22 @@ class CheckOutAppBar extends StatelessWidget {
           const SizedBox(height: 15),
           Row(
             children: [
-              const Icon(Icons.access_time, color: PalletsColors.blackBase, size: 20),
+              const Icon(
+                Icons.access_time,
+                color: PalletsColors.blackBase,
+                size: 20,
+              ),
               Text(
-                LocaleKeys.instant.tr(),  // Using LocaleKeys for "instant"
+                LocaleKeys.instant.tr(), // Using LocaleKeys for "instant"
                 style: AppTextStyles.instance.textStyle14.copyWith(
                   fontWeight: FontWeight.w500,
                 ),
               ),
               const SizedBox(width: 3),
               Text(
-                LocaleKeys.estimatedArrival.tr(args: ['03 Sep 2024', '11:00 AM']),  // Using LocaleKeys with parameters
+                LocaleKeys.estimatedArrival.tr(
+                  args: ['03 Sep 2024', '11:00 AM'],
+                ), // Using LocaleKeys with parameters
                 style: AppTextStyles.instance.textStyle14.copyWith(
                   color: PalletsColors.success,
                   fontWeight: FontWeight.w500,

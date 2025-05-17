@@ -36,7 +36,11 @@ class AboutUsScreenBody extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       if (appSection.content != null)
-                        _buildContentWidget(appSection.content!, appSection.style, context),
+                        _buildContentWidget(
+                          appSection.content!,
+                          appSection.style,
+                          context,
+                        ),
                     ],
                   ),
                 );
@@ -56,95 +60,126 @@ class AboutUsScreenBody extends StatelessWidget {
                               ? appSection.title?.en ?? ""
                               : appSection.title?.ar ?? "",
                           style: TextStyle(
-                            fontSize: (appSection.style?.fontSize ?? 18).toDouble(),
-                            fontWeight: context.read<AboutUsViewModel>().getFontWeight(appSection.style?.fontWeight),
-                            color: context.read<AboutUsViewModel>().getColor(appSection.style?.color),
+                            fontSize:
+                                (appSection.style?.fontSize ?? 18).toDouble(),
+                            fontWeight: context
+                                .read<AboutUsViewModel>()
+                                .getFontWeight(appSection.style?.fontWeight),
+                            color: context.read<AboutUsViewModel>().getColor(
+                              appSection.style?.color,
+                            ),
                           ),
-                          textAlign: context.read<AboutUsViewModel>().getTextAlign(
-                            isEnglish
-                                ? appSection.style?.textAlign?.en
-                                : appSection.style?.textAlign?.ar,
-                          ),
+                          textAlign: context
+                              .read<AboutUsViewModel>()
+                              .getTextAlign(
+                                isEnglish
+                                    ? appSection.style?.textAlign?.en
+                                    : appSection.style?.textAlign?.ar,
+                              ),
                         ),
                       ),
 
                     if (appSection.section != null && appSection.title == null)
                       Text(
-                        context.read<AboutUsViewModel>().getLocalizedTitle(appSection, isEnglish, context),
+                        context.read<AboutUsViewModel>().getLocalizedTitle(
+                          appSection,
+                          isEnglish,
+                          context,
+                        ),
                         style: TextStyle(
-                          fontSize: (appSection.style?.fontSize ?? 16).toDouble(),
-                          fontWeight:context.read<AboutUsViewModel>().getFontWeight(appSection.style?.fontWeight),
-                          color: context.read<AboutUsViewModel>().getColor(appSection.style?.color),
+                          fontSize:
+                              (appSection.style?.fontSize ?? 16).toDouble(),
+                          fontWeight: context
+                              .read<AboutUsViewModel>()
+                              .getFontWeight(appSection.style?.fontWeight),
+                          color: context.read<AboutUsViewModel>().getColor(
+                            appSection.style?.color,
+                          ),
                         ),
-                        textAlign: context.read<AboutUsViewModel>().getTextAlign(
-                          isEnglish
-                              ? appSection.style?.textAlign?.en
-                              : appSection.style?.textAlign?.ar,
-                        ),
+                        textAlign: context
+                            .read<AboutUsViewModel>()
+                            .getTextAlign(
+                              isEnglish
+                                  ? appSection.style?.textAlign?.en
+                                  : appSection.style?.textAlign?.ar,
+                            ),
                       ),
 
                     const SizedBox(height: 8.0),
 
                     if (appSection.content != null)
-                      _buildContentWidget(appSection.content!, appSection.style, context),
+                      _buildContentWidget(
+                        appSection.content!,
+                        appSection.style,
+                        context,
+                      ),
                   ],
                 ),
               );
             },
           );
         } else {
-          return const Center(
-            child: Text("No Data Available"),
-          );
+          return const Center(child: Text("No Data Available"));
         }
       },
     );
   }
+}
 
-  }
+Widget _buildContentWidget(
+  Content content,
+  Style? style,
+  BuildContext context,
+) {
+  final isEnglish = Localizations.localeOf(context).languageCode == 'en';
+  final contentStyle = style;
 
-  Widget _buildContentWidget(Content content, Style? style, BuildContext context) {
-    final isEnglish = Localizations.localeOf(context).languageCode == 'en';
-    final contentStyle = style;
-
-    if (content.isList) {
-      // Handle list content
-      final contentList = isEnglish ? content.enList : content.arList;
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: contentList?.map((text) => Padding(
-          padding: const EdgeInsets.only(bottom: 8.0),
-          child: Text(
-            text,
-            style: TextStyle(
-              fontSize: (contentStyle?.fontSize ?? 14).toDouble(),
-              fontWeight: context.read<AboutUsViewModel>().getFontWeight(contentStyle?.fontWeight),
-              color: context.read<AboutUsViewModel>().getColor(contentStyle?.color),
-            ),
-            textAlign: context.read<AboutUsViewModel>().getTextAlign(
-              isEnglish
-                  ? contentStyle?.textAlign?.en
-                  : contentStyle?.textAlign?.ar,
-            ),
-          ),
-        )).toList() ?? [],
-      );
-    } else {
-      // Handle single string content
-      return Text(
-        isEnglish ? content.en ?? '' : content.ar ?? '',
-        style: TextStyle(
-          fontSize: (contentStyle?.fontSize ?? 14).toDouble(),
-          fontWeight: context.read<AboutUsViewModel>().getFontWeight(contentStyle?.fontWeight),
-          color: context.read<AboutUsViewModel>().getColor(contentStyle?.color),
+  if (content.isList) {
+    // Handle list content
+    final contentList = isEnglish ? content.enList : content.arList;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children:
+          contentList
+              ?.map(
+                (text) => Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                      fontSize: (contentStyle?.fontSize ?? 14).toDouble(),
+                      fontWeight: context
+                          .read<AboutUsViewModel>()
+                          .getFontWeight(contentStyle?.fontWeight),
+                      color: context.read<AboutUsViewModel>().getColor(
+                        contentStyle?.color,
+                      ),
+                    ),
+                    textAlign: context.read<AboutUsViewModel>().getTextAlign(
+                      isEnglish
+                          ? contentStyle?.textAlign?.en
+                          : contentStyle?.textAlign?.ar,
+                    ),
+                  ),
+                ),
+              )
+              .toList() ??
+          [],
+    );
+  } else {
+    // Handle single string content
+    return Text(
+      isEnglish ? content.en ?? '' : content.ar ?? '',
+      style: TextStyle(
+        fontSize: (contentStyle?.fontSize ?? 14).toDouble(),
+        fontWeight: context.read<AboutUsViewModel>().getFontWeight(
+          contentStyle?.fontWeight,
         ),
-        textAlign: context.read<AboutUsViewModel>().getTextAlign(
-          isEnglish
-              ? contentStyle?.textAlign?.en
-              : contentStyle?.textAlign?.ar,
-        ),
-      );
-    }
+        color: context.read<AboutUsViewModel>().getColor(contentStyle?.color),
+      ),
+      textAlign: context.read<AboutUsViewModel>().getTextAlign(
+        isEnglish ? contentStyle?.textAlign?.en : contentStyle?.textAlign?.ar,
+      ),
+    );
   }
-
-
+}

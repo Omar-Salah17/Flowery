@@ -8,10 +8,7 @@ import 'package:injectable/injectable.dart';
 abstract class DioModule {
   @Singleton()
   LogInterceptor provideLogger() {
-    return LogInterceptor(
-      requestBody: true,
-      responseBody: true,
-    );
+    return LogInterceptor(requestBody: true, responseBody: true);
   }
 
   @Singleton()

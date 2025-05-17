@@ -20,6 +20,8 @@ import 'package:flowery/features/categories/data/models/categories_model/categor
 import 'package:flowery/features/check_out/data/models/cash_order_response.dart';
 import 'package:flowery/features/check_out/data/models/check_out_session_response.dart';
 import 'package:flowery/features/check_out/data/models/shipping_address_model.dart';
+import 'package:flowery/features/my_orders/data/models/orders/order_item.dart';
+import 'package:flowery/features/my_orders/data/models/orders/orders.dart';
 import 'package:flowery/features/occasion/data/models/occaions.dart';
 import 'package:flowery/features/productsDetails/data/models/product_details_model/product_details_model.dart';
 import 'package:flowery/features/profile/data/model/user_response.dart';
@@ -102,9 +104,7 @@ abstract class ApiService {
   );
 
   @PATCH('${Constants.loggedUserAdderss}')
-  Future<AddAddressResponse> addNewAddress(
-      @Body() UserAddressData userAddress,
-      );
+  Future<AddAddressResponse> addNewAddress(@Body() UserAddressData userAddress);
 
   @DELETE(Constants.deleteAddressEndPoint)
   Future<AddressModel> deleteAddress(@Path("addressId") String addressId);
@@ -122,4 +122,7 @@ abstract class ApiService {
   @GET(Constants.notificationListEndPoint)
   Future<NotificationResponse> getNotifications(
       );
+
+  @GET(Constants.myOrdersEndPoint)
+  Future<OrdersResponse> getMyOrders();
 }

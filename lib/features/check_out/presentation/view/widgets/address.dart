@@ -26,10 +26,7 @@ class AddressCard extends StatelessWidget {
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
-          side: BorderSide(
-            color: PalletsColors.white70.withOpacity(0.2)
-          )
-
+          side: BorderSide(color: PalletsColors.white70.withOpacity(0.2)),
         ),
         child: Padding(
           padding: const EdgeInsets.all(12),
@@ -46,20 +43,22 @@ class AddressCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(title,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        )),
+                    Text(
+                      title,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     const SizedBox(height: 4),
-                    Text(subtitle,
-                        style: TextStyle(color: Colors.grey.shade700)),
+                    Text(
+                      subtitle,
+                      style: TextStyle(color: Colors.grey.shade700),
+                    ),
                   ],
                 ),
               ),
               IconButton(
                 icon: const Icon(Icons.edit, size: 20),
                 onPressed: onEdit,
-              )
+              ),
             ],
           ),
         ),

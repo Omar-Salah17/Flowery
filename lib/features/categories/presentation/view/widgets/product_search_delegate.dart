@@ -15,7 +15,6 @@ class ProductSearchDelegate extends SearchDelegate {
     getIt.get<GetProductsByCategoryUseCase>(),
     getIt.get<GetProductsByCategoryWithSortUseCase>(),
     getIt.get<SearchUseCase>(),
-
   );
 
   @override
@@ -52,10 +51,8 @@ class ProductSearchDelegate extends SearchDelegate {
             if (state.products.isEmpty) {
               return const Center(child: Text('No results found'));
             }
-            return  CustomScrollView(
-              slivers: [
-                ProductsGridView(productsList: state.products),
-              ],
+            return CustomScrollView(
+              slivers: [ProductsGridView(productsList: state.products)],
             );
           } else if (state is ProductsByCategoryFailure) {
             return Center(child: Text(state.errorMessage));

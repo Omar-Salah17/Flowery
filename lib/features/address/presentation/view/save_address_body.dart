@@ -90,9 +90,14 @@ class SaveAddressBody extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20.r),
                 ),
               ),
-              onPressed: () async{
-                await Navigator.pushNamed(context, RoutesName.addressDetailsScreen,arguments: Addresses());
-                addressCubit.getLoggedUserAddress();},
+              onPressed: () async {
+                await Navigator.pushNamed(
+                  context,
+                  RoutesName.addressDetailsScreen,
+                  arguments: Addresses(),
+                );
+                addressCubit.getLoggedUserAddress();
+              },
               child: Text(LocaleKeys.addNewAddress.tr()),
             ),
           ),

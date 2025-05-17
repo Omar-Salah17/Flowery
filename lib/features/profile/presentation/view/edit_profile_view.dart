@@ -226,28 +226,31 @@ class _EditProfileViewState extends State<EditProfileView> {
                     verticalSpace(100),
 
                     // Save Button
-                    if (state.status == EditProfileStatus.loading) const CircularProgressIndicator() else ElevatedButton(
-                          onPressed: () async {
-                            if (formKey.currentState!.validate()) {
-                              final updatedUser = UpdatedUserModel(
-                                firstName: firstNameController.text.trim(),
-                                lastName: lastNameController.text.trim(),
-                                email: emailController.text.trim(),
-                                phone: phoneNumberController.text.trim(),
-                              );
-                              if (selectedImage != null) {
-                                await cubit.uploadProfilePhoto(selectedImage);
-                              }
-                              await cubit.editProfile(updatedUser);
-                              Navigator.pop(context);
-                            } else {
-                              setState(() {
-                                autoValidateMode = AutovalidateMode.always;
-                              });
+                    if (state.status == EditProfileStatus.loading)
+                      const CircularProgressIndicator()
+                    else
+                      ElevatedButton(
+                        onPressed: () async {
+                          if (formKey.currentState!.validate()) {
+                            final updatedUser = UpdatedUserModel(
+                              firstName: firstNameController.text.trim(),
+                              lastName: lastNameController.text.trim(),
+                              email: emailController.text.trim(),
+                              phone: phoneNumberController.text.trim(),
+                            );
+                            if (selectedImage != null) {
+                              await cubit.uploadProfilePhoto(selectedImage);
                             }
-                          },
-                          child: Text(LocaleKeys.updateProfile.tr()),
-                        ),
+                            await cubit.editProfile(updatedUser);
+                            Navigator.pop(context);
+                          } else {
+                            setState(() {
+                              autoValidateMode = AutovalidateMode.always;
+                            });
+                          }
+                        },
+                        child: Text(LocaleKeys.updateProfile.tr()),
+                      ),
                   ],
                 ),
               ),

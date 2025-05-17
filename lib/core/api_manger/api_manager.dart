@@ -28,7 +28,7 @@ class ApiManager {
   Future<Response> getData({
     required String endPoint,
     Map<String, dynamic>? params,
-  })  {
+  }) {
     final response = dio.get(endPoint, queryParameters: params);
     return response;
   }
@@ -36,7 +36,7 @@ class ApiManager {
   Future<Response> postData({
     required String endPoint,
     required Map<String, dynamic> data,
-  })  {
+  }) {
     final response = dio.post(endPoint, data: data);
     return response;
   }

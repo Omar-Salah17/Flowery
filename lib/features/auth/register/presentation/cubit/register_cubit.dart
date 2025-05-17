@@ -21,12 +21,12 @@ class RegisterCubit extends Cubit<RegisterStates> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   static Gender selectedGender = Gender.female;
 
-   void selectGender(Gender value) {
+  void selectGender(Gender value) {
     selectedGender = value;
     emit(state.copyWith(state: RequestState.selectGender));
   }
 
-   Future<void> register() async {
+  Future<void> register() async {
     emit(state.copyWith(state: RequestState.loading));
 
     final either = await _registerUseCase.invoke(

@@ -13,7 +13,6 @@ import '../categories_screen.dart';
 class CategoriesScreenAppBar extends StatefulWidget {
   const CategoriesScreenAppBar({super.key});
 
-
   @override
   State<CategoriesScreenAppBar> createState() => _CategoriesScreenAppBarState();
 }
@@ -92,7 +91,11 @@ class _CategoriesScreenAppBarState extends State<CategoriesScreenAppBar> {
               ),
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
-                child: Icon(Icons.sort, color: PalletsColors.white70, size: 24.r),
+                child: Icon(
+                  Icons.sort,
+                  color: PalletsColors.white70,
+                  size: 24.r,
+                ),
               ),
             ),
           ),

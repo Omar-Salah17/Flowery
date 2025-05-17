@@ -38,9 +38,8 @@ class CheckOutRepoImpl implements CheckOutRepo {
     ShippingAddressModel shippingAddressModel,
   ) async {
     try {
-
       final data = await _checkOutRemoteDataSource.creditCheckOut(
-        shippingAddressModel
+        shippingAddressModel,
       );
       return Right(data);
     } catch (e) {
@@ -51,6 +50,5 @@ class CheckOutRepoImpl implements CheckOutRepo {
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
-}
-
+  }
 }

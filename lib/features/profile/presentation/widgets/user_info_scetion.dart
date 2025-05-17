@@ -24,7 +24,6 @@ class UserInfoScetion extends StatelessWidget {
           CircleAvatar(
             backgroundImage: CachedNetworkImageProvider(user.photo??'assets/images/Image.png'),
             radius: 50.r,
-
           ),
           verticalSpace(10.h),
           Row(

@@ -7,6 +7,7 @@ import 'package:flowery/features/productsDetails/presentation/viewModel/product_
 class ProductDetailsCubit extends Cubit<ProductDetailsState> {
   ProductDetailsCubit(this.getProductDetailsUseCase)
     : super(ProductDetailsInitial());
+    
   final GetProductDetailsUseCase getProductDetailsUseCase;
   Future<void> fetchProduct(String productId) async {
     emit(ProductDetailsLoading());

@@ -1,4 +1,3 @@
-
 import 'package:json_annotation/json_annotation.dart';
 part 'address_model.g.dart';
 
@@ -11,7 +10,8 @@ class AddressModel {
 
   AddressModel({this.message, this.address});
 
-  factory AddressModel.fromJson(Map<String, dynamic> json) => _$AddressModelFromJson(json);
+  factory AddressModel.fromJson(Map<String, dynamic> json) =>
+      _$AddressModelFromJson(json);
 
   static List<AddressModel> fromList(List<Map<String, dynamic>> list) {
     return list.map(AddressModel.fromJson).toList();
@@ -37,9 +37,18 @@ class Address {
   @JsonKey(name: '_id')
   String? id;
 
-  Address({this.street, this.phone, this.city, this.lat, this.long, this.username, this.id});
+  Address({
+    this.street,
+    this.phone,
+    this.city,
+    this.lat,
+    this.long,
+    this.username,
+    this.id,
+  });
 
-  factory Address.fromJson(Map<String, dynamic> json) => _$AddressFromJson(json);
+  factory Address.fromJson(Map<String, dynamic> json) =>
+      _$AddressFromJson(json);
 
   static List<Address> fromList(List<Map<String, dynamic>> list) {
     return list.map(Address.fromJson).toList();

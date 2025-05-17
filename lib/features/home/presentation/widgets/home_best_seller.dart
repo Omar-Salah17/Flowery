@@ -8,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeBestSeller extends StatelessWidget {
   const HomeBestSeller({super.key, required this.product});
- final List<Product> product;
+  final List<Product> product;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,8 @@ class HomeBestSeller extends StatelessWidget {
                               color: PalletsColors.mainColorBase,
                             ),
                           ),
-                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                      errorWidget:
+                          (context, url, error) => const Icon(Icons.error),
                     ),
                     SizedBox(height: 8.h),
                     Text(

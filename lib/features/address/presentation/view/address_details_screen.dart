@@ -18,13 +18,17 @@ class AddressDetailsScreen extends StatelessWidget {
     final address = ModalRoute.of(context)!.settings.arguments as Addresses;
 
     return BlocProvider(
-      create: (context) => AddressDetailsCubit(getIt.get<AddAddressUseCase>(),getIt.get<UpdateAddressUseCase>())..initControllers(),
+      create:
+          (context) => AddressDetailsCubit(
+            getIt.get<AddAddressUseCase>(),
+            getIt.get<UpdateAddressUseCase>(),
+          )..initControllers(),
       child: Scaffold(
         appBar: buildAppBar(
           title: LocaleKeys.address.tr(),
           onPressed: () => Navigator.pop(context),
         ),
-        body: AddressDetailsScreenBody(address: address,),
+        body: AddressDetailsScreenBody(address: address),
       ),
     );
   }

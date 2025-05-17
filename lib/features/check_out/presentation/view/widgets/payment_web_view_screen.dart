@@ -16,9 +16,10 @@ class _PaymentWebViewScreenState extends State<PaymentWebViewScreen> {
   @override
   void initState() {
     super.initState();
-    _controller = WebViewController()
-      ..loadRequest(Uri.parse(widget.url))
-      ..setJavaScriptMode(JavaScriptMode.unrestricted);
+    _controller =
+        WebViewController()
+          ..loadRequest(Uri.parse(widget.url))
+          ..setJavaScriptMode(JavaScriptMode.unrestricted);
   }
 
   @override

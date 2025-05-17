@@ -20,7 +20,9 @@ class LoginRepoImp implements LoginRepo {
   }) async {
     try {
       log("before calling datasource");
-      final data = await loginRemoteDataSource.login(loginRequest: loginRequest);
+      final data = await loginRemoteDataSource.login(
+        loginRequest: loginRequest,
+      );
       log("after calling datasource");
       return Right(data);
     } catch (e) {

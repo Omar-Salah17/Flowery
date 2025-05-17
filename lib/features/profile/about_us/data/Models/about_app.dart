@@ -13,12 +13,14 @@ class AboutApp {
   factory AboutApp.fromJson(dynamic json) {
     return AboutApp(
       section: json['section'] as String?,
-      content: json['content'] != null ? Content.fromJson(json['content']) : null,
+      content:
+          json['content'] != null ? Content.fromJson(json['content']) : null,
       style: json['style'] != null ? Style.fromJson(json['style']) : null,
       title: json['title'] != null ? Content.fromJson(json['title']) : null,
-      contentStyle: json['style']?['content'] != null
-          ? Style.fromJson(json['style']['content'])
-          : null,
+      contentStyle:
+          json['style']?['content'] != null
+              ? Style.fromJson(json['style']['content'])
+              : null,
     );
   }
 

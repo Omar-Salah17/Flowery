@@ -6,7 +6,7 @@ class AddProductRequest {
 
   AddProductRequest.fromJson(Map<String, dynamic> json) {
     productId = json['product'] as String?;
-    quantity = json['quantity']  as int?;
+    quantity = json['quantity'] as int?;
   }
 
   Map<String, dynamic> toJson() {

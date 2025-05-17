@@ -15,9 +15,8 @@ part 'address_details_state.dart';
 
 class AddressDetailsCubit extends Cubit<AddressDetailsState> {
   Addresses? addresses;
-  AddressDetailsCubit(this.addAddressUseCase,this.updateAddressUseCase)
+  AddressDetailsCubit(this.addAddressUseCase, this.updateAddressUseCase)
     : super(AddressDetailsInitial());
-  
 
   final AddAddressUseCase addAddressUseCase;
   final UpdateAddressUseCase updateAddressUseCase;
@@ -34,9 +33,7 @@ class AddressDetailsCubit extends Cubit<AddressDetailsState> {
   void initControllers() {
     address = TextEditingController();
     phoneNumber = TextEditingController();
-    recipientNameController = TextEditingController(
-      
-    );
+    recipientNameController = TextEditingController();
   }
 
   Future<void> addAddress(UserAddressData addressData) async {
@@ -47,14 +44,16 @@ class AddressDetailsCubit extends Cubit<AddressDetailsState> {
       (address) => emit(AddAddressSucces(addAddressResponse: address)),
     );
   }
-  Future<void> updateAddress(UserAddressData addressData,String? id) async {
+
+  Future<void> updateAddress(UserAddressData addressData, String? id) async {
     emit(AddAddressLoading());
-    final result = await updateAddressUseCase.call(addressData,id);
+    final result = await updateAddressUseCase.call(addressData, id);
     result.fold(
-          (failure) => emit(AddAddressFailure(errorMessage: failure.errorMessage)),
-          (address) => emit(AddAddressSucces(addAddressResponse: address)),
+      (failure) => emit(AddAddressFailure(errorMessage: failure.errorMessage)),
+      (address) => emit(AddAddressSucces(addAddressResponse: address)),
     );
   }
+
   Future<void> updateMapFromAddress(String fullAddress) async {
     try {
       final locations = await locationFromAddress(fullAddress);

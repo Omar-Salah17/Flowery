@@ -33,14 +33,14 @@ class ServerFailure extends Failure {
         return ServerFailure(
           errorMessage: 'UnExcepted error , Please try again',
         );
-      }
+    }
   }
   factory ServerFailure.fromResponse(int statusCode, dynamic jsonData) {
     switch (statusCode) {
       case 400:
       case 401:
       case 403:
-        if (jsonData["message"]  != null &&
+        if (jsonData["message"] != null &&
             jsonData["message"].toString().contains(
               "fails to match the required pattern",
             )) {
@@ -53,11 +53,17 @@ class ServerFailure extends Failure {
             ) ??
             false) {
           return ServerFailure(
-              errorMessage:jsonData["message"]?.toString() ?? jsonData["error"]?.toString() ?? "Unknown error",
+            errorMessage:
+                jsonData["message"]?.toString() ??
+                jsonData["error"]?.toString() ??
+                "Unknown error",
           );
         }
         return ServerFailure(
-          errorMessage: jsonData["message"]?.toString() ?? jsonData["error"]?.toString() ?? "Unknown error",
+          errorMessage:
+              jsonData["message"]?.toString() ??
+              jsonData["error"]?.toString() ??
+              "Unknown error",
         );
 
       case 404:
@@ -65,13 +71,21 @@ class ServerFailure extends Failure {
             jsonData["message"].toString().contains(
               'There is no account with this email address',
             )) {
-          return ServerFailure(errorMessage: jsonData["message"]?.toString() ?? jsonData["error"]?.toString() ?? "Unknown error",);
+          return ServerFailure(
+            errorMessage:
+                jsonData["message"]?.toString() ??
+                jsonData["error"]?.toString() ??
+                "Unknown error",
+          );
         } else if (jsonData["error"]?.toString().contains(
               "There is no account with this email address",
             ) ??
             false) {
           return ServerFailure(
-            errorMessage: jsonData["message"]?.toString() ?? jsonData["error"]?.toString() ?? "Unknown error",
+            errorMessage:
+                jsonData["message"]?.toString() ??
+                jsonData["error"]?.toString() ??
+                "Unknown error",
           );
         } else {
           return ServerFailure(errorMessage: 'Requested resource not found.');

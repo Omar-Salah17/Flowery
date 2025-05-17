@@ -13,7 +13,8 @@ class AboutLocalDataSourceImpl implements AboutLocalDataSource {
     try {
       // Load JSON file
       final jsonString = await rootBundle.loadString(
-          'assets/jsonFiles/Flowery About Section JSON with Expanded Content.json');
+        'assets/jsonFiles/Flowery About Section JSON with Expanded Content.json',
+      );
 
       // Log raw JSON (optional for debugging)
       log("JSON Content: $jsonString");
