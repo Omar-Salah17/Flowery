@@ -62,7 +62,7 @@ class _FloweryState extends State<Flowery> {
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
-            initialRoute: RoutesName.initial,
+            initialRoute: RoutesName.sucessTrackOrder,
             onGenerateRoute: RouteGenerator.onGenerator,
             theme: ApplicationTheme.themeData,
           ),

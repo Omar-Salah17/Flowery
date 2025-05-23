@@ -169,7 +169,10 @@
     "remember": "تذكر",
     "deliveryTime": "وقت التوصيل",
     "about_Us_Introduction_Title": "المقدمة",
-    "about_Us_Closing_Title": "الخاتمة"
+    "about_Us_Closing_Title": "الخاتمة",
+    "yourOrderPlacedSuccessfully": "تم تقديم طلبك\n بنجاح!",
+    "cartIsempty": "سلة التسوق فارغة",
+    "startShoppingNow": "ابدا التسوق الان"
 
 
 }

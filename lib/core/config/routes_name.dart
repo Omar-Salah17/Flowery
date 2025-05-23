@@ -23,4 +23,6 @@ class RoutesName {
   static const String webview = "WebViewScreen";
   static const String MyOrdersView = "MyOrdersView";
   static const String notificationListScreen = "NotificationListScreen";
+  static const String trackOrder = "TrackOrder";
+  static const String sucessTrackOrder = "SucessTrackOrder";
 }
