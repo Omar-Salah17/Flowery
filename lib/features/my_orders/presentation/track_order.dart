@@ -6,9 +6,9 @@ import 'package:flowery/core/utils/helper_functions/build_app_bar_function.dart'
 import 'package:flowery/features/my_orders/presentation/widgets/driver_info.dart';
 import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:step_progress/step_progress.dart';
 
+// ignore: must_be_immutable
 class TrackOrderScreen extends StatelessWidget {
   TrackOrderScreen({super.key});
   StepProgressController stepProgressController = StepProgressController(

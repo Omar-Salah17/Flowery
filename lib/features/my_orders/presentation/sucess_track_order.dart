@@ -28,7 +28,7 @@ class SucessTrackOrder extends StatelessWidget {
             textAlign: TextAlign.center,
             style: AppTextStyles.instance.textStyle24.copyWith(
               color: PalletsColors.blackBase,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w500,
             ),
           ),
           Spacer(),
@@ -42,7 +42,7 @@ class SucessTrackOrder extends StatelessWidget {
                 LocaleKeys.trackOrder.tr(),
                 style: AppTextStyles.instance.textStyle16.copyWith(
                   color: PalletsColors.whiteBase,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w300,
                 ),
               ),
             ),
