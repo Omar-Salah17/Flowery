@@ -334,14 +334,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
-  dotted_border:
-    dependency: transitive
-    description:
-      name: dotted_border
-      sha256: "108837e11848ca776c53b30bc870086f84b62ed6e01c503ed976e8f8c7df9c04"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.0"
   easy_localization:
     dependency: "direct main"
     description:
@@ -1170,14 +1162,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
-  path_drawing:
-    dependency: transitive
-    description:
-      name: path_drawing
-      sha256: bbb1934c0cbb03091af082a6389ca2080345291ef07a5fa6d6e078ba8682f977
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.1"
   path_parsing:
     dependency: transitive
     description:
@@ -1567,14 +1551,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.12.1"
-  step_progress:
-    dependency: "direct main"
-    description:
-      name: step_progress
-      sha256: ca101c125bc3ce61b5cb91e012bf4606cf4169f0160106ddd20fd6ff1c66f696
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.5.0"
   stream_channel:
     dependency: transitive
     description:
@@ -1639,6 +1615,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.8"
+  timeline_list:
+    dependency: "direct main"
+    description:
+      name: timeline_list
+      sha256: "2d6a59f2e8047ab4948c68ff497d32f75078e137ebda4dfb6661a9a94ffad47f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.1"
   timezone:
     dependency: transitive
     description:

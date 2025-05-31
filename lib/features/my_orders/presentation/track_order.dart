@@ -4,15 +4,52 @@ import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/helper_functions/build_app_bar_function.dart';
 import 'package:flowery/features/my_orders/presentation/widgets/driver_info.dart';
+import 'package:flowery/features/my_orders/presentation/widgets/time_line_widget.dart';
 import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
-import 'package:step_progress/step_progress.dart';
+
+enum OrderStatus { Received, Preparing, OutOfDelivery, Delivered }
+
+String showText(OrderStatus status) {
+  switch (status) {
+    case OrderStatus.Received:
+      return 'Received your order';
+    case OrderStatus.Preparing:
+      return 'Preparing your order';
+    case OrderStatus.OutOfDelivery:
+      return 'Out of delivery';
+    case OrderStatus.Delivered:
+      return 'Delivered';
+  }
+}
 
 // ignore: must_be_immutable
-class TrackOrderScreen extends StatelessWidget {
+class TrackOrderScreen extends StatefulWidget {
   TrackOrderScreen({super.key});
-  StepProgressController stepProgressController = StepProgressController(
-    totalSteps: 4,
+
+  @override
+  State<TrackOrderScreen> createState() => _TrackOrderScreenState();
+}
+
+class _TrackOrderScreenState extends State<TrackOrderScreen> {
+
+
+  var checkIcon = Container(
+    width: 20,
+    height: 16,
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      color: PalletsColors.mainColorBase,
+    ),
+    child: Icon(Icons.check, color: Colors.white, size: 12),
+  );
+  var emptyIcon = Container(
+    width: 16,
+    height: 16,
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      color: PalletsColors.white70,
+    ),
   );
 
   @override
@@ -46,44 +83,19 @@ class TrackOrderScreen extends StatelessWidget {
               DriverInfo(),
               verticalSpace(40),
               Center(child: Image.asset('assets/images/Car.png')),
-              // verticalSpace(10),
-              StepProgress(
-                totalSteps: 4,
-                currentStep: 2,
-                stepSize: 25,
-                // margin: EdgeInsets.all( 8.0),
-                controller: stepProgressController,
-                axis: Axis.vertical,
-                height: 400,
-                nodeTitles: const [
-                  'Received your order',
-                  'Step 2',
-                  'Step 3',
-                  'Step 4',
-                ],
-                padding: const EdgeInsets.all(18),
-                theme: const StepProgressThemeData(
-                  rippleEffectStyle: RippleEffectStyle(
-                    borderColor: PalletsColors.mainColorBase,
-                  ),
-                  activeForegroundColor: PalletsColors.mainColorBase,
-                  stepAnimationDuration: Duration(milliseconds: 500),
-                  // lineLabelAlignment: Alignment.center,
-                  nodeLabelStyle: StepLabelStyle(
-                    // labelAxisAlignment: CrossAxisAlignment.start,
-                    activeColor: PalletsColors.mainColorBase,
-                  ),
-                  stepLineSpacing: 10,
-                  stepLineStyle: StepLineStyle(borderRadius: Radius.circular(4)),
-                ),
+              verticalSpace(10),
+            TimeLineWidget(),
+              verticalSpace(10),
+              ElevatedButton(
+                onPressed: () {},
+                child: Text(LocaleKeys.showMap.tr()),
               ),
-              ElevatedButton(onPressed: (){}, child: Text(
-                LocaleKeys.showMap.tr()
-              ))
             ],
           ),
         ),
       ),
     );
   }
+
+
 }
