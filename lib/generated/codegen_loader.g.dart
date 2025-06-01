@@ -188,7 +188,11 @@ class CodegenLoader extends AssetLoader{
   "about_Us_Closing_Title": "الخاتمة",
   "yourOrderPlacedSuccessfully": "تم تقديم طلبك\n بنجاح!",
   "cartIsempty": "سلة التسوق فارغة",
-  "startShoppingNow": "ابدا التسوق الان"
+  "startShoppingNow": "ابدا التسوق الان",
+  "receivedyourorder": "تم استلام طلبك",
+  "preparingyourorder": "جاري تجهيز طلبك",
+  "outfordelivery": "في طريق التوصيل",
+  "deliveredyourorder": "تم توصيل طلبك"
 };
 static const Map<String,dynamic> _en = {
   "local": "en",
@@ -364,7 +368,11 @@ static const Map<String,dynamic> _en = {
   "deliveryTime": "Delivery time",
   "yourOrderPlacedSuccessfully": "Your order placed \n successfully !",
   "cartIsempty": "Cart is empty",
-  "startShoppingNow": "Start shopping now"
+  "startShoppingNow": "Start shopping now",
+  "receivedyourorder": "Received your order",
+  "preparingyourorder": "Preparing your order",
+  "outfordelivery": "Out for delivery",
+  "deliveredyourorder": "Delivered your order"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }

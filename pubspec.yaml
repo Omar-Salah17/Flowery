@@ -27,6 +27,8 @@ dependencies:
   flutter_bloc: ^9.1.0
   flutter_launcher_icons: null
   flutter_local_notifications: ^19.1.0
+  flutter_localizations:
+    sdk: flutter
   flutter_screenutil: ^5.9.3
   flutter_secure_storage: ^9.2.4
   flutter_settings_ui: ^3.0.1

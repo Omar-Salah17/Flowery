@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flowery/core/config/route_generator.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/di/di.dart';
@@ -6,6 +7,7 @@ import 'package:flowery/core/provider/app_config_provider.dart';
 import 'package:flowery/core/utils/application_theme.dart';
 import 'package:flowery/core/utils/simple_bloc_observer.dart';
 import 'package:flowery/features/cart/presentation/view%20model/cubit/cart_cubit.dart';
+import 'package:flowery/features/my_orders/presentation/view/driver_firebase_service%20.dart';
 import 'package:flowery/features/notifications/notification.dart';
 import 'package:flowery/generated/codegen_loader.g.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +17,12 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await NotificationService.initialize();
+  // Initialize the main app
+  await Firebase.initializeApp();
+
+  // Initialize secondary app
+  await DriverFirebaseService.initialize(); 
+   await NotificationService.initialize();
   await EasyLocalization.ensureInitialized();
   configureDependencies();
   Bloc.observer = SimpleBlocObserver();
@@ -23,7 +30,7 @@ void main() async {
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/translations',
-      fallbackLocale: const Locale("_languageCode"),
+      fallbackLocale: const Locale('en'),
       assetLoader: const CodegenLoader(),
       child: ChangeNotifierProvider(
         create: (_) => getIt<AppConfigProvider>(),

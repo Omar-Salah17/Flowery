@@ -172,6 +172,10 @@
     "deliveryTime": "Delivery time",
     "yourOrderPlacedSuccessfully": "Your order placed \n successfully !",
     "cartIsempty": "Cart is empty",
-    "startShoppingNow": "Start shopping now"
+    "startShoppingNow": "Start shopping now",
+    "receivedyourorder":"Received your order",
+    "preparingyourorder": "Preparing your order",
+    "outfordelivery": "Out for delivery",
+    "deliveredyourorder": "Delivered your order"
     
 }

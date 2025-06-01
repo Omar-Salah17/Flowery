@@ -175,5 +175,9 @@ abstract class  LocaleKeys {
   static const yourOrderPlacedSuccessfully = 'yourOrderPlacedSuccessfully';
   static const cartIsempty = 'cartIsempty';
   static const startShoppingNow = 'startShoppingNow';
+  static const receivedyourorder = 'receivedyourorder';
+  static const preparingyourorder = 'preparingyourorder';
+  static const outfordelivery = 'outfordelivery';
+  static const deliveredyourorder = 'deliveredyourorder';
 
 }

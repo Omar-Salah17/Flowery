@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flowery/core/enums/order_statu.dart';
 import 'package:flowery/core/helper/spacing.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
@@ -8,18 +9,28 @@ import 'package:flowery/features/my_orders/presentation/widgets/time_line_widget
 import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 
-enum OrderStatus { Received, Preparing, OutOfDelivery, Delivered }
+
 
 String showText(OrderStatus status) {
   switch (status) {
-    case OrderStatus.Received:
-      return 'Received your order';
-    case OrderStatus.Preparing:
-      return 'Preparing your order';
-    case OrderStatus.OutOfDelivery:
-      return 'Out of delivery';
-    case OrderStatus.Delivered:
-      return 'Delivered';
+      case OrderStatus.pending:
+        return 'Accept';
+      case OrderStatus.inProgress:
+        return 'Arrived at Pickup Location';
+      case OrderStatus.arrivedAtPickup:
+        return 'Picked';
+      case OrderStatus.picked:
+        return 'Start Deliver';
+      case OrderStatus.startDeliver:
+        return 'Out for Delivery';
+      case OrderStatus.outForDelivery:
+        return 'Arrived to User';
+      case OrderStatus.arrivedToUser:
+        return 'Delivered to User';
+      case OrderStatus.delivered:
+        return 'Delivered';
+      default:
+        return 'Unknown Status';
   }
 }
 

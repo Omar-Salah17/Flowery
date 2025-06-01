@@ -1,6 +1,10 @@
+import 'dart:developer';
+
+import 'package:flowery/core/enums/order_statu.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/my_orders/presentation/track_order.dart';
+import 'package:flowery/features/my_orders/presentation/view/driver_firebase_service%20.dart';
 import 'package:flutter/material.dart';
 import 'package:timeline_list/timeline_list.dart';
 
@@ -12,45 +16,51 @@ class TimeLineWidget extends StatefulWidget {
 }
 
 class _TimeLineWidgetState extends State<TimeLineWidget> {
-  @override
-  void initState() {
-    currentStep = 0;
-    super.initState();
-    startProgress();
-  }
+   static const String orderId = "681bd6741433a666c8da31c7";
+int currentStep = 0;
 
-  int currentStep = 0;
-  /// This function is used to control the progress of the timeline
-  /// It runs every 3 seconds and checks if the widget is still mounted
-  /// If it is, it increments the currentStep by one and checks if it is at the end
-  /// If it is, it resets the currentStep to 0
-  void startProgress() async {
-    int i = 0;
-    while (mounted) {
-      await Future.delayed(Duration(seconds: 3));
-
-      setState(() {
-        currentStep = i;
-      });
-
-      if (i == OrderStatus.Delivered.index) {
-        i = 0;
-      } else {
-        i++;
+@override
+void initState() {
+  super.initState();
+  getStatusUpdates();
+}
+void getStatusUpdates() {
+  DriverFirebaseService.firestore
+      .collection('orders')
+      .doc(orderId)
+      .snapshots()
+      .listen((docSnapshot) {
+    if (docSnapshot.exists) {
+      final status = docSnapshot.data()?['order']?['state'];
+      log('Status updated: $status');
+      if (status != null) {
+        final index = convertStatusToIndex(status.toString());
+        // if (index != -1 && mounted) {
+          setState(() {
+            currentStep = index -1;
+          });
+        // }
       }
     }
-  }
+  });
+}
+int convertStatusToIndex(String status) {
+  return OrderStatus.values.indexWhere((e) => e.name == status);
+}
 
   @override
   Widget build(BuildContext context) {
     return Timeline.builder(
+
       context: context,
       markerCount: OrderStatus.values.length,
       properties: TimelineProperties(
-        markerGap: 20,
+        markerGap: 40,
+        lineColor: PalletsColors.mainColorBase,
+        
         iconAlignment: MarkerIconAlignment.center,
         iconSize: 16,
-        timelinePosition: TimelinePosition.start,
+        timelinePosition:  TimelinePosition.start,
       ),
       markerBuilder: (context, index) {
         final isCompleted = index < currentStep;
@@ -75,7 +85,7 @@ class _TimeLineWidgetState extends State<TimeLineWidget> {
                   ),
                 );
         return Marker(
-          onTap: () {},
+      
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -99,8 +109,8 @@ class _TimeLineWidgetState extends State<TimeLineWidget> {
                   ),
                 ),
               ],
-            ),
           ),
+            ),
           icon: icon,
           position: MarkerPosition.left,
         );
@@ -108,3 +118,5 @@ class _TimeLineWidgetState extends State<TimeLineWidget> {
     );
   }
 }
+
+
