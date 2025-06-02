@@ -1,11 +1,13 @@
 import 'dart:developer';
 
 import 'package:flowery/core/enums/order_statu.dart';
+import 'package:flowery/core/provider/app_config_provider.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
 import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/my_orders/presentation/track_order.dart';
 import 'package:flowery/features/my_orders/presentation/view/driver_firebase_service%20.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:timeline_list/timeline_list.dart';
 
 class TimeLineWidget extends StatefulWidget {
@@ -50,8 +52,9 @@ int convertStatusToIndex(String status) {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Timeline.builder(
-
+physics: const NeverScrollableScrollPhysics(),
       context: context,
       markerCount: OrderStatus.values.length,
       properties: TimelineProperties(
@@ -60,7 +63,7 @@ int convertStatusToIndex(String status) {
         
         iconAlignment: MarkerIconAlignment.center,
         iconSize: 16,
-        timelinePosition:  TimelinePosition.start,
+        timelinePosition:   TimelinePosition.start,
       ),
       markerBuilder: (context, index) {
         final isCompleted = index < currentStep;
