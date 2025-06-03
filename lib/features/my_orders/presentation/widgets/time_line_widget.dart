@@ -18,7 +18,7 @@ class TimeLineWidget extends StatefulWidget {
 }
 
 class _TimeLineWidgetState extends State<TimeLineWidget> {
-   static const String orderId = "681bd6741433a666c8da31c7";
+ static const String orderId = "681bd6741433a666c8da31c7";
 int currentStep = 0;
 
 @override
@@ -49,7 +49,6 @@ void getStatusUpdates() {
 int convertStatusToIndex(String status) {
   return OrderStatus.values.indexWhere((e) => e.name == status);
 }
-
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
