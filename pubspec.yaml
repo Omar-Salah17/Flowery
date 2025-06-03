@@ -12,17 +12,23 @@ dependencies:
   awesome_dialog: ^3.2.1
   bloc: ^9.0.0
   cached_network_image: ^3.4.1
+  cloud_firestore: ^5.6.8
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
   dio: ^5.8.0
   easy_localization: ^3.0.7+1
   equatable: ^2.0.7
+  firebase_analytics: ^11.4.5
   firebase_core: ^3.13.0
+  firebase_crashlytics: ^4.3.5
   firebase_messaging: ^15.2.5
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.0
+  flutter_launcher_icons: null
   flutter_local_notifications: ^19.1.0
+  flutter_localizations:
+    sdk: flutter
   flutter_screenutil: ^5.9.3
   flutter_secure_storage: ^9.2.4
   flutter_settings_ui: ^3.0.1
@@ -45,11 +51,10 @@ dependencies:
   provider: ^6.1.4
   retrofit: ^4.4.0
   smooth_page_indicator: ^1.2.1
+  # step_progress: ^2.5.0
+  timeline_list: ^0.1.1
   url_launcher: ^6.3.0
   webview_flutter: ^4.11.0
-  firebase_crashlytics: ^4.3.5
-  firebase_analytics: ^11.4.5
-  flutter_launcher_icons:
 
 dev_dependencies:
   build_runner: ^2.3.3
@@ -89,4 +94,3 @@ flutter_icons:
   android: true
   ios: true
   image_path: "assets/images/flowery_icon.png"
-  

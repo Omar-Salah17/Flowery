@@ -23,8 +23,8 @@ class CartViewBody extends StatelessWidget {
     return cartItems.isEmpty
         ? Center(
           child: CustomErrorWidget(
-            title: LocaleKeys.cart_is_empty.tr(),
-            content: LocaleKeys.start_shopping_now.tr(),
+            title: LocaleKeys.cartIsempty.tr(),
+            content: LocaleKeys.startShoppingNow.tr(),
             onPressed: () {
               Navigator.pushNamed(context, RoutesName.layout);
             },

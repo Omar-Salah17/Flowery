@@ -169,5 +169,13 @@
     "remember": "Remember",
     "about_Us_Introduction_Title": "Introduction",
     "about_Us_Closing_Title": "Closing",
-    "deliveryTime": "Delivery time"
+    "deliveryTime": "Delivery time",
+    "yourOrderPlacedSuccessfully": "Your order placed \n successfully !",
+    "cartIsempty": "Cart is empty",
+    "startShoppingNow": "Start shopping now",
+    "receivedyourorder":"Received your order",
+    "preparingyourorder": "Preparing your order",
+    "outfordelivery": "Out for delivery",
+    "deliveredyourorder": "Delivered your order"
+    
 }
