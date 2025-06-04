@@ -51,7 +51,7 @@ int convertStatusToIndex(String status) {
 }
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<AppConfigProvider>(context);
+  
     return Timeline.builder(
 physics: const NeverScrollableScrollPhysics(),
       context: context,
