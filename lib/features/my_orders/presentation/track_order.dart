@@ -14,22 +14,22 @@ import 'package:flutter/material.dart';
 String showText(OrderStatus status) {
   switch (status) {
       case OrderStatus.pending:
-        return 'Accept';
+        return LocaleKeys.accept.tr();
       case OrderStatus.inProgress:
-        return 'Arrived at Pickup Location';
+        return LocaleKeys.arrivedAtPickupLocation.tr();
       case OrderStatus.arrivedAtPickup:
-        return 'Picked';
+        return LocaleKeys.picked.tr();
       case OrderStatus.picked:
-        return 'Start Deliver';
+        return LocaleKeys.startDeliver.tr();
       case OrderStatus.startDeliver:
-        return 'Out for Delivery';
+        return LocaleKeys.arrivedToUser.tr();
       case OrderStatus.outForDelivery:
-        return 'Arrived to User';
+        return LocaleKeys.deliveredToUser.tr();
       case OrderStatus.arrivedToUser:
-        return 'Delivered to User';
+        return LocaleKeys.deliveredyourorder.tr();
       case OrderStatus.delivered:
-        return 'Delivered';
-      default:
+        return LocaleKeys.deliveredyourorder.tr();
+    default:
         return 'Unknown Status';
   }
 }

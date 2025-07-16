@@ -179,5 +179,11 @@ abstract class  LocaleKeys {
   static const preparingyourorder = 'preparingyourorder';
   static const outfordelivery = 'outfordelivery';
   static const deliveredyourorder = 'deliveredyourorder';
+  static const accept = 'accept';
+  static const arrivedAtPickupLocation = 'arrivedAtPickupLocation';
+  static const picked = 'picked';
+  static const startDeliver = 'startDeliver';
+  static const arrivedToUser = 'arrivedToUser';
+  static const deliveredToUser = 'deliveredToUser';
 
 }

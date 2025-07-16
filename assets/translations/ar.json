@@ -176,7 +176,14 @@
     "receivedyourorder": "تم استلام طلبك",
     "preparingyourorder": "جاري تجهيز طلبك",
     "outfordelivery": "في طريق التوصيل",
-    "deliveredyourorder": "تم توصيل طلبك"
+    "deliveredyourorder": "تم توصيل طلبك",
+    "accept":"تم قبول الطلب",
+    "arrivedAtPickupLocation":"وصلت في موقع التوصيل",
+    "picked":"تم الحصول على الطلب",
+    "startDeliver":"بدء التوصيل",
+    "arrivedToUser":"وصلت للمستخدم",
+    "deliveredToUser":"تم التوصيل للمستخدم"
+
     
 
 

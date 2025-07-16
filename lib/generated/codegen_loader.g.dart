@@ -192,7 +192,13 @@ class CodegenLoader extends AssetLoader{
   "receivedyourorder": "تم استلام طلبك",
   "preparingyourorder": "جاري تجهيز طلبك",
   "outfordelivery": "في طريق التوصيل",
-  "deliveredyourorder": "تم توصيل طلبك"
+  "deliveredyourorder": "تم توصيل طلبك",
+  "accept": "تم قبول الطلب",
+  "arrivedAtPickupLocation": "وصلت في موقع التوصيل",
+  "picked": "تم التقاط",
+  "startDeliver": "بدء التوصيل",
+  "arrivedToUser": "وصلت للمستخدم",
+  "deliveredToUser": "تم التوصيل للمستخدم"
 };
 static const Map<String,dynamic> _en = {
   "local": "en",
@@ -372,7 +378,13 @@ static const Map<String,dynamic> _en = {
   "receivedyourorder": "Received your order",
   "preparingyourorder": "Preparing your order",
   "outfordelivery": "Out for delivery",
-  "deliveredyourorder": "Delivered your order"
+  "deliveredyourorder": "Delivered your order",
+  "accept": "Accept",
+  "arrivedAtPickupLocation": "Arrived at pickup location",
+  "picked": "Picked",
+  "startDeliver": "Start deliver",
+  "arrivedToUser": "Arrived to user",
+  "deliveredToUser": "Delivered to user"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }

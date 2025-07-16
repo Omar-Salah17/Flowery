@@ -176,6 +176,12 @@
     "receivedyourorder":"Received your order",
     "preparingyourorder": "Preparing your order",
     "outfordelivery": "Out for delivery",
-    "deliveredyourorder": "Delivered your order"
+    "deliveredyourorder": "Delivered your order",
+    "accept":"Accept",
+    "arrivedAtPickupLocation":"Arrived at pickup location",
+    "picked":"Picked",
+    "startDeliver":"Start deliver",
+    "arrivedToUser":"Arrived to user",
+    "deliveredToUser":"Delivered to user"
     
 }
