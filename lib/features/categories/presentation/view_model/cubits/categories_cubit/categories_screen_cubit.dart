@@ -5,6 +5,7 @@ import 'package:flowery/core/utils/models/products_model/product.dart';
 import 'package:flowery/features/categories/domain/use_case/get_all_categories_use_case.dart';
 import 'package:flowery/features/categories/domain/use_case/get_all_sorted_products_use_case.dart';
 import 'package:flowery/features/categories/domain/use_case/get_products_by_category_use_case.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../domain/use_case/search_use_case.dart';
@@ -25,7 +26,9 @@ class CategoriesScreenCubit extends Cubit<CategoriesScreenState> {
   getProductsByCategoryWithSortUseCase;
   final SearchUseCase searchUseCase;
   String selectedCategoryId = "all";
+   late TabController tabController;
   List<Category> categories = [];
+ 
 
   Future<void> getAllCategories() async {
     emit(CategoriesLoading());
@@ -56,6 +59,7 @@ class CategoriesScreenCubit extends Cubit<CategoriesScreenState> {
       },
     );
   }
+  
 
   Future<void> getProductsByCategoryWithSort({
     String? categoryId,
