@@ -6,14 +6,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ProductsGridView extends StatelessWidget {
   const ProductsGridView({super.key, required this.productsList});
   final List<Product> productsList;
+
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       sliver: SliverGrid(
         delegate: SliverChildBuilderDelegate(
-          (context, index) => ProductItemWidget(product: productsList[index]),
-
+          (context, index) =>
+              ProductItemWidget(product: productsList[index]),
           childCount: productsList.length,
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

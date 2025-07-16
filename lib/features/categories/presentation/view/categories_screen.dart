@@ -39,9 +39,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   getIt.get<GetProductsByCategoryUseCase>(),
                   getIt.get<GetProductsByCategoryWithSortUseCase>(),
                   getIt.get<SearchUseCase>(),
-                )
-                ..getAllCategories()
-                ..getProductsByCategory(),
+                )..getAllCategories()..getProductsByCategory()
+                ,
       child: Builder(
         builder:
             (context) => Scaffold(
@@ -49,7 +48,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 preferredSize: Size.fromHeight(100.h),
                 child: SafeArea(child: CategoriesScreenAppBar()),
               ),
-              body: CategoriesScreenBody(),
+              body:Scaffold(),
               floatingActionButton: FloatingActionButton.extended(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.r),
