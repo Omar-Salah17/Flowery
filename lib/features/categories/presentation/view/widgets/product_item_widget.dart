@@ -146,7 +146,7 @@ class ProductItemWidget extends StatelessWidget {
                               height: 16,
                               width: 16,
                               child: CircularProgressIndicator(
-                                color: PalletsColors.mainColorBase,
+                                color: PalletsColors.white10,
                               ),
                             )
                             : Row(
