@@ -43,100 +43,95 @@ class HomeViewBody extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const CurrentUserLocation(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const CurrentUserLocation(),
 
-              ViewAllWidget(
-                title: LocaleKeys.categories.tr(),
-                onTap: () {
-                  context.read<CategoriesScreenCubit>().getProductsByCategory();
-                  Navigator.pushNamed(context, RoutesName.categories);
-                },
-              ),
-              BlocBuilder<HomeCubit, HomeState>(
-                buildWhen:
-                    (previous, current) =>
-                        previous.categoriesState != current.categoriesState,
-                builder: (context, state) {
-                  switch (state.categoriesState) {
-                    case RequestState.loading:
-                    case RequestState.success:
-                      return HomeCatView(categories: state.categories ?? []);
-                    case RequestState.error:
-                      return Center(
-                        child: Text(
-                          state.error ?? LocaleKeys.failedToLoadCategories.tr(),
-                        ),
-                      );
-                    default:
-                      return const SizedBox.shrink();
-                  }
-                },
-              ),
+            ViewAllWidget(
+              title: LocaleKeys.categories.tr(),
+              onTap: () {
+                context.read<CategoriesScreenCubit>().getProductsByCategory();
+                Navigator.pushNamed(context, RoutesName.categories);
+              },
+            ),
+            BlocBuilder<HomeCubit, HomeState>(
+              buildWhen:
+                  (previous, current) =>
+                      previous.categoriesState != current.categoriesState,
+              builder: (context, state) {
+                switch (state.categoriesState) {
+                  case RequestState.loading:
+                  case RequestState.success:
+                    return HomeCatView(categories: state.categories ?? []);
+                  case RequestState.error:
+                    return Center(
+                      child: Text(
+                        state.error ?? LocaleKeys.failedToLoadCategories.tr(),
+                      ),
+                    );
+                  default:
+                    return const SizedBox.shrink();
+                }
+              },
+            ),
 
-              const SizedBox(height: 16),
-              ViewAllWidget(
-                title: LocaleKeys.bestSeller.tr(),
-                onTap: () {
-                  Navigator.pushNamed(context, RoutesName.bestSeller);
-                },
-              ),
-              BlocBuilder<HomeCubit, HomeState>(
-                buildWhen:
-                    (previous, current) =>
-                        previous.bestSellerState != current.bestSellerState,
-                builder: (context, state) {
-                  switch (state.bestSellerState) {
-                    case RequestState.loading:
-                    case RequestState.success:
-                      return HomeBestSeller(product: state.bestSellers ?? []);
-                    case RequestState.error:
-                      return Center(
-                        child: Text(
-                          state.error ??
-                              LocaleKeys.failedToLoadBestSellers.tr(),
-                        ),
-                      );
-                    default:
-                      return const SizedBox.shrink();
-                  }
-                },
-              ),
+            const SizedBox(height: 16),
+            ViewAllWidget(
+              title: LocaleKeys.bestSeller.tr(),
+              onTap: () {
+                Navigator.pushNamed(context, RoutesName.bestSeller);
+              },
+            ),
+            BlocBuilder<HomeCubit, HomeState>(
+              buildWhen:
+                  (previous, current) =>
+                      previous.bestSellerState != current.bestSellerState,
+              builder: (context, state) {
+                switch (state.bestSellerState) {
+                  case RequestState.loading:
+                  case RequestState.success:
+                    return HomeBestSeller(product: state.bestSellers ?? []);
+                  case RequestState.error:
+                    return Center(
+                      child: Text(
+                        state.error ?? LocaleKeys.failedToLoadBestSellers.tr(),
+                      ),
+                    );
+                  default:
+                    return const SizedBox.shrink();
+                }
+              },
+            ),
 
-              const SizedBox(height: 16),
-              ViewAllWidget(
-                title: LocaleKeys.occasion.tr(),
-                onTap: () {
-                  Navigator.pushNamed(context, RoutesName.occasionScreen);
-                },
-              ),
-              BlocBuilder<HomeCubit, HomeState>(
-                buildWhen:
-                    (previous, current) =>
-                        previous.occasionState != current.occasionState,
-                builder: (context, state) {
-                  switch (state.occasionState) {
-                    case RequestState.loading:
-                    case RequestState.success:
-                      return HomeOccasionsView(
-                        occasions: state.occasions ?? [],
-                      );
-                    case RequestState.error:
-                      return Center(
-                        child: Text(
-                          state.error ?? LocaleKeys.failedToLoadOccasions.tr(),
-                        ),
-                      );
-                    default:
-                      return const SizedBox.shrink();
-                  }
-                },
-              ),
-            ],
-          ),
+            const SizedBox(height: 16),
+            ViewAllWidget(
+              title: LocaleKeys.occasion.tr(),
+              onTap: () {
+                Navigator.pushNamed(context, RoutesName.occasionScreen);
+              },
+            ),
+            BlocBuilder<HomeCubit, HomeState>(
+              buildWhen:
+                  (previous, current) =>
+                      previous.occasionState != current.occasionState,
+              builder: (context, state) {
+                switch (state.occasionState) {
+                  case RequestState.loading:
+                  case RequestState.success:
+                    return HomeOccasionsView(occasions: state.occasions ?? []);
+                  case RequestState.error:
+                    return Center(
+                      child: Text(
+                        state.error ?? LocaleKeys.failedToLoadOccasions.tr(),
+                      ),
+                    );
+                  default:
+                    return const SizedBox.shrink();
+                }
+              },
+            ),
+          ],
         ),
       ),
     );
