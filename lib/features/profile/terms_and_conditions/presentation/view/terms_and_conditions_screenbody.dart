@@ -1,3 +1,4 @@
+import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/profile/about_us/data/Models/Content.dart';
 import 'package:flowery/features/profile/about_us/data/Models/Style.dart';
 import 'package:flowery/features/profile/terms_and_conditions/presentation/viewModel/terms_and_conditions_state.dart';
@@ -19,7 +20,7 @@ class TermsAndConditionsScreenbody extends StatelessWidget {
         debugPrint('Current state: $state');
 
         if (state is TermsAndConditionsLoadingState) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator(color: PalletsColors.mainColorBase));
         }
 
         if (state is TermsAndConditionsFailureState) {

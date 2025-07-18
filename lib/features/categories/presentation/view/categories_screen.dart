@@ -26,6 +26,18 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
+  String? selectedCategory;
+  @override
+  didChangeDependencies() {
+    final args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+    if (args != null && args.containsKey("currentCategory")) {
+      selectedCategory = args["currentCategory"];
+    }
+
+    super.didChangeDependencies();
+  }
+
   PriceSortOptions selectedOption = PriceSortOptions.lowest;
   double sliderValue = 0;
 
@@ -39,8 +51,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   getIt.get<GetProductsByCategoryUseCase>(),
                   getIt.get<GetProductsByCategoryWithSortUseCase>(),
                   getIt.get<SearchUseCase>(),
-                )..getAllCategories()..getProductsByCategory()
-                ,
+                )
+                ..getAllCategories()
+                ..getProductsByCategory(),
       child: Builder(
         builder:
             (context) => Scaffold(
@@ -48,7 +61,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 preferredSize: Size.fromHeight(100.h),
                 child: SafeArea(child: CategoriesScreenAppBar()),
               ),
-              body:Scaffold(),
+              body: CategoriesScreenBody(currentCategory:selectedCategory ?? "" ),
               floatingActionButton: FloatingActionButton.extended(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.r),

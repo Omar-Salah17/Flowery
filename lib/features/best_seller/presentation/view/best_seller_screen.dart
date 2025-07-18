@@ -61,7 +61,7 @@ class BestSellerScreen extends StatelessWidget {
                   );
                 }
                 return const SliverToBoxAdapter(
-                  child: Center(child: CircularProgressIndicator()),
+                  child: Center(child: CircularProgressIndicator(color: PalletsColors.mainColorBase,)),
                 );
               },
             ),

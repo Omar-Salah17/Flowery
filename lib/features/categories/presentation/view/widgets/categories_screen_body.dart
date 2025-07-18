@@ -1,81 +1,80 @@
-import 'package:flowery/core/di/di.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/helper/spacing.dart';
-import 'package:flowery/core/utils/helper_functions/snack_bar.dart';
+import 'package:flowery/core/utils/colors.dart';
+import 'package:flowery/core/utils/models/products_model/product.dart';
+import 'package:flowery/core/utils/widgets/custom_error_widget.dart';
 import 'package:flowery/core/utils/widgets/products_grid_view.dart';
-import 'package:flowery/features/categories/domain/use_case/get_all_categories_use_case.dart';
-import 'package:flowery/features/categories/domain/use_case/get_all_sorted_products_use_case.dart';
-import 'package:flowery/features/categories/domain/use_case/get_products_by_category_use_case.dart';
-import 'package:flowery/features/categories/domain/use_case/search_use_case.dart';
-import 'package:flowery/features/categories/presentation/view/widgets/categories_title_list_view.dart';
-import 'package:flowery/features/categories/presentation/view/widgets/products_grid_view_bloc_consumer.dart';
 import 'package:flowery/features/categories/presentation/view_model/cubits/categories_cubit/categories_screen_cubit.dart';
 import 'package:flowery/features/home/presentation/widgets/tab_widget.dart';
+import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoriesScreenBody extends StatefulWidget {
-  const CategoriesScreenBody({super.key});
-
+  const CategoriesScreenBody({super.key, required this.currentCategory});
+  final String currentCategory;
   @override
   State<CategoriesScreenBody> createState() => _CategoriesScreenBodyState();
 }
 
 class _CategoriesScreenBodyState extends State<CategoriesScreenBody>
     with TickerProviderStateMixin {
-  
-  
+  late CategoriesScreenCubit _categoriesCubit;
+
   @override
   void initState() {
-    final categoryCubit = context.read<CategoriesScreenCubit>();
-   categoryCubit .getAllCategories().then((_) {
-      if (categoryCubit.categories.isNotEmpty) {
-         categoryCubit.tabController = TabController(
-      length: categoryCubit.categories.length,
-      vsync: this,
-    );
-       
-        final firstId = categoryCubit.categories[0].id ?? '';
-        categoryCubit.getProductsByCategory(categoryId: firstId);
-         categoryCubit.tabController.addListener(() {
-      if (!categoryCubit.tabController.indexIsChanging) {
-        final id =
-            categoryCubit
-                .categories[categoryCubit.tabController.index]
-                .id;
-        categoryCubit.getProductsByCategory(categoryId: id ?? '');
-      }
-    });
-        // setupCategoryTabListener();
+    _categoriesCubit = context.read<CategoriesScreenCubit>();
+    _categoriesCubit.getAllCategories().then((_) {
+      if (_categoriesCubit.categories.isNotEmpty) {
+        initTabController();
+        int initialIndex = 0;
+        if (widget.currentCategory.isNotEmpty) {
+          initialIndex = _categoriesCubit.categories.indexWhere(
+            (cat) => cat.name == widget.currentCategory,
+          );
+          if (initialIndex == -1) initialIndex = 0;
+          _categoriesCubit.tabController.index = initialIndex;
+        }
+
+        final selectedId = _categoriesCubit.categories[initialIndex].id ?? '';
+        _categoriesCubit.getProductsByCategory(categoryId: selectedId);
+        _setupCategoriesTabListener();
       }
     });
     super.initState();
   }
 
-  // void setupCategoryTabListener() {
-  //   categoriesCubit.tabController.addListener(() {
-  //     if (!categoriesCubit.tabController.indexIsChanging) {
-  //       final id =
-  //           categoriesCubit
-  //               .categories[categoriesCubit.tabController.index]
-  //               .id;
-  //       categoriesCubit.getProductsByCategory(categoryId: id ?? '');
-  //     }
-  //   });
-  // }
+  void initTabController() {
+    _categoriesCubit.tabController = TabController(
+      length: _categoriesCubit.categories.length,
+      vsync: this,
+    );
+  }
 
-  
+  void _setupCategoriesTabListener() {
+    _categoriesCubit.tabController.addListener(() {
+      if (!_categoriesCubit.tabController.indexIsChanging) {
+        final id =
+            _categoriesCubit
+                .categories[_categoriesCubit.tabController.index]
+                .id;
+        _categoriesCubit.getProductsByCategory(categoryId: id);
+      }
+    });
+  }
 
   @override
   void dispose() {
-    context.read<CategoriesScreenCubit>().tabController.dispose();
-    context.read<CategoriesScreenCubit>().tabController.removeListener(() {});
+    _categoriesCubit.tabController.dispose();
+    _categoriesCubit.tabController.removeListener(() {});
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final categoryCubit = context.read<CategoriesScreenCubit>();
+
     return BlocBuilder<CategoriesScreenCubit, CategoriesScreenState>(
       buildWhen:
           (previous, current) =>
@@ -100,14 +99,31 @@ class _CategoriesScreenBodyState extends State<CategoriesScreenBody>
 
                 SliverToBoxAdapter(child: verticalSpace(10)),
 
-                ProductsGridView(productsList: state.products),
+                state.products.isEmpty
+                    ? SliverToBoxAdapter(
+                      child: Center(
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.3,
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          child: CustomErrorWidget(
+                            title: "Ooops",
+                            content: LocaleKeys.noProductsInCategory.tr(),
+                          ),
+                        ),
+                      ),
+                    )
+                    : ProductsGridView(productsList: state.products),
               ],
             ),
           );
         } else if (state is CategoriesFailure) {
           return Center(child: Text(state.errorMessage));
         } else {
-          return const Center(child: CircularProgressIndicator.adaptive());
+          return const Center(
+            child: CircularProgressIndicator(
+              color: PalletsColors.mainColorBase,
+            ),
+          );
         }
       },
     );

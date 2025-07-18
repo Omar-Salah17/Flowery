@@ -13,6 +13,7 @@ class TabWidget extends StatelessWidget {
     final text = Theme.of(context).textTheme;
 
     return TabBar(
+      
       controller: controller,
       onTap: onTap,
       tabAlignment: TabAlignment.start,

@@ -47,9 +47,9 @@ abstract class ApplicationTheme {
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 15.h),
         backgroundColor: PalletsColors.mainColorBase,
-        foregroundColor: PalletsColors.whiteBase,
-        disabledBackgroundColor: PalletsColors.gray,
-        disabledForegroundColor: PalletsColors.whiteBase,
+         foregroundColor: PalletsColors.whiteBase,
+         disabledBackgroundColor: PalletsColors.mainColorBase,
+         disabledForegroundColor: PalletsColors.whiteBase,
         textStyle: TextStyle(
           fontFamily: "Inter",
           fontSize: 16.sp,

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/utils/colors.dart';
@@ -26,7 +27,11 @@ class HomeCatView extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 8).r,
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, RoutesName.categories);
+                    Navigator.pushNamed(
+                      context,
+                      RoutesName.categories,
+                      arguments: {"currentCategory": categories[index].name},
+                    );
                   },
                   child: Container(
                     padding: const EdgeInsets.all(20).r,
@@ -34,10 +39,11 @@ class HomeCatView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                       color: PalletsColors.mainColor10,
                     ),
-                    child: Image.network(
-                      category.image ?? LocaleKeys.noImageFound.tr(),
-                      width: 18.17.w,
+                    child: CachedNetworkImage(
+                       width: 18.17.w,
                       height: 22.5.h,
+                      imageUrl: category.image ?? "",
+                      errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   ),
                 ),

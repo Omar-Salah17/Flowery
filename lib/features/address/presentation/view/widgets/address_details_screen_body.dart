@@ -101,7 +101,7 @@ class _AddressDetailsScreenBodyState extends State<AddressDetailsScreenBody> {
               spacing: 24.h,
               children: [
                 SizedBox(
-                  height: 145.h,
+                  height: 200.h,
                   width: double.infinity,
                   child: GoogleMap(
                     onTap: (latlong) {
@@ -197,7 +197,7 @@ class _AddressDetailsScreenBodyState extends State<AddressDetailsScreenBody> {
                 SizedBox(height: 24.h),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: PalletsColors.black30,
+                    backgroundColor: PalletsColors.mainColorBase,
                   ),
                   onPressed: () async {
                     log('${cubit.id}==================');

@@ -28,6 +28,7 @@ class CategoriesScreenCubit extends Cubit<CategoriesScreenState> {
   String selectedCategoryId = "all";
    late TabController tabController;
   List<Category> categories = [];
+  
  
 
   Future<void> getAllCategories() async {
@@ -50,11 +51,13 @@ class CategoriesScreenCubit extends Cubit<CategoriesScreenState> {
     final result = await getProductsByCategoryUseCase.call(
       categoryId: categoryId,
     );
+    
     result.fold(
       (falilure) {
         emit(ProductsByCategoryFailure(errorMessage: falilure.errorMessage));
       },
       (products) {
+        
         emit(ProductsByCategorySuccess(products: products));
       },
     );

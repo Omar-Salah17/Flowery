@@ -1,5 +1,6 @@
 import 'package:flowery/core/di/di.dart';
 import 'package:flowery/core/helper/spacing.dart';
+import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/core/utils/widgets/products_grid_view.dart';
 import 'package:flowery/features/home/presentation/widgets/tab_widget.dart';
 import 'package:flowery/features/occasion/domain/use_cases/get_all_occasions_use_case.dart';
@@ -92,7 +93,7 @@ class _OccasionScreenState extends State<OccasionScreen>
             } else if (state is OccasionError) {
               return Center(child: Text(state.error));
             } else {
-              return const Center(child: CircularProgressIndicator.adaptive());
+              return const Center(child: CircularProgressIndicator(color: PalletsColors.mainColorBase));
             }
           },
         ),

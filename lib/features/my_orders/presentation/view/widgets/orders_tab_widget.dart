@@ -1,3 +1,4 @@
+import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/my_orders/presentation/viewModel/my_orders_cubit.dart';
 import 'package:flowery/features/my_orders/presentation/viewModel/my_orders_states.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class OrdersTab extends StatelessWidget {
     return BlocBuilder<MyOrdersCubit, MyOrdersState>(
       builder: (context, state) {
         if (state is MyOrdersLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator(color: PalletsColors.mainColorBase));
         } else if (state is MyOrdersSuccess) {
           final orders =
               active

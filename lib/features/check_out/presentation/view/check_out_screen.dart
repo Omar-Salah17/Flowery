@@ -282,7 +282,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                           barrierDismissible: false,
                           builder:
                               (_) => const Center(
-                                child: CircularProgressIndicator(),
+                                child: CircularProgressIndicator(color: PalletsColors.mainColorBase),
                               ),
                         );
                       } else {
@@ -309,7 +309,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                             barrierDismissible: false,
                             builder:
                                 (_) => const Center(
-                                  child: CircularProgressIndicator(),
+                                  child: CircularProgressIndicator(color: PalletsColors.mainColorBase),
                                 ),
                           );
                           await context.read<CartCubit>().getUserCart();

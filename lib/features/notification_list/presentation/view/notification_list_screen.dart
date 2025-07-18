@@ -24,7 +24,7 @@ class NotificationListScreen extends StatelessWidget {
         body: BlocBuilder<NotificationCubit, NotificationState>(
           builder: (context, state) {
             if (state is NotificationLoading) {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator(color: PalletsColors.mainColorBase));
             } else if (state is NotificationError) {
               return Center(child: Text(state.message));
             } else if (state is NotificationLoaded) {

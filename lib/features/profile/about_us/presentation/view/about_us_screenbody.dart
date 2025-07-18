@@ -1,3 +1,4 @@
+import 'package:flowery/core/utils/colors.dart';
 import 'package:flowery/features/profile/about_us/data/Models/about_app.dart';
 import 'package:flowery/features/profile/about_us/data/Models/Content.dart';
 import 'package:flowery/features/profile/about_us/data/Models/Style.dart';
@@ -17,7 +18,7 @@ class AboutUsScreenBody extends StatelessWidget {
     return BlocBuilder<AboutUsViewModel, AboutUsState>(
       builder: (context, state) {
         if (state is AboutUsLoadingState) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator(color: PalletsColors.mainColorBase));
         } else if (state is AboutUsFailureState) {
           return Center(child: Text(state.errorMessage));
         } else if (state is AboutUsSuccessState) {

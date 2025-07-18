@@ -9,12 +9,17 @@ class CustomErrorWidget extends StatelessWidget {
     this.title,
     this.content,
     this.onPressed,
+    this.buttonText,
   });
   final String? title;
   final String? content;
   final void Function()? onPressed;
+  final String? buttonText;
+  
   @override
   Widget build(BuildContext context) {
+    final hasActions = onPressed != null || buttonText != null;
+    
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
       shadowColor: PalletsColors.mainColorBase,
@@ -24,25 +29,34 @@ class CustomErrorWidget extends StatelessWidget {
         title ?? "",
         style: AppTextStyles.instance.textStyle16.copyWith(
           fontWeight: FontWeight.w500,
+          color: PalletsColors.mainColorBase,
         ),
       ),
-      content: Text(
-        content ?? '',
-        style: AppTextStyles.instance.textStyle16.copyWith(
-          fontWeight: FontWeight.w500,
+      content: ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: hasActions ? 0 : 48.h, 
         ),
-      ),
-      actions: [
-        TextButton(
-          onPressed: onPressed,
-          child: Text(
-            'Go To Shop',
-            style: AppTextStyles.instance.textStyle14.copyWith(
-              color: PalletsColors.mainColorBase,
-            ),
+        child: Text(
+          softWrap: true,
+          content ?? '',
+          style: AppTextStyles.instance.textStyle16.copyWith(
+            fontWeight: FontWeight.w500,
           ),
         ),
-      ],
+      ),
+      actions: hasActions
+          ? [
+              TextButton(
+                onPressed: onPressed,
+                child: Text(
+                  buttonText ?? "",
+                  style: AppTextStyles.instance.textStyle14.copyWith(
+                    color: PalletsColors.mainColorBase,
+                  ),
+                ),
+              ),
+            ]
+          : null,
     );
   }
 }
