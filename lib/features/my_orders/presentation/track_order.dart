@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flowery/core/config/routes_name.dart';
 import 'package:flowery/core/enums/order_statu.dart';
 import 'package:flowery/core/helper/spacing.dart';
 import 'package:flowery/core/utils/app_text_styles.dart';
@@ -9,28 +10,26 @@ import 'package:flowery/features/my_orders/presentation/widgets/time_line_widget
 import 'package:flowery/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 
-
-
 String showText(OrderStatus status) {
   switch (status) {
-      case OrderStatus.pending:
-        return 'Accept';
-      case OrderStatus.inProgress:
-        return 'Arrived at Pickup Location';
-      case OrderStatus.arrivedAtPickup:
-        return 'Picked';
-      case OrderStatus.picked:
-        return 'Start Deliver';
-      case OrderStatus.startDeliver:
-        return 'Out for Delivery';
-      case OrderStatus.outForDelivery:
-        return 'Arrived to User';
-      case OrderStatus.arrivedToUser:
-        return 'Delivered to User';
-      case OrderStatus.delivered:
-        return 'Delivered';
-      default:
-        return 'Unknown Status';
+    case OrderStatus.pending:
+      return 'Accept';
+    case OrderStatus.inProgress:
+      return 'Arrived at Pickup Location';
+    case OrderStatus.arrivedAtPickup:
+      return 'Picked';
+    case OrderStatus.picked:
+      return 'Start Deliver';
+    case OrderStatus.startDeliver:
+      return 'Out for Delivery';
+    case OrderStatus.outForDelivery:
+      return 'Arrived to User';
+    case OrderStatus.arrivedToUser:
+      return 'Delivered to User';
+    case OrderStatus.delivered:
+      return 'Delivered';
+    default:
+      return 'Unknown Status';
   }
 }
 
@@ -43,8 +42,6 @@ class TrackOrderScreen extends StatefulWidget {
 }
 
 class _TrackOrderScreenState extends State<TrackOrderScreen> {
-
-
   var checkIcon = Container(
     width: 20,
     height: 16,
@@ -95,10 +92,12 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
               verticalSpace(40),
               Center(child: Image.asset('assets/images/Car.png')),
               verticalSpace(10),
-            TimeLineWidget(),
+              TimeLineWidget(),
               verticalSpace(10),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, RoutesName.trackingMap);
+                },
                 child: Text(LocaleKeys.showMap.tr()),
               ),
             ],
@@ -107,6 +106,4 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
       ),
     );
   }
-
-
 }

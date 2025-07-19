@@ -21,8 +21,8 @@ void main() async {
   await Firebase.initializeApp();
 
   // Initialize secondary app
-  await DriverFirebaseService.initialize(); 
-   await NotificationService.initialize();
+  await DriverFirebaseService.initialize();
+  await NotificationService.initialize();
   await EasyLocalization.ensureInitialized();
   configureDependencies();
   Bloc.observer = SimpleBlocObserver();

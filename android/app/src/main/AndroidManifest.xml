@@ -10,7 +10,7 @@ package="com.example.flowery">
         android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyAjrJX6MRO8DV5tNmFxQ9amIOyBPqhSC3U"/>
+               android:value="AIzaSyC-i04d3aeW-Cx-7K9krM2FHqDJSScWQHo"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

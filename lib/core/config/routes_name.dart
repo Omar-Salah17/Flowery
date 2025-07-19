@@ -25,4 +25,5 @@ class RoutesName {
   static const String notificationListScreen = "NotificationListScreen";
   static const String trackOrder = "TrackOrder";
   static const String sucessTrackOrder = "SucessTrackOrder";
+  static const String trackingMap = "TrackingMap";
 }
