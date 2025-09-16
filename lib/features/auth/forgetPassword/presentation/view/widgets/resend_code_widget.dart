@@ -52,10 +52,10 @@ class _ResendCodeState extends State<ResendCode> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              LocaleKeys.DidnotReceiveCode.tr(),
-              style: AppTextStyles.instance.textStyle16,
-            ),
+            // Text(
+            //   LocaleKeys.DidnotReceiveCode.tr(),
+            //   style: AppTextStyles.instance.textStyle16,
+            // ),
             GestureDetector(
               onTap:
                   canResend

@@ -26,7 +26,7 @@ class CategoriesScreenCubit extends Cubit<CategoriesScreenState> {
   getProductsByCategoryWithSortUseCase;
   final SearchUseCase searchUseCase;
   String selectedCategoryId = "all";
-   late TabController tabController;
+  late TabController tabController;
   List<Category> categories = [];
   
  
