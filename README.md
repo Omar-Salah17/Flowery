@@ -15,9 +15,12 @@ A modern, elegant, and fully functional Flutter e-commerce application designed 
 ## 🚀 Features
 
 - **Authentication**: Secure user sign-up and login handling via Firebase Auth.
+- **User Profile**: Comprehensive profile management including avatar and contact details.
+- **Location Intelligence**: Smart location detection and permission handling for precise delivery.
 - **Product Browsing**: Explore a rich catalog of flowers and arrangements seamlessly.
 - **Shopping Cart**: Add items, modify quantities, and manage your cart efficiently.
 - **Order Management**: Track past and current orders effortlessly.
+- **Security**: Advanced in-app password management and recovery flows.
 - **Clean Architecture**: Follows industry best practices, ensuring a highly scalable and testable codebase.
 
 ---
@@ -105,6 +108,46 @@ Post-purchase, the app provides full transparency with an order tracking system.
 **Key Technical Highlights:**
 - **Real-time Updates**: Real-time listeners to Firestore for instant status changes.
 - **Visual Feedback**: A clear, intuitive timeline UI for peace of mind.
+
+---
+
+### 👤 7. User Profile & Personalization
+A centralized hub for users to manage their identity. The "Edit Profile" feature allows for seamless updates to personal details and profile imagery, enhancing the personalized shopping experience.
+
+<div align="center">
+  <img src="screenshots/edit_profile.png" width="45%" alt="Edit Profile" />
+</div>
+
+**Key Technical Highlights:**
+- **Image Processing**: Integrated camera/gallery picking for profile avatars.
+- **Data Persistence**: Synchronized updates across Firestore and local state.
+
+---
+
+### 📍 8. Location Intelligence
+Precision delivery is prioritized through smart location services. The app utilizes device location permissions to auto-detect the user's vicinity, minimizing manual input errors during checkout.
+
+<div align="center">
+  <img src="screenshots/access_location.png" width="45%" alt="Location Permission" />
+</div>
+
+**Key Technical Highlights:**
+- **Permission Flow**: Graceful handling of system-level permissions for a non-intrusive UX.
+- **Geocoding**: Converting coordinates to human-readable addresses for checkout accuracy.
+
+---
+
+### 🔐 9. Security & Password Management
+We prioritize user security with robust password management flows. This includes both an in-app password update mechanism and an external reset lifecycle for forgotten accounts.
+
+<div align="center">
+  <img src="screenshots/change_pass.png" width="30%" alt="Reset Password" />
+  <img src="screenshots/change_pass2.png" width="60%" alt="In-app Password Change" />
+</div>
+
+**Key Technical Highlights:**
+- **Security Rules**: Re-authentication requirements for sensitive account changes.
+- **Input Filtering**: Complex regex-based password strength validation.
 
 
 ---
