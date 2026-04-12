@@ -128,6 +128,7 @@ A centralized hub for users to manage their identity. The "Edit Profile" feature
 Precision delivery is prioritized through smart location services. The app utilizes device location permissions to auto-detect the user's vicinity, minimizing manual input errors during checkout.
 
 <div align="center">
+  <img src="screenshots/home.png" width="45%" alt="Home Dashboard" />
   <img src="screenshots/access_location.png" width="45%" alt="Location Permission" />
 </div>
 
@@ -141,8 +142,8 @@ Precision delivery is prioritized through smart location services. The app utili
 We prioritize user security with robust password management flows. This includes both an in-app password update mechanism and an external reset lifecycle for forgotten accounts.
 
 <div align="center">
-  <img src="screenshots/change_pass.png" width="30%" alt="Reset Password" />
-  <img src="screenshots/change_pass2.png" width="60%" alt="In-app Password Change" />
+  <img src="screenshots/change_pass.png" width="45%" alt="Reset Password" />
+  <img src="screenshots/change_pass2.png" width="45%" alt="In-app Password Change" />
 </div>
 
 **Key Technical Highlights:**
